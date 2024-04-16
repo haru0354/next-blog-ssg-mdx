@@ -1,6 +1,5 @@
 import Breadcrumbs from "@/app/component/contentArea/Breadcrumbs";
 import { getArticle, getArticles } from "@/app/component/lib/ArticleService";
-import parse from "html-react-parser";
 import Image from "next/image";
 import type { Metadata } from "next";
 import ArticleInArticleList from "@/app/component/contentArea/ArticleInArticleList";
@@ -49,7 +48,7 @@ const page = async ({
           {article.frontmatter.title}
         </h1>
         <Image
-          src={`/image_webp//${article.frontmatter.eyeCatchName}.webp`}
+          src={`/image_webp/${article.frontmatter.eyeCatchName}.webp`}
           alt={`${article.frontmatter.eyeCatchAlt}`}
           width={750}
           height={493}
@@ -58,7 +57,6 @@ const page = async ({
         <p className="my-2 mx-2 mb-6 text-gray-600">
           投稿日：{article.frontmatter.date}
         </p>
-        {parse(article.contentHtml)}
       </div>
       <ArticleInArticleList
         categorySlug={params.category_slug}

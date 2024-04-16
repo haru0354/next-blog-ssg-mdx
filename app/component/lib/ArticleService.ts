@@ -1,9 +1,6 @@
 import path from "path";
 import fs from "fs";
 import matter from "gray-matter";
-import { unified } from "unified";
-import remarkParse from "remark-parse";
-import remarkHtml from "remark-html";
 
 export async function getArticles() {
   const ArticlesDirectory = path.join(process.cwd(), "mdFile", "article");
@@ -16,7 +13,7 @@ export async function getArticles() {
       const { data } = matter(fileContents);
 
       return {
-        slug: fileName.replace(".md", ""),
+        slug: fileName.replace(".mdx", ""),
         frontmatter: data,
       };
     })
@@ -27,19 +24,14 @@ export async function getArticles() {
 
 export async function getArticle(params: string) {
   const slug = params;
-  const filePath = path.join(process.cwd(), "mdFile", "article", `${slug}.md`);
+  const filePath = path.join(process.cwd(), "mdFile", "article", `${slug}.mdx`);
 
   const fileContents = await fs.promises.readFile(filePath, "utf8");
 
   const { data, content } = matter(fileContents);
-  const processedContent = await unified()
-    .use(remarkParse)
-    .use(remarkHtml)
-    .process(content);
-  const contentHtml = processedContent.toString();
 
   return {
     frontmatter: data,
-    contentHtml,
+    content,
   };
 }

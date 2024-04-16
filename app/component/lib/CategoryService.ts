@@ -1,9 +1,6 @@
 import path from "path";
 import fs from "fs";
 import matter from "gray-matter";
-import { unified } from "unified";
-import remarkParse from "remark-parse";
-import remarkHtml from "remark-html";
 
 export async function getCategories() {
   const categoriesDirectory = path.join(
@@ -20,7 +17,7 @@ export async function getCategories() {
       const { data } = matter(fileContents);
 
       return {
-        slug: fileName.replace(".md", ""),
+        slug: fileName.replace(".mdx", ""),
         frontmatter: data,
       };
     })
@@ -35,20 +32,15 @@ export async function getCategory(params: string) {
     process.cwd(),
     "mdFile",
     "category",
-    `${slug}.md`
+    `${slug}.mdx`
   );
 
   const fileContents = await fs.promises.readFile(filePath, "utf8");
 
   const { data, content } = matter(fileContents);
-  const processedContent = await unified()
-    .use(remarkParse)
-    .use(remarkHtml)
-    .process(content);
-  const contentHtml = processedContent.toString();
 
   return {
     frontmatter: data,
-    contentHtml,
+    content,
   };
 }

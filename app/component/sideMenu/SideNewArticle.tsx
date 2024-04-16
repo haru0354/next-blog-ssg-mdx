@@ -26,7 +26,7 @@ const SideNewArticle = async () => {
             >
               <div className="hover:bg-blue-100">
                 <Image
-                  src={`/thumbnail_webp//${article.frontmatter.eyeCatchName}.webp`}
+                  src={`/thumbnail_webp/${article.frontmatter.eyeCatchName}.webp`}
                   alt={`${article.frontmatter.eyeCatchAlt}`}
                   width={282}
                   height={100}
