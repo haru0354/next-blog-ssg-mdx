@@ -1,8 +1,10 @@
-import Breadcrumbs from "@/app/component/contentArea/Breadcrumbs";
-import { getArticle, getArticles } from "@/app/component/lib/ArticleService";
-import Image from "next/image";
 import type { Metadata } from "next";
+import Image from "next/image";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import { useMDXComponents } from "@/mdx-components";
+import { getArticle, getArticles } from "@/app/component/lib/ArticleService";
 import ArticleInArticleList from "@/app/component/contentArea/ArticleInArticleList";
+import Breadcrumbs from "@/app/component/contentArea/Breadcrumbs";
 
 export const generateMetadata = async ({
   params,
@@ -57,6 +59,7 @@ const page = async ({
         <p className="my-2 mx-2 mb-6 text-gray-600">
           投稿日：{article.frontmatter.date}
         </p>
+        <MDXRemote source={article.content} components={useMDXComponents()} />
       </div>
       <ArticleInArticleList
         categorySlug={params.category_slug}
