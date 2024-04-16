@@ -4,7 +4,7 @@ import matter from "gray-matter";
 
 export async function getGlobalMenu() {
   const globalMenuDirectory = path.join(process.cwd(), "mdFile", "menu");
-  const filePath = path.join(globalMenuDirectory, "globalMenu.md");
+  const filePath = path.join(globalMenuDirectory, "globalMenu.mdx");
   const fileContents = await fs.promises.readFile(filePath, "utf8");
   const { data } = matter(fileContents);
 
@@ -15,7 +15,7 @@ export async function getGlobalMenu() {
 
 export async function getRecommendArticles() {
   const globalMenuDirectory = path.join(process.cwd(), "mdFile", "menu");
-  const filePath = path.join(globalMenuDirectory, "recommendArticle.md");
+  const filePath = path.join(globalMenuDirectory, "recommendArticle.mdx");
   const fileContents = await fs.promises.readFile(filePath, "utf8");
   const { data } = matter(fileContents);
 
@@ -26,7 +26,7 @@ export async function getRecommendArticles() {
 
 export async function getLinks() {
   const globalMenuDirectory = path.join(process.cwd(), "mdFile", "menu");
-  const filePath = path.join(globalMenuDirectory, "link.md");
+  const filePath = path.join(globalMenuDirectory, "link.mdx");
   const fileContents = await fs.promises.readFile(filePath, "utf8");
   const { data } = matter(fileContents);
 

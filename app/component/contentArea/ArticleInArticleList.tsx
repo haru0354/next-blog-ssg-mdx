@@ -41,7 +41,7 @@ const ArticleInArticleList: React.FC<ArticleInArticleListProps> = async ({
             <div className="flex flex-wrap justify-center md:flex-nowrap w-full my-2">
               <div className="min-w-[342px] mb-2 md:mb-0">
                 <Image
-                  src={`/thumbnail_webp//${article.frontmatter.eyeCatchName}.webp`}
+                  src={`/thumbnail_webp/${article.frontmatter.eyeCatchName}.webp`}
                   alt={`${article.frontmatter.eyeCatchAlt}`}
                   width={342}
                   height={225}
