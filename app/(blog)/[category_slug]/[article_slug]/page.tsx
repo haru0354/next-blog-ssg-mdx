@@ -41,7 +41,7 @@ const page = async ({
 
   return (
     <>
-      <div className="content p-4 bg-white border border-gray-200">
+      <div className="p-4 bg-white border border-gray-200">
         <Breadcrumbs
           categorySlug={params.category_slug}
           categoryName={article.frontmatter.categoryName}
