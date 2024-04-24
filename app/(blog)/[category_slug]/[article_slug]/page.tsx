@@ -5,6 +5,7 @@ import { useMDXComponents } from "@/mdx-components";
 import { getArticle, getArticles } from "@/app/component/lib/ArticleService";
 import ArticleInArticleList from "@/app/component/contentArea/ArticleInArticleList";
 import Breadcrumbs from "@/app/component/contentArea/Breadcrumbs";
+import Button from "@/app/component/Button";
 
 export const generateMetadata = async ({
   params,
@@ -41,7 +42,7 @@ const page = async ({
 
   return (
     <>
-      <div className="content p-4 bg-white border border-gray-200">
+      <div className="p-4 bg-white border border-gray-200">
         <Breadcrumbs
           categorySlug={params.category_slug}
           categoryName={article.frontmatter.categoryName}
@@ -59,7 +60,10 @@ const page = async ({
         <p className="my-2 mx-2 mb-6 text-gray-600">
           投稿日：{article.frontmatter.date}
         </p>
-        <MDXRemote source={article.content} components={useMDXComponents()} />
+        <MDXRemote
+          source={article.content}
+          components={useMDXComponents({ Button })}
+        />
       </div>
       <ArticleInArticleList
         categorySlug={params.category_slug}

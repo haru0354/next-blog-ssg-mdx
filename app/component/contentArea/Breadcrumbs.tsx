@@ -26,7 +26,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
       {isCategory ? (
         categoryName
       ) : (
-        <Link href={`/${categorySlug}`}>{categoryName}</Link>
+        <Link href={`/${categorySlug}`} className="text-sky-600">{categoryName}</Link>
       )}
     </span>
   );

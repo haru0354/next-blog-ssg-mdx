@@ -8,6 +8,7 @@ import {
 } from "@/app/component/lib/CategoryService";
 import CategoryInArticlesList2Images from "@/app/component/contentArea/CategoryInArticlesList2Images";
 import Breadcrumbs from "@/app/component/contentArea/Breadcrumbs";
+import Button from "@/app/component/Button";
 
 export const generateMetadata = async ({
   params,
@@ -39,7 +40,7 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
 
   return (
     <>
-      <div className="content p-4 bg-white border border-gray-200">
+      <div className="p-4 bg-white border border-gray-200">
         <Breadcrumbs
           categorySlug={params.category_slug}
           categoryName={category.frontmatter.categoryName}
@@ -58,7 +59,7 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
         <p className="my-2 mx-2 mb-6 text-gray-600 font-sm">
           投稿日：{category.frontmatter.date}
         </p>
-        <MDXRemote source={category.content} components={useMDXComponents()} />
+        <MDXRemote source={category.content} components={useMDXComponents({Button})} />
       </div>
       <CategoryInArticlesList2Images params={params.category_slug} />
     </>
