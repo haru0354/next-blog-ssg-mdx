@@ -37,6 +37,7 @@ export async function generateStaticParams() {
 
 const page = async ({ params }: { params: { category_slug: string } }) => {
   const category = await getCategory(params.category_slug);
+console.log(category);
 
   return (
     <>
@@ -46,22 +47,32 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
           categoryName={category.frontmatter.categoryName}
           isCategory={true}
         />
-        <h1 className="text-2xl font-semibold mx-2 my-4">
-          {category.frontmatter.title}
-        </h1>
-        <Image
-          src={`/image_webp/${category.frontmatter.eyeCatchName}.webp`}
-          alt={`${category.frontmatter.eyeCatchAlt}`}
-          width={750}
-          height={493}
-          className="mx-auto"
-        />
-        <p className="my-2 mx-2 mb-6 text-gray-600 font-sm">
-          投稿日：{category.frontmatter.date}
-        </p>
-        <MDXRemote source={category.content} components={useMDXComponents({Button})} />
+        {category.content && (
+          <>
+            <h1 className="text-2xl font-semibold mx-2 my-4">
+              {category.frontmatter.title}
+            </h1>
+            <Image
+              src={`/image_webp/${category.frontmatter.eyeCatchName}.webp`}
+              alt={`${category.frontmatter.eyeCatchAlt}`}
+              width={750}
+              height={493}
+              className="mx-auto"
+            />
+            <p className="my-2 mx-2 mb-6 text-gray-600 font-sm">
+              投稿日：{category.frontmatter.date}
+            </p>
+            <MDXRemote
+              source={category.content}
+              components={useMDXComponents({ Button })}
+            />
+          </>
+        )}
       </div>
-      <CategoryInArticlesList2Images params={params.category_slug} />
+      <CategoryInArticlesList2Images
+        params={params.category_slug}
+        categoryName={category.frontmatter.categoryName}
+        />
     </>
   );
 };
