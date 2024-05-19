@@ -4,7 +4,7 @@ date: '2022-04-01'
 description: 'metaタグ(description)'
 categoryName: 'カテゴリ名を記入'
 categorySlug: 'sample（カテゴリのスラッグを記入）'
-eyeCatchName: '00.jpg'
+eyeCatchName: '00(拡張子なしのファイル名のみ記載)'
 eyeCatchAlt: 'アイキャッチ画像のAlt'
 ---
 
