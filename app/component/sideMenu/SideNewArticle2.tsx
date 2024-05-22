@@ -31,7 +31,7 @@ const SideNewArticle2 = async () => {
                   className="mx-auto"
                 />
                 <p className="border-b pt-2 pb-6 px-4 border-gray-200">
-                  {article.frontmatter.title}
+                {article.frontmatter.title.length > 32 ? `${article.frontmatter.title.slice(0, 32)}...` : article.frontmatter.title}
                 </p>
               </div>
             </Link>

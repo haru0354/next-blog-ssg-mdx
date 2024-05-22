@@ -38,14 +38,18 @@ const ArticleInArticleList: React.FC<ArticleInArticleListProps> = async ({
             href={`/${article.frontmatter.categorySlug}/${article.slug}`}
             key={article.slug}
           >
-            <div className="flex flex-col max-w-[367px] md:min-h-[330px] mx-2 my-4">
+            <div className="flex flex-col max-w-[367px] md:min-h-[330px] mx-2 my-4 hover:bg-blue-100">
               <Image
                 src={`/thumbnail_webp/${article.frontmatter.eyeCatchName}.webp`}
                 alt={`${article.frontmatter.eyeCatchAlt}`}
                 width={367}
                 height={210}
               />
-              <h3 className="my-4">{article.frontmatter.title}</h3>
+              <h3 className="my-4">
+                {article.frontmatter.title.length > 32
+                  ? `${article.frontmatter.title.slice(0, 32)}...`
+                  : article.frontmatter.title}
+              </h3>
             </div>
           </Link>
         ))}
