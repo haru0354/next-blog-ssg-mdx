@@ -2,10 +2,14 @@ import Link from "next/link";
 import { getArticles } from "../lib/ArticleService";
 import Image from "next/image";
 
-const CategoryInArticlesList2Images = async ({
+type CategoryInArticlesList2ImagesProps = {
+  categoryName: string;
+  params: string
+}
+
+const CategoryInArticlesList2Images: React.FC<CategoryInArticlesList2ImagesProps> =  async ({
   params,
-}: {
-  params: string;
+  categoryName,
 }) => {
   const currentCategory = params;
   const Articles = await getArticles();
@@ -16,7 +20,7 @@ const CategoryInArticlesList2Images = async ({
   return (
     <div className="bg-white p-4 mt-8 border border-gray-200">
       <h2 className="w-full my-4 py-4 px-2 bg-gray-800 text-white text-xl font-semibold rounded">
-        関連記事
+      {categoryName}の一覧
       </h2>
       <div className="w-full flex flex-wrap justify-center">
         {filteredArticles.map((article) => (
