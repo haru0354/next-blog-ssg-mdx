@@ -21,7 +21,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
         height={25}
         className="inline mb-[2px] mr-2"
       />
-      <Link href="/">ホーム</Link>
+      <Link href="/" className="text-sky-600">ホーム</Link>
       　＞　
       {isCategory ? (
         categoryName
