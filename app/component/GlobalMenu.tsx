@@ -8,24 +8,26 @@ const GlobalMenu = async () => {
     return null;
   }
 
-  const globalMenuList = ["name", "name2", "name3", "name4"];
+  const menuItems = [
+    { name: globalMenu.frontmatter.name, slug: globalMenu.frontmatter.slug },
+    { name: globalMenu.frontmatter.name2, slug: globalMenu.frontmatter.slug2 },
+    { name: globalMenu.frontmatter.name3, slug: globalMenu.frontmatter.slug3 },
+    { name: globalMenu.frontmatter.name4, slug: globalMenu.frontmatter.slug4 },
+  ];
 
   return (
     <nav className="w-full mb-10 bg-gray-800">
       <div className="flex items-center justify-center">
-        <ul className="md:w-[1100px] flex flex-wrap items-center justify-center">
-          {globalMenuList.map(
-            (nameKey, index) =>
-              globalMenu.frontmatter[nameKey] && (
+        <ul className="md:w-[1100px] flex flex-wrap w-full items-center justify-center">
+          {menuItems.map(
+            (menuItem, index) =>
+              menuItem.name && (
                 <li
-                  key={nameKey}
-                  className="w-[50%] md:w-[25%] text-center text-sm md:text-base text-white py-2 md:py-4 px-2 hover:bg-gray-700 "
+                  key={index}
+                  className="w-[50%] md:w-[25%] text-center text-sm md:text-base text-white py-3 md:py-4 px-2 hover:bg-gray-700"
                 >
-                  <Link
-                    href={`/${globalMenu.frontmatter[`slug${index + 1}`]}`}
-                    className="block"
-                  >
-                    {globalMenu.frontmatter[nameKey]}
+                  <Link href={`/${menuItem.slug}`} className="block">
+                    {menuItem.name}
                   </Link>
                 </li>
               )
