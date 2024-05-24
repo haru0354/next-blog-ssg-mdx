@@ -29,14 +29,14 @@ const TopNewArticle = async () => {
                 href={`/${article.frontmatter.categorySlug}/${article.slug}`}
                 key={article.slug}
               >
-                <div className="flex flex-col justify-center items-center mx-2 mb-8 md:max-w-[320px] md:min-w-[320px]">
+                <div className="flex flex-col justify-center items-center mx-2 mb-8 md:max-w-[320px] md:min-w-[320px] hover:bg-blue-100">
                   <Image
                     src={`/image_webp/${article.frontmatter.eyeCatchName}.webp`}
                     alt={`${article.frontmatter.eyeCatchAlt}`}
                     width={320}
                     height={230}
                   />
-                  <h3 className="p-4">{article.frontmatter.title}</h3>
+                  <h3 className="p-4 w-full">{article.frontmatter.title.length > 34 ? `${article.frontmatter.title.slice(0, 34)}...` : article.frontmatter.title}</h3>
                 </div>
               </Link>
             );

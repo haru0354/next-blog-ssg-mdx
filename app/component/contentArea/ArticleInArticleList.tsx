@@ -38,7 +38,7 @@ const ArticleInArticleList: React.FC<ArticleInArticleListProps> = async ({
             href={`/${article.frontmatter.categorySlug}/${article.slug}`}
             key={article.slug}
           >
-            <div className="flex flex-wrap justify-center md:flex-nowrap w-full my-2">
+            <div className="flex flex-wrap justify-center md:flex-nowrap w-full my-2 py-4 md:p-0 hover:bg-blue-100">
               <div className="min-w-[342px] mb-2 md:mb-0">
                 <Image
                   src={`/thumbnail_webp/${article.frontmatter.eyeCatchName}.webp`}
@@ -47,9 +47,11 @@ const ArticleInArticleList: React.FC<ArticleInArticleListProps> = async ({
                   height={225}
                 />
               </div>
-              <div className="flex flex-col md:min-w-[422px] py-2 px-4">
+              <div className="flex flex-col w-full md:min-w-[422px] py-2 px-4">
                 <h3 className="mb-6 font-semibold">
-                  {article.frontmatter.title}
+                  {article.frontmatter.title.length > 32
+                    ? `${article.frontmatter.title.slice(0, 32)}...`
+                    : article.frontmatter.title}
                 </h3>
                 <p>
                   {article.frontmatter.description.length > 80

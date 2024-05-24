@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import GlobalMenu from "./GlobalMenu";
 
 type HeaderProps = {
   isTopPage?: boolean;
@@ -7,8 +8,8 @@ type HeaderProps = {
 
 const Header: React.FC<HeaderProps> = ({ isTopPage }) => {
   return (
-    <header className="my-4">
-      <div className="w-[350px] mx-auto ">
+    <header className="mb-4">
+      <div className="w-[350px] mx-auto pb-2 md:py-4">
         <Link href="/">
           {isTopPage ? (
             <h1>
@@ -33,6 +34,7 @@ const Header: React.FC<HeaderProps> = ({ isTopPage }) => {
           )}
         </Link>
       </div>
+      <GlobalMenu />
     </header>
   );
 };
