@@ -29,7 +29,7 @@ const ArticleInArticleList: React.FC<ArticleInArticleListProps> = async ({
 
   return (
     <div className="bg-white p-4 mt-8 border border-gray-200">
-      <h2 className="w-full my-4 py-4 px-2 bg-gray-800 text-white text-xl font-semibold rounded">
+      <h2 className="w-full my-4 py-4 px-2 bg-main-gray text-white text-xl font-semibold rounded">
         関連記事
       </h2>
       <div className="w-full flex flex-wrap justify-center">
@@ -38,7 +38,7 @@ const ArticleInArticleList: React.FC<ArticleInArticleListProps> = async ({
             href={`/${article.frontmatter.categorySlug}/${article.slug}`}
             key={article.slug}
           >
-            <div className="flex flex-col max-w-[367px] md:min-h-[330px] mx-2 my-4 hover:bg-blue-100">
+            <div className="flex flex-col max-w-[367px] md:min-h-[330px] mx-2 my-4 hover:bg-hover-blue">
               <Image
                 src={`/thumbnail_webp/${article.frontmatter.eyeCatchName}.webp`}
                 alt={`${article.frontmatter.eyeCatchAlt}`}

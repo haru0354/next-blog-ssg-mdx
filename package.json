@@ -6,6 +6,7 @@
     "dev": "node scripts/ConvertToWebp.js && next dev",
     "build": "node scripts/ConvertToWebp.js && next build",
     "start": "npx serve@latest out",
+    "image": "node scripts/ConvertToWebp.js",
     "lint": "next lint"
   },
   "dependencies": {

@@ -2,15 +2,16 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="text-center text-xs py-2 bg-gray-800 text-white">
-      <ul className="my-1">
-        <li className="mb-2 text-sky-500">
+    <footer className="text-center text-xs py-2 bg-main-gray text-white">
+      <ul className="flex flex-column items-center justify-center my-1">
+        <li className="mb-2 mx-4 text-sky-500">
           <Link href="/privacypolicy">プライバシーポリシー・免責事項</Link>
         </li>
-        <li className="mb-2">
-          &copy;サイトタイトル
+        <li className="mb-2 mx-4 text-sky-500">
+          <Link href="/sitemaps">サイトマップ</Link>
         </li>
       </ul>
+      &copy;サイトタイトル
     </footer>
   );
 };

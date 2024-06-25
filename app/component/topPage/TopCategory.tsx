@@ -19,7 +19,7 @@ const TopCategory = async () => {
           {categories.map((category) => {
             return (
               <Link href={`/${category.slug}`} key={category.slug}>
-                <div className="flex flex-col justify-center items-center mx-2 mb-8 md:max-w-[320px] md:min-w-[320px] hover:bg-blue-100">
+                <div className="flex flex-col justify-center items-center mx-2 mb-8 md:max-w-[320px] md:min-w-[320px] hover:bg-hover-blue">
                   <Image
                     src={`/thumbnail_webp/${category.frontmatter.eyeCatchName}.webp`}
                     alt={`${category.frontmatter.eyeCatchAlt}`}

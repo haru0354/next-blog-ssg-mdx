@@ -11,7 +11,7 @@ const SideRecommendArticles = async () => {
 
   return (
     <div className="bg-white border-r border-l mb-8 border-gray-200">
-      <p className="w-full p-4 bg-gray-800 text-white font-bold">
+      <p className="w-full p-4 bg-main-gray text-white font-bold">
         おすすめの記事
       </p>
       <Link href={`/${RecommendArticles.frontmatter.slug}`}>

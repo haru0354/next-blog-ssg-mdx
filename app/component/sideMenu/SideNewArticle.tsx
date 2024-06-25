@@ -14,7 +14,7 @@ const SideNewArticle = async () => {
 
   return (
     <nav>
-      <p className="w-full mt-8 py-4 px-2 bg-gray-800 text-white font-bold rounded">
+      <p className="w-full mt-8 py-4 px-2 bg-main-gray text-white font-bold rounded">
         新着記事
       </p>
       <ul>
@@ -24,7 +24,7 @@ const SideNewArticle = async () => {
               href={`/${article.frontmatter.categorySlug}/${article.slug}`}
               key={article.slug}
             >
-              <div className="hover:bg-blue-100">
+              <div className="hover:bg-hover-blue">
                 <Image
                   src={`/thumbnail_webp/${article.frontmatter.eyeCatchName}.webp`}
                   alt={`${article.frontmatter.eyeCatchAlt}`}
