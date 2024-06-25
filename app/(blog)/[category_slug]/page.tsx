@@ -8,7 +8,6 @@ import {
 } from "@/app/component/lib/CategoryService";
 import CategoryInArticlesList2Images from "@/app/component/contentArea/CategoryInArticlesList2Images";
 import Breadcrumbs from "@/app/component/contentArea/Breadcrumbs";
-import Button from "@/app/component/Button";
 
 export const generateMetadata = async ({
   params,
@@ -66,7 +65,7 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
             </p>
             <MDXRemote
               source={category.content}
-              components={useMDXComponents({ Button })}
+              components={useMDXComponents()}
             />
           </>
         )}

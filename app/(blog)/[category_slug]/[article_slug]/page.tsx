@@ -5,7 +5,6 @@ import { useMDXComponents } from "@/mdx-components";
 import { getArticle, getArticles } from "@/app/component/lib/ArticleService";
 import ArticleInArticleList from "@/app/component/contentArea/ArticleInArticleList";
 import Breadcrumbs from "@/app/component/contentArea/Breadcrumbs";
-import Button from "@/app/component/Button";
 
 export const generateMetadata = async ({
   params,
@@ -62,7 +61,7 @@ const page = async ({
         </p>
         <MDXRemote
           source={article.content}
-          components={useMDXComponents({ Button })}
+          components={useMDXComponents()}
         />
       </div>
       <ArticleInArticleList
