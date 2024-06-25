@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 const page = () => {
   return (
-    <div className="content p-4 bg-white">
+    <div className="content p-4 bg-white border border-gray-200">
       <h2 className="text-xl font-semibold text-white my-6 p-4 bg-main-gray rounded">
         プライバシーポリシー
       </h2>
