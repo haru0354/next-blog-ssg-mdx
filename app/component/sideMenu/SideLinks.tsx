@@ -10,7 +10,7 @@ const SideLinks = async () => {
 
   return (
     <nav className="bg-white border-r border-l mt-8 border-gray-200">
-      <p className="w-full p-4 bg-gray-800 text-white font-bold">
+      <p className="w-full p-4 bg-main-gray text-white font-bold">
         参考文献・参考サイト
       </p>
       <ul>

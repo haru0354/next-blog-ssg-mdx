@@ -8,7 +8,7 @@ type CategoryInArticlesListProps = {
   params: string;
 };
 
-const CategoryInArticlesList: React.FC<CategoryInArticlesListProps> =  async ({
+const CategoryInArticlesList: React.FC<CategoryInArticlesListProps> = async ({
   params,
   categoryName,
 }) => {
@@ -20,8 +20,8 @@ const CategoryInArticlesList: React.FC<CategoryInArticlesListProps> =  async ({
 
   return (
     <div className="bg-white p-4 mt-8">
-      <h2 className="w-full my-4 py-4 px-2 bg-gray-800 text-white text-xl font-semibold rounded">
-      {categoryName}の一覧
+      <h2 className="w-full my-4 py-4 px-2 bg-main-gray text-white text-xl font-semibold rounded">
+        {categoryName}の一覧
       </h2>
       <div className="w-full flex flex-wrap justify-center items-start">
         {filteredArticles.map((article) => (

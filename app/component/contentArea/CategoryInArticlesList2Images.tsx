@@ -18,7 +18,7 @@ const CategoryInArticlesList2Images: React.FC<
 
   return (
     <div className="bg-white p-4 mt-8 border border-gray-200">
-      <h2 className="w-full my-4 py-4 px-2 bg-gray-800 text-white text-xl font-semibold rounded">
+      <h2 className="w-full my-4 py-4 px-2 bg-main-gray text-white text-xl font-semibold rounded">
         {categoryName}の一覧
       </h2>
       <div className="w-full flex flex-wrap justify-center md:justify-start items-start">
@@ -27,7 +27,7 @@ const CategoryInArticlesList2Images: React.FC<
             href={`/${article.frontmatter.categorySlug}/${article.slug}`}
             key={article.slug}
           >
-            <div className="flex flex-col max-w-[367px] md:min-h-[330px] mx-2 my-2 hover:bg-blue-100">
+            <div className="flex flex-col max-w-[367px] md:min-h-[330px] mx-2 my-2 hover:bg-hover-blue">
               <Image
                 src={`/thumbnail_webp/${article.frontmatter.eyeCatchName}.webp`}
                 alt={`${article.frontmatter.eyeCatchAlt}`}

@@ -6,7 +6,7 @@ const SideCategory = async () => {
 
   return (
     <nav>
-      <p className="w-full mt-4 py-4 px-2 bg-gray-800 text-white font-bold rounded">
+      <p className="w-full mt-4 py-4 px-2 bg-main-gray text-white font-bold rounded">
         カテゴリ
       </p>
       <ul>
@@ -14,7 +14,7 @@ const SideCategory = async () => {
           return (
             <Link href={`/${category.slug}`} key={category.slug}>
               <li
-                className="p-3 hover:bg-blue-100"
+                className="p-3 hover:bg-hover-blue"
                 key={category.frontmatter.categoryName}
               >
                 {category.frontmatter.categoryName}
