@@ -1,6 +1,6 @@
 import type { MDXComponents } from "mdx/types";
-import Button from "./app/component/Ui/Button";
-import CustomLink from "./app/component/Ui/CustomLink";
+import Button from "./app/component/ui/Button";
+import CustomLink from "./app/component/designComponents/CustomLink";
 
 export function useMDXComponents(components?: MDXComponents): MDXComponents {
   return {
