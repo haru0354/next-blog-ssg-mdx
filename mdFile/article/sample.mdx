@@ -34,6 +34,16 @@ boxの数はmap関数を使用しているので、配列内のオブジェク�
   { topText: "taaaa", content: "aaaaaaa", width: 240, height: 140, src: "/logo.png", alt: "a" },
 ]} />
 
+#### ボタンリンク付きFlexBox
+
+propsで「buttonText」「link」の2つを追加すると、ボタンリンクが追加されます。
+
+
+<FlexBox contents={[
+  { topText: "taaaa", content: "aaaaaaa", width: 240, height: 140, src: "/logo.png", alt: "a", buttonText: "TOP PAGE", link: "/"},
+  { topText: "taaaa2", content: "aaaaaaa2", width: 240, height: 140, src: "/logo.png", alt: "a", buttonText: "TOP PAGE2", link: "/" },
+]} />
+
 ### CustomLink
 
 mdx内に設置する「Link」をnext.jsの「Linkコンポーネント」にすることができます。

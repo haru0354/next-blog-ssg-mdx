@@ -1,5 +1,7 @@
 import Image from "next/image";
 import React from "react";
+import Button from "../ui/Button";
+import Link from "next/link";
 
 type FlexBoxProps = {
   contents: Contents[];
@@ -12,6 +14,8 @@ type Contents = {
   height: number;
   src: string;
   alt: string;
+  buttonText?: string;
+  link?: string;
 };
 
 const FlexBox: React.FC<FlexBoxProps> = ({ contents }) => {
@@ -33,6 +37,13 @@ const FlexBox: React.FC<FlexBoxProps> = ({ contents }) => {
               alt={content.alt}
             />
             {content.content}
+            {content.buttonText && content.link && (
+              <Link href={content.link}>
+                <Button color="gray" className="block mx-auto">
+                  {content.buttonText}
+                </Button>
+              </Link>
+            )}
           </div>
         );
       })}
