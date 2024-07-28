@@ -8,18 +8,34 @@ eyeCatchName: '00'
 eyeCatchAlt: 'test'
 ---
 
-## 目次
+## h2
 
-## こんにちは
+### h3
 
-## こんにちは
+## デザインコンポーネント
 
-## こんにちは0
-### 個別記事
+### ボタンコンポーネント
+
+propsでcolorを「blue」「red」「green」の指定で変更可能です。
+初期値はblueが設定されているので、何もpropsが無ければ青色になります。
+
+<Button>a</Button>
+<Button color="green">a</Button>
+<Button color="red">a</Button>
+
+### FlexBox
+
+横2列のBox。
+boxの数はmap関数を使用しているので、配列内のオブジェクトの数を増やすことで、数が増えていきます。
 
 <FlexBox contents={[
   { topText: "taaaa", content: "aaaaaaa", width: 240, height: 140, src: "/logo.png", alt: "a" },
-  { topText: "taaaa", content: "aaaaaaa", width: 240, height: 140, src: "/logo.png", alt: "a" }
+  { topText: "taaaa", content: "aaaaaaa", width: 240, height: 140, src: "/logo.png", alt: "a" },
 ]} />
-<CustomLink href="/sample2/sample2">a</CustomLink>
 
+### CustomLink
+
+mdx内に設置する「Link」をnext.jsの「Linkコンポーネント」にすることができます。
+「CustomLink」タグをNext.jsの「Link」タグやhtmlの「a」タグの代わりに使用してください。
+
+<CustomLink href="/">TOP PAGE</CustomLink>
