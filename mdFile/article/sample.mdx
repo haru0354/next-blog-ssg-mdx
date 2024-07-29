@@ -14,27 +14,29 @@ eyeCatchAlt: 'test'
 
 ## デザインコンポーネント
 
-### ボタンコンポーネント
+### ボタンコンポーネント（Button）
 
 propsでcolorを「blue」「red」「green」の指定で変更可能です。
 初期値はblueが設定されているので、何もpropsが無ければ青色になります。
+「children」を利用する。
 
 <Button>ボタン</Button>
 <Button color="green">ボタン</Button>
 <Button color="red">ボタン</Button>
 <Button color="gray">ボタン</Button>
 
-### FlexBox
+### FlexBox（FlexBox）
 
 横2列のBox。
-boxの数はmap関数を使用しているので、配列内のオブジェクトの数を増やすことで、数が増えていきます。
+propsの「contents」に配列のオブジェクト形式を渡す
+オブジェクトは「topText」「content」「width」「height」「src」「alt」を追加する。
 
 <FlexBox contents={[
   { topText: "taaaa", content: "aaaaaaa", width: 240, height: 140, src: "/logo.png", alt: "a" },
   { topText: "taaaa", content: "aaaaaaa", width: 240, height: 140, src: "/logo.png", alt: "a" },
 ]} />
 
-#### ボタンリンク付きFlexBox
+#### ボタンリンク付きFlexBox（FlexBox）
 
 propsで「buttonText」「link」の2つを追加すると、ボタンリンクが追加されます。
 
@@ -43,11 +45,12 @@ propsで「buttonText」「link」の2つを追加すると、ボタンリンク
   { topText: "taaaa2", content: "aaaaaaa2", width: 240, height: 140, src: "/logo.png", alt: "a", buttonText: "TOP PAGE2", link: "/" },
 ]} />
 
-### 最初の1つ目のみデザインの違うFlexBox
+### 最初の1つ目のみデザインの違う（ThreeFlexBox）
 
 最初の１つ目のみデザインが変わります。
 それ以降は横２列になります。
-Flex
+propsの「contents」に配列のオブジェクト形式を渡す
+オブジェクトは「topText」「content」「width」「height」「src」「alt」を追加する。
 
 <ThreeFlexBox contents={[
   { topText: "taaaa", content: "aaaaaaa", width: 240, height: 140, src: "/logo.png", alt: "a" },
@@ -55,7 +58,7 @@ Flex
   { topText: "taaaa2", content: "aaaaaaa2", width: 240, height: 140, src: "/logo.png", alt: "a"},
 ]} />
 
-#### ボタンリンク付き
+#### ボタンリンク付き（ThreeFlexBox）
 
 propsで「buttonText」「link」の2つを追加すると、ボタンリンクが追加されます。
 
@@ -65,9 +68,22 @@ propsで「buttonText」「link」の2つを追加すると、ボタンリンク
   { topText: "taaaa2", content: "aaaaaaa2", width: 240, height: 140, src: "/logo.png", alt: "a", buttonText: "TOP PAGE2", link: "/" },
 ]} />
 
-### CustomLink
+### CustomLink（CustomLink）
 
 mdx内に設置する「Link」をnext.jsの「Linkコンポーネント」にすることができます。
-「CustomLink」タグをNext.jsの「Link」タグやhtmlの「a」タグの代わりに使用してください。
+「children」で「CustomLink」タグを、Next.jsの「Link」タグやhtmlの「a」タグの代わりに使用してください。
 
 <CustomLink href="/">TOP PAGE</CustomLink>
+
+### 引用（BlockquoteInBox）
+
+propsで「contents」「url」「linkText」を設定する。
+
+<BlockquoteInBox contents="a" url="/" linkText="aaa"  />
+
+### 引用（BlockquoteInBox Titleあり）
+
+propsで「contents」「url」「linkText」を設定する。
+propsに「title」を追加
+
+<BlockquoteInBox title="test" contents="a" url="/" linkText="aaa"  />
