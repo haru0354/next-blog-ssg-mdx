@@ -36,7 +36,6 @@ export async function generateStaticParams() {
 
 const page = async ({ params }: { params: { category_slug: string } }) => {
   const category = await getCategory(params.category_slug);
-  console.log(category);
 
   return (
     <>

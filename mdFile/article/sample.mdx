@@ -1,5 +1,5 @@
 ---
-title: 'ニキビの記事1title'
+title: 'サンプル用記事'
 date: '2022-04-01'
 description: 'ニキビの記事1description'
 categoryName: "美白"
@@ -7,16 +7,46 @@ categorySlug: "sample2"
 eyeCatchName: '00'
 eyeCatchAlt: 'test'
 ---
-# MDX
 
-## 目次
+## h2
 
-## こんにちは
+### h3
 
-## こんにちは
+## デザインコンポーネント
 
-## こんにちは0
-### 個別記事
+### ボタンコンポーネント
 
-サンプル2　これがmdxの内容です。
+propsでcolorを「blue」「red」「green」の指定で変更可能です。
+初期値はblueが設定されているので、何もpropsが無ければ青色になります。
 
+<Button>ボタン</Button>
+<Button color="green">ボタン</Button>
+<Button color="red">ボタン</Button>
+<Button color="gray">ボタン</Button>
+
+### FlexBox
+
+横2列のBox。
+boxの数はmap関数を使用しているので、配列内のオブジェクトの数を増やすことで、数が増えていきます。
+
+<FlexBox contents={[
+  { topText: "taaaa", content: "aaaaaaa", width: 240, height: 140, src: "/logo.png", alt: "a" },
+  { topText: "taaaa", content: "aaaaaaa", width: 240, height: 140, src: "/logo.png", alt: "a" },
+]} />
+
+#### ボタンリンク付きFlexBox
+
+propsで「buttonText」「link」の2つを追加すると、ボタンリンクが追加されます。
+
+
+<FlexBox contents={[
+  { topText: "taaaa", content: "aaaaaaa", width: 240, height: 140, src: "/logo.png", alt: "a", buttonText: "TOP PAGE", link: "/"},
+  { topText: "taaaa2", content: "aaaaaaa2", width: 240, height: 140, src: "/logo.png", alt: "a", buttonText: "TOP PAGE2", link: "/" },
+]} />
+
+### CustomLink
+
+mdx内に設置する「Link」をnext.jsの「Linkコンポーネント」にすることができます。
+「CustomLink」タグをNext.jsの「Link」タグやhtmlの「a」タグの代わりに使用してください。
+
+<CustomLink href="/">TOP PAGE</CustomLink>

@@ -1,6 +1,7 @@
 import type { MDXComponents } from "mdx/types";
-import Button from "./app/component/Ui/Button";
-import CustomLink from "./app/component/Ui/CustomLink";
+import Button from "./app/component/ui/Button";
+import CustomLink from "./app/component/designComponents/CustomLink";
+import FlexBox from "./app/component/designComponents/FlexBox";
 
 export function useMDXComponents(components?: MDXComponents): MDXComponents {
   return {
@@ -34,6 +35,7 @@ export function useMDXComponents(components?: MDXComponents): MDXComponents {
     li: ({ children }) => <li className="my-4">{children}</li>,
     Button: Button,
     CustomLink: CustomLink,
+    FlexBox: FlexBox,
     ...components,
   };
 }
