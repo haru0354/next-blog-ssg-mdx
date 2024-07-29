@@ -38,8 +38,29 @@ boxの数はmap関数を使用しているので、配列内のオブジェク�
 
 propsで「buttonText」「link」の2つを追加すると、ボタンリンクが追加されます。
 
-
 <FlexBox contents={[
+  { topText: "taaaa", content: "aaaaaaa", width: 240, height: 140, src: "/logo.png", alt: "a", buttonText: "TOP PAGE", link: "/"},
+  { topText: "taaaa2", content: "aaaaaaa2", width: 240, height: 140, src: "/logo.png", alt: "a", buttonText: "TOP PAGE2", link: "/" },
+]} />
+
+### 最初の1つ目のみデザインの違うFlexBox
+
+最初の１つ目のみデザインが変わります。
+それ以降は横２列になります。
+Flex
+
+<ThreeFlexBox contents={[
+  { topText: "taaaa", content: "aaaaaaa", width: 240, height: 140, src: "/logo.png", alt: "a" },
+  { topText: "taaaa", content: "aaaaaaa", width: 240, height: 140, src: "/logo.png", alt: "a" },
+  { topText: "taaaa2", content: "aaaaaaa2", width: 240, height: 140, src: "/logo.png", alt: "a"},
+]} />
+
+#### ボタンリンク付き
+
+propsで「buttonText」「link」の2つを追加すると、ボタンリンクが追加されます。
+
+<ThreeFlexBox contents={[
+  { topText: "taaaa", content: "aaaaaaa", width: 240, height: 140, src: "/logo.png", alt: "a", buttonText: "TOP PAGE", link: "/"},
   { topText: "taaaa", content: "aaaaaaa", width: 240, height: 140, src: "/logo.png", alt: "a", buttonText: "TOP PAGE", link: "/"},
   { topText: "taaaa2", content: "aaaaaaa2", width: 240, height: 140, src: "/logo.png", alt: "a", buttonText: "TOP PAGE2", link: "/" },
 ]} />

@@ -3,7 +3,7 @@ import React from "react";
 import Button from "../ui/Button";
 import Link from "next/link";
 
-type FlexBoxProps = {
+type ThreeFlexBoxProps = {
   contents: Contents[];
 };
 
@@ -18,16 +18,22 @@ type Contents = {
   link?: string;
 };
 
-const FlexBox: React.FC<FlexBoxProps> = ({ contents }) => {
+const ThreeFlexBox: React.FC<ThreeFlexBoxProps> = ({ contents }) => {
   return (
     <div className="flex flex-wrap my-6">
       {contents.map((content, index) => {
-        const borderClass =
-          index % 2 === 0 ? "border" : "border-t border-b border-r";
+        let itemClass;
+        if (index === 0) {
+          itemClass = "w-[100%] border";
+        } else if (index % 2 === 1) {
+          itemClass = "w-[50%] border-b border-l border-r";
+        } else {
+          itemClass = "w-[50%] border-b border-r";
+        }
         return (
           <div
             key={index}
-            className={`w-[50%] p-2 ${borderClass} border-gray-700 border-dashed`}
+            className={`p-2 border-gray-700 border-dashed ${itemClass}`}
           >
             <p className="text-center font-semibold">{content.topText}</p>
             <Image
@@ -35,6 +41,7 @@ const FlexBox: React.FC<FlexBoxProps> = ({ contents }) => {
               height={content.height}
               src={content.src}
               alt={content.alt}
+              className={`${index === 0 ? "float-left" : ""}`}
             />
             {content.content}
             {content.buttonText && content.link && (
@@ -51,4 +58,4 @@ const FlexBox: React.FC<FlexBoxProps> = ({ contents }) => {
   );
 };
 
-export default FlexBox;
+export default ThreeFlexBox;
