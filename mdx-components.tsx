@@ -2,6 +2,7 @@ import type { MDXComponents } from "mdx/types";
 import Button from "./app/component/ui/Button";
 import CustomLink from "./app/component/designComponents/CustomLink";
 import FlexBox from "./app/component/designComponents/FlexBox";
+import ThreeFlexBox from "./app/component/designComponents/ThreeFlexBox";
 
 export function useMDXComponents(components?: MDXComponents): MDXComponents {
   return {
@@ -36,6 +37,7 @@ export function useMDXComponents(components?: MDXComponents): MDXComponents {
     Button: Button,
     CustomLink: CustomLink,
     FlexBox: FlexBox,
+    ThreeFlexBox: ThreeFlexBox,
     ...components,
   };
 }
