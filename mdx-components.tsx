@@ -3,6 +3,7 @@ import Button from "./app/component/ui/Button";
 import CustomLink from "./app/component/designComponents/CustomLink";
 import FlexBox from "./app/component/designComponents/FlexBox";
 import ThreeFlexBox from "./app/component/designComponents/ThreeFlexBox";
+import BlockquoteInBox from "./app/component/designComponents/BlockquoteInBox";
 
 export function useMDXComponents(components?: MDXComponents): MDXComponents {
   return {
@@ -38,6 +39,7 @@ export function useMDXComponents(components?: MDXComponents): MDXComponents {
     CustomLink: CustomLink,
     FlexBox: FlexBox,
     ThreeFlexBox: ThreeFlexBox,
+    BlockquoteInBox: BlockquoteInBox,
     ...components,
   };
 }
