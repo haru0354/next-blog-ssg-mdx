@@ -27,7 +27,7 @@ const FlexBox: React.FC<FlexBoxProps> = ({ contents }) => {
         return (
           <div
             key={index}
-            className={`w-[50%] p-2 ${borderClass} border-gray-700 border-dashed`}
+            className={`w-[50%] p-2 ${borderClass} border-gray-400`}
           >
             <p className="text-center font-semibold">{content.topText}</p>
             <Image
