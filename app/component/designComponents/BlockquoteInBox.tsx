@@ -18,7 +18,7 @@ const BlockquoteInBox: React.FC<BlockquoteInBoxProps> = ({
       {title && <p className="text-center font-semibold mb-4">「{title}」</p>}
       {contents}
       <p className="mt-4 text-right">
-        引用元：<Link href={url} >{linkText}</Link>
+        引用元：<Link href={url} className="text-sky-600">{linkText}</Link>
       </p>
     </blockquote>
   );
