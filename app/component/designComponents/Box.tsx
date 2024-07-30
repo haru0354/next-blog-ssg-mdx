@@ -5,7 +5,7 @@ type BoxProps = {
 
 const Box:React.FC<BoxProps> = ({ children, className }) => {
   return (
-    <div className={`p-4 border border-gray-700 ${className}`}>
+    <div className={`p-4 my-4 border border-gray-700 ${className}`}>
         {children}
     </div>
   )
