@@ -45,3 +45,18 @@ export async function getSideImage() {
     frontmatter: data,
   };
 }
+
+export async function getSideImageBottom() {
+  const globalMenuDirectory = path.join(process.cwd(), "mdFile", "menu");
+  const filePath = path.join(globalMenuDirectory, "sideImageBottom.mdx");
+  const fileContents = await fs.promises.readFile(filePath, "utf8");
+  const { data } = matter(fileContents);
+
+  return {
+    frontmatter: data,
+  };
+}
+
+
+
+
