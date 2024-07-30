@@ -14,9 +14,9 @@ const SideNewArticle = async () => {
 
   return (
     <nav>
-      <p className="w-full mt-8 py-4 px-2 bg-main-gray text-white font-bold rounded">
+      <h3 className="w-full mb-8 py-4 px-2 bg-main-gray text-white font-bold rounded">
         新着記事
-      </p>
+      </h3>
       <ul>
         {filteredArticles.map((article) => {
           return (

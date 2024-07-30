@@ -26,14 +26,14 @@ const ThreeFlexBox: React.FC<ThreeFlexBoxProps> = ({ contents }) => {
         if (index === 0) {
           itemClass = "w-[100%] border";
         } else if (index % 2 === 1) {
-          itemClass = "w-[50%] border-b border-l border-r";
+          itemClass = "min-w-[300px] w-[100%] md:w-[50%] border-b border-l border-r";
         } else {
-          itemClass = "w-[50%] border-b border-r";
+          itemClass = "min-w-[300px] w-[100%] md:w-[50%] border-b border-r border-l md:border-l-0";
         }
         return (
           <div
             key={index}
-            className={`p-2 border-gray-700 border-dashed ${itemClass}`}
+            className={`p-2 border-gray-400  ${itemClass}`}
           >
             <p className="text-center font-semibold">{content.topText}</p>
             <Image
@@ -41,7 +41,7 @@ const ThreeFlexBox: React.FC<ThreeFlexBoxProps> = ({ contents }) => {
               height={content.height}
               src={content.src}
               alt={content.alt}
-              className={`${index === 0 ? "float-left" : ""}`}
+              className={index === 0 ? "mr-4 md:float-left" : ""}
             />
             {content.content}
             {content.buttonText && content.link && (

@@ -11,9 +11,9 @@ const SideRecommendArticles = async () => {
 
   return (
     <div className="bg-white border-r border-l mb-8 border-gray-200">
-      <p className="w-full p-4 bg-main-gray text-white font-bold">
+      <h3 className="w-full p-4 bg-main-gray text-white font-bold">
         おすすめの記事
-      </p>
+      </h3>
       <Link href={`/${RecommendArticles.frontmatter.slug}`}>
         <Image
           src={`/thumbnail_webp/${RecommendArticles.frontmatter.eyeCatchName}.webp`}
