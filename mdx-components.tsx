@@ -4,6 +4,7 @@ import CustomLink from "./app/component/designComponents/CustomLink";
 import FlexBox from "./app/component/designComponents/FlexBox";
 import ThreeFlexBox from "./app/component/designComponents/ThreeFlexBox";
 import BlockquoteInBox from "./app/component/designComponents/BlockquoteInBox";
+import Box from "./app/component/designComponents/Box";
 
 export function useMDXComponents(components?: MDXComponents): MDXComponents {
   return {
@@ -37,6 +38,7 @@ export function useMDXComponents(components?: MDXComponents): MDXComponents {
     li: ({ children }) => <li className="my-4">{children}</li>,
     Button: Button,
     CustomLink: CustomLink,
+    Box: Box,
     FlexBox: FlexBox,
     ThreeFlexBox: ThreeFlexBox,
     BlockquoteInBox: BlockquoteInBox,
