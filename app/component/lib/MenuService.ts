@@ -34,4 +34,14 @@ export async function getLinks() {
     frontmatter: data,
   };
 }
-  
+
+export async function getSideTopImage() {
+  const globalMenuDirectory = path.join(process.cwd(), "mdFile", "menu");
+  const filePath = path.join(globalMenuDirectory, "sideImage.mdx");
+  const fileContents = await fs.promises.readFile(filePath, "utf8");
+  const { data } = matter(fileContents);
+
+  return {
+    frontmatter: data,
+  };
+}
