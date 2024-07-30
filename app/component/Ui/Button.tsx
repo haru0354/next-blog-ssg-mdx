@@ -1,12 +1,14 @@
 type ButtonProps = {
   children: React.ReactNode;
   color?: "blue" | "green" | "red" | "gray";
+  size?: "small" | "normal" | "big";
   className?: string;
 };
 
 const Button: React.FC<ButtonProps> = ({
   children,
   color = "blue",
+  size = "normal",
   className,
 }) => {
   const colors = {
@@ -16,10 +18,17 @@ const Button: React.FC<ButtonProps> = ({
     gray: "bg-gray-600 hover:bg-gray-200",
   };
 
+  const sizes = {
+    small: "min-w-[120px] px-2",
+    normal: "min-w-[180px] px-4",
+    big: "min-w-[240px] px-6",
+  };
+
   return (
     <button
-      className={`min-w-[180px]  my-6 px-6 py-1 text-white hover:text-gray-700 border border-gray-400 rounded 
+      className={`my-6 py-2 text-white hover:text-gray-700 border border-gray-400 rounded 
         ${colors[color]} 
+        ${sizes[size]} 
         ${className}`}
     >
       {children}
