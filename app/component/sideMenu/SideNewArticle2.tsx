@@ -13,7 +13,7 @@ const SideNewArticle2 = async () => {
   const filteredArticles = sortedArticles.slice(0, 5);
 
   return (
-    <nav className="bg-white mt-8 border-r border-l border-gray-200">
+    <nav className="bg-white mb-8 border-r border-l border-gray-200">
       <h3 className="w-full p-4 bg-main-gray text-white font-bold">新着記事</h3>
       <ul>
         {filteredArticles.map((article) => {

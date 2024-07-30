@@ -5,7 +5,7 @@ const SideCategory2 = async () => {
   const categories = await getCategories();
 
   return (
-    <nav className="bg-white border-r border-l border-gray-200">
+    <nav className="bg-white border-r border-l mb-8 border-gray-200">
       <h3 className="w-full p-4 bg-main-gray text-white font-bold">カテゴリ</h3>
       <ul>
         {categories.map((category) => {

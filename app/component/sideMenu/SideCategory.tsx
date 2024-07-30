@@ -6,7 +6,7 @@ const SideCategory = async () => {
 
   return (
     <nav>
-      <h3 className="w-full mt-4 py-4 px-2 bg-main-gray text-white font-bold rounded">
+      <h3 className="w-full mb-8 py-4 px-2 bg-main-gray text-white font-bold rounded">
         カテゴリ
       </h3>
       <ul>
