@@ -35,7 +35,7 @@ export async function getLinks() {
   };
 }
 
-export async function getSideTopImage() {
+export async function getSideImage() {
   const globalMenuDirectory = path.join(process.cwd(), "mdFile", "menu");
   const filePath = path.join(globalMenuDirectory, "sideImage.mdx");
   const fileContents = await fs.promises.readFile(filePath, "utf8");

@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getSideTopImage } from "../lib/MenuService";
+import { getSideImage } from "../lib/MenuService";
 
-const SideTopImage = async () => {
-  const sideImage = await getSideTopImage();
+const SideImage = async () => {
+  const sideImage = await getSideImage();
 
   return (
     <div className="mb-8">
@@ -20,4 +20,4 @@ const SideTopImage = async () => {
   );
 };
 
-export default SideTopImage;
+export default SideImage;
