@@ -34,8 +34,9 @@ export async function generateStaticParams() {
   }));
 }
 
-const page = async ({ params }: { params: { category_slug: string } }) => {
+const Page = async ({ params }: { params: { category_slug: string } }) => {
   const category = await getCategory(params.category_slug);
+  const components = useMDXComponents();
 
   return (
     <>
@@ -62,10 +63,7 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
             <p className="my-2 mx-2 mb-6 text-gray-600 font-sm">
               投稿日：{category.frontmatter.date}
             </p>
-            <MDXRemote
-              source={category.content}
-              components={useMDXComponents()}
-            />
+            <MDXRemote source={category.content} components={components} />
           </>
         )}
       </div>
@@ -77,4 +75,4 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
   );
 };
 
-export default page;
+export default Page;

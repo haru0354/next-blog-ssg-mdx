@@ -32,7 +32,7 @@ export async function generateStaticParams() {
   }));
 }
 
-const page = async ({
+const Page = async ({
   params,
 }: {
   params: { article_slug: string; category_slug: string };
@@ -72,4 +72,4 @@ const page = async ({
   );
 };
 
-export default page;
+export default Page;
