@@ -55,4 +55,10 @@ body {
   .bg-green-underMarker {
     background: linear-gradient(transparent 60%, rgb(187 247 208) 60%);
   }
+  .bg-orange-underMarker {
+    background: linear-gradient(transparent 60%, rgb(254 215 170) 60%);
+  }
+  .bg-yellow-underMarker {
+    background: linear-gradient(transparent 60%, rgb(254 240 138) 60%);
+  }
 }
