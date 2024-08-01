@@ -9,6 +9,7 @@ import Box from "./app/component/designComponents/Box";
 export function useMDXComponents(components?: MDXComponents): MDXComponents {
   return {
     p: ({ children }) => <p className="leading-loose mb-8">{children}</p>,
+    pre: ({ children }) => <pre className="my-4 p-6 text-sm text-white bg-gray-800 rounded">{children}</pre>,
     ol: ({ children }) => (
       <ol className="list-decimal list-inside py-4 px-8 mx-6 my-8 border border-dashed rounded border-gray-400">
         {children}
