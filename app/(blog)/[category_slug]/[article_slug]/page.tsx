@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { MDXProvider } from '@mdx-js/react';
-
+import rehypeSlug from "rehype-slug";
+import remarkToc from "remark-toc";
 import { useMDXComponents } from "@/mdx-components";
 import { getArticle, getArticles } from "@/app/component/lib/ArticleService";
 import ArticleInArticleList from "@/app/component/contentArea/ArticleInArticleList";
 import Breadcrumbs from "@/app/component/contentArea/Breadcrumbs";
 
-import { serialize } from "next-mdx-remote/serialize";
-import rehypeSlug from "rehype-slug";
-
-import remarkToc from "remark-toc";
 
 export const generateMetadata = async ({
   params,

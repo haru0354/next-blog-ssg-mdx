@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import rehypeSlug from "rehype-slug";
+import remarkToc from "remark-toc";
 import { useMDXComponents } from "@/mdx-components";
 import {
   getCategories,
@@ -63,7 +65,18 @@ const Page = async ({ params }: { params: { category_slug: string } }) => {
             <p className="my-2 mx-2 mb-6 text-gray-600 font-sm">
               投稿日：{category.frontmatter.date}
             </p>
-            <MDXRemote source={category.content} components={components} />
+            <MDXRemote
+              source={category.content}
+              components={components}
+              options={{
+                mdxOptions: {
+                  remarkPlugins: [
+                    [remarkToc, { maxDepth: 3, heading: "目次" }],
+                  ],
+                  rehypePlugins: [rehypeSlug],
+                },
+              }}
+            />
           </>
         )}
       </div>
