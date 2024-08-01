@@ -5,6 +5,7 @@ import FlexBox from "./app/component/designComponents/FlexBox";
 import ThreeFlexBox from "./app/component/designComponents/ThreeFlexBox";
 import BlockquoteInBox from "./app/component/designComponents/BlockquoteInBox";
 import Box from "./app/component/designComponents/Box";
+import TextColor from "./app/component/designComponents/TextColor";
 
 export function useMDXComponents(components?: MDXComponents): MDXComponents {
   return {
@@ -22,6 +23,7 @@ export function useMDXComponents(components?: MDXComponents): MDXComponents {
       </ul>
     ),
     li: ({ children }) => <li className="my-4">{children}</li>,
+    TextColor:TextColor,
     Button: Button,
     CustomLink: CustomLink,
     Box: Box,
