@@ -8,7 +8,6 @@ import { getArticle, getArticles } from "@/app/component/lib/ArticleService";
 import ArticleInArticleList from "@/app/component/contentArea/ArticleInArticleList";
 import Breadcrumbs from "@/app/component/contentArea/Breadcrumbs";
 
-
 export const generateMetadata = async ({
   params,
 }: {
@@ -68,10 +67,8 @@ const Page = async ({
           components={components}
           options={{
             mdxOptions: {
-              remarkPlugins: [
-                [remarkToc, { maxDepth: 3, heading: "目次" }],
-              ],
-              rehypePlugins: [rehypeSlug], 
+              remarkPlugins: [[remarkToc, { maxDepth: 3, heading: "目次" }]],
+              rehypePlugins: [rehypeSlug],
             },
           }}
         />

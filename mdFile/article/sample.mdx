@@ -1,19 +1,16 @@
 ---
-title: 'サンプル用記事'
-date: '2022-04-01'
-description: 'ニキビの記事1description'
+title: "サンプル用記事"
+date: "2022-04-01"
+description: "ニキビの記事1description"
 categoryName: "美白"
 categorySlug: "sample2"
-eyeCatchName: '00'
-eyeCatchAlt: 'test'
+eyeCatchName: "00"
+eyeCatchAlt: "test"
 ---
 
 ## 目次
 
-
 ## Table of Contents
-
-
 
 ## h2
 
@@ -23,9 +20,18 @@ eyeCatchAlt: 'test'
 
 ### ボタンコンポーネント（Button）
 
-propsでcolorを「blue」「red」「green」の指定で変更可能です。
+props で color を「blue」「red」「green」の指定で変更可能です。
 
-初期値はblueが設定されているので、何もpropsが無ければ青色になります。
+初期値は blue が設定されているので、何も props が無ければ青色になります。
+
+```
+// ボタンを表示する
+
+<Button>ボタン</Button>
+<Button color="green">ボタン</Button>
+<Button color="red">ボタン</Button>
+<Button color="gray">ボタン</Button>
+```
 
 <Button>ボタン</Button>
 <Button color="green">ボタン</Button>
@@ -34,9 +40,17 @@ propsでcolorを「blue」「red」「green」の指定で変更可能です。
 
 #### ボタンコンポーネント(Button サイズ)
 
-sizeにpropsで「small」「normal」「big」をstringで指定することで変更が可能です。
+size に props で「small」「normal」「big」で指定することで変更が可能です。
 
 何も指定がなければ「normal」が指定されます。
+
+```
+// ボタンのサイズを変更する
+
+<Button size="small">ボタン</Button>
+<Button size="normal">ボタン</Button>
+<Button size="big">ボタン</Button>
+```
 
 <Button size="small">ボタン</Button>
 <Button size="normal">ボタン</Button>
@@ -44,84 +58,334 @@ sizeにpropsで「small」「normal」「big」をstringで指定することで
 
 ### Box（Box）
 
-childrenを使用することで利用が可能。
-propsの「className」にstringでtailWindで記述することでスタイルを追加できます。
+children を使用することで利用が可能。
+props の「className」に string で tailWind で記述することでスタイルを追加できます。
 
-<Box>テスト</Box>
+```
+// Boxデザインを変更する
+
+<Box>box</Box>
+<Box className="rounded">roundedBox</Box>
+<Box className="border-dashed">border-dashedBox</Box>
+```
+
+<Box>box</Box>
 
 スタイルの追加例(rounded)
 
-<Box className="rounded">テスト</Box>
+<Box className="rounded">roundedBox</Box>
 
 スタイルの追加例(border-dashed)
 
-<Box className="border-dashed">テスト</Box>
+<Box className="border-dashed">border-dashedBox</Box>
 
 #### Box（Box タイトル付き）
 
-Boxにtitleでstringでpropsを渡すことで変更をすることができます。
+Box に title で string で props を渡すことで変更をすることができます。
+
+```
+// タイトル付きBox
+
+<Box title="タイトル付きBox">テスト</Box>
+```
 
 <Box title="タイトル付きBox">テスト</Box>
 
 ### FlexBox（FlexBox）
 
-横2列のBox。
-propsの「contents」に配列のオブジェクト形式を渡す
+横 2 列の Box。
+
+props の「contents」に配列のオブジェクト形式を渡す。
+
 オブジェクトは「topText」「content」「width」「height」「src」「alt」を追加する。
 
-<FlexBox contents={[
-  { topText: "taaaa", content: "aaaaaaa", width: 240, height: 140, src: "/logo.png", alt: "a" },
-  { topText: "taaaa", content: "aaaaaaa", width: 240, height: 140, src: "/logo.png", alt: "a" },
-]} />
+```
+// FlexBox
 
-#### ボタンリンク付きFlexBox（FlexBox）
+<FlexBox
+  contents={[
+    {
+      topText: "taaaa",
+      content: "aaaaaaa",
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+    },
+    {
+      topText: "taaaa",
+      content: "aaaaaaa",
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+    },
+  ]}
+/>
+```
 
-propsで「buttonText」「link」の2つを追加すると、ボタンリンクが追加されます。
+<FlexBox
+  contents={[
+    {
+      topText: "taaaa",
+      content: "aaaaaaa",
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+    },
+    {
+      topText: "taaaa",
+      content: "aaaaaaa",
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+    },
+  ]}
+/>
 
-<FlexBox contents={[
-  { topText: "taaaa", content: "あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ", width: 240, height: 140, src: "/logo.png", alt: "a", buttonText: "TOP PAGE", link: "/"},
-  { topText: "taaaa2", content: "あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ", width: 240, height: 140, src: "/logo.png", alt: "a", buttonText: "TOP PAGE2", link: "/" },
-]} />
+#### ボタンリンク付き FlexBox（FlexBox）
 
-### 最初の1つ目のみデザインの違う（ThreeFlexBox）
+props で「buttonText」「link」の 2 つを追加すると、ボタンリンクが追加されます。
+
+```
+// ボタンリンク付きFlexBox（FlexBox）
+
+<FlexBox
+  contents={[
+    {
+      topText: "taaaa",
+      content: "test",
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+      buttonText: "TOP PAGE",
+      link: "/",
+    },
+    {
+      topText: "taaaa2",
+      content: "test",
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+      buttonText: "TOP PAGE2",
+      link: "/",
+    },
+  ]}
+/>
+```
+
+<FlexBox
+  contents={[
+    {
+      topText: "taaaa",
+      content: "test",
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+      buttonText: "TOP PAGE",
+      link: "/",
+    },
+    {
+      topText: "taaaa2",
+      content: "test",
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+      buttonText: "TOP PAGE2",
+      link: "/",
+    },
+  ]}
+/>
+
+### 最初の 1 つ目のみデザインの違う（ThreeFlexBox）
 
 最初の１つ目のみデザインが変わります。
 それ以降は横２列になります。
-propsの「contents」に配列のオブジェクト形式を渡す
+
+props の「contents」に配列のオブジェクト形式を渡す
 オブジェクトは「topText」「content」「width」「height」「src」「alt」を追加する。
 
-<ThreeFlexBox contents={[
-  { topText: "taaaa", content: "aaaaaaa", width: 240, height: 140, src: "/logo.png", alt: "a" },
-  { topText: "taaaa", content: "aaaaaaa", width: 240, height: 140, src: "/logo.png", alt: "a" },
-  { topText: "taaaa2", content: "aaaaaaa2", width: 240, height: 140, src: "/logo.png", alt: "a"},
-]} />
+```
+// ThreeFlexBox
+
+<ThreeFlexBox
+  contents={[
+    {
+      topText: "taaaa",
+      content: "aaaaaaa",
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+    },
+    {
+      topText: "taaaa",
+      content: "aaaaaaa",
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+    },
+    {
+      topText: "taaaa2",
+      content: "aaaaaaa2",
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+    },
+  ]}
+/>
+```
+
+<ThreeFlexBox
+  contents={[
+    {
+      topText: "taaaa",
+      content: "aaaaaaa",
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+    },
+    {
+      topText: "taaaa",
+      content: "aaaaaaa",
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+    },
+    {
+      topText: "taaaa2",
+      content: "aaaaaaa2",
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+    },
+  ]}
+/>
 
 #### ボタンリンク付き（ThreeFlexBox）
 
-propsで「buttonText」「link」の2つを追加すると、ボタンリンクが追加されます。
+props で「buttonText」「link」の 2 つを追加すると、ボタンリンクが追加されます。
 
-<ThreeFlexBox contents={[
-  { topText: "taaaa", content: "aaaaaaa", width: 240, height: 140, src: "/logo.png", alt: "a", buttonText: "TOP PAGE", link: "/"},
-  { topText: "taaaa", content: "aaaaaaa", width: 240, height: 140, src: "/logo.png", alt: "a", buttonText: "TOP PAGE", link: "/"},
-  { topText: "taaaa2", content: "aaaaaaa2", width: 240, height: 140, src: "/logo.png", alt: "a", buttonText: "TOP PAGE2", link: "/" },
-]} />
+```
+// ボタンリンク付き（ThreeFlexBox）
+
+<ThreeFlexBox
+  contents={[
+    {
+      topText: "taaaa",
+      content: "aaaaaaa",
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+      buttonText: "TOP PAGE",
+      link: "/",
+    },
+    {
+      topText: "taaaa",
+      content: "aaaaaaa",
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+      buttonText: "TOP PAGE",
+      link: "/",
+    },
+    {
+      topText: "taaaa2",
+      content: "aaaaaaa2",
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+      buttonText: "TOP PAGE2",
+      link: "/",
+    },
+  ]}
+/>
+```
+
+<ThreeFlexBox
+  contents={[
+    {
+      topText: "taaaa",
+      content: "aaaaaaa",
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+      buttonText: "TOP PAGE",
+      link: "/",
+    },
+    {
+      topText: "taaaa",
+      content: "aaaaaaa",
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+      buttonText: "TOP PAGE",
+      link: "/",
+    },
+    {
+      topText: "taaaa2",
+      content: "aaaaaaa2",
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+      buttonText: "TOP PAGE2",
+      link: "/",
+    },
+  ]}
+/>
 
 ### CustomLink（CustomLink）
 
-mdx内に設置する「Link」をnext.jsの「Linkコンポーネント」にすることができます。
-「children」で「CustomLink」タグを、Next.jsの「Link」タグやhtmlの「a」タグの代わりに使用してください。
+mdx 内に設置する「Link」を next.js の「Link コンポーネント」にすることができます。
+
+「children」で「CustomLink」タグを、Next.js の「Link」タグや html の「a」タグの代わりに使用してください。
+
+```
+// CustomLink
+
+<CustomLink href="/">TOP PAGE</CustomLink>
+```
 
 <CustomLink href="/">TOP PAGE</CustomLink>
 
 ### 引用（BlockquoteInBox）
 
-propsで「contents」「url」「linkText」を設定する。
+props で「contents」「url」「linkText」を設定する。
+
+```
+// 引用（BlockquoteInBox）
 
 <BlockquoteInBox contents="a" url="/" linkText="aaa"  />
+```
 
-### 引用（BlockquoteInBox Titleあり）
+<BlockquoteInBox contents="a" url="/" linkText="aaa" />
 
-propsで「contents」「url」「linkText」を設定する。
-propsに「title」を追加
+### 引用（BlockquoteInBox Title あり）
+
+props で「contents」「url」「linkText」を設定する。
+props に「title」を追加
+
+```
+// 引用（BlockquoteInBox Titleあり）
 
 <BlockquoteInBox title="test" contents="a" url="/" linkText="aaa"  />
+```
+
+<BlockquoteInBox title="test" contents="a" url="/" linkText="aaa" />
