@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import rehypeSlug from "rehype-slug";
+import remarkToc from "remark-toc";
 import { useMDXComponents } from "@/mdx-components";
 import {
   getCategories,
@@ -34,12 +36,13 @@ export async function generateStaticParams() {
   }));
 }
 
-const page = async ({ params }: { params: { category_slug: string } }) => {
+const Page = async ({ params }: { params: { category_slug: string } }) => {
   const category = await getCategory(params.category_slug);
+  const components = useMDXComponents();
 
   return (
     <>
-      <div className="p-4 bg-white border border-gray-200">
+      <div className="content-style p-4 bg-white border border-gray-200">
         <Breadcrumbs
           categorySlug={params.category_slug}
           categoryName={category.frontmatter.categoryName}
@@ -64,7 +67,15 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
             </p>
             <MDXRemote
               source={category.content}
-              components={useMDXComponents()}
+              components={components}
+              options={{
+                mdxOptions: {
+                  remarkPlugins: [
+                    [remarkToc, { maxDepth: 3, heading: "目次" }],
+                  ],
+                  rehypePlugins: [rehypeSlug],
+                },
+              }}
             />
           </>
         )}
@@ -77,4 +88,4 @@ const page = async ({ params }: { params: { category_slug: string } }) => {
   );
 };
 
-export default page;
+export default Page;

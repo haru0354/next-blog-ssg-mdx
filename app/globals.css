@@ -15,3 +15,35 @@ body {
   --tw-text-opacity: 1;
   color: rgb(31 41 55 / var(--tw-text-opacity));
 }
+
+.content-style a {
+  color: #0ea5e9;
+  text-decoration: none;
+}
+
+.content-style h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+  border-radius: 0.375rem;
+}
+
+.content-style h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 1.5rem 0;
+  padding: 0.5rem;
+  border-bottom: 2px solid rgb(31 41 55 / var(--tw-bg-opacity));
+}
+
+.content-style h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 1.5rem 0;
+  padding: 0.5rem;
+  border-bottom: 2px dashed rgb(31 41 55 / var(--tw-bg-opacity));
+  text-align: center;
+}
