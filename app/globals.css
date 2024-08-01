@@ -47,3 +47,12 @@ body {
   border-bottom: 2px dashed rgb(31 41 55 / var(--tw-bg-opacity));
   text-align: center;
 }
+
+@layer utilities {
+  .bg-red-underMarker {
+    background: linear-gradient(transparent 60%, rgb(254 202 202) 60%);
+  }
+  .bg-green-underMarker {
+    background: linear-gradient(transparent 60%, rgb(187 247 208) 60%);
+  }
+}
