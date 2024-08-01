@@ -1,5 +1,6 @@
 type CustomTextProps = {
   font?: "semibold" | "bold";
+  size?: "sm" | "lg" | "xl";
   color?: "red" | "green" | "orange" | "yellow";
   marker?: "red" | "green" | "orange" | "yellow";
   underMarker?: "red" | "green" | "orange" | "yellow";
@@ -7,22 +8,29 @@ type CustomTextProps = {
 };
 
 const CustomText: React.FC<CustomTextProps> = ({
-  color,
   font,
+  size,
+  color,
   marker,
   underMarker,
   children,
 }) => {
+  const fonts = {
+    semibold: "font-semibold",
+    bold: "font-bold",
+  };
+
+  const sizes = {
+    sm: "text-sm",
+    lg: "text-lg",
+    xl: "text-xl",
+  };
+
   const colors = {
     red: "text-red-500",
     green: "text-green-500",
     orange: "text-orange-500",
     yellow: "text-yellow-500",
-  };
-
-  const fonts = {
-    semibold: "font-semibold",
-    bold: "font-bold",
   };
 
   const markers = {
@@ -39,14 +47,15 @@ const CustomText: React.FC<CustomTextProps> = ({
     yellow: "bg-yellow-underMarker",
   };
 
-  const colorClass = color ? colors[color] : "";
   const fontClass = font ? fonts[font] : "";
+  const sizeClass = size ? sizes[size] : "";
+  const colorClass = color ? colors[color] : "";
   const markerClass = marker ? markers[marker] : "";
   const underMarkerClass = underMarker ? underMarkers[underMarker] : "";
 
   return (
     <span
-      className={`${colorClass} ${fontClass} ${markerClass} ${underMarkerClass}`}
+      className={`${fontClass} ${sizeClass} ${colorClass} ${markerClass} ${underMarkerClass}`}
     >
       {children}
     </span>
