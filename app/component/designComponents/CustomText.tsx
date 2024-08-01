@@ -1,10 +1,10 @@
-type TextColorProps = {
+type CustomTextProps = {
   color?: "red" | "green";
   font?: "semibold" | "bold";
   children: React.ReactNode;
 };
 
-const TextColor: React.FC<TextColorProps> = ({ color, font, children }) => {
+const CustomText: React.FC<CustomTextProps> = ({ color, font, children }) => {
   const colors = {
     red: "text-red-500",
     green: "text-green-500",
@@ -21,4 +21,4 @@ const TextColor: React.FC<TextColorProps> = ({ color, font, children }) => {
   return <p className={`${colorClass} ${fontClass}`}>{children}</p>;
 };
 
-export default TextColor;
+export default CustomText;
