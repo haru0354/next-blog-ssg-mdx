@@ -25,7 +25,7 @@ body {
   font-size: 1.25rem;
   font-weight: 600;
   color: #ffffff;
-  margin: 1.5rem 0;
+  margin: 2.0rem 0;
   padding: 1.25rem;
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
   border-radius: 0.375rem;
@@ -34,7 +34,7 @@ body {
 .content-style h3 {
   font-size: 1.125rem;
   font-weight: 600;
-  margin: 1.5rem 0;
+  margin: 2.0rem 0;
   padding: 0.5rem;
   border-bottom: 2px solid rgb(31 41 55 / var(--tw-bg-opacity));
 }
@@ -42,8 +42,23 @@ body {
 .content-style h4 {
   font-size: 1.125rem;
   font-weight: 600;
-  margin: 1.5rem 0;
+  margin: 2.0rem 0;
   padding: 0.5rem;
   border-bottom: 2px dashed rgb(31 41 55 / var(--tw-bg-opacity));
   text-align: center;
+}
+
+@layer utilities {
+  .bg-red-underMarker {
+    background: linear-gradient(transparent 60%, rgb(254 202 202) 60%);
+  }
+  .bg-green-underMarker {
+    background: linear-gradient(transparent 60%, rgb(187 247 208) 60%);
+  }
+  .bg-orange-underMarker {
+    background: linear-gradient(transparent 60%, rgb(254 215 170) 60%);
+  }
+  .bg-yellow-underMarker {
+    background: linear-gradient(transparent 60%, rgb(254 240 138) 60%);
+  }
 }
