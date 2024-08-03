@@ -62,9 +62,11 @@ const Page = async ({ params }: { params: { category_slug: string } }) => {
         )}
         {category.content && (
           <>
-            <p className="my-2 mx-2 mb-6 text-gray-600 font-sm">
-              投稿日：{category.frontmatter.date}
-            </p>
+            {category.frontmatter.date && (
+              <p className="my-2 mx-2 mb-6 text-gray-600 font-sm">
+                投稿日：{category.frontmatter.date}
+              </p>
+            )}
             <MDXRemote
               source={category.content}
               components={components}

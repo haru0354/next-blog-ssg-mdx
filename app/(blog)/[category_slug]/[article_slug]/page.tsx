@@ -59,12 +59,14 @@ const Page = async ({
               alt={`${article.frontmatter.eyeCatchAlt}`}
               width={750}
               height={493}
-              className="mx-auto"
+              className="mx-auto mb-6"
             />
           )}
-        <p className="my-2 mx-2 mb-6 text-gray-600">
-          投稿日：{article.frontmatter.date}
-        </p>
+        {article.frontmatter.date && (
+          <p className="mx-2 mb-6 text-gray-600 font-sm">
+            投稿日：{article.frontmatter.date}
+          </p>
+        )}
         <MDXRemote
           source={article.content}
           components={components}
