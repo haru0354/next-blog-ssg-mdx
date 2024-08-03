@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { getArticles } from "../lib/ArticleService";
 import Image from "next/image";
+import { getArticles } from "../lib/ArticleService";
 
 type ArticleInArticleListProps = {
   categorySlug: string;
@@ -41,10 +41,18 @@ const ArticleInArticleList: React.FC<ArticleInArticleListProps> = async ({
             <div className="flex flex-wrap justify-center md:flex-nowrap w-full my-2 py-4 md:p-0 hover:bg-hover-blue">
               <div className="min-w-[342px] mb-2 md:mb-0">
                 <Image
-                  src={`/thumbnail_webp/${article.frontmatter.eyeCatchName}.webp`}
-                  alt={`${article.frontmatter.eyeCatchAlt}`}
-                  width={342}
-                  height={225}
+                  src={
+                    article.frontmatter.eyeCatchName
+                      ? `/thumbnail_webp/${article.frontmatter.eyeCatchName}.webp`
+                      : "/thumbnail_webp/no_image.webp"
+                  }
+                  alt={
+                    article.frontmatter.eyeCatchAlt
+                      ? `${article.frontmatter.eyeCatchAlt}`
+                      : "アイチャッチ画像"
+                  }
+                  width={367}
+                  height={210}
                 />
               </div>
               <div className="flex flex-col w-full md:min-w-[422px] py-2 px-4">

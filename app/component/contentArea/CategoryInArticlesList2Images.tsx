@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { getArticles } from "../lib/ArticleService";
 import Image from "next/image";
+import { getArticles } from "../lib/ArticleService";
 
 type CategoryInArticlesList2ImagesProps = {
   categoryName: string;
@@ -29,8 +29,16 @@ const CategoryInArticlesList2Images: React.FC<
           >
             <div className="flex flex-col max-w-[367px] md:min-h-[330px] mx-2 my-2 hover:bg-hover-blue">
               <Image
-                src={`/thumbnail_webp/${article.frontmatter.eyeCatchName}.webp`}
-                alt={`${article.frontmatter.eyeCatchAlt}`}
+                src={
+                  article.frontmatter.eyeCatchName
+                    ? `/thumbnail_webp/${article.frontmatter.eyeCatchName}.webp`
+                    : "/thumbnail_webp/no_image.webp"
+                }
+                alt={
+                  article.frontmatter.eyeCatchAlt
+                    ? `${article.frontmatter.eyeCatchAlt}`
+                    : "アイチャッチ画像"
+                }
                 width={367}
                 height={210}
               />
