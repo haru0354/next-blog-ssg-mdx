@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { getArticles } from "../lib/ArticleService";
 import Image from "next/image";
+import { getArticles } from "../lib/ArticleService";
 
 const SideNewArticle = async () => {
   const articles = await getArticles();
@@ -26,10 +26,18 @@ const SideNewArticle = async () => {
             >
               <div className="hover:bg-hover-blue">
                 <Image
-                  src={`/thumbnail_webp/${article.frontmatter.eyeCatchName}.webp`}
-                  alt={`${article.frontmatter.eyeCatchAlt}`}
-                  width={282}
-                  height={100}
+                  src={
+                    article.frontmatter.eyeCatchName
+                      ? `/thumbnail_webp/${article.frontmatter.eyeCatchName}.webp`
+                      : "/thumbnail_webp/no_image.webp"
+                  }
+                  alt={
+                    article.frontmatter.eyeCatchAlt
+                      ? `${article.frontmatter.eyeCatchAlt}`
+                      : "アイチャッチ画像"
+                  }
+                  width={298}
+                  height={196}
                   className="mx-auto"
                 />
                 <p className="my-4">{article.frontmatter.title}</p>

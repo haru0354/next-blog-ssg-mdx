@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { getArticles } from "../lib/ArticleService";
 import Image from "next/image";
+import { getArticles } from "../lib/ArticleService";
 
 const TopNewArticle = async () => {
   const articles = await getArticles();
@@ -31,8 +31,16 @@ const TopNewArticle = async () => {
               >
                 <div className="flex flex-col justify-center items-center mx-2 mb-8 md:max-w-[320px] md:min-w-[320px] hover:bg-hover-blue">
                   <Image
-                    src={`/image_webp/${article.frontmatter.eyeCatchName}.webp`}
-                    alt={`${article.frontmatter.eyeCatchAlt}`}
+                    src={
+                      article.frontmatter.eyeCatchName
+                        ? `/thumbnail_webp/${article.frontmatter.eyeCatchName}.webp`
+                        : "/thumbnail_webp/no_image.webp"
+                    }
+                    alt={
+                      article.frontmatter.eyeCatchAlt
+                        ? `${article.frontmatter.eyeCatchAlt}`
+                        : "アイチャッチ画像"
+                    }
                     width={320}
                     height={230}
                   />

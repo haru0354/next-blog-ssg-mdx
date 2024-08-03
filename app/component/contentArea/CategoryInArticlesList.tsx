@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { getArticles } from "../lib/ArticleService";
 import Image from "next/image";
-import React from "react";
+import { getArticles } from "../lib/ArticleService";
 
 type CategoryInArticlesListProps = {
   categoryName: string;
@@ -21,7 +20,7 @@ const CategoryInArticlesList: React.FC<CategoryInArticlesListProps> = async ({
   return (
     <div className="bg-white p-4 mt-8">
       <h2 className="w-full my-4 py-4 px-2 bg-main-gray text-white text-xl font-semibold rounded">
-        {categoryName}の一覧
+        「{categoryName}」の記事一覧
       </h2>
       <div className="w-full flex flex-wrap justify-center items-start">
         {filteredArticles.map((article) => (
@@ -32,10 +31,18 @@ const CategoryInArticlesList: React.FC<CategoryInArticlesListProps> = async ({
             <div className="flex flex-wrap justify-center md:flex-nowrap w-full my-2">
               <div className="min-w-[342px] mb-2 md:mb-0">
                 <Image
-                  src={`/thumbnail_webp/${article.frontmatter.eyeCatchName}.webp`}
-                  alt={`${article.frontmatter.eyeCatchAlt}`}
-                  width={342}
-                  height={225}
+                  src={
+                    article.frontmatter.eyeCatchName
+                      ? `/thumbnail_webp/${article.frontmatter.eyeCatchName}.webp`
+                      : "/thumbnail_webp/no_image.webp"
+                  }
+                  alt={
+                    article.frontmatter.eyeCatchAlt
+                      ? `${article.frontmatter.eyeCatchAlt}`
+                      : "アイチャッチ画像"
+                  }
+                  width={367}
+                  height={210}
                 />
               </div>
               <div className="flex flex-col md:min-w-[442px] py-2 px-4">
