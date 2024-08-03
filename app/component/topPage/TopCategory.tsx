@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { getCategories } from "../lib/CategoryService";
 import Image from "next/image";
+import { getCategories } from "../lib/CategoryService";
 
 const TopCategory = async () => {
   const categories = await getCategories();
@@ -21,8 +21,16 @@ const TopCategory = async () => {
               <Link href={`/${category.slug}`} key={category.slug}>
                 <div className="flex flex-col justify-center items-center mx-2 mb-8 md:max-w-[320px] md:min-w-[320px] hover:bg-hover-blue">
                   <Image
-                    src={`/thumbnail_webp/${category.frontmatter.eyeCatchName}.webp`}
-                    alt={`${category.frontmatter.eyeCatchAlt}`}
+                    src={
+                      category.frontmatter.eyeCatchName
+                        ? `/thumbnail_webp/${category.frontmatter.eyeCatchName}.webp`
+                        : "/thumbnail_webp/no_image.webp"
+                    }
+                    alt={
+                      category.frontmatter.eyeCatchAlt
+                        ? `${category.frontmatter.eyeCatchAlt}`
+                        : "アイチャッチ画像"
+                    }
                     width={320}
                     height={230}
                   />
