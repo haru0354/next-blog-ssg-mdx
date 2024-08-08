@@ -2,24 +2,57 @@ import path from "path";
 import fs from "fs";
 import matter from "gray-matter";
 
+type Article = {
+  slug: string;
+  categorySlug: string;
+  frontmatter: Frontmatter;
+};
+
+type Frontmatter = {
+    title: string;
+    date: string;
+    description: string;
+    categoryName: string;
+    categorySlug: string;
+    eyeCatchName: string;
+    eyeCatchAlt: string;
+};
+
 export async function getArticles() {
-  const ArticlesDirectory = path.join(process.cwd(), "mdFile", "article");
-  const fileNames = fs.readdirSync(ArticlesDirectory);
+  const articlesDirectory = path.join(process.cwd(), "mdFile", "article");
+  const categories = fs.readdirSync(articlesDirectory);
+  const articles: Article[] = [];
 
-  const Articles = await Promise.all(
-    fileNames.map(async (fileName) => {
-      const filePath = path.join(ArticlesDirectory, `${fileName}`);
-      const fileContents = await fs.promises.readFile(filePath, "utf8");
-      const { data } = matter(fileContents);
+  await Promise.all(
+    categories.map(async (category) => {
+      const categoryPath = path.join(articlesDirectory, category);
+      const fileNames = fs.readdirSync(categoryPath);
 
-      return {
-        slug: fileName.replace(".mdx", ""),
-        frontmatter: data,
-      };
+      await Promise.all(
+        fileNames.map(async (fileName) => {
+          const filePath = path.join(categoryPath, fileName);
+          const fileContents = await fs.promises.readFile(filePath, "utf8");
+          const { data } = matter(fileContents);
+
+          articles.push({
+            slug: fileName.replace(".mdx", ""),
+            categorySlug:category,
+            frontmatter: {
+              title: data.title,
+              date: data.date,
+              description: data.description,
+              categoryName: data.categoryName,
+              categorySlug: data.categorySlug,
+              eyeCatchName: data.eyeCatchName,
+              eyeCatchAlt: data.eyeCatchAlt,
+            },
+          });
+        })
+      );
     })
   );
 
-  return Articles;
+  return articles;
 }
 
 export async function getArticle(params: string) {
