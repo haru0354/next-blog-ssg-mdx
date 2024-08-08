@@ -14,14 +14,14 @@ const page = async () => {
         {articles.map((article, index) => {
           const isFirstCategoryItem =
             index === 0 ||
-            article.frontmatter.categoryName !==
-              articles[index - 1].frontmatter.categoryName;
+            article.categoryName !==
+              articles[index - 1].categoryName;
           return (
             <React.Fragment key={index}>
               {isFirstCategoryItem && (
                 <li className="text-lg font-semibold pt-4 text-sky-600">
                   <Link href={`/${article.categorySlug}`}>
-                    {article.frontmatter.categoryName}
+                    {article.categoryName}
                   </Link>
                 </li>
               )}
