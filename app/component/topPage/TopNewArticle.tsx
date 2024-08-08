@@ -26,7 +26,7 @@ const TopNewArticle = async () => {
           {filteredArticles.map((article) => {
             return (
               <Link
-                href={`/${article.frontmatter.categorySlug}/${article.slug}`}
+                href={`/${article.categorySlug}/${article.slug}`}
                 key={article.slug}
               >
                 <div className="flex flex-col justify-center items-center mx-2 mb-8 md:max-w-[320px] md:min-w-[320px] hover:bg-hover-blue">

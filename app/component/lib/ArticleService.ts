@@ -13,7 +13,6 @@ type Frontmatter = {
     date: string;
     description: string;
     categoryName: string;
-    categorySlug: string;
     eyeCatchName: string;
     eyeCatchAlt: string;
 };
@@ -42,7 +41,6 @@ export async function getArticles() {
               date: data.date,
               description: data.description,
               categoryName: data.categoryName,
-              categorySlug: data.categorySlug,
               eyeCatchName: data.eyeCatchName,
               eyeCatchAlt: data.eyeCatchAlt,
             },

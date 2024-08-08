@@ -14,7 +14,7 @@ const CategoryInArticlesList: React.FC<CategoryInArticlesListProps> = async ({
   const currentCategory = params;
   const Articles = await getArticles();
   const filteredArticles = Articles.filter(
-    (article) => currentCategory === article.frontmatter.categorySlug
+    (article) => currentCategory === article.categorySlug
   );
 
   return (
@@ -25,7 +25,7 @@ const CategoryInArticlesList: React.FC<CategoryInArticlesListProps> = async ({
       <div className="w-full flex flex-wrap justify-center items-start">
         {filteredArticles.map((article) => (
           <Link
-            href={`/${article.frontmatter.categorySlug}/${article.slug}`}
+            href={`/${article.categorySlug}/${article.slug}`}
             key={article.slug}
           >
             <div className="flex flex-wrap justify-center md:flex-nowrap w-full my-2">

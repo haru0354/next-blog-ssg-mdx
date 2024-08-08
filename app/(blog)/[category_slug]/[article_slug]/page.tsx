@@ -30,7 +30,7 @@ export async function generateStaticParams() {
 
   return articles.map((article) => ({
     article_slug: article.slug,
-    category_slug: article.frontmatter.categorySlug,
+    category_slug: article.categorySlug,
   }));
 }
 

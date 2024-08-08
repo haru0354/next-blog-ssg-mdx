@@ -13,7 +13,7 @@ const CategoryInArticlesList2Images: React.FC<
   const currentCategory = params;
   const Articles = await getArticles();
   const filteredArticles = Articles.filter(
-    (article) => currentCategory === article.frontmatter.categorySlug
+    (article) => currentCategory === article.categorySlug
   );
 
   return (
@@ -24,7 +24,7 @@ const CategoryInArticlesList2Images: React.FC<
       <div className="w-full flex flex-wrap justify-center md:justify-start items-start">
         {filteredArticles.map((article) => (
           <Link
-            href={`/${article.frontmatter.categorySlug}/${article.slug}`}
+            href={`/${article.categorySlug}/${article.slug}`}
             key={article.slug}
           >
             <div className="flex flex-col max-w-[367px] md:min-h-[330px] mx-2 my-2 hover:bg-hover-blue">
