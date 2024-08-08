@@ -11,9 +11,9 @@ import Breadcrumbs from "@/app/component/contentArea/Breadcrumbs";
 export const generateMetadata = async ({
   params,
 }: {
-  params: { article_slug: string };
+  params: { article_slug: string; category_slug: string };
 }): Promise<Metadata> => {
-  const article = await getArticle(params.article_slug);
+  const article = await getArticle(params.category_slug, params.article_slug);
 
   return {
     title: article.frontmatter.title,
@@ -24,6 +24,7 @@ export const generateMetadata = async ({
     },
   };
 };
+
 
 export async function generateStaticParams() {
   const articles = await getArticles();
@@ -39,7 +40,7 @@ const Page = async ({
 }: {
   params: { article_slug: string; category_slug: string };
 }) => {
-  const article = await getArticle(params.article_slug);
+  const article = await getArticle(params.category_slug, params.article_slug);
   const components = useMDXComponents();
 
   return (

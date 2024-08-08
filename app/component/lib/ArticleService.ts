@@ -53,16 +53,22 @@ export async function getArticles() {
   return articles;
 }
 
-export async function getArticle(params: string) {
-  const slug = params;
-  const filePath = path.join(process.cwd(), "mdFile", "article", `${slug}.mdx`);
+
+export async function getArticle(category_slug: string, article_slug: string) {
+  const filePath = path.join(
+    process.cwd(),
+    "mdFile",
+    "article",
+    category_slug,
+    `${article_slug}.mdx`
+  );
 
   const fileContents = await fs.promises.readFile(filePath, "utf8");
-
   const { data, content } = matter(fileContents);
 
   return {
     frontmatter: data,
     content,
+    category_slug,
   };
 }
