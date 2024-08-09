@@ -19,7 +19,6 @@ type Frontmatter = {
 
 export async function getArticles() {
   const articlesDirectory = path.join(process.cwd(), "mdFile", "article");
-  const categoryDirectory = path.join(process.cwd(), "mdFile", "category");
   const categories = fs.readdirSync(articlesDirectory);
   const articles: Article[] = [];
 
@@ -43,7 +42,6 @@ export async function getArticles() {
 
           const categoryContents = await fs.promises.readFile(cate, "utf8");
           const { data: categoryData } = matter(categoryContents);
-          console.log(categoryData.categoryName);
 
           articles.push({
             slug: fileName.replace(".mdx", ""),
