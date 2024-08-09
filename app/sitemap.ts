@@ -26,7 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const dynamicPathsArticles = Articles.map((article) => {
     return {
-      url: `${baseURL}/${article.frontmatter.categorySlug}/${article.slug}`,
+      url: `${baseURL}/${article.categorySlug}/${article.slug}`,
       lastModified: new Date(article.frontmatter.date),
     };
   });
@@ -38,6 +38,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     };
   });
 
-  
   return [...staticPaths, ...dynamicPathsArticles, ...dynamicPathsCategories];
 }

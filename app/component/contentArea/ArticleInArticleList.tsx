@@ -15,8 +15,7 @@ const ArticleInArticleList: React.FC<ArticleInArticleListProps> = async ({
 
   const filteredArticles = Articles.filter(
     (article) =>
-      categorySlug === article.frontmatter.categorySlug &&
-      articleSlug !== article.slug
+      categorySlug === article.categorySlug && articleSlug !== article.slug
   );
 
   const sortedArticles = filteredArticles.sort((a, b) => {
@@ -35,7 +34,7 @@ const ArticleInArticleList: React.FC<ArticleInArticleListProps> = async ({
       <div className="w-full flex flex-wrap justify-center">
         {latestArticles.map((article) => (
           <Link
-            href={`/${article.frontmatter.categorySlug}/${article.slug}`}
+            href={`/${article.categorySlug}/${article.slug}`}
             key={article.slug}
           >
             <div className="flex flex-wrap justify-center md:flex-nowrap w-full my-2 py-4 md:p-0 hover:bg-hover-blue">

@@ -11,9 +11,9 @@ import Breadcrumbs from "@/app/component/contentArea/Breadcrumbs";
 export const generateMetadata = async ({
   params,
 }: {
-  params: { article_slug: string };
+  params: { article_slug: string; category_slug: string };
 }): Promise<Metadata> => {
-  const article = await getArticle(params.article_slug);
+  const article = await getArticle(params.category_slug, params.article_slug);
 
   return {
     title: article.frontmatter.title,
@@ -25,12 +25,13 @@ export const generateMetadata = async ({
   };
 };
 
+
 export async function generateStaticParams() {
   const articles = await getArticles();
 
   return articles.map((article) => ({
     article_slug: article.slug,
-    category_slug: article.frontmatter.categorySlug,
+    category_slug: article.categorySlug,
   }));
 }
 
@@ -39,7 +40,7 @@ const Page = async ({
 }: {
   params: { article_slug: string; category_slug: string };
 }) => {
-  const article = await getArticle(params.article_slug);
+  const article = await getArticle(params.category_slug, params.article_slug);
   const components = useMDXComponents();
 
   return (
@@ -47,7 +48,7 @@ const Page = async ({
       <div className="content-style p-4 bg-white border border-gray-200">
         <Breadcrumbs
           categorySlug={params.category_slug}
-          categoryName={article.frontmatter.categoryName}
+          categoryName={article.categoryName}
         />
         <h1 className="text-2xl font-semibold mx-2 my-4">
           {article.frontmatter.title}

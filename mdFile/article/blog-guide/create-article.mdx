@@ -1,11 +1,9 @@
 ---
 title: "記事・カテゴリ・メニューの追加方法"
-date: "2022-04-01"
+date: "2024-08-01"
 description: "記事・カテゴリ・メニューの追加方法"
-categoryName: "アプリの使い方"
-categorySlug: "sample"
-eyeCatchName: "00"
-eyeCatchAlt: "test"
+eyeCatchName: "create-article"
+eyeCatchAlt: "記事・カテゴリ作成方法"
 ---
 
 この記事では「記事・カテゴリ・メニューの作成手順」や、「ファイルの記述方法」についての紹介をしています。
@@ -22,12 +20,12 @@ eyeCatchAlt: "test"
 
 1. mdFile ディレクトリの「categorySample」をコピー
 2. mdFile > category ディレクトリへコピーしたサンプルファイルを入れる。
-3. ファイル名を変更する(slugになる)。
+3. ファイル名を変更する(slug(URL)になる)。
 4. 各項目を変更をする。
 
 ファイル名はページのURLになるため、任意の名前に変更をするようにしてください。
 
-なお拡張子は「.mdx」は含まれません。
+なお拡張子は「.mdx」はURLに含まれません。
 
 ### 2種類のカテゴリページが作成可能
 
@@ -66,13 +64,25 @@ eyeCatchAlt: "test"
 記事は以下の手順にて作成をします。
 
 1. mdFile ディレクトリの「articleSample」をコピー
-2. mdFile > article ディレクトリへコピーしたサンプルファイルを入れる。
-3. ファイル名を変更する(slugになる)。
+2. mdFile > article ディレクトリにフォルダを作成（フォルダ名は.mdxを除いた記事のカテゴリのファイル名）
+3.コピーしたサンプルファイルを入れる。
+3. ファイル名を変更する(slug(URL)になる)。
 4. 各項目を変更をする。
 
-ファイル名はページのURLになるため、任意の名前に変更をするようにしてください。
+作成するフォルダは、記事のカテゴリのファイル名から「.mdx」を除いた名前に必ずしてください。
 
-なお拡張子は「.mdx」は含まれません。
+### 記事の作成手順の例
+
+下記の例では「美白」カテゴリを作成して、その中に「美白化粧品」の記事を入れています。
+
+1. 美白カテゴリを作成するため「bihaku.mdx」でカテゴリのファイルを作成
+2. articleディレクトリに「bihaku」でフォルダを作成する。(手順1のファイル名と一致)
+3. 「bihaku」フォルダに「articleSample」をコピー。
+4. articleSampleのファイル名を記事のURL「cosmetics」に変更する。
+5. ファイル内に美白化粧品のコンテンツを記載する。
+
+上記の例では美白カテゴリ（URL:/bihaku）に美白化粧品の記事（URL:/bihaku/cosmetics）が入ります。
+なお拡張子「.mdx」はURLに含まれません。
 
 ### 記事の記述方法
 
@@ -83,8 +93,6 @@ eyeCatchAlt: "test"
 - title: 記事タイトル(meta titleにもなります)
 - date: 作成日付
 - description: 記事のmeta description
-- categoryName: カテゴリ名を記入(パンくずリストなどにも反映)
-- categorySlug: カテゴリのスラッグを記入
 - eyeCatchName: 00(拡張子なしのファイル名のみ記載)
 - eyeCatchAlt: アイキャッチ画像のAlt
 
