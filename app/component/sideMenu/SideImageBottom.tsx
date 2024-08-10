@@ -7,17 +7,21 @@ const SideImageBottom = async () => {
 
   return (
     <>
-      <div className="mb-8">
-        <Link href={`${sideImageBottom.frontmatter.url}`}>
-          <Image
-            src={`/thumbnail_webp/${sideImageBottom.frontmatter.eyeCatchName}.webp`}
-            alt={`${sideImageBottom.frontmatter.eyeCatchAlt}`}
-            width={298}
-            height={196}
-            className="mx-auto md:mt-0 mt-8 hover:-translate-y-2 translate"
-          />
-        </Link>
-      </div>
+      {sideImageBottom.frontmatter.url &&
+        sideImageBottom.frontmatter.eyeCatchName &&
+        sideImageBottom.frontmatter.eyeCatchAlt && (
+          <div className="mb-8">
+            <Link href={`${sideImageBottom.frontmatter.url}`}>
+              <Image
+                src={`/thumbnail_webp/${sideImageBottom.frontmatter.eyeCatchName}.webp`}
+                alt={`${sideImageBottom.frontmatter.eyeCatchAlt}`}
+                width={298}
+                height={196}
+                className="mx-auto md:mt-0 mt-8 hover:-translate-y-2 translate"
+              />
+            </Link>
+          </div>
+        )}
       {sideImageBottom.frontmatter.url2 &&
         sideImageBottom.frontmatter.eyeCatchName2 &&
         sideImageBottom.frontmatter.eyeCatchAlt2 && (
