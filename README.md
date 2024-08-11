@@ -151,8 +151,6 @@ categorySlug: カテゴリのスラッグ名を入力してください。
   - (blog) > [category_slug]の１つ目のdivタグに「border border-gray-200」を追加
   - (blog) > [category_slug] > [article_slug]の１つ目のdivタグに「border border-gray-200」を追加
 
-個人的にはデザインパターン2へ変更するなら統一して全てのコンポーネントを変えた方が良いと思います。
-ただ、組み合わせはできるのでご自由に変更が可能です。
 
 - カテゴリの関連記事の変更
   - (blog) > [category_slug] 最下部の(CategoryInArticlesList)コンポーネントを変更
@@ -163,3 +161,13 @@ categorySlug: カテゴリのスラッグ名を入力してください。
 
 (blog) > [category_slug]
 
+### イメージカラーの変更
+
+TailwindCSSを使用しています。
+
+tailwind.config.tsのcolorsのmainの部分でイメージカラーを設定しています。
+初期状態はgrayが当たっています。
+
+この部分にカラーを追加して、「bg-main-gray」を検索して、新たに作成したイメージカラーの「bg-main-●●」で置換をして頂ければ、一括で変更がされます。
+
+また、面倒だというのであれば、grayの部分の名前は変えずにスタイルを変える方法でも可能です。
