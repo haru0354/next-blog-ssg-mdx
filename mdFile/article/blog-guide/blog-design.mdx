@@ -18,6 +18,7 @@ eyeCatchAlt: "ブログ記事装飾サンプル"
 ## h2
 <h3>H2</h3>
 ```
+
 ### h3
 
 ```
@@ -40,7 +41,7 @@ eyeCatchAlt: "ブログ記事装飾サンプル"
 
 ### テキストを太く（CustomText）
 
-propsでcolorを「red」「green」で指定することで変更可能です。
+props で color を「red」「green」で指定することで変更可能です。
 
 - <CustomText font="semibold">少し太く</CustomText>
 - <CustomText font="bold">太く</CustomText>
@@ -54,7 +55,7 @@ propsでcolorを「red」「green」で指定することで変更可能です�
 
 ### テキストサイズ（CustomText）
 
-propsでsizeを指定することで変更可能です。
+props で size を指定することで変更可能です。
 
 - <CustomText size="sm">少し小さく</CustomText>
 - <CustomText size="lg">少し大きく</CustomText>
@@ -67,9 +68,10 @@ propsでsizeを指定することで変更可能です。
 <CustomText size="lg">少し大きく</CustomText>
 <CustomText size="xl">大きく</CustomText>
 ```
+
 ### テキストの色（CustomText）
 
-propsでcolorを「red」「green」で指定することで変更可能です。
+props で color を「red」「green」で指定することで変更可能です。
 
 - <CustomText color="red">赤文字</CustomText>
 - <CustomText color="green">緑文字</CustomText>
@@ -87,12 +89,13 @@ propsでcolorを「red」「green」で指定することで変更可能です�
 
 ### マーカー（CustomText）
 
-propsでmarkerを「red」「green」で指定することで変更可能です。
+props で marker を「red」「green」で指定することで変更可能です。
 
 - <CustomText marker="red">赤マーカー</CustomText>
 - <CustomText marker="green">緑マーカー</CustomText>
 - <CustomText marker="orange">オレンジマーカー</CustomText>
 - <CustomText marker="yellow">黄色マーカー</CustomText>
+
 ```
 // マーカー（CustomText）
 
@@ -104,12 +107,13 @@ propsでmarkerを「red」「green」で指定することで変更可能です�
 
 ### アンダーマーカー（CustomText）
 
-propsでunderMarkerを「red」「green」で指定することで変更可能です。
+props で underMarker を「red」「green」で指定することで変更可能です。
 
 - <CustomText underMarker="red">赤アンダーマーカー</CustomText>
 - <CustomText underMarker="green">緑アンダーマーカー</CustomText>
 - <CustomText underMarker="orange">オレンジアンダーマーカー</CustomText>
 - <CustomText underMarker="yellow">黄色アンダーマーカー</CustomText>
+
 ```
 // アンダーマーカー（CustomText）
 
@@ -147,7 +151,6 @@ size に props で「small」「normal」「big」で指定することで変更
 
 何も指定がなければ「normal」が指定されます。
 
-
 <Button size="small">ボタン</Button>
 <Button size="normal">ボタン</Button>
 <Button size="big">ボタン</Button>
@@ -159,7 +162,6 @@ size に props で「small」「normal」「big」で指定することで変更
 <Button size="normal">ボタン</Button>
 <Button size="big">ボタン</Button>
 ```
-
 
 ### Box（Box）
 
@@ -189,7 +191,6 @@ props の「className」に string で tailWind で記述することでスタ�
 Box に title で string で props を渡すことで変更をすることができます。
 
 <Box title="タイトル付きBox">テスト</Box>
-
 
 ```
 // タイトル付きBox
@@ -418,7 +419,6 @@ props で「buttonText」「link」の 2 つを追加すると、ボタンリン
   ]}
 />
 
-
 ```
 // ボタンリンク付き（ThreeFlexBox）
 
@@ -466,7 +466,6 @@ mdx 内に設置する「Link」を next.js の「Link コンポーネント」�
 
 <CustomLink href="/">TOP PAGE</CustomLink>
 
-
 ```
 // CustomLink
 
@@ -477,12 +476,28 @@ mdx 内に設置する「Link」を next.js の「Link コンポーネント」�
 
 props で「contents」「url」「linkText」を設定する。
 
-<BlockquoteInBox contents="a" url="/" linkText="aaa" />
+<BlockquoteInBox
+  contents={`
+  TEST
+
+  TEST
+  `}
+  url="/"
+  linkText="aaa"
+/>
 
 ```
 // 引用（BlockquoteInBox）
 
-<BlockquoteInBox contents="a" url="/" linkText="aaa"  />
+<BlockquoteInBox
+  contents={`
+    TEST
+
+    TEST
+  `}
+  url="/"
+  linkText="aaa"
+/>
 ```
 
 ### 引用（BlockquoteInBox Title あり）
@@ -490,10 +505,26 @@ props で「contents」「url」「linkText」を設定する。
 props で「contents」「url」「linkText」を設定する。
 props に「title」を追加
 
-<BlockquoteInBox title="test" contents="a" url="/" linkText="aaa" />
+<BlockquoteInBox 
+  title="test" 
+  contents={`
+    TEST
+
+    TEST
+  `} 
+  url="/" 
+  linkText="aaa"  />
 
 ```
 // 引用（BlockquoteInBox Titleあり）
 
-<BlockquoteInBox title="test" contents="a" url="/" linkText="aaa"  />
+<BlockquoteInBox 
+  title="test" 
+  contents={`
+    TEST
+
+    TEST
+  `} 
+  url="/" 
+  linkText="aaa"  />
 ```
