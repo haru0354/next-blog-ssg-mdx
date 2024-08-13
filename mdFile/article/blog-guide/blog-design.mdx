@@ -206,11 +206,19 @@ props の「contents」に配列のオブジェクト形式を渡す。
 
 オブジェクトは「topText」「content」「width」「height」「src」「alt」を追加する。
 
+contentのみ改行ができるようになっています。
+
+但し、「``」でテキストを囲むようにしてください。
+
 <FlexBox
   contents={[
     {
       topText: "taaaa",
-      content: "aaaaaaa",
+      content: `
+    TEST
+
+    TEST
+  `,
       width: 240,
       height: 140,
       src: "/logo.png",
@@ -218,7 +226,11 @@ props の「contents」に配列のオブジェクト形式を渡す。
     },
     {
       topText: "taaaa",
-      content: "aaaaaaa",
+      content: `
+    TEST
+
+    TEST
+  `,
       width: 240,
       height: 140,
       src: "/logo.png",
@@ -234,7 +246,11 @@ props の「contents」に配列のオブジェクト形式を渡す。
   contents={[
     {
       topText: "taaaa",
-      content: "aaaaaaa",
+      content: `
+        TEST
+
+        TEST
+      `,
       width: 240,
       height: 140,
       src: "/logo.png",
@@ -242,7 +258,11 @@ props の「contents」に配列のオブジェクト形式を渡す。
     },
     {
       topText: "taaaa",
-      content: "aaaaaaa",
+      content: `
+        TEST
+
+        TEST
+      `,
       width: 240,
       height: 140,
       src: "/logo.png",
