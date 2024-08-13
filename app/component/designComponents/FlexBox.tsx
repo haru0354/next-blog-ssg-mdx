@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import Button from "../ui/Button";
 import Link from "next/link";
+import SplitAndNewLines from "../contentArea/SplitAndNewLines";
 
 type FlexBoxProps = {
   contents: Contents[];
@@ -23,7 +24,9 @@ const FlexBox: React.FC<FlexBoxProps> = ({ contents }) => {
     <div className="flex flex-wrap items-center justify-center my-6">
       {contents.map((content, index) => {
         const borderClass =
-          index % 2 === 0 ? "border" : " border-b border-r border-l md:border-t md:border-l-0";
+          index % 2 === 0
+            ? "border"
+            : " border-b border-r border-l md:border-t md:border-l-0";
         return (
           <div
             key={index}
@@ -36,7 +39,9 @@ const FlexBox: React.FC<FlexBoxProps> = ({ contents }) => {
               src={content.src}
               alt={content.alt}
             />
-            {content.content}
+            <p>
+              <SplitAndNewLines text={content.content} />
+            </p>
             {content.buttonText && content.link && (
               <Link href={content.link}>
                 <Button color="gray" className="block mx-auto">

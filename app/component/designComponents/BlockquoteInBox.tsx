@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SplitAndNewLines from "../contentArea/SplitAndNewLines";
 
 type BlockquoteInBoxProps = {
   title?: string;
@@ -16,7 +17,7 @@ const BlockquoteInBox: React.FC<BlockquoteInBoxProps> = ({
   return (
     <blockquote className="p-4 border border-gray-400 rounded shadow-md my-8">
       {title && <p className="text-center font-semibold mb-4">「{title}」</p>}
-      {contents}
+      <SplitAndNewLines text={contents} />
       <p className="mt-4 text-right">
         引用元：<Link href={url} className="text-sky-600">{linkText}</Link>
       </p>

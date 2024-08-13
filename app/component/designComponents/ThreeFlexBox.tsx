@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import Button from "../ui/Button";
 import Link from "next/link";
+import SplitAndNewLines from "../contentArea/SplitAndNewLines";
 
 type ThreeFlexBoxProps = {
   contents: Contents[];
@@ -43,7 +44,7 @@ const ThreeFlexBox: React.FC<ThreeFlexBoxProps> = ({ contents }) => {
               alt={content.alt}
               className={index === 0 ? "mr-4 md:float-left" : ""}
             />
-            {content.content}
+            <SplitAndNewLines text={content.content} />
             {content.buttonText && content.link && (
               <Link href={content.link}>
                 <Button color="gray" className="block mx-auto">
