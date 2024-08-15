@@ -19,7 +19,10 @@ type Frontmatter = {
 
 export async function getArticles() {
   const articlesDirectory = path.join(process.cwd(), "mdFile", "article");
-  const categories = fs.readdirSync(articlesDirectory);
+  const categories = fs.readdirSync(articlesDirectory).filter((name) => {
+    return fs.statSync(path.join(articlesDirectory, name)).isDirectory();
+  });
+
   const articles: Article[] = [];
 
   await Promise.all(
