@@ -7,7 +7,7 @@ import { getFirstLevelArticle, getFirstLevelArticles } from "./component/lib/Fir
 export default async function Home() {
   const articles = await getFirstLevelArticles();
   console.log("getFirstLevelArticles", articles);
-  const article = await getFirstLevelArticle("articleSample");
+  const article = await getFirstLevelArticle("article_sample");
   console.log("getFirstLevelArticle", article);
 
   return (
