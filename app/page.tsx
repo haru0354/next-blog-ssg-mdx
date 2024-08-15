@@ -2,12 +2,13 @@ import TopNewArticle from "./component/topPage/TopNewArticle";
 import TopCategory from "./component/topPage/TopCategory";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
-import { getFirstLevelArticles } from "./component/lib/FirstLevelArticle";
+import { getFirstLevelArticle, getFirstLevelArticles } from "./component/lib/FirstLevelArticle";
 
 export default async function Home() {
   const articles = await getFirstLevelArticles();
   console.log("getFirstLevelArticles", articles);
-
+  const article = await getFirstLevelArticle("articleSample");
+  console.log("getFirstLevelArticle", article);
 
   return (
     <>

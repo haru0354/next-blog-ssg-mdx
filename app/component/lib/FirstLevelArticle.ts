@@ -32,3 +32,32 @@ export async function getFirstLevelArticles() {
 
   return firstLevelArticles;
 }
+
+
+export async function getFirstLevelArticle(first_level_slug: string) {
+    const filePath = path.join(
+      process.cwd(),
+      "mdFile",
+      "article",
+      `${first_level_slug}.mdx`
+    );
+  
+    try {
+      const fileContents = await fs.promises.readFile(filePath, "utf8");
+
+      if (!fileContents) {
+        return null;
+      }
+
+      const { data, content } = matter(fileContents);
+  
+      return {
+        frontmatter: data,
+        content,
+      };
+    } catch (error) {
+      console.error(`${first_level_slug}.mdxのファイルを読み取れませんでした`, error);
+      return null;
+    }
+  }
+  
