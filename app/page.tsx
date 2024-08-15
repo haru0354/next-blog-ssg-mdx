@@ -2,7 +2,7 @@ import TopNewArticle from "./component/topPage/TopNewArticle";
 import TopCategory from "./component/topPage/TopCategory";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
-import { getFirstLevelArticle, getFirstLevelArticles } from "./component/lib/FirstLevelArticle";
+import { getFirstLevelArticle, getFirstLevelArticles } from "./component/lib/FirstLevelArticleService";
 
 export default async function Home() {
   const articles = await getFirstLevelArticles();
