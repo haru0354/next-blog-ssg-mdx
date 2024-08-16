@@ -3,36 +3,61 @@ import fs from "fs";
 import matter from "gray-matter";
 
 export async function getFirstLevelArticles() {
-  const categoryDirectory = path.join(process.cwd(), "mdFile", "category");
-
-  const fileNames = fs.readdirSync(categoryDirectory);
-  const mdxFileNames = fileNames.filter((fileName) =>
+  const articleDirectory = path.join(process.cwd(), "mdFile", "article");
+  const articleFileNames = fs.readdirSync(articleDirectory);
+  const mdxArticleFileNames = articleFileNames.filter((fileName) =>
     fileName.endsWith(".mdx")
   );
 
-  if (!mdxFileNames) {
+  const categoryDirectory = path.join(process.cwd(), "mdFile", "category");
+  const categoryFileNames = fs.readdirSync(categoryDirectory);
+  const mdxCategoryFileNames = categoryFileNames.filter((fileName) =>
+    fileName.endsWith(".mdx")
+  );
+
+  if (!mdxCategoryFileNames || !mdxArticleFileNames) {
     return null;
   }
 
-  const firstLevelArticles = await Promise.all(
-    mdxFileNames.map(async (fileName) => {
-      const filePath = path.join(categoryDirectory, `${fileName}`);
+  const articles = await Promise.all(
+    mdxArticleFileNames.map(async (mdxArticleFileName) => {
+      const filePath = path.join(articleDirectory, `${mdxArticleFileName}`);
       try {
         const fileContents = await fs.promises.readFile(filePath, "utf8");
         const { data } = matter(fileContents);
 
         return {
-          slug: fileName.replace(".mdx", ""),
+          slug: mdxArticleFileName.replace(".mdx", ""),
           frontmatter: data,
         };
       } catch (error) {
-        console.error(`${fileName}のファイルを読み取れませんでした`, error);
+        console.error(`${mdxArticleFileName}のファイルを読み取れませんでした`, error);
         return null;
       }
     })
   );
 
-  return firstLevelArticles;
+  const categories = await Promise.all(
+    mdxCategoryFileNames.map(async (mdxCategoryFileName) => {
+      const filePath = path.join(categoryDirectory, `${mdxCategoryFileName}`);
+      try {
+        const fileContents = await fs.promises.readFile(filePath, "utf8");
+        const { data } = matter(fileContents);
+
+        return {
+          slug: mdxCategoryFileName.replace(".mdx", ""),
+          frontmatter: data,
+        };
+      } catch (error) {
+        console.error(`${mdxCategoryFileName}のファイルを読み取れませんでした`, error);
+        return null;
+      }
+    })
+  );
+
+  const FirstLevelArticles = [...articles, ...categories];
+
+  return FirstLevelArticles;
 }
 
 export async function getFirstLevelArticle(firstLevelArticle_slug: string) {
