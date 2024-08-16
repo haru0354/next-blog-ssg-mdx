@@ -4,22 +4,23 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypeSlug from "rehype-slug";
 import remarkToc from "remark-toc";
 import { useMDXComponents } from "@/mdx-components";
-import { getArticle, getArticles } from "@/app/component/lib/ArticleService";
-import ArticleInArticleList from "@/app/component/contentArea/ArticleInArticleList";
-import Breadcrumbs from "@/app/component/contentArea/Breadcrumbs";
 import {
   getSecondLevelArticle,
   getSecondLevelArticles,
 } from "@/app/component/lib/SecondLevelArticleService";
+import Breadcrumbs from "@/app/component/contentArea/Breadcrumbs";
+import ArticleInArticleList from "@/app/component/contentArea/ArticleInArticleList";
 import CategoryInArticlesList2Images from "@/app/component/contentArea/CategoryInArticlesList2Images";
-
 
 export const generateMetadata = async ({
   params,
 }: {
-  params: { article_slug: string; category_slug: string };
+  params: { firstLevelArticle_slug: string; secondLevelArticle_slug: string };
 }): Promise<Metadata> => {
-  const article = await getArticle(params.category_slug, params.article_slug);
+  const article = await getSecondLevelArticle(
+    params.firstLevelArticle_slug,
+    params.secondLevelArticle_slug
+  );
 
   return {
     title: article.frontmatter.title,
