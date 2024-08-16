@@ -7,6 +7,12 @@ import { useMDXComponents } from "@/mdx-components";
 import { getArticle, getArticles } from "@/app/component/lib/ArticleService";
 import ArticleInArticleList from "@/app/component/contentArea/ArticleInArticleList";
 import Breadcrumbs from "@/app/component/contentArea/Breadcrumbs";
+import {
+  getSecondLevelArticle,
+  getSecondLevelArticles,
+} from "@/app/component/lib/SecondLevelArticleService";
+import CategoryInArticlesList2Images from "@/app/component/contentArea/CategoryInArticlesList2Images";
+
 
 export const generateMetadata = async ({
   params,
@@ -25,29 +31,31 @@ export const generateMetadata = async ({
   };
 };
 
-
 export async function generateStaticParams() {
-  const articles = await getArticles();
+  const articles = await getSecondLevelArticles();
 
   return articles.map((article) => ({
-    article_slug: article.slug,
-    category_slug: article.categorySlug,
+    firstLevelArticle_slug: article.categorySlug,
+    secondLevelArticle_slug: article.slug,
   }));
 }
 
 const Page = async ({
   params,
 }: {
-  params: { article_slug: string; category_slug: string };
+  params: { firstLevelArticle_slug: string; secondLevelArticle_slug: string };
 }) => {
-  const article = await getArticle(params.category_slug, params.article_slug);
+  const article = await getSecondLevelArticle(
+    params.firstLevelArticle_slug,
+    params.secondLevelArticle_slug
+  );
   const components = useMDXComponents();
 
   return (
     <>
       <div className="content-style p-4 bg-white border border-gray-200">
         <Breadcrumbs
-          categorySlug={params.category_slug}
+          categorySlug={params.firstLevelArticle_slug}
           categoryName={article.categoryName}
         />
         <h1 className="text-2xl font-semibold mx-2 my-4">
@@ -79,10 +87,17 @@ const Page = async ({
           }}
         />
       </div>
-      <ArticleInArticleList
-        categorySlug={params.category_slug}
-        articleSlug={params.article_slug}
-      />
+      {article.frontmatter.categoryName ? (
+        <CategoryInArticlesList2Images
+          params={params.firstLevelArticle_slug}
+          categoryName={article.frontmatter.categoryName}
+        />
+      ) : (
+        <ArticleInArticleList
+          categorySlug={params.firstLevelArticle_slug}
+          articleSlug={params.secondLevelArticle_slug}
+        />
+      )}
     </>
   );
 };
