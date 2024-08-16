@@ -30,7 +30,7 @@ export async function getSecondLevelArticles() {
       const categoryPath = path.join(articlesDirectory, categoryFolder);
       const fileNames = fs.readdirSync(categoryPath);
 
-      const cate = path.join(
+      const categoryFile = path.join(
         process.cwd(),
         "mdFile",
         "category",
@@ -43,7 +43,7 @@ export async function getSecondLevelArticles() {
           const fileContents = await fs.promises.readFile(filePath, "utf8");
           const { data } = matter(fileContents);
 
-          const categoryContents = await fs.promises.readFile(cate, "utf8");
+          const categoryContents = await fs.promises.readFile(categoryFile, "utf8");
           const { data: categoryData } = matter(categoryContents);
 
           articles.push({

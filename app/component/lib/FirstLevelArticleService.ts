@@ -35,19 +35,19 @@ export async function getFirstLevelArticles() {
   return firstLevelArticles;
 }
 
-export async function getFirstLevelArticle(first_level_slug: string) {
+export async function getFirstLevelArticle(firstLevelArticle_slug: string) {
   const articleFilePath = path.join(
     process.cwd(),
     "mdFile",
     "article",
-    `${first_level_slug}.mdx`
+    `${firstLevelArticle_slug}.mdx`
   );
 
   const categoryFilePath = path.join(
     process.cwd(),
     "mdFile",
     "category",
-    `${first_level_slug}.mdx`
+    `${firstLevelArticle_slug}.mdx`
   );
 
   let fileContents = null;
@@ -71,7 +71,7 @@ export async function getFirstLevelArticle(first_level_slug: string) {
     };
   } catch (error) {
     console.error(
-      `${first_level_slug}.mdxのファイルを読み取れませんでした`,
+      `${firstLevelArticle_slug}.mdxのファイルを読み取れませんでした`,
       error
     );
     return null;
