@@ -60,22 +60,3 @@ export async function getSecondCategories(firstLevelArticle_slug: string) {
 
   return secondCategories;
 }
-
-export async function getCategory(params: string) {
-  const slug = params;
-  const filePath = path.join(
-    process.cwd(),
-    "mdFile",
-    "category",
-    `${slug}.mdx`
-  );
-
-  const fileContents = await fs.promises.readFile(filePath, "utf8");
-
-  const { data, content } = matter(fileContents);
-
-  return {
-    frontmatter: data,
-    content,
-  };
-}
