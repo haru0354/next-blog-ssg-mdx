@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getArticles } from "../lib/ArticleService";
+import { getSecondLevelArticles } from "../lib/SecondLevelArticleService";
 
 type CategoryInArticlesList2ImagesProps = {
   categoryName: string;
@@ -11,8 +11,8 @@ const CategoryInArticlesList2Images: React.FC<
   CategoryInArticlesList2ImagesProps
 > = async ({ params, categoryName }) => {
   const currentCategory = params;
-  const Articles = await getArticles();
-  const filteredArticles = Articles.filter(
+  const secondLevelArticles = await getSecondLevelArticles();
+  const filteredArticles = secondLevelArticles.filter(
     (article) => currentCategory === article.categorySlug
   );
 

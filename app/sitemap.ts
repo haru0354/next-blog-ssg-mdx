@@ -1,12 +1,12 @@
 import { MetadataRoute } from "next";
-import { getArticles } from "./component/lib/ArticleService";
 import { getFirstLevelArticles } from "./component/lib/FirstLevelArticleService";
+import { getSecondLevelArticles } from "./component/lib/SecondLevelArticleService";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseURL = "サイトのURL";
   const _lastModified = new Date();
 
-  const Articles = await getArticles();
+  const secondLevelArticles = await getSecondLevelArticles();
   const firstLevelArticles = await getFirstLevelArticles();
 
   const staticPaths = [
@@ -18,16 +18,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${baseURL}/privacypolicy`,
       lastModified: _lastModified,
     },
-    {
-      url: `${baseURL}/memorybook`,
-      lastModified: _lastModified,
-    },
   ];
 
-  const dynamicPathsArticles = Articles.map((article) => {
+  const dynamicPathsSecondLevelArticle = secondLevelArticles.map((secondLevelArticle) => {
     return {
-      url: `${baseURL}/${article.categorySlug}/${article.slug}`,
-      lastModified: new Date(article.frontmatter.date),
+      url: `${baseURL}/${secondLevelArticle.categorySlug}/${secondLevelArticle.slug}`,
+      lastModified: new Date(secondLevelArticle.frontmatter.date),
     };
   });
 
@@ -38,5 +34,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     };
   });
 
-  return [...staticPaths, ...dynamicPathsArticles, ...dynamicPathsFirstLevelArticles];
+  return [...staticPaths, ...dynamicPathsSecondLevelArticle, ...dynamicPathsFirstLevelArticles];
 }

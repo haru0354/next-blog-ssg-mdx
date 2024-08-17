@@ -1,10 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getArticles } from "../lib/ArticleService";
+import { getSecondLevelArticles } from "../lib/SecondLevelArticleService";
 
 const TopNewArticle = async () => {
-  const articles = await getArticles();
-  const sortedArticles = articles.sort((a, b) => {
+  const secondLevelArticles = await getSecondLevelArticles();
+  const sortedArticles = secondLevelArticles.sort((a, b) => {
     const dateA = new Date(a.frontmatter.date);
     const dateB = new Date(b.frontmatter.date);
     return dateB.getTime() - dateA.getTime();
