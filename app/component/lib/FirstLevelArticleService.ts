@@ -15,10 +15,6 @@ export async function getFirstLevelArticles() {
     fileName.endsWith(".mdx")
   );
 
-  if (!mdxCategoryFileNames || !mdxArticleFileNames) {
-    return null;
-  }
-
   const articles = await Promise.all(
     mdxArticleFileNames.map(async (mdxArticleFileName) => {
       const filePath = path.join(articleDirectory, `${mdxArticleFileName}`);

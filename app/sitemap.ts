@@ -1,13 +1,13 @@
 import { MetadataRoute } from "next";
-import { getCategories } from "./component/lib/CategoryService";
 import { getArticles } from "./component/lib/ArticleService";
+import { getFirstLevelArticles } from "./component/lib/FirstLevelArticleService";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseURL = "サイトのURL";
   const _lastModified = new Date();
 
   const Articles = await getArticles();
-  const categories = await getCategories();
+  const firstLevelArticles = await getFirstLevelArticles();
 
   const staticPaths = [
     {
@@ -31,12 +31,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     };
   });
 
-  const dynamicPathsCategories = categories.map((category) => {
+  const dynamicPathsFirstLevelArticles = firstLevelArticles.map((firstLevelArticle) => {
     return {
-      url: `${baseURL}/${category.slug}`,
-      lastModified: new Date(category.frontmatter.date),
+      url: `${baseURL}/${firstLevelArticle?.slug}`,
+      lastModified: new Date(firstLevelArticle?.frontmatter.date),
     };
   });
 
-  return [...staticPaths, ...dynamicPathsArticles, ...dynamicPathsCategories];
+  return [...staticPaths, ...dynamicPathsArticles, ...dynamicPathsFirstLevelArticles];
 }
