@@ -2,16 +2,11 @@ import TopNewArticle from "./component/topPage/TopNewArticle";
 import TopCategory from "./component/topPage/TopCategory";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
-import { getThirdLevelArticle } from "./component/lib/ThirdLevelArticleService";
 
 export default async function Home() {
-  const thirdArticle = await getThirdLevelArticle("sample2", "sampleChildCategory", "sampleThirdArticle")
-console.log(thirdArticle);
-
-
   return (
     <>
-      <Header isTopPage={true}/>
+      <Header isTopPage={true} />
       <main className="pb-20">
         <TopNewArticle />
         <TopCategory />
