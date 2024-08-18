@@ -1,9 +1,9 @@
-import { getArticles } from "@/app/component/lib/ArticleService";
 import Link from "next/link";
 import React from "react";
+import { getSecondLevelArticles } from "@/app/component/lib/SecondLevelArticleService";
 
 const page = async () => {
-  const articles = await getArticles();
+  const secondLevelArticles = await getSecondLevelArticles();
 
   return (
     <div className="p-4 bg-white border border-gray-200">
@@ -11,23 +11,23 @@ const page = async () => {
         サイトマップ
       </h2>
       <ul>
-        {articles.map((article, index) => {
+        {secondLevelArticles.map((secondLevelArticle, index) => {
           const isFirstCategoryItem =
             index === 0 ||
-            article.categoryName !==
-              articles[index - 1].categoryName;
+            secondLevelArticle.categoryName !==
+            secondLevelArticles[index - 1].categoryName;
           return (
             <React.Fragment key={index}>
               {isFirstCategoryItem && (
                 <li className="text-lg font-semibold pt-4 text-sky-600">
-                  <Link href={`/${article.categorySlug}`}>
-                    {article.categoryName}
+                  <Link href={`/${secondLevelArticle.categorySlug}`}>
+                    {secondLevelArticle.categoryName}
                   </Link>
                 </li>
               )}
               <li className="list-disc list-inside my-4 mx-6 text-sky-600">
-                <Link href={`/${article.categorySlug}/${article.slug}`}>
-                  {article.frontmatter.title}
+                <Link href={`/${secondLevelArticle.categorySlug}/${secondLevelArticle.slug}`}>
+                  {secondLevelArticle.frontmatter.title}
                 </Link>
               </li>
             </React.Fragment>

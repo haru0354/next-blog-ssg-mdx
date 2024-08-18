@@ -1,53 +1,31 @@
 import path from "path";
 import fs from "fs";
 import matter from "gray-matter";
+import { getFixedPages } from "./FixedPageService";
+import { getMainCategories } from "./CategoryService";
 
 export async function getFirstLevelArticles() {
-  const categoryDirectory = path.join(process.cwd(), "mdFile", "category");
+  const fixedPages = await getFixedPages()
+  const categories = await getMainCategories()
 
-  const fileNames = fs.readdirSync(categoryDirectory);
-  const mdxFileNames = fileNames.filter((fileName) =>
-    fileName.endsWith(".mdx")
-  );
+  const FirstLevelArticles = [...fixedPages, ...categories];
 
-  if (!mdxFileNames) {
-    return null;
-  }
-
-  const firstLevelArticles = await Promise.all(
-    mdxFileNames.map(async (fileName) => {
-      const filePath = path.join(categoryDirectory, `${fileName}`);
-      try {
-        const fileContents = await fs.promises.readFile(filePath, "utf8");
-        const { data } = matter(fileContents);
-
-        return {
-          slug: fileName.replace(".mdx", ""),
-          frontmatter: data,
-        };
-      } catch (error) {
-        console.error(`${fileName}のファイルを読み取れませんでした`, error);
-        return null;
-      }
-    })
-  );
-
-  return firstLevelArticles;
+  return FirstLevelArticles;
 }
 
-export async function getFirstLevelArticle(first_level_slug: string) {
+export async function getFirstLevelArticle(firstLevelArticle_slug: string) {
   const articleFilePath = path.join(
     process.cwd(),
     "mdFile",
     "article",
-    `${first_level_slug}.mdx`
+    `${firstLevelArticle_slug}.mdx`
   );
 
   const categoryFilePath = path.join(
     process.cwd(),
     "mdFile",
     "category",
-    `${first_level_slug}.mdx`
+    `${firstLevelArticle_slug}.mdx`
   );
 
   let fileContents = null;
@@ -69,9 +47,10 @@ export async function getFirstLevelArticle(first_level_slug: string) {
       frontmatter: data,
       content,
     };
+    
   } catch (error) {
     console.error(
-      `${first_level_slug}.mdxのファイルを読み取れませんでした`,
+      `${firstLevelArticle_slug}.mdxのファイルを読み取れませんでした`,
       error
     );
     return null;

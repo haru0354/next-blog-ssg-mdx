@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getArticles } from "../lib/ArticleService";
+import { getSecondLevelArticles } from "../lib/SecondLevelArticleService";
 
 type ArticleInArticleListProps = {
   categorySlug: string;
@@ -11,14 +11,14 @@ const ArticleInArticleList: React.FC<ArticleInArticleListProps> = async ({
   categorySlug,
   articleSlug,
 }) => {
-  const Articles = await getArticles();
+  const secondLevelArticles = await getSecondLevelArticles();
 
-  const filteredArticles = Articles.filter(
-    (article) =>
-      categorySlug === article.categorySlug && articleSlug !== article.slug
+  const filteredSecondLevelArticles = secondLevelArticles.filter(
+    (secondLevelArticle) =>
+      categorySlug === secondLevelArticle.categorySlug && articleSlug !== secondLevelArticle.slug
   );
 
-  const sortedArticles = filteredArticles.sort((a, b) => {
+  const sortedArticles = filteredSecondLevelArticles.sort((a, b) => {
     const dateA = new Date(a.frontmatter.date);
     const dateB = new Date(b.frontmatter.date);
     return dateB.getTime() - dateA.getTime();

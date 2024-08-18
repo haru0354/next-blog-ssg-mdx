@@ -30,7 +30,12 @@ export async function getSecondLevelArticles() {
       const categoryPath = path.join(articlesDirectory, categoryFolder);
       const fileNames = fs.readdirSync(categoryPath);
 
-      const cate = path.join(
+      const mdxFileNames = fileNames.filter((fileName) =>
+        fileName.endsWith(".mdx")
+      );
+      console.log(categoryFolders);
+
+      const categoryFile = path.join(
         process.cwd(),
         "mdFile",
         "category",
@@ -38,16 +43,16 @@ export async function getSecondLevelArticles() {
       );
 
       await Promise.all(
-        fileNames.map(async (fileName) => {
-          const filePath = path.join(categoryPath, fileName);
+        mdxFileNames.map(async (mdxFileName) => {
+          const filePath = path.join(categoryPath, mdxFileName);
           const fileContents = await fs.promises.readFile(filePath, "utf8");
           const { data } = matter(fileContents);
 
-          const categoryContents = await fs.promises.readFile(cate, "utf8");
+          const categoryContents = await fs.promises.readFile(categoryFile, "utf8");
           const { data: categoryData } = matter(categoryContents);
 
           articles.push({
-            slug: fileName.replace(".mdx", ""),
+            slug: mdxFileName.replace(".mdx", ""),
             categorySlug: categoryFolder,
             categoryName: categoryData.categoryName,
             frontmatter: {

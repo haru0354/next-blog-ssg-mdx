@@ -11,6 +11,7 @@ import {
 import Breadcrumbs from "@/app/component/contentArea/Breadcrumbs";
 import ArticleInArticleList from "@/app/component/contentArea/ArticleInArticleList";
 import CategoryInArticlesList2Images from "@/app/component/contentArea/CategoryInArticlesList2Images";
+import NotFound from "@/app/not-found";
 
 export const generateMetadata = async ({
   params,
@@ -21,6 +22,13 @@ export const generateMetadata = async ({
     params.firstLevelArticle_slug,
     params.secondLevelArticle_slug
   );
+
+  if (!article) {
+    return {
+      title: "記事がありません",
+      description: "記事がありません",
+    };
+  }
 
   return {
     title: article.frontmatter.title,
@@ -51,6 +59,10 @@ const Page = async ({
     params.secondLevelArticle_slug
   );
   const components = useMDXComponents();
+
+  if (article === null) {
+    return <NotFound />;
+  }
 
   return (
     <>

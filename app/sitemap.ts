@@ -1,13 +1,13 @@
 import { MetadataRoute } from "next";
-import { getCategories } from "./component/lib/CategoryService";
-import { getArticles } from "./component/lib/ArticleService";
+import { getFirstLevelArticles } from "./component/lib/FirstLevelArticleService";
+import { getSecondLevelArticles } from "./component/lib/SecondLevelArticleService";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseURL = "サイトのURL";
   const _lastModified = new Date();
 
-  const Articles = await getArticles();
-  const categories = await getCategories();
+  const secondLevelArticles = await getSecondLevelArticles();
+  const firstLevelArticles = await getFirstLevelArticles();
 
   const staticPaths = [
     {
@@ -18,25 +18,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${baseURL}/privacypolicy`,
       lastModified: _lastModified,
     },
-    {
-      url: `${baseURL}/memorybook`,
-      lastModified: _lastModified,
-    },
   ];
 
-  const dynamicPathsArticles = Articles.map((article) => {
+  const dynamicPathsSecondLevelArticle = secondLevelArticles.map((secondLevelArticle) => {
     return {
-      url: `${baseURL}/${article.categorySlug}/${article.slug}`,
-      lastModified: new Date(article.frontmatter.date),
+      url: `${baseURL}/${secondLevelArticle.categorySlug}/${secondLevelArticle.slug}`,
+      lastModified: new Date(secondLevelArticle.frontmatter.date),
     };
   });
 
-  const dynamicPathsCategories = categories.map((category) => {
+  const dynamicPathsFirstLevelArticles = firstLevelArticles.map((firstLevelArticle) => {
     return {
-      url: `${baseURL}/${category.slug}`,
-      lastModified: new Date(category.frontmatter.date),
+      url: `${baseURL}/${firstLevelArticle?.slug}`,
+      lastModified: new Date(firstLevelArticle?.frontmatter.date),
     };
   });
 
-  return [...staticPaths, ...dynamicPathsArticles, ...dynamicPathsCategories];
+  return [...staticPaths, ...dynamicPathsSecondLevelArticle, ...dynamicPathsFirstLevelArticles];
 }
