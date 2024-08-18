@@ -33,7 +33,6 @@ export async function getSecondLevelArticles() {
       const mdxFileNames = fileNames.filter((fileName) =>
         fileName.endsWith(".mdx")
       );
-      console.log(categoryFolders);
 
       const categoryFile = path.join(
         process.cwd(),
