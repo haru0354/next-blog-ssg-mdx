@@ -6,7 +6,7 @@ import Footer from "./component/Footer";
 export default async function Home() {
   return (
     <>
-      <Header isTopPage={true}/>
+      <Header isTopPage={true} />
       <main className="pb-20">
         <TopNewArticle />
         <TopCategory />

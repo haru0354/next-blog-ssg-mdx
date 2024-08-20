@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
+import { Metadata } from "next";
 import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypeSlug from "rehype-slug";
 import remarkToc from "remark-toc";
 import { useMDXComponents } from "@/mdx-components";
 import {
-  getSecondLevelArticle,
-  getSecondLevelArticles,
-} from "@/app/component/lib/SecondLevelArticleService";
+  getThirdLevelArticle,
+  getThirdLevelArticles,
+} from "@/app/component/lib/ThirdLevelArticleService";
 import Breadcrumbs from "@/app/component/contentArea/Breadcrumbs";
 import ArticleInArticleList from "@/app/component/contentArea/ArticleInArticleList";
 import CategoryInArticlesList2Images from "@/app/component/contentArea/CategoryInArticlesList2Images";
@@ -16,11 +16,16 @@ import NotFound from "@/app/not-found";
 export const generateMetadata = async ({
   params,
 }: {
-  params: { firstLevelArticle_slug: string; secondLevelArticle_slug: string };
+  params: {
+    firstLevelArticle_slug: string;
+    secondLevelArticle_slug: string;
+    thirdLevelArticle_slug: string;
+  };
 }): Promise<Metadata> => {
-  const article = await getSecondLevelArticle(
+  const article = await getThirdLevelArticle(
     params.firstLevelArticle_slug,
-    params.secondLevelArticle_slug
+    params.secondLevelArticle_slug,
+    params.thirdLevelArticle_slug
   );
 
   if (!article) {
@@ -41,22 +46,28 @@ export const generateMetadata = async ({
 };
 
 export async function generateStaticParams() {
-  const articles = await getSecondLevelArticles();
+  const articles = await getThirdLevelArticles();
 
   return articles.map((article) => ({
-    firstLevelArticle_slug: article.categorySlug,
-    secondLevelArticle_slug: article.slug,
+    firstLevelArticle_slug: article.parentCategorySlug,
+    secondLevelArticle_slug: article.childCategorySlug,
+    thirdLevelArticle_slug: article.slug,
   }));
 }
 
 const Page = async ({
   params,
 }: {
-  params: { firstLevelArticle_slug: string; secondLevelArticle_slug: string };
+  params: {
+    firstLevelArticle_slug: string;
+    secondLevelArticle_slug: string;
+    thirdLevelArticle_slug: string;
+  };
 }) => {
-  const article = await getSecondLevelArticle(
+  const article = await getThirdLevelArticle(
     params.firstLevelArticle_slug,
-    params.secondLevelArticle_slug
+    params.secondLevelArticle_slug,
+    params.thirdLevelArticle_slug
   );
 
   if (article === null) {
@@ -70,7 +81,9 @@ const Page = async ({
       <div className="content-style p-4 bg-white border border-gray-200">
         <Breadcrumbs
           categorySlug={params.firstLevelArticle_slug}
-          categoryName={article.categoryName}
+          categoryName={article.parentCategoryName}
+          childCategorySlug={params.secondLevelArticle_slug}
+          childCategoryName={article.childCategoryName}
           pageTitle={article.frontmatter.title}
         />
         <h1 className="text-2xl font-semibold mx-2 my-4">
