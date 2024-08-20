@@ -75,6 +75,8 @@ const Page = async ({
     return <NotFound />;
   }
 
+console.log(article);
+
   return (
     <>
       <div className="content-style p-4 bg-white border border-gray-200">

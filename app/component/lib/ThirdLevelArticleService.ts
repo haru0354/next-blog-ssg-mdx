@@ -142,7 +142,17 @@ export async function getThirdLevelArticle(
   const fileContents = await fs.promises.readFile(filePath, "utf8");
   const { data, content } = matter(fileContents);
 
-  const categoryPath = path.join(
+  const parentCategoryPath = path.join(
+    process.cwd(),
+    "mdFile",
+    "category",
+    `${firstLevelArticle_slug}.mdx`
+  );
+
+  const parentCategoryContents = await fs.promises.readFile(parentCategoryPath, "utf8");
+  const { data: parentCategoryData } = matter(parentCategoryContents);
+
+  const childCategoryPath = path.join(
     process.cwd(),
     "mdFile",
     "category",
@@ -150,12 +160,13 @@ export async function getThirdLevelArticle(
     `${secondLevelArticle_slug}.mdx`
   );
 
-  const categoryContents = await fs.promises.readFile(categoryPath, "utf8");
-  const { data: categoryData } = matter(categoryContents);
+  const childCategoryContents = await fs.promises.readFile(childCategoryPath, "utf8");
+  const { data: childCategoryData } = matter(childCategoryContents);
 
   return {
     frontmatter: data,
     content,
-    categoryName: categoryData.categoryName,
+    parentCategoryName: parentCategoryData.categoryName,
+    childCategoryName: childCategoryData.categoryName,
   };
 }
