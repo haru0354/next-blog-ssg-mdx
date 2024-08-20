@@ -6,7 +6,7 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>) {  
   return (
     <>
       <Header />
@@ -15,7 +15,7 @@ export default function RootLayout({
           <div className="flex flex-col flex-wrap w-full md:max-w-[800px] md:min-w-[800px]  md:mr-6">
             {children}
           </div>
-          <SideMenu />
+          <SideMenu/>
         </div>
       </main>
       <Footer />

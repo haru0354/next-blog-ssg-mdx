@@ -12,6 +12,7 @@ import Breadcrumbs from "@/app/component/contentArea/Breadcrumbs";
 import ArticleInArticleList from "@/app/component/contentArea/ArticleInArticleList";
 import CategoryInArticlesList2Images from "@/app/component/contentArea/CategoryInArticlesList2Images";
 import NotFound from "@/app/not-found";
+import SideMenu from "@/app/component/SideMenu";
 
 export const generateMetadata = async ({
   params,
@@ -126,6 +127,7 @@ const Page = async ({
           articleSlug={params.secondLevelArticle_slug}
         />
       )}
+      <SideMenu params={params} categoryName={article.parentCategoryName} />
     </>
   );
 };
