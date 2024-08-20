@@ -69,20 +69,22 @@ const Page = async ({
     params.secondLevelArticle_slug,
     params.thirdLevelArticle_slug
   );
-  const components = useMDXComponents();
 
   if (article === null) {
     return <NotFound />;
   }
 
-console.log(article);
+  const components = useMDXComponents();
 
   return (
     <>
       <div className="content-style p-4 bg-white border border-gray-200">
         <Breadcrumbs
           categorySlug={params.firstLevelArticle_slug}
-          categoryName={article.categoryName}
+          categoryName={article.parentCategoryName}
+          childCategorySlug={params.secondLevelArticle_slug}
+          childCategoryName={article.childCategoryName}
+          pageTitle={article.frontmatter.title}
         />
         <h1 className="text-2xl font-semibold mx-2 my-4">
           {article.frontmatter.title}

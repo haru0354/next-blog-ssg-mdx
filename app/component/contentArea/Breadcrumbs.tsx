@@ -2,15 +2,21 @@ import Image from "next/image";
 import Link from "next/link";
 
 type BreadcrumbsProps = {
-  categorySlug: string;
+  pageTitle: string;
   categoryName: string;
-  isCategory?: boolean;
+  categorySlug?: string;
+  childCategorySlug?: string;
+  childCategoryName?: string;
+  isNotParentCategoryPage?: boolean;
 };
 
 const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
+  pageTitle,
   categorySlug,
   categoryName,
-  isCategory,
+  childCategorySlug,
+  childCategoryName,
+  isNotParentCategoryPage = true,
 }) => {
   return (
     <span className="text-sm">
@@ -21,13 +27,29 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
         height={25}
         className="inline mb-[2px] mr-2"
       />
-      <Link href="/" className="text-sky-600">ホーム</Link>
+      <Link href="/" className="text-sky-600">
+        ホーム
+      </Link>
       　＞　
-      {isCategory ? (
-        categoryName
+      {categorySlug && categoryName ? (
+        <Link href={`/${categorySlug}`} className="text-sky-600">
+          {categoryName}
+        </Link>
       ) : (
-        <Link href={`/${categorySlug}`} className="text-sky-600">{categoryName}</Link>
+        categoryName
       )}
+      {childCategorySlug && childCategoryName && (
+        <>
+          　＞　
+          <Link
+            href={`/${categorySlug}/${childCategorySlug}`}
+            className="text-sky-600"
+          >
+            {childCategoryName}
+          </Link>
+        </>
+      )}
+      {isNotParentCategoryPage && <>　＞　 {pageTitle} </>}
     </span>
   );
 };

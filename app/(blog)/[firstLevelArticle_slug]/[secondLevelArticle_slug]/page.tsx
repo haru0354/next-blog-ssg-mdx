@@ -58,11 +58,12 @@ const Page = async ({
     params.firstLevelArticle_slug,
     params.secondLevelArticle_slug
   );
-  const components = useMDXComponents();
 
   if (article === null) {
     return <NotFound />;
   }
+
+  const components = useMDXComponents();
 
   return (
     <>
@@ -70,6 +71,7 @@ const Page = async ({
         <Breadcrumbs
           categorySlug={params.firstLevelArticle_slug}
           categoryName={article.categoryName}
+          pageTitle={article.frontmatter.title}
         />
         <h1 className="text-2xl font-semibold mx-2 my-4">
           {article.frontmatter.title}
