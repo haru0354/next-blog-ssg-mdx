@@ -13,8 +13,6 @@ type Params = {
 
 const SideChildCategory: React.FC<SideChildCategoryProps> = async ({ params, categoryName }) => {
   const categories = await getSecondCategories(params.firstLevelArticle_slug);
-  console.log("params", params);
-  console.log("categories", categories);
 
   return (
     <nav className="bg-white border-r border-l mb-8 border-gray-200">
