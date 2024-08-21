@@ -2,9 +2,12 @@ import Link from "next/link";
 import React from "react";
 import { getSecondLevelArticles } from "@/app/component/lib/SecondLevelArticleService";
 import SideMenu from "@/app/component/SideMenu";
+import { getAllArticles } from "@/app/component/lib/AllArticleService";
 
 const page = async () => {
   const secondLevelArticles = await getSecondLevelArticles();
+const allArticles = await getAllArticles()
+console.log(allArticles);
 
   return (
     <>
