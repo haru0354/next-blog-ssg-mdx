@@ -1,10 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getSecondLevelArticles } from "../lib/SecondLevelArticleService";
+import { getAllArticles } from "../lib/AllArticleService";
 
 const TopNewArticle = async () => {
-  const secondLevelArticles = await getSecondLevelArticles();
-  const sortedArticles = secondLevelArticles.sort((a, b) => {
+  const allArticles = await getAllArticles();
+
+  const sortedArticles = allArticles.sort((a, b) => {
     const dateA = new Date(a.frontmatter.date);
     const dateB = new Date(b.frontmatter.date);
     return dateB.getTime() - dateA.getTime();
@@ -22,11 +23,15 @@ const TopNewArticle = async () => {
           </h2>
           <span className="flex-grow h-1 w-5 md:w-0 ml-2 md:mr-4 bg-gradient-to-r from-gray-600 to-transparent"></span>
         </div>
-        <div className="flex flex-wrap w-full justify-center">
+        <div className="flex flex-wrap w-full justify-start">
           {filteredArticles.map((article) => {
             return (
               <Link
-                href={`/${article.categorySlug}/${article.slug}`}
+                href={
+                  article.childCategorySlug
+                    ? `/${article.parentCategorySlug}/${article.childCategorySlug}/${article.slug}`
+                    : `/${article.parentCategorySlug}/${article.slug}`
+                }
                 key={article.slug}
               >
                 <div className="flex flex-col justify-center items-center mx-2 mb-8 md:max-w-[320px] md:min-w-[320px] hover:bg-hover-blue">

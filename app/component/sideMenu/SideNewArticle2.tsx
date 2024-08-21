@@ -1,10 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getSecondLevelArticles } from "../lib/SecondLevelArticleService";
+import { getAllArticles } from "../lib/AllArticleService";
 
 const SideNewArticle2 = async () => {
-  const secondLevelArticles = await getSecondLevelArticles();
-  const sortedArticles = secondLevelArticles.sort((a, b) => {
+  const allArticles = await getAllArticles();
+  const sortedArticles = allArticles.sort((a, b) => {
     const dateA = new Date(a.frontmatter.date);
     const dateB = new Date(b.frontmatter.date);
     return dateB.getTime() - dateA.getTime();
@@ -19,7 +19,11 @@ const SideNewArticle2 = async () => {
         {filteredArticles.map((article) => {
           return (
             <Link
-              href={`/${article.categorySlug}/${article.slug}`}
+              href={
+                article.childCategorySlug
+                  ? `/${article.parentCategorySlug}/${article.childCategorySlug}/${article.slug}`
+                  : `/${article.parentCategorySlug}/${article.slug}`
+              }
               key={article.slug}
             >
               <div className="hover:bg-hover-blue pt-4 md:pt-0">
