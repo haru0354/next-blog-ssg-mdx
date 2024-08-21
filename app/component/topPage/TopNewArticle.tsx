@@ -1,11 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getSecondLevelArticles } from "../lib/SecondLevelArticleService";
 import { getAllArticles } from "../lib/AllArticleService";
 
 const TopNewArticle = async () => {
   const allArticles = await getAllArticles();
-  console.log(allArticles);
 
   const sortedArticles = allArticles.sort((a, b) => {
     const dateA = new Date(a.frontmatter.date);
