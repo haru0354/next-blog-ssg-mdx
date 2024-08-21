@@ -4,6 +4,8 @@ import matter from "gray-matter";
 
 type Article = {
   slug: string;
+  parentCategorySlug: string;
+  childCategorySlug?: string;
   frontmatter: Frontmatter;
 };
 
@@ -52,6 +54,7 @@ export async function getAllArticles() {
 
             articles.push({
               slug: mdxFileNameInParentCategory.replace(".mdx", ""),
+              parentCategorySlug: categoryFolderInArticle,
               frontmatter: {
                 title: data.title,
                 date: data.date,
@@ -102,6 +105,8 @@ export async function getAllArticles() {
 
                   articles.push({
                     slug: mdxFileNameInChildCategory.replace(".mdx", ""),
+                    parentCategorySlug: categoryFolderInArticle,
+                    childCategorySlug: parentCategoryFolderInArticle,
                     frontmatter: {
                       title: data.title,
                       date: data.date,
