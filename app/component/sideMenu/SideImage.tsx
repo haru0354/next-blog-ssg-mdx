@@ -18,7 +18,7 @@ const SideImage = async () => {
                 alt={`${sideImage.frontmatter.eyeCatchAlt}`}
                 width={298}
                 height={196}
-                className="mx-auto md:mt-0 mt-8 hover:-translate-y-2 translate"
+                className="mx-auto md:mt-0 mt-8 hover:-translate-y-2 translate transition duration-300"
               />
             </Link>
           </div>
