@@ -18,7 +18,7 @@ type Frontmatter = {
 };
 
 export async function getAllCategories() {
-  const mainCategories = await getMainCategories();
+  const mainCategories = await getParentCategories();
 
   const categoryDirectory = path.join(process.cwd(), "mdFile", "category");
 
@@ -68,7 +68,7 @@ export async function getAllCategories() {
   return allCategories;
 }
 
-export async function getMainCategories() {
+export async function getParentCategories() {
   const categoriesDirectory = path.join(process.cwd(), "mdFile", "category");
 
   const fileNames = fs.readdirSync(categoriesDirectory);
@@ -93,7 +93,7 @@ export async function getMainCategories() {
   return mainCategories;
 }
 
-export async function getSecondCategories(firstLevelArticle_slug: string) {
+export async function getChildCategories(firstLevelArticle_slug: string) {
   const secondCategoriesDirectory = path.join(
     process.cwd(),
     "mdFile",

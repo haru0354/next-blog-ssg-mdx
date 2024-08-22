@@ -1,9 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getMainCategories } from "../lib/CategoryService";
+import { getParentCategories } from "../lib/CategoryService";
 
 const TopCategory = async () => {
-  const categories = await getMainCategories();
+  const categories = await getParentCategories();
 
   return (
     <section className="bg-gray-100 w-full md:py-8 py-2">
