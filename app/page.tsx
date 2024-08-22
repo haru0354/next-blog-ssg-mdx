@@ -9,7 +9,7 @@ export default async function Home() {
   const allArticles = await getAllArticles()
   const fixedPages = await getFixedPages()
 
-  console.log(fixedPages);
+  console.log(allArticles);
   
   return (
     <>
