@@ -1,13 +1,15 @@
 import { MetadataRoute } from "next";
-import { getFirstLevelArticles } from "./component/lib/FirstLevelArticleService";
-import { getSecondLevelArticles } from "./component/lib/SecondLevelArticleService";
+import { getFixedPages } from "./component/lib/FixedPageService";
+import { getAllArticles } from "./component/lib/AllArticleService";
+import { getAllCategories } from "./component/lib/CategoryService";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseURL = "サイトのURL";
   const _lastModified = new Date();
 
-  const secondLevelArticles = await getSecondLevelArticles();
-  const firstLevelArticles = await getFirstLevelArticles();
+  const fixedPages = await getFixedPages();
+  const allArticles = await getAllArticles();
+  const allCategories = await getAllCategories();
 
   const staticPaths = [
     {
@@ -15,24 +17,50 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: _lastModified,
     },
     {
-      url: `${baseURL}/privacypolicy`,
+      url: `${baseURL}/sitemaps`,
       lastModified: _lastModified,
     },
   ];
 
-  const dynamicPathsSecondLevelArticle = secondLevelArticles.map((secondLevelArticle) => {
+  const dynamicPathsFixedArticle = fixedPages.map((fixedPage) => {
     return {
-      url: `${baseURL}/${secondLevelArticle.categorySlug}/${secondLevelArticle.slug}`,
-      lastModified: new Date(secondLevelArticle.frontmatter.date),
+      url: `${baseURL}/${fixedPage?.slug}`,
+      lastModified: new Date(fixedPage?.frontmatter.date),
     };
   });
 
-  const dynamicPathsFirstLevelArticles = firstLevelArticles.map((firstLevelArticle) => {
+  const dynamicPathsAllArticle = allArticles.map((allArticle) => {
+    if (!("childCategorySlug" in allArticle)) {
+      return {
+        url: `${baseURL}/${allArticle.parentCategorySlug}/${allArticle.slug}`,
+        lastModified: new Date(allArticle.frontmatter.date),
+      };
+    }
+
     return {
-      url: `${baseURL}/${firstLevelArticle?.slug}`,
-      lastModified: new Date(firstLevelArticle?.frontmatter.date),
+      url: `${baseURL}/${allArticle.parentCategorySlug}/${allArticle.childCategorySlug}/${allArticle.slug}`,
+      lastModified: new Date(allArticle.frontmatter.date),
     };
   });
 
-  return [...staticPaths, ...dynamicPathsSecondLevelArticle, ...dynamicPathsFirstLevelArticles];
+  const dynamicPathsAllCategories = allCategories.map((allCategory) => {
+    if (!("parentCategorySlug" in allCategory)) {
+      return {
+        url: `${baseURL}/${allCategory.slug}`,
+        lastModified: new Date(allCategory.frontmatter.date),
+      };
+    }
+
+    return {
+      url: `${baseURL}/${allCategory.slug}/${allCategory.parentCategorySlug}`,
+      lastModified: new Date(allCategory.frontmatter.date),
+    };
+  });
+
+  return [
+    ...staticPaths,
+    ...dynamicPathsFixedArticle,
+    ...dynamicPathsAllArticle,
+    ...dynamicPathsAllCategories,
+  ];
 }

@@ -23,7 +23,7 @@ const TopNewArticle = async () => {
           </h2>
           <span className="flex-grow h-1 w-5 md:w-0 ml-2 md:mr-4 bg-gradient-to-r from-gray-600 to-transparent"></span>
         </div>
-        <div className="flex flex-wrap w-full justify-start">
+        <div className="flex flex-wrap w-full justify-center">
           {filteredArticles.map((article) => {
             return (
               <Link
@@ -49,7 +49,7 @@ const TopNewArticle = async () => {
                     width={320}
                     height={230}
                   />
-                  <h3 className="p-4 w-full">
+                  <h3 className="w-full text-center p-4">
                     {article.frontmatter.title.length > 34
                       ? `${article.frontmatter.title.slice(0, 34)}...`
                       : article.frontmatter.title}

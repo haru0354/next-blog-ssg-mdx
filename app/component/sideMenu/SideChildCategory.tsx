@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getSecondCategories } from "../lib/CategoryService";
+import { getChildCategories } from "../lib/CategoryService";
 
 type SideChildCategoryProps = {
   params: Params;
@@ -12,7 +12,7 @@ type Params = {
 };
 
 const SideChildCategory: React.FC<SideChildCategoryProps> = async ({ params, categoryName }) => {
-  const categories = await getSecondCategories(params.firstLevelArticle_slug);
+  const categories = await getChildCategories(params.firstLevelArticle_slug);
 
   return (
     <nav className="bg-white border-r border-l mb-8 border-gray-200">

@@ -2,11 +2,11 @@ import path from "path";
 import fs from "fs";
 import matter from "gray-matter";
 import { getFixedPages } from "./FixedPageService";
-import { getMainCategories } from "./CategoryService";
+import { getParentCategories } from "./CategoryService";
 
 export async function getFirstLevelArticles() {
   const fixedPages = await getFixedPages()
-  const categories = await getMainCategories()
+  const categories = await getParentCategories()
 
   const FirstLevelArticles = [...fixedPages, ...categories];
 

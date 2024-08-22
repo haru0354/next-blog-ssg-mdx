@@ -4,7 +4,9 @@ import matter from "gray-matter";
 
 type Article = {
   slug: string;
+  parentCategoryName: string;
   parentCategorySlug: string;
+  childCategoryName?: string;
   childCategorySlug?: string;
   frontmatter: Frontmatter;
 };
@@ -41,6 +43,16 @@ export async function getAllArticles() {
         (fileNameInParentCategory) => fileNameInParentCategory.endsWith(".mdx")
       );
 
+      const parentCategoryFilePath = path.join(
+        process.cwd(), 
+        "mdFile", 
+        "category",
+        `${categoryFolderInArticle}.mdx`,
+      );
+
+      const parentCategoryContents = await fs.promises.readFile(parentCategoryFilePath, "utf8");
+      const { data: parentCategoryData } = matter(parentCategoryContents);
+
       //第2階層の各記事をarticleに含める
       await Promise.all(
         mdxFileNamesInParentCategory.map(
@@ -54,6 +66,7 @@ export async function getAllArticles() {
 
             articles.push({
               slug: mdxFileNameInParentCategory.replace(".mdx", ""),
+              parentCategoryName: parentCategoryData.categoryName,
               parentCategorySlug: categoryFolderInArticle,
               frontmatter: {
                 title: data.title,
@@ -67,7 +80,7 @@ export async function getAllArticles() {
         )
       );
 
-      //ここから下記で第3階層の各記事をarticleに含める
+      //下記で第3階層の各記事をarticleに含める
       const parentCategoryFoldersInArticle = fs
         .readdirSync(parentCategoryPath)
         .filter((name) => {
@@ -90,6 +103,17 @@ export async function getAllArticles() {
                 fileNameInChildCategory.endsWith(".mdx")
             );
 
+            const childCategoryFilePath = path.join(
+              process.cwd(), 
+              "mdFile", 
+              "category",
+              categoryFolderInArticle,
+              `${parentCategoryFolderInArticle}.mdx`,
+            );
+      
+            const childCategoryContents = await fs.promises.readFile(childCategoryFilePath, "utf8");
+            const { data: childCategoryData } = matter(childCategoryContents);
+
             await Promise.all(
               mdxFileNamesInChildCategory.map(
                 async (mdxFileNameInChildCategory) => {
@@ -105,7 +129,9 @@ export async function getAllArticles() {
 
                   articles.push({
                     slug: mdxFileNameInChildCategory.replace(".mdx", ""),
+                    parentCategoryName: parentCategoryData.categoryName,
                     parentCategorySlug: categoryFolderInArticle,
+                    childCategoryName: childCategoryData.categoryName,
                     childCategorySlug: parentCategoryFolderInArticle,
                     frontmatter: {
                       title: data.title,
