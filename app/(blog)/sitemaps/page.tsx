@@ -6,8 +6,8 @@ import { getAllArticles } from "@/app/component/lib/AllArticleService";
 
 const page = async () => {
   const secondLevelArticles = await getSecondLevelArticles();
-const allArticles = await getAllArticles()
-console.log(allArticles);
+  const allArticles = await getAllArticles();
+  console.log(allArticles);
 
   return (
     <>
@@ -17,25 +17,36 @@ console.log(allArticles);
             サイトマップ
           </h2>
           <ul>
-            {secondLevelArticles.map((secondLevelArticle, index) => {
-              const isFirstCategoryItem =
+            {allArticles.map((allArticle, index) => {
+              const isParentCategory =
                 index === 0 ||
-                secondLevelArticle.categoryName !==
-                  secondLevelArticles[index - 1].categoryName;
+                allArticle.parentCategoryName !==
+                  allArticles[index - 1].parentCategoryName;
+              const isChildCategory =
+                index === 0 ||
+                allArticle.childCategoryName !==
+                  allArticles[index - 1].childCategoryName;
               return (
                 <React.Fragment key={index}>
-                  {isFirstCategoryItem && (
-                    <li className="text-lg font-semibold pt-4 text-sky-600">
-                      <Link href={`/${secondLevelArticle.categorySlug}`}>
-                        {secondLevelArticle.categoryName}
+                  {isParentCategory && (
+                    <li className="text-xl font-semibold pt-4 text-sky-600">
+                      <Link href={`/${allArticle.parentCategorySlug}`}>
+                        {allArticle.parentCategoryName}
                       </Link>
                     </li>
                   )}
-                  <li className="list-disc list-inside my-4 mx-6 text-sky-600">
+                  {isChildCategory && (
+                      <li className="text-lg font-semibold pt-2 mx-4 text-sky-600">
+                        <Link href={`/${allArticle.parentCategorySlug}`}>
+                          {allArticle.childCategoryName}
+                        </Link>
+                      </li>
+                  )}
+                  <li className="list-disc list-inside my-4 mx-8 text-sky-600">
                     <Link
-                      href={`/${secondLevelArticle.categorySlug}/${secondLevelArticle.slug}`}
+                      href={`/${allArticle.parentCategorySlug}/${allArticle.slug}`}
                     >
-                      {secondLevelArticle.frontmatter.title}
+                      {allArticle.frontmatter.title}
                     </Link>
                   </li>
                 </React.Fragment>

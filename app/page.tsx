@@ -2,8 +2,12 @@ import TopNewArticle from "./component/topPage/TopNewArticle";
 import TopCategory from "./component/topPage/TopCategory";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
+import { getAllArticles } from "./component/lib/AllArticleService";
 
 export default async function Home() {
+  const allArticles = await getAllArticles()
+  console.log(allArticles);
+
   return (
     <>
       <Header isTopPage={true} />
