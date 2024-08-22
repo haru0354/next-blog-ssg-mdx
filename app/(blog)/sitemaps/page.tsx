@@ -1,9 +1,14 @@
 import Link from "next/link";
 import React from "react";
-import { getSecondLevelArticles } from "@/app/component/lib/SecondLevelArticleService";
 import SideMenu from "@/app/component/SideMenu";
 import { getAllArticles } from "@/app/component/lib/AllArticleService";
 import { getFixedPages } from "@/app/component/lib/FixedPageService";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "サイトマップ",
+};
+
 
 const page = async () => {
   const allArticles = await getAllArticles();
