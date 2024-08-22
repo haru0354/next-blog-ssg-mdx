@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 import { getFixedPages } from "./component/lib/FixedPageService";
 import { getAllArticles } from "./component/lib/AllArticleService";
+import { getAllCategories } from "./component/lib/CategoryService";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseURL = "サイトのURL";
@@ -8,7 +9,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const fixedPages = await getFixedPages();
   const allArticles = await getAllArticles();
-
+  const allCategories = await getAllCategories();
 
   const staticPaths = [
     {
@@ -28,28 +29,38 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     };
   });
 
-  const dynamicPathsAllArticle = allArticles
-    .map((allArticle) => {
-      if (allArticle.childCategorySlug) {
-        return {
-          url: `${baseURL}/${allArticle.parentCategorySlug}/${allArticle.childCategorySlug}/${allArticle.slug}`,
-          lastModified: new Date(allArticle.frontmatter.date),
-        };
-      }
+  const dynamicPathsAllArticle = allArticles.map((allArticle) => {
+    if (!("childCategorySlug" in allArticle)) {
+      return {
+        url: `${baseURL}/${allArticle.parentCategorySlug}/${allArticle.slug}`,
+        lastModified: new Date(allArticle.frontmatter.date),
+      };
+    }
 
-      if (!allArticle.childCategorySlug) {
-        return {
-          url: `${baseURL}/${allArticle.parentCategorySlug}/${allArticle.slug}`,
-          lastModified: new Date(allArticle.frontmatter.date),
-        };
-      }
-      return undefined;
-    })
-    .filter((article) => article !== undefined);
+    return {
+      url: `${baseURL}/${allArticle.parentCategorySlug}/${allArticle.childCategorySlug}/${allArticle.slug}`,
+      lastModified: new Date(allArticle.frontmatter.date),
+    };
+  });
+
+  const dynamicPathsAllCategories = allCategories.map((allCategory) => {
+    if (!("parentCategorySlug" in allCategory)) {
+      return {
+        url: `${baseURL}/${allCategory.slug}`,
+        lastModified: new Date(allCategory.frontmatter.date),
+      };
+    }
+
+    return {
+      url: `${baseURL}/${allCategory.slug}/${allCategory.parentCategorySlug}`,
+      lastModified: new Date(allCategory.frontmatter.date),
+    };
+  });
 
   return [
     ...staticPaths,
     ...dynamicPathsFixedArticle,
     ...dynamicPathsAllArticle,
+    ...dynamicPathsAllCategories,
   ];
 }
