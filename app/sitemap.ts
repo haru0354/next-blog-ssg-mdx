@@ -9,6 +9,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const fixedPages = await getFixedPages();
   const allArticles = await getAllArticles();
 
+
   const staticPaths = [
     {
       url: `${baseURL}`,
