@@ -3,11 +3,11 @@ import React from "react";
 import { getSecondLevelArticles } from "@/app/component/lib/SecondLevelArticleService";
 import SideMenu from "@/app/component/SideMenu";
 import { getAllArticles } from "@/app/component/lib/AllArticleService";
+import { getFixedPages } from "@/app/component/lib/FixedPageService";
 
 const page = async () => {
-  const secondLevelArticles = await getSecondLevelArticles();
   const allArticles = await getAllArticles();
-  console.log(allArticles);
+  const fixedPages = await getFixedPages();
 
   return (
     <>
@@ -36,11 +36,11 @@ const page = async () => {
                     </li>
                   )}
                   {isChildCategory && (
-                      <li className="text-lg font-semibold pt-2 mx-4 text-sky-600">
-                        <Link href={`/${allArticle.parentCategorySlug}`}>
-                          {allArticle.childCategoryName}
-                        </Link>
-                      </li>
+                    <li className="text-lg font-semibold pt-2 mx-4 text-sky-600">
+                      <Link href={`/${allArticle.parentCategorySlug}`}>
+                        {allArticle.childCategoryName}
+                      </Link>
+                    </li>
                   )}
                   <li className="list-disc list-inside my-4 mx-8 text-sky-600">
                     <Link
@@ -53,6 +53,20 @@ const page = async () => {
               );
             })}
           </ul>
+          <h3 className="my-8 p-2 text-lg font-semibold border-b border-main-gray border-dashed">
+            その他のページ
+          </h3>
+          {fixedPages.map((fixedPage) => {
+            return (
+              <ul>
+                <li className="list-disc list-inside my-4 mx-8 text-sky-600">
+                  <Link href={`/${fixedPage?.slug}`}>
+                    {fixedPage?.frontmatter.title}
+                  </Link>
+                </li>
+              </ul>
+            );
+          })}
         </div>
       </div>
       <SideMenu />
