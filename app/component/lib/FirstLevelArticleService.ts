@@ -5,8 +5,8 @@ import { getFixedPages } from "./FixedPageService";
 import { getParentCategories } from "./CategoryService";
 
 export async function getFirstLevelArticles() {
-  const fixedPages = await getFixedPages()
-  const categories = await getParentCategories()
+  const fixedPages = await getFixedPages();
+  const categories = await getParentCategories();
 
   const FirstLevelArticles = [...fixedPages, ...categories];
 
@@ -28,31 +28,36 @@ export async function getFirstLevelArticle(firstLevelArticle_slug: string) {
     `${firstLevelArticle_slug}.mdx`
   );
 
-  let fileContents = null;
+  let firstLevelArticleFileContents = null;
 
-  try {
-    if (fs.existsSync(articleFilePath)) {
-      fileContents = fs.readFileSync(articleFilePath, "utf8");
-    } else if (fs.existsSync(categoryFilePath)) {
-      fileContents = fs.readFileSync(categoryFilePath, "utf8");
+  if (fs.existsSync(articleFilePath)) {
+    try {
+      firstLevelArticleFileContents = fs.readFileSync(articleFilePath, "utf8");
+    } catch (err) {
+      console.error(`${articleFilePath}の読み込みに失敗しました:`, err);
+      return;
     }
-
-    if (!fileContents) {
-      return null;
+  } else if (fs.existsSync(categoryFilePath)) {
+    try {
+      firstLevelArticleFileContents = fs.readFileSync(categoryFilePath, "utf8");
+    } catch (err) {
+      console.error(`${categoryFilePath}の読み込みに失敗しました:`, err);
+      return;
     }
+  } else {
+    console.error("ファイルが見つかりませんでした。");
+    return;
+  }
 
-    const { data, content } = matter(fileContents);
+  if (firstLevelArticleFileContents !== null) {
+    const { data, content } = matter(firstLevelArticleFileContents);
 
     return {
       frontmatter: data,
       content,
     };
-    
-  } catch (error) {
-    console.error(
-      `${firstLevelArticle_slug}.mdxのファイルを読み取れませんでした`,
-      error
-    );
-    return null;
+  } else {
+    console.error("ファイルが読み取れませんでした。");
+    return;
   }
 }
