@@ -1,20 +1,24 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getSecondLevelArticles } from "../lib/SecondLevelArticleService";
+import { getAllArticles } from "../lib/AllArticleService";
 
 type CategoryInArticlesListProps = {
+  parentCategorySlug: string;
+  childCategorySlug?: string;
   categoryName: string;
-  params: string;
 };
 
 const CategoryInArticlesList: React.FC<CategoryInArticlesListProps> = async ({
-  params,
+  parentCategorySlug,
+  childCategorySlug,
   categoryName,
 }) => {
-  const currentCategory = params;
-  const secondLevelArticles = await getSecondLevelArticles();
-  const filteredArticles = secondLevelArticles.filter(
-    (article) => currentCategory === article.categorySlug
+  const allArticles = await getAllArticles();
+
+  const filteredArticles = allArticles.filter((allArticle) =>
+    childCategorySlug
+      ? childCategorySlug === allArticle.childCategorySlug
+      : parentCategorySlug === allArticle.parentCategorySlug
   );
 
   return (
@@ -25,7 +29,11 @@ const CategoryInArticlesList: React.FC<CategoryInArticlesListProps> = async ({
       <div className="w-full flex flex-wrap justify-center items-start">
         {filteredArticles.map((article) => (
           <Link
-            href={`/${article.categorySlug}/${article.slug}`}
+            href={
+              article.childCategorySlug
+                ? `/${article.parentCategorySlug}/${article.childCategorySlug}/${article.slug}`
+                : `/${article.parentCategorySlug}/${article.slug}`
+            }
             key={article.slug}
           >
             <div className="flex flex-wrap justify-center md:flex-nowrap w-full my-2">

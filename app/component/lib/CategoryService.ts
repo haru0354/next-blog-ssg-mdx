@@ -101,6 +101,10 @@ export async function getChildCategories(firstLevelArticle_slug: string) {
     firstLevelArticle_slug
   );
 
+  if (!fs.existsSync(secondCategoriesDirectory)) {
+    return null;
+  }
+
   const fileNames = fs.readdirSync(secondCategoriesDirectory);
 
   const mdxFileNames = fileNames.filter((fileName) =>

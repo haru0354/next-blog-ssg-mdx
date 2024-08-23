@@ -15,7 +15,7 @@ const Header: React.FC<HeaderProps> = ({ isTopPage }) => {
             <h1>
               <Image
                 src="/image_webp/logo.webp"
-                alt="サイトタイトル"
+                alt={process.env.WEBSITE_TITLE || "サイトタイトル"}
                 width={350}
                 height={90}
                 priority
@@ -25,7 +25,7 @@ const Header: React.FC<HeaderProps> = ({ isTopPage }) => {
           ) : (
             <Image
               src="/image_webp/logo.webp"
-              alt="サイトタイトル"
+              alt={process.env.WEBSITE_TITLE || "サイトタイトル"}
               width={350}
               height={90}
               priority

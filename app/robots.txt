@@ -2,4 +2,4 @@ User-Agent: *
 Allow: /
 
 
-Sitemap: https://●●●●.com/sitemap.xml
+Sitemap: https://●●●●.com(変更箇所)/sitemap.xml

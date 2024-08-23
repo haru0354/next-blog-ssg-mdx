@@ -9,7 +9,6 @@ export const metadata: Metadata = {
   title: "サイトマップ",
 };
 
-
 const page = async () => {
   const allArticles = await getAllArticles();
   const fixedPages = await getFixedPages();
@@ -30,7 +29,7 @@ const page = async () => {
               const isChildCategory =
                 index === 0 ||
                 allArticle.childCategoryName !==
-                  allArticles[index - 1].childCategoryName;
+                  allArticles[index - 1].childCategoryName;  
               return (
                 <React.Fragment key={index}>
                   {isParentCategory && (
@@ -40,20 +39,28 @@ const page = async () => {
                       </Link>
                     </li>
                   )}
-                  {isChildCategory && (
+                  {isChildCategory && allArticle.childCategoryName && (
                     <li className="text-lg font-semibold pt-2 mx-4 text-sky-600">
-                      <Link href={`/${allArticle.parentCategorySlug}`}>
+                      <Link
+                        href={`/${allArticle.parentCategorySlug}/${allArticle.childCategorySlug}`}
+                      >
                         {allArticle.childCategoryName}
                       </Link>
                     </li>
                   )}
-                  <li className="list-disc list-inside my-4 mx-8 text-sky-600">
-                    <Link
-                      href={`/${allArticle.parentCategorySlug}/${allArticle.slug}`}
-                    >
-                      {allArticle.frontmatter.title}
-                    </Link>
-                  </li>
+                  {allArticle.frontmatter.title && (
+                    <li className="list-disc list-inside my-4 mx-8 text-sky-600">
+                      <Link
+                        href={
+                          allArticle.childCategorySlug
+                            ? `/${allArticle.parentCategorySlug}/${allArticle.childCategorySlug}/${allArticle.slug}`
+                            : `/${allArticle.parentCategorySlug}/${allArticle.slug}`
+                        }
+                      >
+                        {allArticle.frontmatter.title}
+                      </Link>
+                    </li>
+                  )}
                 </React.Fragment>
               );
             })}
@@ -61,9 +68,9 @@ const page = async () => {
           <h3 className="my-8 p-2 text-lg font-semibold border-b border-main-gray border-dashed">
             その他のページ
           </h3>
-          {fixedPages.map((fixedPage) => {
+          {fixedPages.map((fixedPage, index) => {
             return (
-              <ul>
+              <ul key={index}>
                 <li className="list-disc list-inside my-4 mx-8 text-sky-600">
                   <Link href={`/${fixedPage?.slug}`}>
                     {fixedPage?.frontmatter.title}

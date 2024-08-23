@@ -11,7 +11,7 @@ const Footer = () => {
           <Link href="/sitemaps">サイトマップ</Link>
         </li>
       </ul>
-      &copy;サイトタイトル
+      &copy; {process.env.WEBSITE_TITLE}
     </footer>
   );
 };

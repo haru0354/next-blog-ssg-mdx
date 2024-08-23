@@ -4,7 +4,7 @@ import { getAllArticles } from "./component/lib/AllArticleService";
 import { getAllCategories } from "./component/lib/CategoryService";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseURL = "サイトのURL";
+  const baseURL = process.env.WEBSITE_TITLE;
   const _lastModified = new Date();
 
   const fixedPages = await getFixedPages();
