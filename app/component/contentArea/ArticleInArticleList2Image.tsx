@@ -1,30 +1,33 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getSecondLevelArticles } from "../lib/SecondLevelArticleService";
+import { getAllArticles } from "../lib/AllArticleService";
 
 type ArticleInArticleListProps = {
-  categorySlug: string;
+  parentCategorySlug: string;
+  childCategorySlug?: string;
   articleSlug: string;
 };
 
 const ArticleInArticleList: React.FC<ArticleInArticleListProps> = async ({
-  categorySlug,
+  parentCategorySlug,
+  childCategorySlug,
   articleSlug,
 }) => {
-  const secondLevelArticles = await getSecondLevelArticles();
+  const allArticles = await getAllArticles();
 
-  const filteredArticles = secondLevelArticles.filter(
-    (article) =>
-      categorySlug === article.categorySlug && articleSlug !== article.slug
+  const filteredAllArticles = allArticles.filter((allArticle) =>
+    childCategorySlug
+      ? childCategorySlug === allArticle.childCategorySlug &&
+        articleSlug !== allArticle.slug
+      : parentCategorySlug === allArticle.parentCategorySlug &&
+        articleSlug !== allArticle.slug
   );
 
-  const sortedArticles = filteredArticles.sort((a, b) => {
-    const dateA = new Date(a.frontmatter.date);
-    const dateB = new Date(b.frontmatter.date);
-    return dateB.getTime() - dateA.getTime();
-  });
+  const latestArticles = filteredAllArticles.slice(0, 4);
 
-  const latestArticles = sortedArticles.slice(0, 4);
+  if (!latestArticles || latestArticles.length === 0) {
+    return null;
+  }
 
   return (
     <div className="bg-white p-4 mt-8 border border-gray-200">
@@ -34,7 +37,11 @@ const ArticleInArticleList: React.FC<ArticleInArticleListProps> = async ({
       <div className="w-full flex flex-wrap justify-center">
         {latestArticles.map((article) => (
           <Link
-            href={`/${article.categorySlug}/${article.slug}`}
+            href={
+              article.childCategorySlug
+                ? `/${article.parentCategorySlug}/${article.childCategorySlug}/${article.slug}`
+                : `/${article.parentCategorySlug}/${article.slug}`
+            }
             key={article.slug}
           >
             <div className="flex flex-col max-w-[367px] md:min-h-[330px] mx-2 my-4 hover:bg-hover-blue">

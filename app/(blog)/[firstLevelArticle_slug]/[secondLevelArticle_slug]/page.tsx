@@ -111,7 +111,7 @@ const Page = async ({
           />
         ) : (
           <ArticleInArticleList
-            categorySlug={params.firstLevelArticle_slug}
+            parentCategorySlug={params.firstLevelArticle_slug}
             articleSlug={params.secondLevelArticle_slug}
           />
         )}
