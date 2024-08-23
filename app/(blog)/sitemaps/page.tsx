@@ -12,7 +12,6 @@ export const metadata: Metadata = {
 const page = async () => {
   const allArticles = await getAllArticles();
   const fixedPages = await getFixedPages();
-  console.log(allArticles);
 
   return (
     <>

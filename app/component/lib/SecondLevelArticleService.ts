@@ -136,13 +136,27 @@ export async function getSecondLevelArticle(
     `${secondLevelArticle_slug}.mdx`
   );
 
-  const categoryFilePath = path.join(
+  const parentCategoryFilePath = path.join(
+    process.cwd(),
+    "mdFile",
+    "category",
+    `${firstLevelArticle_slug}.mdx`
+  );
+
+  const childCategoryFilePath = path.join(
     process.cwd(),
     "mdFile",
     "category",
     firstLevelArticle_slug,
     `${secondLevelArticle_slug}.mdx`
   );
+
+  const parentCategoryContents = await fs.promises.readFile(
+    parentCategoryFilePath,
+    "utf8"
+  );
+
+  const { data: parentCategoryData } = matter(parentCategoryContents);
 
   let fileContents = null;
 
@@ -151,24 +165,10 @@ export async function getSecondLevelArticle(
       fileContents = fs.readFileSync(articleFilePath, "utf8");
       const { data, content } = matter(fileContents);
 
-      const categoryFilePath = path.join(
-        process.cwd(),
-        "mdFile",
-        "category",
-        `${firstLevelArticle_slug}.mdx`
-      );
-
-      const categoryContents = await fs.promises.readFile(
-        categoryFilePath,
-        "utf8"
-      );
-
-      const { data: categoryData } = matter(categoryContents);
-
       return {
         frontmatter: data,
         content,
-        categoryName: categoryData.categoryName,
+        categoryName: parentCategoryData.categoryName,
       };
     } catch (error) {
       console.error(
@@ -177,15 +177,15 @@ export async function getSecondLevelArticle(
       );
       return null;
     }
-  } else if (fs.existsSync(categoryFilePath)) {
+  } else if (fs.existsSync(childCategoryFilePath)) {
     try {
-      fileContents = fs.readFileSync(categoryFilePath, "utf8");
+      fileContents = fs.readFileSync(childCategoryFilePath, "utf8");
       const { data, content } = matter(fileContents);
 
       return {
         frontmatter: data,
         content,
-        categoryName: data.categoryName,
+        categoryName: parentCategoryData.categoryName,
       };
     } catch (error) {
       console.error(
