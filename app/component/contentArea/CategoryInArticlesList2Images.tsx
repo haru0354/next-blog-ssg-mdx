@@ -1,19 +1,22 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getSecondLevelArticles } from "../lib/SecondLevelArticleService";
+import { getAllArticles } from "../lib/AllArticleService";
 
 type CategoryInArticlesList2ImagesProps = {
+  parentCategorySlug: string;
+  childCategorySlug?: string;
   categoryName: string;
-  params: string;
 };
 
 const CategoryInArticlesList2Images: React.FC<
   CategoryInArticlesList2ImagesProps
-> = async ({ params, categoryName }) => {
-  const currentCategory = params;
-  const secondLevelArticles = await getSecondLevelArticles();
-  const filteredArticles = secondLevelArticles.filter(
-    (article) => currentCategory === article.categorySlug
+> = async ({ parentCategorySlug, childCategorySlug, categoryName }) => {
+  const allArticles = await getAllArticles();
+
+  const filteredArticles = allArticles.filter((allArticle) =>
+    childCategorySlug
+      ? childCategorySlug === allArticle.childCategorySlug
+      : parentCategorySlug === allArticle.parentCategorySlug
   );
 
   return (
@@ -24,7 +27,11 @@ const CategoryInArticlesList2Images: React.FC<
       <div className="w-full flex flex-wrap justify-center md:justify-start items-start">
         {filteredArticles.map((article) => (
           <Link
-            href={`/${article.categorySlug}/${article.slug}`}
+            href={
+              article.childCategorySlug
+                ? `/${article.parentCategorySlug}/${article.childCategorySlug}/${article.slug}`
+                : `/${article.parentCategorySlug}/${article.slug}`
+            }
             key={article.slug}
           >
             <div className="flex flex-col max-w-[367px] md:min-h-[330px] mx-2 my-2 hover:bg-hover-blue">

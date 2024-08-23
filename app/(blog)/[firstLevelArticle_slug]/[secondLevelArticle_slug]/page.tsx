@@ -106,7 +106,8 @@ const Page = async ({
         </div>
         {article.frontmatter.categoryName ? (
           <CategoryInArticlesList2Images
-            params={params.firstLevelArticle_slug}
+            parentCategorySlug={params.firstLevelArticle_slug}
+            childCategorySlug={params.secondLevelArticle_slug}
             categoryName={article.frontmatter.categoryName}
           />
         ) : (

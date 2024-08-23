@@ -4,7 +4,6 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypeSlug from "rehype-slug";
 import remarkToc from "remark-toc";
 import { useMDXComponents } from "@/mdx-components";
-
 import {
   getFirstLevelArticle,
   getFirstLevelArticles,
@@ -110,7 +109,7 @@ const Page = async ({
         </div>
         {article.frontmatter.categoryName && (
           <CategoryInArticlesList2Images
-            params={params.firstLevelArticle_slug}
+            parentCategorySlug={params.firstLevelArticle_slug}
             categoryName={article.frontmatter.categoryName}
           />
         )}
