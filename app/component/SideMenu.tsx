@@ -7,21 +7,24 @@ import SideImageBottom from "./sideMenu/SideImageBottom";
 import SideChildCategory from "./sideMenu/SideChildCategory";
 
 type SideMenuProps = {
-  params?: Params;
+  firstLevelArticle_slug?: string;
   categoryName?: string;
 };
 
-type Params = {
-  firstLevelArticle_slug: string;
-  secondLevelArticle_slug: string;
-};
-
-const SideMenu: React.FC<SideMenuProps> = ({ params, categoryName }) => {
+const SideMenu: React.FC<SideMenuProps> = ({
+  firstLevelArticle_slug,
+  categoryName,
+}) => {
   return (
     <div className=" w-full rounded flex flex-col md:w-[300px] mt-8 md:mt-0">
       <SideImage />
       <SideRecommendArticles />
-      {params && <SideChildCategory params={params} categoryName={categoryName}/>}
+      {firstLevelArticle_slug && (
+        <SideChildCategory
+          firstLevelArticle_slug={firstLevelArticle_slug}
+          categoryName={categoryName}
+        />
+      )}
       <SideCategory2 />
       <SideNewArticle2 />
       <SideLinks />

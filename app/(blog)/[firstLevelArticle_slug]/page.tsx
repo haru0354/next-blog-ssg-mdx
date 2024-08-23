@@ -114,7 +114,14 @@ const Page = async ({
           />
         )}
       </div>
-      <SideMenu />
+      {article.frontmatter.categoryName ? (
+        <SideMenu
+          firstLevelArticle_slug={params.firstLevelArticle_slug}
+          categoryName={article.frontmatter.categoryName}
+        />
+      ) : (
+        <SideMenu />
+      )}
     </>
   );
 };
