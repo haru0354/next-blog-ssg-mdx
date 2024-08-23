@@ -54,7 +54,7 @@ export async function getAllArticles() {
           `親カテゴリディレクトリ「${parentCategoryPath}」の読み込みに失敗しました:`,
           err
         );
-        return;
+        return [];
       }
 
       const mdxFileNamesInParentCategory = fileNamesInParentCategory.filter(
@@ -137,7 +137,7 @@ export async function getAllArticles() {
           `子カテゴリディレクトリ「${parentCategoryPath}」の読み込みに失敗しました:`,
           err
         );
-        return;
+        return [];
       }
 
       await Promise.all(
@@ -157,7 +157,7 @@ export async function getAllArticles() {
                 `子カテゴリディレクトリ「${childCategoryPath}」の読み込みに失敗しました:`,
                 err
               );
-              return;
+              return [];
             }
 
             const mdxFileNamesInChildCategory = fileNamesInChildCategory.filter(
