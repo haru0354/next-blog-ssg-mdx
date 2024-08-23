@@ -9,7 +9,6 @@ export const metadata: Metadata = {
   title: "サイトマップ",
 };
 
-
 const page = async () => {
   const allArticles = await getAllArticles();
   const fixedPages = await getFixedPages();
