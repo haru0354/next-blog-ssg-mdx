@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 const page = async () => {
   const allArticles = await getAllArticles();
   const fixedPages = await getFixedPages();
+  console.log(allArticles);
 
   return (
     <>
@@ -41,14 +42,20 @@ const page = async () => {
                   )}
                   {isChildCategory && (
                     <li className="text-lg font-semibold pt-2 mx-4 text-sky-600">
-                      <Link href={`/${allArticle.parentCategorySlug}`}>
+                      <Link
+                        href={`/${allArticle.parentCategorySlug}/${allArticle.childCategorySlug}`}
+                      >
                         {allArticle.childCategoryName}
                       </Link>
                     </li>
                   )}
                   <li className="list-disc list-inside my-4 mx-8 text-sky-600">
                     <Link
-                      href={`/${allArticle.parentCategorySlug}/${allArticle.slug}`}
+                      href={
+                        allArticle.childCategorySlug
+                          ? `/${allArticle.parentCategorySlug}/${allArticle.childCategorySlug}/${allArticle.slug}`
+                          : `/${allArticle.parentCategorySlug}/${allArticle.slug}`
+                      }
                     >
                       {allArticle.frontmatter.title}
                     </Link>
