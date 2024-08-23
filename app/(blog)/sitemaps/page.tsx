@@ -66,9 +66,9 @@ const page = async () => {
           <h3 className="my-8 p-2 text-lg font-semibold border-b border-main-gray border-dashed">
             その他のページ
           </h3>
-          {fixedPages.map((fixedPage) => {
+          {fixedPages.map((fixedPage, index) => {
             return (
-              <ul>
+              <ul key={index}>
                 <li className="list-disc list-inside my-4 mx-8 text-sky-600">
                   <Link href={`/${fixedPage?.slug}`}>
                     {fixedPage?.frontmatter.title}
