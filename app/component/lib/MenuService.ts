@@ -3,60 +3,156 @@ import fs from "fs";
 import matter from "gray-matter";
 
 export async function getGlobalMenu() {
+  try {
   const globalMenuDirectory = path.join(process.cwd(), "mdFile", "menu");
-  const filePath = path.join(globalMenuDirectory, "globalMenu.mdx");
-  const fileContents = await fs.promises.readFile(filePath, "utf8");
-  const { data } = matter(fileContents);
+  const globalMenuFilePath = path.join(globalMenuDirectory, "globalMenu.mdx");
+
+  let globalMenuFileContents: string;
+  try {
+    globalMenuFileContents = await fs.promises.readFile(
+      globalMenuFilePath,
+      "utf8"
+    );
+  } catch (err) {
+    console.error(
+      `親カテゴリファイル「${globalMenuFilePath}」の読み込みに失敗しました:`,
+      err
+    );
+    return;
+  }
+
+  const { data } = matter(globalMenuFileContents);
 
   return {
     frontmatter: data,
   };
+  
+} catch (err) {
+  console.error("グローバルメニューデータの取得に失敗しました", err);
+  return;
+}
 }
 
 export async function getRecommendArticles() {
+  try {
   const globalMenuDirectory = path.join(process.cwd(), "mdFile", "menu");
-  const filePath = path.join(globalMenuDirectory, "recommendArticle.mdx");
-  const fileContents = await fs.promises.readFile(filePath, "utf8");
-  const { data } = matter(fileContents);
+  const recommendArticleFilePath = path.join(
+    globalMenuDirectory,
+    "recommendArticle.mdx"
+  );
+
+  let recommendArticleFileContents: string;
+  try {
+    recommendArticleFileContents = await fs.promises.readFile(
+      recommendArticleFilePath,
+      "utf8"
+    );
+  } catch (err) {
+    console.error(
+      `親カテゴリファイル「${recommendArticleFilePath}」の読み込みに失敗しました:`,
+      err
+    );
+    return;
+  }
+
+  const { data } = matter(recommendArticleFileContents);
 
   return {
     frontmatter: data,
   };
+} catch (err) {
+  console.error("サイドバーのおすすめ記事データの取得に失敗しました", err);
+  return;
+}
 }
 
 export async function getLinks() {
-  const globalMenuDirectory = path.join(process.cwd(), "mdFile", "menu");
-  const filePath = path.join(globalMenuDirectory, "link.mdx");
-  const fileContents = await fs.promises.readFile(filePath, "utf8");
-  const { data } = matter(fileContents);
+  try {
+    const globalMenuDirectory = path.join(process.cwd(), "mdFile", "menu");
 
-  return {
-    frontmatter: data,
-  };
+    const linkFilePath = path.join(globalMenuDirectory, "link.mdx");
+
+    let linkFileContents: string;
+    try {
+      linkFileContents = await fs.promises.readFile(linkFilePath, "utf8");
+    } catch (err) {
+      console.error(
+        `親カテゴリファイル「${linkFilePath}」の読み込みに失敗しました:`,
+        err
+      );
+      return;
+    }
+
+    const { data } = matter(linkFileContents);
+
+    return {
+      frontmatter: data,
+    };
+  } catch (err) {
+    console.error("サイドバーのリンクデータの取得に失敗しました", err);
+    return;
+  }
 }
 
 export async function getSideImage() {
-  const globalMenuDirectory = path.join(process.cwd(), "mdFile", "menu");
-  const filePath = path.join(globalMenuDirectory, "sideImage.mdx");
-  const fileContents = await fs.promises.readFile(filePath, "utf8");
-  const { data } = matter(fileContents);
+  try {
+    const globalMenuDirectory = path.join(process.cwd(), "mdFile", "menu");
+    const sideImageFilePath = path.join(globalMenuDirectory, "sideImage.mdx");
 
-  return {
-    frontmatter: data,
-  };
+    let sideImageFileContents: string;
+    try {
+      sideImageFileContents = await fs.promises.readFile(
+        sideImageFilePath,
+        "utf8"
+      );
+    } catch (err) {
+      console.error(
+        `親カテゴリファイル「${sideImageFilePath}」の読み込みに失敗しました:`,
+        err
+      );
+      return;
+    }
+
+    const { data } = matter(sideImageFileContents);
+
+    return {
+      frontmatter: data,
+    };
+  } catch (err) {
+    console.error("サイドバーの画像データの取得に失敗しました", err);
+    return;
+  }
 }
 
 export async function getSideImageBottom() {
-  const globalMenuDirectory = path.join(process.cwd(), "mdFile", "menu");
-  const filePath = path.join(globalMenuDirectory, "sideImageBottom.mdx");
-  const fileContents = await fs.promises.readFile(filePath, "utf8");
-  const { data } = matter(fileContents);
+  try {
+    const globalMenuDirectory = path.join(process.cwd(), "mdFile", "menu");
+    const sideImageFilePath = path.join(
+      globalMenuDirectory,
+      "sideImageBottom.mdx"
+    );
 
-  return {
-    frontmatter: data,
-  };
+    let sideImageFileContents: string;
+    try {
+      sideImageFileContents = await fs.promises.readFile(
+        sideImageFilePath,
+        "utf8"
+      );
+    } catch (err) {
+      console.error(
+        `親カテゴリファイル「${sideImageFilePath}」の読み込みに失敗しました:`,
+        err
+      );
+      return;
+    }
+
+    const { data } = matter(sideImageFileContents);
+
+    return {
+      frontmatter: data,
+    };
+  } catch (err) {
+    console.error("サイドバー下記の画像データの取得に失敗しました", err);
+    return;
+  }
 }
-
-
-
-

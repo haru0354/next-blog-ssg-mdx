@@ -45,7 +45,7 @@ export async function generateStaticParams() {
   }
 
   return firstLevelArticles
-    .filter((firstLevelArticle) => firstLevelArticle !== null)
+    .filter((firstLevelArticle) => firstLevelArticle !== null && firstLevelArticle !== undefined)
     .map((firstLevelArticle) => ({
       firstLevelArticle_slug: firstLevelArticle.slug,
     }));
@@ -58,7 +58,7 @@ const Page = async ({
 }) => {
   const article = await getFirstLevelArticle(params.firstLevelArticle_slug);
 
-  if (article === null) {
+  if (!article || article === null) {
     return <NotFound />;
   }
 
