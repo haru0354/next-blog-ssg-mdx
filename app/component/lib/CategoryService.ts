@@ -18,84 +18,93 @@ type Frontmatter = {
 };
 
 export async function getAllCategories() {
-  const parentCategories = await getParentCategories();
-
-  const categoryDirectory = path.join(process.cwd(), "mdFile", "category");
-
-  let parentCategoryFolders: string[] = [];
   try {
-    parentCategoryFolders = fs.readdirSync(categoryDirectory).filter((name) => {
-      return fs.statSync(path.join(categoryDirectory, name)).isDirectory();
-    });
-  } catch (err) {
-    console.error(
-      `親カテゴリディレクトリ「${categoryDirectory}」の読み込みに失敗しました:`,
-      err
-    );
-    return [];
-  }
+    const parentCategories = await getParentCategories();
 
-  let childCategories: ChildCategories[] = [];
+    const categoryDirectory = path.join(process.cwd(), "mdFile", "category");
 
-  await Promise.all(
-    parentCategoryFolders.map(async (parentCategoryFolder) => {
-      const childCategoryDirectory = path.join(
-        process.cwd(),
-        "mdFile",
-        "category",
-        parentCategoryFolder
+    let parentCategoryFolders: string[] = [];
+    try {
+      parentCategoryFolders = fs
+        .readdirSync(categoryDirectory)
+        .filter((name) => {
+          return fs.statSync(path.join(categoryDirectory, name)).isDirectory();
+        });
+    } catch (err) {
+      console.error(
+        `親カテゴリディレクトリ「${categoryDirectory}」の読み込みに失敗しました:`,
+        err
       );
+      return [];
+    }
 
-      let FileNamesInChildCategory: string[] = [];
-      try {
-        FileNamesInChildCategory = fs.readdirSync(childCategoryDirectory);
-      } catch (err) {
-        console.error(
-          `子カテゴリディレクトリ「${childCategoryDirectory}」の読み込みに失敗しました:`,
-          err
+    let childCategories: ChildCategories[] = [];
+
+    await Promise.all(
+      parentCategoryFolders.map(async (parentCategoryFolder) => {
+        const childCategoryDirectory = path.join(
+          process.cwd(),
+          "mdFile",
+          "category",
+          parentCategoryFolder
         );
-        return [];
-      }
 
-      const childCategoryMdxFileNames = FileNamesInChildCategory.filter(
-        (FileNameInChildCategory) => FileNameInChildCategory.endsWith(".mdx")
-      );
-
-      await Promise.all(
-        childCategoryMdxFileNames.map(async (childCategoryMdxFileName) => {
-          const filePath = path.join(
-            childCategoryDirectory,
-            `${childCategoryMdxFileName}`
+        let FileNamesInChildCategory: string[] = [];
+        try {
+          FileNamesInChildCategory = fs.readdirSync(childCategoryDirectory);
+        } catch (err) {
+          console.error(
+            `子カテゴリディレクトリ「${childCategoryDirectory}」の読み込みに失敗しました:`,
+            err
           );
+          return [];
+        }
 
-          let childCategoryFileContents: string;
-          try {
-            childCategoryFileContents = await fs.promises.readFile(filePath, "utf8");
-          } catch (err) {
-            console.error(
-              `子カテゴリファイル「${filePath}」の読み込みに失敗しました:`,
-              err
+        const childCategoryMdxFileNames = FileNamesInChildCategory.filter(
+          (FileNameInChildCategory) => FileNameInChildCategory.endsWith(".mdx")
+        );
+
+        await Promise.all(
+          childCategoryMdxFileNames.map(async (childCategoryMdxFileName) => {
+            const filePath = path.join(
+              childCategoryDirectory,
+              `${childCategoryMdxFileName}`
             );
-            return;
-          }
 
-          const { data } = matter(childCategoryFileContents);
+            let childCategoryFileContents: string;
+            try {
+              childCategoryFileContents = await fs.promises.readFile(
+                filePath,
+                "utf8"
+              );
+            } catch (err) {
+              console.error(
+                `子カテゴリファイル「${filePath}」の読み込みに失敗しました:`,
+                err
+              );
+              return;
+            }
 
-          childCategories.push({
-            slug: childCategoryMdxFileName.replace(".mdx", ""),
-            parentCategorySlug: parentCategoryFolder,
-            frontmatter: data as Frontmatter,
-          });
-        })
-      );
-    })
-  );
+            const { data } = matter(childCategoryFileContents);
 
-  const allCategories = [...parentCategories, ...childCategories];
+            childCategories.push({
+              slug: childCategoryMdxFileName.replace(".mdx", ""),
+              parentCategorySlug: parentCategoryFolder,
+              frontmatter: data as Frontmatter,
+            });
+          })
+        );
+      })
+    );
 
-  return allCategories;
+    const allCategories = [...parentCategories, ...childCategories];
+
+    return allCategories;
+  } catch (err) {
+    console.error("全てのカテゴリ一覧の取得に失敗しました", err);
+    return;
+  }
 }
-
 
 export async function getParentCategories() {
   const categoriesDirectory = path.join(process.cwd(), "mdFile", "category");
@@ -111,17 +120,24 @@ export async function getParentCategories() {
     return [];
   }
 
-  const mdxFileNames = fileNamesInCategoryDirectory.filter((fileNameInCategoryDirectory) =>
-    fileNameInCategoryDirectory.endsWith(".mdx")
+  const mdxFileNames = fileNamesInCategoryDirectory.filter(
+    (fileNameInCategoryDirectory) =>
+      fileNameInCategoryDirectory.endsWith(".mdx")
   );
 
-  const mainCategories = await Promise.all(
+  const parentCategories = await Promise.all(
     mdxFileNames.map(async (mdxFileName) => {
-      const parentCategoryFilePath = path.join(categoriesDirectory, `${mdxFileName}`);
+      const parentCategoryFilePath = path.join(
+        categoriesDirectory,
+        `${mdxFileName}`
+      );
 
       let parentCategoryFileContents: string;
       try {
-        parentCategoryFileContents = await fs.promises.readFile(parentCategoryFilePath, "utf8");
+        parentCategoryFileContents = await fs.promises.readFile(
+          parentCategoryFilePath,
+          "utf8"
+        );
       } catch (err) {
         console.error(
           `親カテゴリファイル「${parentCategoryFilePath}」の読み込みに失敗しました:`,
@@ -139,59 +155,70 @@ export async function getParentCategories() {
     })
   );
 
-  return mainCategories;
+  return parentCategories;
 }
 
 export async function getChildCategories(firstLevelArticle_slug: string) {
-  const childCategoriesDirectory = path.join(
-    process.cwd(),
-    "mdFile",
-    "category",
-    firstLevelArticle_slug
-  );
-
-  if (!fs.existsSync(childCategoriesDirectory)) {
-    return null;
-  }
-
-  let fileNamesInChildCategory: string[] = [];
   try {
-    fileNamesInChildCategory = fs.readdirSync(childCategoriesDirectory);
-  } catch (err) {
-    console.error(
-      `子カテゴリディレクトリ「${childCategoriesDirectory}」の読み込みに失敗しました:`,
-      err
+    const childCategoriesDirectory = path.join(
+      process.cwd(),
+      "mdFile",
+      "category",
+      firstLevelArticle_slug
     );
-    return [];
-  }
 
-  const mdxFileNames = fileNamesInChildCategory.filter((fileNameInChildCategory) =>
-    fileNameInChildCategory.endsWith(".mdx")
-  );
+    if (!fs.existsSync(childCategoriesDirectory)) {
+      return null;
+    }
 
-  const secondCategories = await Promise.all(
-    mdxFileNames.map(async (mdxFileName) => {
-      const childCategoryFilePath = path.join(childCategoriesDirectory, `${mdxFileName}`);
+    let fileNamesInChildCategory: string[] = [];
+    try {
+      fileNamesInChildCategory = fs.readdirSync(childCategoriesDirectory);
+    } catch (err) {
+      console.error(
+        `子カテゴリディレクトリ「${childCategoriesDirectory}」の読み込みに失敗しました:`,
+        err
+      );
+      return [];
+    }
 
-      let childCategoryFileContents: string;
-      try {
-        childCategoryFileContents = await fs.promises.readFile(childCategoryFilePath, "utf8");
-      } catch (err) {
-        console.error(
-          `子カテゴリファイル「${childCategoryFilePath}」の読み込みに失敗しました:`,
-          err
+    const mdxFileNames = fileNamesInChildCategory.filter(
+      (fileNameInChildCategory) => fileNameInChildCategory.endsWith(".mdx")
+    );
+
+    const childCategories = await Promise.all(
+      mdxFileNames.map(async (mdxFileName) => {
+        const childCategoryFilePath = path.join(
+          childCategoriesDirectory,
+          `${mdxFileName}`
         );
-        return;
-      }
 
-      const { data } = matter(childCategoryFileContents);
+        let childCategoryFileContents: string;
+        try {
+          childCategoryFileContents = await fs.promises.readFile(
+            childCategoryFilePath,
+            "utf8"
+          );
+        } catch (err) {
+          console.error(
+            `子カテゴリファイル「${childCategoryFilePath}」の読み込みに失敗しました:`,
+            err
+          );
+          return;
+        }
 
-      return {
-        slug: mdxFileName.replace(".mdx", ""),
-        frontmatter: data,
-      };
-    })
-  );
+        const { data } = matter(childCategoryFileContents);
 
-  return secondCategories;
+        return {
+          slug: mdxFileName.replace(".mdx", ""),
+          frontmatter: data,
+        };
+      })
+    );
+
+    return childCategories;
+  } catch (err) {
+    console.error("子カテゴリ一覧の取得に失敗しました", err);
+    return;
+  }
 }

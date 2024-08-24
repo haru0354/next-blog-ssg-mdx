@@ -5,59 +5,75 @@ import { getFixedPages } from "./FixedPageService";
 import { getParentCategories } from "./CategoryService";
 
 export async function getFirstLevelArticles() {
-  const fixedPages = await getFixedPages();
-  const categories = await getParentCategories();
+  try {
+    const fixedPages = await getFixedPages();
+    const categories = await getParentCategories();
 
-  const FirstLevelArticles = [...fixedPages, ...categories];
+    const FirstLevelArticles = [...fixedPages, ...categories];
 
-  return FirstLevelArticles;
+    return FirstLevelArticles;
+  } catch (err) {
+    console.error("第1階層の記事一覧の取得に失敗しました", err);
+    return;
+  }
 }
 
 export async function getFirstLevelArticle(firstLevelArticle_slug: string) {
-  const articleFilePath = path.join(
-    process.cwd(),
-    "mdFile",
-    "article",
-    `${firstLevelArticle_slug}.mdx`
-  );
+  try {
+    const articleFilePath = path.join(
+      process.cwd(),
+      "mdFile",
+      "article",
+      `${firstLevelArticle_slug}.mdx`
+    );
 
-  const categoryFilePath = path.join(
-    process.cwd(),
-    "mdFile",
-    "category",
-    `${firstLevelArticle_slug}.mdx`
-  );
+    const categoryFilePath = path.join(
+      process.cwd(),
+      "mdFile",
+      "category",
+      `${firstLevelArticle_slug}.mdx`
+    );
 
-  let firstLevelArticleFileContents = null;
+    let firstLevelArticleFileContents = null;
 
-  if (fs.existsSync(articleFilePath)) {
-    try {
-      firstLevelArticleFileContents = fs.readFileSync(articleFilePath, "utf8");
-    } catch (err) {
-      console.error(`${articleFilePath}の読み込みに失敗しました:`, err);
+    if (fs.existsSync(articleFilePath)) {
+      try {
+        firstLevelArticleFileContents = fs.readFileSync(
+          articleFilePath,
+          "utf8"
+        );
+      } catch (err) {
+        console.error(`${articleFilePath}の読み込みに失敗しました:`, err);
+        return;
+      }
+    } else if (fs.existsSync(categoryFilePath)) {
+      try {
+        firstLevelArticleFileContents = fs.readFileSync(
+          categoryFilePath,
+          "utf8"
+        );
+      } catch (err) {
+        console.error(`${categoryFilePath}の読み込みに失敗しました:`, err);
+        return;
+      }
+    } else {
+      console.error("ファイルが見つかりませんでした。");
       return;
     }
-  } else if (fs.existsSync(categoryFilePath)) {
-    try {
-      firstLevelArticleFileContents = fs.readFileSync(categoryFilePath, "utf8");
-    } catch (err) {
-      console.error(`${categoryFilePath}の読み込みに失敗しました:`, err);
+
+    if (firstLevelArticleFileContents !== null) {
+      const { data, content } = matter(firstLevelArticleFileContents);
+
+      return {
+        frontmatter: data,
+        content,
+      };
+    } else {
+      console.error("ファイルが読み取れませんでした。");
       return;
     }
-  } else {
-    console.error("ファイルが見つかりませんでした。");
-    return;
-  }
-
-  if (firstLevelArticleFileContents !== null) {
-    const { data, content } = matter(firstLevelArticleFileContents);
-
-    return {
-      frontmatter: data,
-      content,
-    };
-  } else {
-    console.error("ファイルが読み取れませんでした。");
+  } catch (err) {
+    console.error("第1階層の記事の取得に失敗しました", err);
     return;
   }
 }
