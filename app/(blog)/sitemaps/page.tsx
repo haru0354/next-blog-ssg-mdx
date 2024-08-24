@@ -21,7 +21,7 @@ const page = async () => {
             サイトマップ
           </h2>
           <ul>
-            {allArticles.map((allArticle, index) => {
+            {allArticles?.map((allArticle, index) => {
               const isParentCategory =
                 index === 0 ||
                 allArticle.parentCategoryName !==
@@ -49,7 +49,7 @@ const page = async () => {
                     </li>
                   )}
                   {allArticle.frontmatter.title && (
-                    <li className="list-disc list-inside my-4 mx-8 text-sky-600">
+                    <li className="list-disc list-inside my-4 mx-10 text-sky-600">
                       <Link
                         href={
                           allArticle.childCategorySlug
