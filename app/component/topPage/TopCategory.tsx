@@ -5,6 +5,10 @@ import { getParentCategories } from "../lib/CategoryService";
 const TopCategory = async () => {
   const categories = await getParentCategories();
 
+  if (!categories) {
+    return null;
+  }
+
   return (
     <section className="bg-gray-100 w-full md:py-8 py-2">
       <div className="max-w-[1150px] mx-auto px-4">
@@ -18,16 +22,16 @@ const TopCategory = async () => {
         <div className="flex flex-wrap w-full justify-center">
           {categories.map((category) => {
             return (
-              <Link href={`/${category.slug}`} key={category.slug}>
+              <Link href={`/${category?.slug}`} key={category?.slug}>
                 <div className="flex flex-col justify-center items-center mx-2 mb-8 md:max-w-[320px] md:min-w-[320px] hover:bg-hover-blue">
                   <Image
                     src={
-                      category.frontmatter.eyeCatchName
+                      category?.frontmatter.eyeCatchName
                         ? `/thumbnail_webp/${category.frontmatter.eyeCatchName}.webp`
                         : "/thumbnail_webp/no_image.webp"
                     }
                     alt={
-                      category.frontmatter.eyeCatchAlt
+                      category?.frontmatter.eyeCatchAlt
                         ? `${category.frontmatter.eyeCatchAlt}`
                         : "アイチャッチ画像"
                     }
@@ -35,9 +39,9 @@ const TopCategory = async () => {
                     height={230}
                   />
                   <h3 className="p-4">
-                    {category.frontmatter.title.length > 17
-                      ? `${category.frontmatter.title.slice(0, 17)}...`
-                      : category.frontmatter.title}
+                    {category?.frontmatter.title.length > 17
+                      ? `${category?.frontmatter.title.slice(0, 17)}...`
+                      : category?.frontmatter.title}
                   </h3>
                 </div>
               </Link>

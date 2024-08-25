@@ -15,7 +15,7 @@ const ArticleInArticleList: React.FC<ArticleInArticleListProps> = async ({
 }) => {
   const allArticles = await getAllArticles();
 
-  const filteredAllArticles = allArticles.filter((allArticle) =>
+  const filteredAllArticles = allArticles?.filter((allArticle) =>
     childCategorySlug
       ? childCategorySlug === allArticle.childCategorySlug &&
         articleSlug !== allArticle.slug
@@ -23,14 +23,14 @@ const ArticleInArticleList: React.FC<ArticleInArticleListProps> = async ({
         articleSlug !== allArticle.slug
   );
 
-  const latestArticles = filteredAllArticles.slice(0, 4);
+  const latestArticles = filteredAllArticles?.slice(0, 4);
 
   if (!latestArticles || latestArticles.length === 0) {
     return null;
   }
 
   return (
-    <div className="bg-white p-4 mt-8 border border-gray-200">
+    <div className="bg-white p-4 mt-8">
       <h2 className="w-full my-4 py-4 px-2 bg-main-gray text-white text-xl font-semibold rounded">
         関連記事
       </h2>

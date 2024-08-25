@@ -4,7 +4,7 @@ import { getGlobalMenu } from "./lib/MenuService";
 const GlobalMenu = async () => {
   const globalMenu = await getGlobalMenu();
 
-  if (!globalMenu.frontmatter.name) {
+  if (!globalMenu) {
     return null;
   }
 

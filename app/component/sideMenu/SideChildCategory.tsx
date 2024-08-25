@@ -12,12 +12,12 @@ const SideChildCategory: React.FC<SideChildCategoryProps> = async ({
 }) => {
   const categories = await getChildCategories(firstLevelArticle_slug);
 
-  if (categories === null) {
+  if (!categories) {
     return null;
   }
 
   return (
-    <nav className="bg-white border-r border-l mb-8 border-gray-200">
+    <nav className="bg-white border-r border-l mb-8 border-gray-500">
       <h3 className="w-full p-4 bg-main-gray text-white font-bold">
         {categoryName}
       </h3>
@@ -25,14 +25,14 @@ const SideChildCategory: React.FC<SideChildCategoryProps> = async ({
         {categories?.map((category) => {
           return (
             <Link
-              href={`/${firstLevelArticle_slug}/${category.slug}`}
-              key={category.slug}
+              href={`/${firstLevelArticle_slug}/${category?.slug}`}
+              key={category?.slug}
             >
               <li
-                className="p-4 border-b border-gray-200 hover:bg-hover-blue"
-                key={category.frontmatter.categoryName}
+                className="p-4 border-b border-gray-500 hover:bg-hover-blue"
+                key={category?.frontmatter.categoryName}
               >
-                {category.frontmatter.categoryName}
+                {category?.frontmatter.categoryName}
               </li>
             </Link>
           );
