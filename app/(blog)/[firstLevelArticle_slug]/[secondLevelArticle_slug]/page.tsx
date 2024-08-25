@@ -44,7 +44,7 @@ export const generateMetadata = async ({
 export async function generateStaticParams() {
   const articles = await getSecondLevelArticles();
 
-  return articles.map((article) => ({
+  return articles?.map((article) => ({
     firstLevelArticle_slug: article.categorySlug,
     secondLevelArticle_slug: article.slug,
   }));
@@ -60,7 +60,7 @@ const Page = async ({
     params.secondLevelArticle_slug
   );
 
-  if (article === null) {
+  if (!article) {
     return <NotFound />;
   }
 

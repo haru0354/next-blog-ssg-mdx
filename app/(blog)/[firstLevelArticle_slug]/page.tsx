@@ -76,7 +76,7 @@ const Page = async ({
           <h1 className="text-2xl font-semibold mx-2 my-4">
             {article.frontmatter.title}
           </h1>
-          {article.frontmatter.eyeCatchName && (
+          {article.content && article.frontmatter.eyeCatchName && (
             <Image
               src={`/image_webp/${article.frontmatter.eyeCatchName}.webp`}
               alt={`${article.frontmatter.eyeCatchAlt}`}
