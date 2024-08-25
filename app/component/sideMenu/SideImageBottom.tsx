@@ -4,6 +4,10 @@ import { getSideImageBottom } from "../lib/MenuService";
 
 const SideImageBottom = async () => {
   const sideImageBottom = await getSideImageBottom();
+  
+  if (!sideImageBottom) {
+    return null;
+  }
 
   return (
     <>

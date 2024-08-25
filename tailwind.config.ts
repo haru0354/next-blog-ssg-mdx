@@ -20,7 +20,7 @@ const config: Config = {
           green: '#43a86f',
         },
         hover: {
-          blue: 'rgb(240 249 255)',
+          blue: 'rgb(236 245 251)',
           gray: 'rgb(55 65 81 / var(--tw-bg-opacity))',
         },
       },

@@ -1,5 +1,6 @@
 import Footer from "@/app/component/Footer";
 import Header from "@/app/component/Header";
+import BackToTopButton from "../component/ui/BackToTopButton ";
 
 export default function RootLayout({
   children,
@@ -13,6 +14,7 @@ export default function RootLayout({
         <div className="max-w-[1150px] flex flex-wrap justify-center">
             {children}
         </div>
+        <BackToTopButton />
       </main>
       <Footer />
     </>

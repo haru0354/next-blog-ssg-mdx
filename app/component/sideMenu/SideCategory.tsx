@@ -4,6 +4,10 @@ import { getParentCategories } from "../lib/CategoryService";
 const SideCategory = async () => {
   const categories = await getParentCategories();
 
+  if (!categories) {
+    return null;
+  }
+
   return (
     <nav>
       <h3 className="w-full mb-8 py-4 px-2 bg-main-gray text-white font-bold rounded">
@@ -12,12 +16,12 @@ const SideCategory = async () => {
       <ul>
         {categories.map((category) => {
           return (
-            <Link href={`/${category.slug}`} key={category.slug}>
+            <Link href={`/${category?.slug}`} key={category?.slug}>
               <li
                 className="p-3 hover:bg-hover-blue"
-                key={category.frontmatter.categoryName}
+                key={category?.frontmatter.categoryName}
               >
-                {category.frontmatter.categoryName}
+                {category?.frontmatter.categoryName}
               </li>
             </Link>
           );

@@ -4,6 +4,11 @@ import { getAllArticles } from "../lib/AllArticleService";
 
 const SideNewArticle2 = async () => {
   const allArticles = await getAllArticles();
+
+  if (!allArticles) {
+    return null;
+  }
+
   const sortedArticles = allArticles.sort((a, b) => {
     const dateA = new Date(a.frontmatter.date);
     const dateB = new Date(b.frontmatter.date);
@@ -13,7 +18,7 @@ const SideNewArticle2 = async () => {
   const filteredArticles = sortedArticles.slice(0, 5);
 
   return (
-    <nav className="bg-white mb-8 border-r border-l border-gray-200">
+    <nav className="bg-white mb-8 border-r border-l border-gray-500">
       <h3 className="w-full p-4 bg-main-gray text-white font-bold">新着記事</h3>
       <ul>
         {filteredArticles.map((article) => {
@@ -42,7 +47,7 @@ const SideNewArticle2 = async () => {
                   height={196}
                   className="mx-auto"
                 />
-                <p className="border-b pt-2 pb-6 px-4 border-gray-200">
+                <p className="border-b pt-2 pb-6 px-4 border-gray-500">
                   {article.frontmatter.title.length > 32
                     ? `${article.frontmatter.title.slice(0, 32)}...`
                     : article.frontmatter.title}

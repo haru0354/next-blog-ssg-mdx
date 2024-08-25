@@ -66,8 +66,8 @@ const Page = async ({
 
   return (
     <>
-      <div className="flex flex-col flex-wrap w-full md:max-w-[800px] md:min-w-[800px]  md:mr-6">
-        <div className="content-style p-4 bg-white border border-gray-200">
+      <div className="flex flex-col flex-wrap w-full md:max-w-[800px] md:min-w-[800px] md:mr-12">
+        <div className="content-style p-4">
           <Breadcrumbs
             categoryName={article.frontmatter.categoryName}
             pageTitle={article.frontmatter.title}
@@ -76,7 +76,7 @@ const Page = async ({
           <h1 className="text-2xl font-semibold mx-2 my-4">
             {article.frontmatter.title}
           </h1>
-          {article.frontmatter.eyeCatchName && (
+          {article.content && article.frontmatter.eyeCatchName && (
             <Image
               src={`/image_webp/${article.frontmatter.eyeCatchName}.webp`}
               alt={`${article.frontmatter.eyeCatchAlt}`}

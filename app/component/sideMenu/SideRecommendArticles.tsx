@@ -5,7 +5,7 @@ import { getRecommendArticles } from "../lib/MenuService";
 const SideRecommendArticles = async () => {
   const RecommendArticles = await getRecommendArticles();
 
-  if (!RecommendArticles.frontmatter.slug) {
+  if (!RecommendArticles) {
     return null;
   }
 

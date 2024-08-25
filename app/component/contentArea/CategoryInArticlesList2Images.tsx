@@ -13,19 +13,19 @@ const CategoryInArticlesList2Images: React.FC<
 > = async ({ parentCategorySlug, childCategorySlug, categoryName }) => {
   const allArticles = await getAllArticles();
 
-  const filteredArticles = allArticles.filter((allArticle) =>
+  const filteredArticles = allArticles?.filter((allArticle) =>
     childCategorySlug
       ? childCategorySlug === allArticle.childCategorySlug
       : parentCategorySlug === allArticle.parentCategorySlug
   );
 
   return (
-    <div className="bg-white p-4 mt-8 border border-gray-200">
+    <div className="bg-white p-4 mt-8">
       <h2 className="w-full my-4 py-4 px-2 bg-main-gray text-white text-xl font-semibold rounded">
         「{categoryName}」の記事一覧
       </h2>
       <div className="w-full flex flex-wrap justify-center md:justify-start items-start">
-        {filteredArticles.map((article) => (
+        {filteredArticles?.map((article) => (
           <Link
             href={
               article.childCategorySlug

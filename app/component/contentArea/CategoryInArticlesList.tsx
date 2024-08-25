@@ -15,7 +15,7 @@ const CategoryInArticlesList: React.FC<CategoryInArticlesListProps> = async ({
 }) => {
   const allArticles = await getAllArticles();
 
-  const filteredArticles = allArticles.filter((allArticle) =>
+  const filteredArticles = allArticles?.filter((allArticle) =>
     childCategorySlug
       ? childCategorySlug === allArticle.childCategorySlug
       : parentCategorySlug === allArticle.parentCategorySlug
@@ -27,7 +27,7 @@ const CategoryInArticlesList: React.FC<CategoryInArticlesListProps> = async ({
         「{categoryName}」の記事一覧
       </h2>
       <div className="w-full flex flex-wrap justify-center items-start">
-        {filteredArticles.map((article) => (
+        {filteredArticles?.map((article) => (
           <Link
             href={
               article.childCategorySlug
