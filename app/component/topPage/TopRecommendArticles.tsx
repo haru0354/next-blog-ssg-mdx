@@ -9,12 +9,14 @@ const TopRecommendArticles = async () => {
     return null;
   }
 
-  console.log(topRecommendArticles);
+  if (topRecommendArticles.display === false) {
+    return null;
+  }
 
   return (
     <>
       <section className="bg-gray-100 w-full md:py-8 py-2">
-        <div className="max-w-[1150px] mx-auto px-4">
+      <div className="max-w-[1150px] mx-auto px-4">
           <div className="flex items-center mb-10">
             <span className="flex-grow h-1 w-5 md:w-0 mr-1 md:mr-4 bg-gradient-to-l from-gray-600 to-transparent"></span>
             <h2 className="text-2xl md:text-3xl py-0 my-5 text-gray-700 text-center font-bold bg-transparent">
@@ -23,34 +25,34 @@ const TopRecommendArticles = async () => {
             <span className="flex-grow h-1 w-5 md:w-0 ml-2 md:mr-4 bg-gradient-to-r from-gray-600 to-transparent"></span>
           </div>
           <div className="flex flex-wrap w-full justify-center">
-            {topRecommendArticles.map((topRecommendArticle) => {
+            {topRecommendArticles.articles.map((article) => {
               return (
                 <Link
-                  href={`/${topRecommendArticle?.slug}`}
-                  key={topRecommendArticle?.slug}
+                  href={`/${article?.slug}`}
+                  key={article?.slug}
                 >
                   <div className="flex flex-col justify-center items-center mx-2 mb-8 md:max-w-[320px] md:min-w-[320px] hover:bg-hover-blue">
                     <Image
                       src={
-                        topRecommendArticle?.frontmatter.eyeCatchName
-                          ? `/thumbnail_webp/${topRecommendArticle.frontmatter.eyeCatchName}.webp`
+                        article?.frontmatter.eyeCatchName
+                          ? `/thumbnail_webp/${article.frontmatter.eyeCatchName}.webp`
                           : "/thumbnail_webp/no_image.webp"
                       }
                       alt={
-                        topRecommendArticle?.frontmatter.eyeCatchAlt
-                          ? `${topRecommendArticle.frontmatter.eyeCatchAlt}`
+                        article?.frontmatter.eyeCatchAlt
+                          ? `${article.frontmatter.eyeCatchAlt}`
                           : "アイチャッチ画像"
                       }
                       width={320}
                       height={230}
                     />
                     <h3 className="p-4">
-                      {topRecommendArticle?.frontmatter.title.length > 17
-                        ? `${topRecommendArticle?.frontmatter.title.slice(
+                      {article?.frontmatter.title.length > 17
+                        ? `${article?.frontmatter.title.slice(
                             0,
                             17
                           )}...`
-                        : topRecommendArticle?.frontmatter.title}
+                        : article?.frontmatter.title}
                     </h3>
                   </div>
                 </Link>

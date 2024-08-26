@@ -51,10 +51,11 @@ export async function getTopPageRecommendArticles() {
 
     const { data } = matter(topPageRecommendArticlesContents);
     const slugs: string[] = data.slug;
+    const display: boolean = data.display;
 
     const articlesDirectory = path.join(process.cwd(), "mdFile", "article");
 
-    const topPageRecommendArticles = slugs
+    const articles = slugs
       .map((slug) => {
         try {
           let deleteSlashSlug = slug.startsWith("/") ? slug.slice(1) : slug;
@@ -78,7 +79,7 @@ export async function getTopPageRecommendArticles() {
             return {
               frontmatter: data,
               slug: deleteSlashSlug,
-            }
+            };
           } else {
             console.error(`ファイルの読み込みに失敗しました: ${slug}`);
             return null;
@@ -88,9 +89,12 @@ export async function getTopPageRecommendArticles() {
           return null;
         }
       })
-      .filter((topPageRecommendArticle) => topPageRecommendArticle !== null); // 存在する記事のみをフィルタリング
+      .filter((article) => article !== null); // 存在する記事のみをフィルタリング
 
-    return topPageRecommendArticles;
+    return {
+      display,
+      articles,
+    };
   } catch (err) {
     console.error("TOPページのおすすめ記事データの取得に失敗しました", err);
     return;
