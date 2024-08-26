@@ -11,6 +11,7 @@ import TopNewArticle from "./component/topPage/TopNewArticle";
 import TopCategory from "./component/topPage/TopCategory";
 import BackToTopButton from "./component/ui/BackToTopButton ";
 import TopRecommendArticles from "./component/topPage/TopRecommendArticles";
+import TwoColumnRecommendArticles from "./component/topPage/TwoColumnRecommendArticles";
 
 export default async function Home() {
   const topPageArticle = await getTopPageArticle();
@@ -72,6 +73,7 @@ export default async function Home() {
         <>
           <Header isTopPage={true} />
           <main className="pb-20">
+            <TwoColumnRecommendArticles />
             <TopRecommendArticles />
             <TopNewArticle />
             <TopCategory />
