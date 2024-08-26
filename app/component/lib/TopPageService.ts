@@ -27,6 +27,32 @@ export async function getTopPageArticle() {
   }
 }
 
+export async function getTwoColumnRecommendArticles() {
+  try {
+    const TopPageRecommendArticles = getTopPageArticles(
+      "twoColumnRecommendArticles"
+    );
+    return TopPageRecommendArticles;
+  } catch (err) {
+    console.error("TOPページの2カラムのおすすめ記事データの取得に失敗しました", err);
+    return;
+  }
+}
+
+export async function getTopPageRecommendArticles() {
+  try {
+    const TopPageRecommendArticles = getTopPageArticles(
+      "topPageRecommendArticles"
+    );
+    return TopPageRecommendArticles;
+  } catch (err) {
+    console.error("TOPページのおすすめ記事データの取得に失敗しました", err);
+    return;
+  }
+}
+
+
+
 export async function getTopPageArticles(fileName: string) {
   try {
     const topPageFileDirectory = path.join(process.cwd(), "mdFile", "topPage");
@@ -101,14 +127,3 @@ export async function getTopPageArticles(fileName: string) {
   }
 }
 
-export async function getTopPageRecommendArticles() {
-  try {
-    const TopPageRecommendArticles = getTopPageArticles(
-      "topPageRecommendArticles"
-    );
-    return TopPageRecommendArticles;
-  } catch (err) {
-    console.error("TOPページのおすすめ記事データの取得に失敗しました", err);
-    return;
-  }
-}
