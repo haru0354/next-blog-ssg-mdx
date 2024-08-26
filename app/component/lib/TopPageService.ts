@@ -27,29 +27,29 @@ export async function getTopPageArticle() {
   }
 }
 
-export async function getTopPageRecommendArticles() {
+export async function getTopPageArticles(fileName: string) {
   try {
     const topPageFileDirectory = path.join(process.cwd(), "mdFile", "topPage");
-    const topPageRecommendArticlesFile = path.join(
+    const topPagesFile = path.join(
       topPageFileDirectory,
-      "topPageRecommendArticles.mdx"
+      `${fileName}.mdx`
     );
 
-    let topPageRecommendArticlesContents: string;
+    let topPageArticlesContents: string;
     try {
-      topPageRecommendArticlesContents = await fs.promises.readFile(
-        topPageRecommendArticlesFile,
+      topPageArticlesContents = await fs.promises.readFile(
+        topPagesFile,
         "utf8"
       );
     } catch (err) {
       console.error(
-        `${topPageRecommendArticlesFile}の読み込みに失敗しました:`,
+        `${topPagesFile}の読み込みに失敗しました:`,
         err
       );
       return;
     }
 
-    const { data } = matter(topPageRecommendArticlesContents);
+    const { data } = matter(topPageArticlesContents);
     const slugs: string[] = data.slug;
     const display: boolean = data.display;
 
@@ -95,6 +95,18 @@ export async function getTopPageRecommendArticles() {
       display,
       articles,
     };
+  } catch (err) {
+    console.error("TOPページのおすすめ記事データの取得に失敗しました", err);
+    return;
+  }
+}
+
+export async function getTopPageRecommendArticles() {
+  try {
+    const TopPageRecommendArticles = getTopPageArticles(
+      "topPageRecommendArticles"
+    );
+    return TopPageRecommendArticles;
   } catch (err) {
     console.error("TOPページのおすすめ記事データの取得に失敗しました", err);
     return;
