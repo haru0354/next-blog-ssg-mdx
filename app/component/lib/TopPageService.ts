@@ -15,9 +15,12 @@ export async function getTopPageArticle() {
       return;
     }
 
-    const { content } = matter(topPageContents);
+    const { data, content } = matter(topPageContents);
 
-    return content;
+    return {
+      content: content,
+      frontmatter: data,
+    };
   } catch (err) {
     console.error("TOPページのコンテンツファイルの取得に失敗しました", err);
     return;
