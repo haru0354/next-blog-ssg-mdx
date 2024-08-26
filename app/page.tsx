@@ -18,7 +18,7 @@ export default async function Home() {
 
   return (
     <>
-      {topPageArticle?.content ? (
+      {topPageArticle?.frontmatter.contentPage ? (
         <>
           <Header />
           <main className="flex justify-center mb-20">
