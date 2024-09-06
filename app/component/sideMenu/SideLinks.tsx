@@ -8,6 +8,14 @@ const SideLinks = async () => {
     return null;
   }
 
+  const allFieldsEmpty = Object.values(links.frontmatter).every(
+    (value) => value === ""
+  );
+
+  if (allFieldsEmpty) {
+    return null;
+  }F
+
   return (
     <nav className="bg-white border-r border-l mb-8 border-gray-500">
       <h3 className="w-full p-4 bg-main-gray text-white font-bold">
