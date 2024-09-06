@@ -14,7 +14,7 @@ const SideLinks = async () => {
 
   if (allFieldsEmpty) {
     return null;
-  }F
+  }
 
   return (
     <nav className="bg-white border-r border-l mb-8 border-gray-500">
