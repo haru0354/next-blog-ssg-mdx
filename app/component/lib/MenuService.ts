@@ -156,3 +156,41 @@ export async function getSideImageBottom() {
     return;
   }
 }
+
+export async function getSideCategoriesMenu() {
+  try {
+    const sideCategoriesFilePath = path.join(
+      process.cwd(),
+      "mdFile",
+      "menu",
+      "sideCategoriesMenu.mdx"
+    );
+
+    let sideCategoryFileContents: string;
+    try {
+      sideCategoryFileContents = await fs.promises.readFile(
+        sideCategoriesFilePath,
+        "utf8"
+      );
+    } catch (err) {
+      console.error(
+        `カテゴリファイル「${sideCategoriesFilePath}」の読み込みに失敗しました:`,
+        err
+      );
+      return;
+    }
+
+    const { data } = matter(sideCategoryFileContents);
+
+    return {
+      display: data.display,
+      items: data.items,
+    };
+  } catch (err) {
+    console.error("子カテゴリ一覧の取得に失敗しました", err);
+    return;
+  }
+}
+
+
+

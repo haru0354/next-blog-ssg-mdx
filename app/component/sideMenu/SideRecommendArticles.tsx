@@ -3,9 +3,17 @@ import Link from "next/link";
 import { getRecommendArticles } from "../lib/MenuService";
 
 const SideRecommendArticles = async () => {
-  const RecommendArticles = await getRecommendArticles();
+  const recommendArticles = await getRecommendArticles();
 
-  if (!RecommendArticles) {
+  if (!recommendArticles) {
+    return null;
+  }
+
+  const allFieldsEmpty = Object.values(recommendArticles.frontmatter).every(
+    (value) => value === ""
+  );
+
+  if (allFieldsEmpty) {
     return null;
   }
 
@@ -14,10 +22,10 @@ const SideRecommendArticles = async () => {
       <h3 className="w-full p-4 bg-main-gray text-white font-bold">
         おすすめの記事
       </h3>
-      <Link href={`/${RecommendArticles.frontmatter.slug}`}>
+      <Link href={`/${recommendArticles.frontmatter.slug}`}>
         <Image
-          src={`/thumbnail_webp/${RecommendArticles.frontmatter.eyeCatchName}.webp`}
-          alt={`${RecommendArticles.frontmatter.eyeCatchAlt}`}
+          src={`/thumbnail_webp/${recommendArticles.frontmatter.eyeCatchName}.webp`}
+          alt={recommendArticles.frontmatter.eyeCatchAlt}
           width={298}
           height={196}
           className="mx-auto md:mt-0 mt-8"
