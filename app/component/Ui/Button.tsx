@@ -1,7 +1,7 @@
 type ButtonProps = {
   children: React.ReactNode;
   color?: "blue" | "green" | "red" | "gray";
-  size?: "small" | "normal" | "big";
+  size?: "search" | "small" | "normal" | "big";
   className?: string;
 };
 
@@ -19,6 +19,7 @@ const Button: React.FC<ButtonProps> = ({
   };
 
   const sizes = {
+    search: "min-w-[60px]",
     small: "min-w-[120px] px-2",
     normal: "min-w-[180px] px-4",
     big: "min-w-[240px] px-6",
