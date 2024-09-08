@@ -3,12 +3,14 @@ type InputTextProps = {
   name: string;
   placeholder: string;
   defaultValue?: string;
+  value: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const InputText: React.FC<InputTextProps> = ({
   label,
   name,
+  value,
   placeholder,
   defaultValue,
   onChange,
@@ -22,9 +24,10 @@ const InputText: React.FC<InputTextProps> = ({
       )}
       <input
         type="text"
-        className="w-full mt-2 mb-3 py-2 px-2 bg-gray-50 border border-shadow rounded"
+        className="w-full h-[60px] px-2  bg-gray-50 border border-gray-400"
         id={label}
         name={name}
+        value={value}
         placeholder={placeholder}
         defaultValue={defaultValue}
         onChange={onChange}

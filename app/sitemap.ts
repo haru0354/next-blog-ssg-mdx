@@ -8,8 +8,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const _lastModified = new Date();
 
   const fixedPages = await getFixedPages();
-  const allArticles = await getAllArticles();
-  const allCategories = await getAllCategories();
+  const allArticles = (await getAllArticles()) ?? [];
+  const allCategories = (await getAllCategories()) ?? [];
 
   const staticPaths = [
     {
@@ -43,19 +43,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     };
   });
 
-  const dynamicPathsAllCategories = allCategories.map((allCategory) => {
-    if (!("parentCategorySlug" in allCategory)) {
+  const dynamicPathsAllCategories = allCategories
+    .filter((allCategory) => allCategory !== undefined && allCategory !== null)
+    .map((allCategory) => {
+      if (!("parentCategorySlug" in allCategory)) {
+        return {
+          url: `${baseURL}/${allCategory.slug}`,
+          lastModified: new Date(allCategory.frontmatter.date),
+        };
+      }
+
       return {
-        url: `${baseURL}/${allCategory.slug}`,
+        url: `${baseURL}/${allCategory.slug}/${allCategory.parentCategorySlug}`,
         lastModified: new Date(allCategory.frontmatter.date),
       };
-    }
-
-    return {
-      url: `${baseURL}/${allCategory.slug}/${allCategory.parentCategorySlug}`,
-      lastModified: new Date(allCategory.frontmatter.date),
-    };
-  });
+    });
 
   return [
     ...staticPaths,
