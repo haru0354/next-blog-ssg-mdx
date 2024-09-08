@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 type BreadcrumbsProps = {
-  pageTitle: string;
-  categoryName: string;
+  pageTitle?: string;
+  categoryName?: string;
   categorySlug?: string;
   childCategorySlug?: string;
   childCategoryName?: string;
