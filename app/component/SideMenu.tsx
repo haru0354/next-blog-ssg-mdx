@@ -5,6 +5,7 @@ import SideRecommendArticles from "./sideMenu/SideRecommendArticles";
 import SideImage from "./sideMenu/SideImage";
 import SideImageBottom from "./sideMenu/SideImageBottom";
 import SideChildCategory from "./sideMenu/SideChildCategory";
+import SearchBar from "./sideMenu/SearchBar";
 
 type SideMenuProps = {
   firstLevelArticle_slug?: string;
@@ -29,6 +30,7 @@ const SideMenu: React.FC<SideMenuProps> = ({
       <SideNewArticle2 />
       <SideLinks />
       <SideImageBottom />
+      <SearchBar />
     </div>
   );
 };

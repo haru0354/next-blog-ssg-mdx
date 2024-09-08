@@ -3,7 +3,7 @@ type ButtonProps = {
   color?: "blue" | "green" | "red" | "gray";
   size?: "search" | "small" | "normal" | "big";
   className?: string;
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 const Button: React.FC<ButtonProps> = ({
