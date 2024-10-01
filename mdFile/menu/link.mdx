@@ -1,14 +1,22 @@
 ---
-name: ""
-slug: ""
-name2: ""
-slug2: ""
-name3: ""
-slug3: ""
-name4: ""
-slug4: ""
+display: true
+items:
+  - name: "TEST"
+    slug: "http://localhost:3000/"
+  - name: "サイトマップ"
+    slug: "/sitemaps"
 ---
 
-{/* サイドメニューのリンク*/}
+このファイルは「サイドメニューのリンク」の項目の為に利用をします。
+基本的に参考文献など、外部リンクを掲載するなどを想定しています。
 
-記載をしていない場合は表示されないようになっています。
+displayを「true」「false」の書き換えによって、サイドメニューの表示が変わります。
+true: 表示
+false: 非表示
+
+itemsには「name」に表示する名称を記載し、「slug」にリンク先のURLを記載してください。
+items:
+  - name: "SAMPLE"
+    slug: "http://localhost:3000/sample"
+  - name: "TEST"
+    slug: "http://localhost:3000/test"
