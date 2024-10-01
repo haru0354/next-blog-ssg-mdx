@@ -16,8 +16,8 @@ const Header: React.FC<HeaderProps> = ({ isTopPage }) => {
               <Image
                 src="/image_webp/logo.webp"
                 alt={process.env.WEBSITE_TITLE || "サイトタイトル"}
-                width={350}
-                height={90}
+                width={260}
+                height={80}
                 priority
                 className="mx-auto"
               />
@@ -26,8 +26,8 @@ const Header: React.FC<HeaderProps> = ({ isTopPage }) => {
             <Image
               src="/image_webp/logo.webp"
               alt={process.env.WEBSITE_TITLE || "サイトタイトル"}
-              width={350}
-              height={90}
+              width={260}
+              height={80}
               priority
               className="mx-auto"
             />
