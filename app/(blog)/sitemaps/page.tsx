@@ -4,6 +4,7 @@ import SideMenu from "@/app/component/SideMenu";
 import { getAllArticles } from "@/app/component/lib/AllArticleService";
 import { getFixedPages } from "@/app/component/lib/FixedPageService";
 import { Metadata } from "next";
+import Breadcrumbs from "@/app/component/contentArea/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "サイトマップ",
@@ -15,11 +16,10 @@ const page = async () => {
 
   return (
     <>
-      <div className="flex flex-col flex-wrap w-full md:max-w-[800px] md:min-w-[800px]  md:mr-6">
-        <div className="p-4 bg-white border border-gray-200">
-          <h2 className="text-xl font-semibold text-white my-6 p-4 bg-main-gray rounded">
-            サイトマップ
-          </h2>
+      <div className="flex flex-col flex-wrap w-full md:max-w-[800px] md:min-w-[800px] md:mr-12">
+        <div className="content-style px-4">
+          <Breadcrumbs isNotParentCategoryPage={false} />
+          <h1 className="text-2xl font-semibold mx-2 my-4">サイトマップ</h1>
           <ul>
             {allArticles?.map((allArticle, index) => {
               const isParentCategory =
@@ -29,7 +29,7 @@ const page = async () => {
               const isChildCategory =
                 index === 0 ||
                 allArticle.childCategoryName !==
-                  allArticles[index - 1].childCategoryName;  
+                  allArticles[index - 1].childCategoryName;
               return (
                 <React.Fragment key={index}>
                   {isParentCategory && (

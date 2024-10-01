@@ -18,11 +18,13 @@ const page = async () => {
 
   return (
     <>
-      <div className="flex flex-col flex-wrap w-full md:max-w-[800px] md:min-w-[800px] md:mr-6">
-        <Breadcrumbs isNotParentCategoryPage={false} />
-        <SearchBar contentsPage={true} />
-        <h1 className="text-2xl font-semibold mx-2 my-4">検索結果</h1>
-        <SearchResult allArticles={allArticles} />
+      <div className="flex flex-col flex-wrap w-full md:max-w-[800px] md:min-w-[800px] md:mr-12">
+        <div className="px-4">
+          <Breadcrumbs isNotParentCategoryPage={false} />
+          <SearchBar contentsPage={true} />
+          <h1 className="text-2xl font-semibold mx-2 my-4">検索結果</h1>
+          <SearchResult allArticles={allArticles} />
+        </div>
       </div>
       <SideMenu />
     </>
