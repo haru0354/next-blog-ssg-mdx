@@ -69,7 +69,7 @@ const Page = async ({
   return (
     <>
       <div className="flex flex-col flex-wrap w-full md:max-w-[800px] md:min-w-[800px] md:mr-12">
-        <div className="content-style p-4">
+        <div className="content-style px-4">
           <Breadcrumbs
             categorySlug={params.firstLevelArticle_slug}
             categoryName={article.categoryName}

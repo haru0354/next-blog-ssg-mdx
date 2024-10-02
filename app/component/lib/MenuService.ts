@@ -77,7 +77,7 @@ export async function getLinks() {
       linkFileContents = await fs.promises.readFile(linkFilePath, "utf8");
     } catch (err) {
       console.error(
-        `親カテゴリファイル「${linkFilePath}」の読み込みに失敗しました:`,
+        `ファイル「${linkFilePath}」の読み込みに失敗しました:`,
         err
       );
       return;
@@ -86,7 +86,8 @@ export async function getLinks() {
     const { data } = matter(linkFileContents);
 
     return {
-      frontmatter: data,
+      display: data.display,
+      items: data.items,
     };
   } catch (err) {
     console.error("サイドバーのリンクデータの取得に失敗しました", err);

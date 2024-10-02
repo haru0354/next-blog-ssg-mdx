@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 
-type SearchProps = {
+type SearchResultProps = {
   allArticles: Article[];
 };
 
@@ -23,8 +24,9 @@ type Article = {
   };
 };
 
-const Search: React.FC<SearchProps> = ({ allArticles }) => {
-  const query = new URLSearchParams(window.location.search).get("query");
+const SearchResult: React.FC<SearchResultProps> = ({ allArticles }) => {
+  const searchParams = useSearchParams();
+  const query = searchParams.get("query");
   const [filteredArticles, setFilteredArticles] = useState<Article[]>([]);
 
   useEffect(() => {
@@ -92,4 +94,4 @@ const Search: React.FC<SearchProps> = ({ allArticles }) => {
   );
 };
 
-export default Search;
+export default SearchResult;

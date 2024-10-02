@@ -19,10 +19,10 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   isNotParentCategoryPage = true,
 }) => {
   return (
-    <span className="text-sm">
+    <div className="text-sm">
       <Image
         src="/image_webp/home.webp"
-        alt="a"
+        alt="home"
         width={25}
         height={25}
         className="inline mb-[2px] mr-2"
@@ -50,7 +50,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
         </>
       )}
       {isNotParentCategoryPage && <>　＞　 {pageTitle} </>}
-    </span>
+    </div>
   );
 };
 

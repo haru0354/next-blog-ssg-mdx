@@ -1,5 +1,9 @@
 import { getLinks } from "../lib/MenuService";
-import Link from "next/link";
+
+type Item = {
+  name: string;
+  slug: string;
+};
 
 const SideLinks = async () => {
   const links = await getLinks();
@@ -8,11 +12,7 @@ const SideLinks = async () => {
     return null;
   }
 
-  const allFieldsEmpty = Object.values(links.frontmatter).every(
-    (value) => value === ""
-  );
-
-  if (allFieldsEmpty) {
+  if (links.display === false) {
     return null;
   }
 
@@ -22,32 +22,13 @@ const SideLinks = async () => {
         参考文献・参考サイト
       </h3>
       <ul>
-        <Link href={`/${links.frontmatter.slug}`}>
-          <li className="py-2 px-4 border-b border-gray-500">
-            {links.frontmatter.name}
-          </li>
-        </Link>
-        {links.frontmatter.name2 && (
-          <Link href={`/${links.frontmatter.slug2}`}>
-            <li className="py-2 px-4 border-b border-gray-500">
-              {links.frontmatter.name2}
+        {links.items.map((item: Item) => (
+          <a href={item.slug} target="blank" key={item.name}>
+            <li className="py-2 px-4 border-b border-gray-500 hover:bg-hover-blue">
+              {item.name}
             </li>
-          </Link>
-        )}
-        {links.frontmatter.name3 && (
-          <Link href={`/${links.frontmatter.slug3}`}>
-            <li className="py-2 px-4 border-b border-gray-500">
-              {links.frontmatter.name3}
-            </li>
-          </Link>
-        )}
-        {links.frontmatter.name4 && (
-          <Link href={`/${links.frontmatter.slug4}`}>
-            <li className="py-2 px-4 border-b border-gray-500">
-              {links.frontmatter.name4}
-            </li>
-          </Link>
-        )}
+          </a>
+        ))}
       </ul>
     </nav>
   );

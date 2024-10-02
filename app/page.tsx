@@ -5,6 +5,7 @@ import remarkToc from "remark-toc";
 import { useMDXComponents } from "@/mdx-components";
 import { getTopPageArticle } from "./component/lib/TopPageService";
 import Header from "./component/Header";
+import GlobalMenu from "./component/GlobalMenu";
 import Footer from "./component/Footer";
 import SideMenu from "./component/SideMenu";
 import TopNewArticle from "./component/topPage/TopNewArticle";
@@ -23,7 +24,8 @@ export default async function Home() {
       {topPageArticle?.frontmatter.contentPage ? (
         <>
           <Header />
-          <main className="flex justify-center mb-20">
+          <GlobalMenu />
+          <main className="flex justify-center my-16">
             <div className="max-w-[1150px] flex flex-wrap justify-center">
               <div className="flex flex-col flex-wrap w-full md:max-w-[800px] md:min-w-[800px] md:mr-12">
                 <div className="content-style p-4">
@@ -72,7 +74,8 @@ export default async function Home() {
       ) : (
         <>
           <Header isTopPage={true} />
-          <main className="pb-20">
+          <GlobalMenu />
+          <main>
             <TwoColumnRecommendArticles />
             <TopRecommendArticles />
             <TopNewArticle />
