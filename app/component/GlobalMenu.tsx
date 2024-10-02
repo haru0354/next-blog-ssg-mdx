@@ -16,7 +16,7 @@ const GlobalMenu = async () => {
   ];
 
   return (
-    <nav className="w-full mb-10 bg-main-gray">
+    <nav className="w-full bg-main-gray">
       <div className="flex items-center justify-center">
         <ul className="md:w-[1100px] flex flex-wrap w-full items-center justify-center">
           {menuItems.map(
