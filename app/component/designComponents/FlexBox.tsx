@@ -32,16 +32,17 @@ const FlexBox: React.FC<FlexBoxProps> = ({ contents }) => {
             key={index}
             className={`min-w-[300px] w-[100%] md:w-[50%] p-2 ${borderClass} border-gray-400`}
           >
-            <p className="text-center font-semibold">{content.topText}</p>
+            <p className="text-center font-semibold my-2">{content.topText}</p>
             <Image
               width={content.width}
               height={content.height}
               src={content.src}
               alt={content.alt}
+              className="mx-auto"
             />
-            <p>
-              <SplitAndNewLines text={content.content} />
-            </p>
+            {content.content && (
+                <SplitAndNewLines text={content.content} />
+            )}
             {content.buttonText && content.link && (
               <Link href={content.link}>
                 <Button color="gray" className="block mx-auto">
