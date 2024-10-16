@@ -20,7 +20,7 @@ const CategoryInArticlesList2Images: React.FC<
   );
 
   return (
-    <div className="bg-white p-4 mt-8">
+    <div className="bg-white px-4">
       <h2 className="w-full my-4 py-4 px-2 bg-main-gray text-white text-xl font-semibold rounded">
         「{categoryName}」の記事一覧
       </h2>
