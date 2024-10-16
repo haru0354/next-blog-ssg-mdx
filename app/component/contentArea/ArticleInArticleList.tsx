@@ -68,8 +68,8 @@ const ArticleInArticleList: React.FC<ArticleInArticleListProps> = async ({
                     : article.frontmatter.title}
                 </h3>
                 <p>
-                  {article.frontmatter.description.length > 120
-                    ? `${article.frontmatter.description.slice(0, 120)}...`
+                  {article.frontmatter.description.length > 110
+                    ? `${article.frontmatter.description.slice(0, 110)}...`
                     : article.frontmatter.description}
                 </p>
               </div>
