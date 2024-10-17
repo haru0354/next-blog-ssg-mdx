@@ -16,24 +16,25 @@ const GlobalMenu = async () => {
   ];
 
   return (
-    <nav className="w-full bg-main-gray">
-      <div className="flex items-center justify-center">
-        <ul className="md:w-[1100px] flex flex-wrap w-full items-center justify-center">
-          {menuItems.map(
-            (menuItem, index) =>
-              menuItem.name && (
+    <nav className="w-full flex items-center justify-center my-2 bg-main-gray">
+      <ul className="flex flex-wrap items-center justify-center md:w-[1150px] w-full">
+        {menuItems.map(
+          (menuItem, index) =>
+            menuItem.name && (
+              <Link
+                href={`/${menuItem.slug}`}
+                className="w-[50%] md:w-[25%] hover:bg-hover-gray"
+              >
                 <li
                   key={index}
-                  className="w-[50%] md:w-[25%] text-center text-sm md:text-base text-white py-3 md:py-4 px-2 hover:bg-hover-gray"
+                  className="text-center text-sm md:text-base text-white py-3 md:py-4 px-2"
                 >
-                  <Link href={`/${menuItem.slug}`} className="block">
-                    {menuItem.name}
-                  </Link>
+                  {menuItem.name}
                 </li>
-              )
-          )}
-        </ul>
-      </div>
+              </Link>
+            )
+        )}
+      </ul>
     </nav>
   );
 };
