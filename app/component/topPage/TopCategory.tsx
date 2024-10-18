@@ -39,9 +39,9 @@ const TopCategory = async () => {
                     height={230}
                   />
                   <h3 className="p-4">
-                    {category?.frontmatter.title.length > 17
-                      ? `${category?.frontmatter.title.slice(0, 17)}...`
-                      : category?.frontmatter.title}
+                    {category?.frontmatter.categoryName.length > 17
+                      ? `${category?.frontmatter.categoryName.slice(0, 17)}...`
+                      : category?.frontmatter.categoryName}
                   </h3>
                 </div>
               </Link>

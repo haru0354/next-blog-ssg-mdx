@@ -47,10 +47,10 @@ const TopRecommendArticles = async () => {
                       height={230}
                     />
                     <h3 className="p-4">
-                      {article?.frontmatter.title.length > 17
+                      {article?.frontmatter.title.length > 34
                         ? `${article?.frontmatter.title.slice(
                             0,
-                            17
+                            34
                           )}...`
                         : article?.frontmatter.title}
                     </h3>
