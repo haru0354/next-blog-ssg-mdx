@@ -22,13 +22,11 @@ const GlobalMenu = async () => {
           (menuItem, index) =>
             menuItem.name && (
               <Link
+                key={index}
                 href={`/${menuItem.slug}`}
                 className="w-[50%] md:w-[25%] hover:bg-hover-gray"
               >
-                <li
-                  key={index}
-                  className="text-center text-sm md:text-base text-white py-3 md:py-4 px-2"
-                >
+                <li className="text-center text-sm md:text-base text-white py-3 md:py-4 px-2">
                   {menuItem.name}
                 </li>
               </Link>
