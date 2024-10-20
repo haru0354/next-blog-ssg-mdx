@@ -20,7 +20,7 @@ const page = async () => {
   return (
     <>
       <LeftColumn>
-        <div className="px-4">
+        <div className="p-4">
           <Breadcrumbs isNotParentCategoryPage={false} addItem="検索結果"/>
           <SearchBar contentsPage={true} />
           <h1 className="text-2xl font-semibold mx-2 my-4">検索結果</h1>

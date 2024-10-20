@@ -18,7 +18,7 @@ const page = async () => {
   return (
     <>
       <LeftColumn>
-        <div className="content-style px-4">
+        <div className="content-style p-4">
           <Breadcrumbs isNotParentCategoryPage={false} addItem="サイトマップ"/>
           <h1 className="text-2xl font-semibold mx-2 my-4">サイトマップ</h1>
           <ul>
