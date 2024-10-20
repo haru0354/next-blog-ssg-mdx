@@ -30,7 +30,7 @@ const ArticleInArticleList: React.FC<ArticleInArticleListProps> = async ({
   }
 
   return (
-    <div className="bg-white px-4 rounded">
+    <div className="p-4 rounded bg-white">
       <h2 className="w-full my-4 py-4 px-2 bg-main-gray text-white text-xl font-semibold rounded">
         関連記事
       </h2>
