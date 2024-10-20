@@ -7,7 +7,7 @@ type HeaderProps = {
 
 const Header: React.FC<HeaderProps> = ({ isTopPage }) => {
   return (
-    <header className="w-full bg-white">
+    <header className="w-full bg-layout-bgColor">
       <div className="w-[350px] mx-auto pb-2 md:py-4">
         <Link href="/">
           {isTopPage ? (
