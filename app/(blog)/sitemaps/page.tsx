@@ -1,9 +1,10 @@
 import Link from "next/link";
 import React from "react";
-import SideMenu from "@/app/component/SideMenu";
 import { getAllArticles } from "@/app/component/lib/AllArticleService";
 import { getFixedPages } from "@/app/component/lib/FixedPageService";
 import { Metadata } from "next";
+import LeftColumn from "@/app/component/layouts/LeftColumn";
+import SideMenu from "@/app/component/SideMenu";
 import Breadcrumbs from "@/app/component/contentArea/Breadcrumbs";
 
 export const metadata: Metadata = {
@@ -16,7 +17,7 @@ const page = async () => {
 
   return (
     <>
-      <div className="flex flex-col flex-wrap w-full md:max-w-[800px] md:min-w-[800px] md:mr-12">
+      <LeftColumn>
         <div className="content-style px-4">
           <Breadcrumbs isNotParentCategoryPage={false} addItem="サイトマップ"/>
           <h1 className="text-2xl font-semibold mx-2 my-4">サイトマップ</h1>
@@ -80,7 +81,7 @@ const page = async () => {
             );
           })}
         </div>
-      </div>
+      </LeftColumn>
       <SideMenu />
     </>
   );
