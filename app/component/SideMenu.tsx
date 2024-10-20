@@ -17,7 +17,7 @@ const SideMenu: React.FC<SideMenuProps> = ({
   categoryName,
 }) => {
   return (
-    <div className=" w-full rounded flex flex-col md:w-[300px] mt-8 md:mt-0">
+    <div className="w-full rounded flex flex-col md:w-[300px] mt-8 md:mt-0">
       <SideImage />
       <SideRecommendArticles />
       {firstLevelArticle_slug && (

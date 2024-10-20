@@ -8,8 +8,9 @@ import {
   getFirstLevelArticle,
   getFirstLevelArticles,
 } from "@/app/component/lib/FirstLevelArticleService";
-import CategoryInArticlesList2Images from "@/app/component/contentArea/CategoryInArticlesList2Images";
+import LeftColumn from "@/app/component/layouts/LeftColumn";
 import Breadcrumbs from "@/app/component/contentArea/Breadcrumbs";
+import CategoryInArticlesList2Images from "@/app/component/contentArea/CategoryInArticlesList2Images";
 import NotFound from "@/app/not-found";
 import SideMenu from "@/app/component/SideMenu";
 
@@ -45,7 +46,10 @@ export async function generateStaticParams() {
   }
 
   return firstLevelArticles
-    .filter((firstLevelArticle) => firstLevelArticle !== null && firstLevelArticle !== undefined)
+    .filter(
+      (firstLevelArticle) =>
+        firstLevelArticle !== null && firstLevelArticle !== undefined
+    )
     .map((firstLevelArticle) => ({
       firstLevelArticle_slug: firstLevelArticle.slug,
     }));
@@ -66,8 +70,8 @@ const Page = async ({
 
   return (
     <>
-      <div className="flex flex-col flex-wrap w-full md:max-w-[800px] md:min-w-[800px] md:mr-12">
-        <div className="content-style px-4">
+      <LeftColumn>
+        <div className="content-style p-4">
           <Breadcrumbs
             categoryName={article.frontmatter.categoryName}
             pageTitle={article.frontmatter.title}
@@ -113,7 +117,7 @@ const Page = async ({
             categoryName={article.frontmatter.categoryName}
           />
         )}
-      </div>
+      </LeftColumn>
       {article.frontmatter.categoryName ? (
         <SideMenu
           firstLevelArticle_slug={params.firstLevelArticle_slug}

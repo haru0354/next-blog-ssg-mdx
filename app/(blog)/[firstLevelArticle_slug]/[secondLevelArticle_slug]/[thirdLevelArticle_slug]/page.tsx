@@ -8,6 +8,7 @@ import {
   getThirdLevelArticle,
   getThirdLevelArticles,
 } from "@/app/component/lib/ThirdLevelArticleService";
+import LeftColumn from "@/app/component/layouts/LeftColumn";
 import Breadcrumbs from "@/app/component/contentArea/Breadcrumbs";
 import ArticleInArticleList from "@/app/component/contentArea/ArticleInArticleList";
 import CategoryInArticlesList2Images from "@/app/component/contentArea/CategoryInArticlesList2Images";
@@ -79,8 +80,8 @@ const Page = async ({
 
   return (
     <>
-      <div className="flex flex-col flex-wrap w-full md:max-w-[800px] md:min-w-[800px] md:mr-12">
-        <div className="content-style px-4">
+      <LeftColumn>
+        <div className="content-style p-4">
           <Breadcrumbs
             categorySlug={params.firstLevelArticle_slug}
             categoryName={article.parentCategoryName}
@@ -129,7 +130,7 @@ const Page = async ({
             articleSlug={params.thirdLevelArticle_slug}
           />
         )}
-      </div>
+      </LeftColumn>
       <SideMenu
         firstLevelArticle_slug={params.firstLevelArticle_slug}
         categoryName={article.parentCategoryName}
