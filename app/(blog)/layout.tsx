@@ -12,7 +12,7 @@ export default function RootLayout({
     <>
       <Header />
       <GlobalMenu />
-      <main className="flex justify-center my-16">
+      <main className="flex justify-center py-4 md:py-16">
         <div className="max-w-[1150px] flex flex-wrap justify-center">
           {children}
         </div>
