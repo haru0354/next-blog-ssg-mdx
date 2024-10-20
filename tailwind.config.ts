@@ -17,7 +17,6 @@ const config: Config = {
       colors: {
         layout: {
           bgColor: "white",
-          heading: "rgb(31 41 55 / var(--tw-bg-opacity))",
         },
         main: {
           gray: "rgb(31 41 55 / var(--tw-bg-opacity))",

@@ -18,7 +18,7 @@ const page = async () => {
     <>
       <div className="flex flex-col flex-wrap w-full md:max-w-[800px] md:min-w-[800px] md:mr-12">
         <div className="content-style px-4">
-          <Breadcrumbs isNotParentCategoryPage={false} />
+          <Breadcrumbs isNotParentCategoryPage={false} addItem="サイトマップ"/>
           <h1 className="text-2xl font-semibold mx-2 my-4">サイトマップ</h1>
           <ul>
             {allArticles?.map((allArticle, index) => {
