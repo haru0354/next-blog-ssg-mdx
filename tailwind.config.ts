@@ -5,7 +5,7 @@ const config: Config = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    './mdx-components.tsx',
+    "./mdx-components.tsx",
   ],
   theme: {
     extend: {
@@ -15,16 +15,18 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
+        layout: {
+          bgColor: "white",
+        },
         main: {
-          gray: 'rgb(31 41 55 / var(--tw-bg-opacity))',
-          green: '#43a86f',
+          gray: "rgb(31 41 55 / var(--tw-bg-opacity))",
+          green: "#43a86f",
         },
         hover: {
-          blue: 'rgb(236 245 251)',
-          gray: 'rgb(55 65 81 / var(--tw-bg-opacity))',
+          blue: "rgb(236 245 251)",
+          gray: "rgb(55 65 81 / var(--tw-bg-opacity))",
         },
       },
-
     },
   },
   plugins: [],

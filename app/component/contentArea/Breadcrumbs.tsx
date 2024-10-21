@@ -3,6 +3,7 @@ import Link from "next/link";
 
 type BreadcrumbsProps = {
   pageTitle?: string;
+  addItem?: string;
   categoryName?: string;
   categorySlug?: string;
   childCategorySlug?: string;
@@ -12,6 +13,7 @@ type BreadcrumbsProps = {
 
 const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   pageTitle,
+  addItem,
   categorySlug,
   categoryName,
   childCategorySlug,
@@ -50,6 +52,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
         </>
       )}
       {isNotParentCategoryPage && <>　＞　 {pageTitle} </>}
+      {addItem && addItem}
     </div>
   );
 };

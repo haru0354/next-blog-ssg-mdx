@@ -20,7 +20,7 @@ const TwoColumnRecommendArticles = async () => {
         <div className="max-w-[1150px] mx-auto px-4">
           {twoColumnRecommendArticles.articles.map((article) => {
             return (
-              <>
+              <div key={article?.slug}>
                 <h2 className="text-2xl font-bold text-center my-8 pb-4 border-b border-dashed border-main-gray">
                   {article?.frontmatter.title.length > 33
                     ? `${article?.frontmatter.title.slice(0, 33)}...`
@@ -59,7 +59,7 @@ const TwoColumnRecommendArticles = async () => {
                     </div>
                   </div>
                 </div>
-              </>
+              </div>
             );
           })}
         </div>
