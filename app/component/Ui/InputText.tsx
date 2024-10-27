@@ -24,7 +24,7 @@ const InputText: React.FC<InputTextProps> = ({
       )}
       <input
         type="text"
-        className="w-full h-[60px] px-2  bg-gray-50 border border-gray-400"
+        className="w-full h-[60px] px-2 bg-gray-50 border border-gray-500"
         id={label}
         name={name}
         value={value}

@@ -18,8 +18,8 @@ const SideNewArticle2 = async () => {
   const filteredArticles = sortedArticles.slice(0, 5);
 
   return (
-    <nav className="bg-white mb-8 border-r border-l border-gray-500">
-      <h3 className="w-full p-4 bg-layout-mainColor text-white font-bold">
+    <nav className="mb-8 bg-white">
+      <h3 className="w-full p-4 border font-bold text-white bg-layout-mainColor border-layout-mainColor">
         新着記事
       </h3>
       <ul>
@@ -33,7 +33,7 @@ const SideNewArticle2 = async () => {
               }
               key={article.slug}
             >
-              <div className="hover:bg-hover-blue pt-4 md:pt-0">
+              <div className="pt-4 md:pt-0 border-r border-l border-gray-500 hover:bg-hover-blue">
                 <Image
                   src={
                     article.frontmatter.eyeCatchName
