@@ -20,7 +20,7 @@ const config: Config = {
           mainColor: "rgb(31 41 55)",
         },
         main: {
-          gray: "",
+          gray: "rgb(31 41 55)",
           green: "#43a86f",
         },
         hover: {
