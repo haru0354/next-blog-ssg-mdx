@@ -18,7 +18,7 @@ const SideLinks = async () => {
 
   return (
     <nav className="bg-white border-r border-l mb-8 border-gray-500">
-      <h3 className="w-full p-4 bg-main-gray text-white font-bold">
+      <h3 className="w-full p-4 bg-layout-mainColor text-white font-bold">
         参考文献・参考サイト
       </h3>
       <ul>

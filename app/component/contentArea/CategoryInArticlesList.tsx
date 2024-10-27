@@ -23,7 +23,7 @@ const CategoryInArticlesList: React.FC<CategoryInArticlesListProps> = async ({
 
   return (
     <div className="p-4 rounded bg-white">
-      <h2 className="w-full my-4 py-4 px-2 bg-main-gray text-white text-xl font-semibold rounded">
+      <h2 className="w-full my-4 py-4 px-2 bg-layout-mainColor text-white text-xl font-semibold rounded">
         「{categoryName}」の記事一覧
       </h2>
       <div className="w-full flex flex-wrap justify-center items-start">

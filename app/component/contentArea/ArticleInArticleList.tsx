@@ -31,7 +31,7 @@ const ArticleInArticleList: React.FC<ArticleInArticleListProps> = async ({
 
   return (
     <div className="p-4 rounded bg-white">
-      <h2 className="w-full my-4 py-5 px-3 bg-main-gray text-white text-lg font-semibold rounded">
+      <h2 className="w-full my-4 py-5 px-3 bg-layout-mainColor text-white text-lg font-semibold rounded">
         関連記事
       </h2>
       <div className="w-full flex flex-wrap justify-center">

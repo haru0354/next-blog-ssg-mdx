@@ -15,7 +15,7 @@ const SideCategory2 = async () => {
   }
 
   let categories;
-  
+
   if (sideCategoriesMenu.display === false) {
     const parentCategories = await getParentCategories();
     categories = parentCategories.map((category) => {
@@ -34,7 +34,9 @@ const SideCategory2 = async () => {
 
   return (
     <nav className="bg-white border-r border-l mb-8 border-gray-500">
-      <h3 className="w-full p-4 bg-main-gray text-white font-bold">カテゴリ</h3>
+      <h3 className="w-full p-4 bg-layout-mainColor text-white font-bold">
+        カテゴリ
+      </h3>
       <ul>
         {categories.map((category: Category) => {
           return (

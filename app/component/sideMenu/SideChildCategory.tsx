@@ -18,7 +18,7 @@ const SideChildCategory: React.FC<SideChildCategoryProps> = async ({
 
   return (
     <nav className="bg-white border-r border-l mb-8 border-gray-500">
-      <h3 className="w-full p-4 bg-main-gray text-white font-bold">
+      <h3 className="w-full p-4 bg-layout-mainColor text-white font-bold">
         {categoryName}
       </h3>
       <ul>
