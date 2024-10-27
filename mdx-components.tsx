@@ -10,6 +10,9 @@ import CustomText from "./app/component/designComponents/CustomText";
 export function useMDXComponents(components?: MDXComponents): MDXComponents {
   return {
     p: ({ children }) => <p className="leading-loose mb-8">{children}</p>,
+    h2: ({ children }) => <h2 className="my-6 p-5 text-xl font-bold rounded text-white bg-layout-mainColor">{children}</h2>,
+    h3: ({ children }) => <h3 className="my-6 p-3 text-lg font-semibold border-b-2 border-layout-mainColor">{children}</h3>,
+    h4: ({ children }) => <h4 className="my-6 p-2 text-center text-lg font-semibold border-b-2 border-dashed border-layout-mainColor">{children}</h4>,
     pre: ({ children }) => (
       <pre className="max-w-[700px] w-full md:mx-auto my-4 py-2 md:p-4 text-sm text-white bg-gray-800 rounded break-words whitespace-pre-wrap">
         {children}

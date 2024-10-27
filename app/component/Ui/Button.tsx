@@ -29,7 +29,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
-      className={`py-2 text-white hover:text-gray-700 border border-gray-400  
+      className={`py-2 transition-colors duration-300 text-white hover:text-gray-700 border border-gray-400  
         ${colors[color]} 
         ${sizes[size]} 
         ${className}`}

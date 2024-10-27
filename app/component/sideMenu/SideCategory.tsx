@@ -15,7 +15,7 @@ const SideCategory = async () => {
   }
 
   let categories;
-  
+
   if (sideCategoriesMenu.display === false) {
     const parentCategories = await getParentCategories();
     categories = parentCategories.map((category) => {
@@ -34,7 +34,7 @@ const SideCategory = async () => {
 
   return (
     <nav>
-      <h3 className="w-full mb-8 py-4 px-2 bg-main-gray text-white font-bold rounded">
+      <h3 className="w-full mb-8 py-4 px-2 bg-layout-mainColor text-white font-bold rounded">
         カテゴリ
       </h3>
       <ul>
@@ -42,7 +42,7 @@ const SideCategory = async () => {
           return (
             <Link href={`/${category?.slug}`} key={category?.slug}>
               <li
-                className="p-3 hover:bg-hover-blue"
+                className="p-3 hover: transition-colors duration-300 hover:bg-hover-blue"
                 key={category?.categoryName}
               >
                 {category?.categoryName}

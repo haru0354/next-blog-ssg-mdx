@@ -19,7 +19,7 @@ const SideNewArticle = async () => {
 
   return (
     <nav>
-      <h3 className="w-full mb-8 py-4 px-2 bg-main-gray text-white font-bold rounded">
+      <h3 className="w-full mb-8 py-4 px-2 bg-layout-mainColor text-white font-bold rounded">
         新着記事
       </h3>
       <ul>
@@ -33,7 +33,7 @@ const SideNewArticle = async () => {
               }
               key={article.slug}
             >
-              <div className="hover:bg-hover-blue">
+              <div className="hover:transition-colors duration-300 bg-hover-blue">
                 <Image
                   src={
                     article.frontmatter.eyeCatchName

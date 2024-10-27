@@ -31,7 +31,7 @@ const ArticleInArticleList: React.FC<ArticleInArticleListProps> = async ({
 
   return (
     <div className="p-4 rounded bg-white">
-      <h2 className="w-full my-4 py-5 px-3 bg-main-gray text-white text-lg font-semibold rounded">
+      <h2 className="w-full my-4 py-5 px-3 bg-layout-mainColor text-white text-lg font-semibold rounded">
         関連記事
       </h2>
       <div className="w-full flex flex-wrap justify-center">
@@ -44,7 +44,7 @@ const ArticleInArticleList: React.FC<ArticleInArticleListProps> = async ({
             }
             key={article.slug}
           >
-            <div className="flex flex-wrap justify-center md:flex-nowrap w-full my-2 py-4 md:p-0 hover:bg-hover-blue">
+            <div className="flex flex-wrap justify-center md:flex-nowrap w-full my-2 py-4 md:p-0 hover: transition-colors duration-300 hover:bg-hover-blue">
               <div className="min-w-[342px] mb-2 md:mb-0">
                 <Image
                   src={

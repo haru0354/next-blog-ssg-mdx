@@ -21,7 +21,7 @@ const CategoryInArticlesList2Images: React.FC<
 
   return (
     <div className="p-4 rounded bg-white">
-      <h2 className="w-full my-4 py-4 px-2 bg-main-gray text-white text-xl font-semibold rounded">
+      <h2 className="w-full my-4 py-4 px-2 bg-layout-mainColor text-white text-xl font-semibold rounded">
         「{categoryName}」の記事一覧
       </h2>
       <div className="w-full flex flex-wrap justify-center md:justify-start items-start">
@@ -34,7 +34,7 @@ const CategoryInArticlesList2Images: React.FC<
             }
             key={article.slug}
           >
-            <div className="flex flex-col max-w-[367px] md:min-h-[330px] mx-2 my-2 hover:bg-hover-blue">
+            <div className="flex flex-col max-w-[367px] md:min-h-[330px] mx-2 my-2 hover: transition-colors duration-300 hover:bg-hover-blue">
               <Image
                 src={
                   article.frontmatter.eyeCatchName

@@ -16,7 +16,7 @@ const GlobalMenu = async () => {
   ];
 
   return (
-    <nav className="w-full flex items-center justify-center bg-main-gray">
+    <nav className="w-full flex items-center justify-center bg-layout-mainColor">
       <ul className="flex flex-wrap items-center justify-center md:w-[1150px] w-full">
         {menuItems.map(
           (menuItem, index) =>
@@ -24,7 +24,7 @@ const GlobalMenu = async () => {
               <Link
                 key={index}
                 href={`/${menuItem.slug}`}
-                className="w-[50%] md:w-[25%] hover:bg-hover-gray"
+                className="w-[50%] md:w-[25%] transition-colors duration-300 hover:bg-hover-gray"
               >
                 <li className="text-center text-sm md:text-base text-white py-3 md:py-4 px-2">
                   {menuItem.name}
