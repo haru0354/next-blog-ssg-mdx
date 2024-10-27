@@ -42,7 +42,7 @@ const SideCategory = async () => {
           return (
             <Link href={`/${category?.slug}`} key={category?.slug}>
               <li
-                className="p-3 hover:bg-hover-blue"
+                className="p-3 hover: transition-colors duration-300 hover:bg-hover-blue"
                 key={category?.categoryName}
               >
                 {category?.categoryName}

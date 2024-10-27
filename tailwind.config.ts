@@ -17,10 +17,10 @@ const config: Config = {
       colors: {
         layout: {
           bgColor: "white",
-          mainColor: "#43a86f",
+          mainColor: "rgb(31 41 55)",
         },
         main: {
-          gray: "rgb(31 41 55 / var(--tw-bg-opacity))",
+          gray: "",
           green: "#43a86f",
         },
         hover: {

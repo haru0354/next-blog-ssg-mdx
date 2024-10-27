@@ -44,7 +44,7 @@ const ArticleInArticleList: React.FC<ArticleInArticleListProps> = async ({
             }
             key={article.slug}
           >
-            <div className="flex flex-col max-w-[367px] md:min-h-[330px] mx-2 my-4 hover:bg-hover-blue">
+            <div className="flex flex-col max-w-[367px] md:min-h-[330px] mx-2 my-4 hover: transition-colors duration-300 hover:bg-hover-blue">
               <Image
                 src={
                   article.frontmatter.eyeCatchName

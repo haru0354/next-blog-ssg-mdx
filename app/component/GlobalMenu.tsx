@@ -24,7 +24,7 @@ const GlobalMenu = async () => {
               <Link
                 key={index}
                 href={`/${menuItem.slug}`}
-                className="w-[50%] md:w-[25%] hover:bg-hover-gray"
+                className="w-[50%] md:w-[25%] transition-colors duration-300 hover:bg-hover-gray"
               >
                 <li className="text-center text-sm md:text-base text-white py-3 md:py-4 px-2">
                   {menuItem.name}

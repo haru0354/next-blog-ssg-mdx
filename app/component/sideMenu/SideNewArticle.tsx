@@ -33,7 +33,7 @@ const SideNewArticle = async () => {
               }
               key={article.slug}
             >
-              <div className="hover:bg-hover-blue">
+              <div className="hover:transition-colors duration-300 bg-hover-blue">
                 <Image
                   src={
                     article.frontmatter.eyeCatchName

@@ -23,7 +23,7 @@ const TopCategory = async () => {
           {categories.map((category) => {
             return (
               <Link href={`/${category?.slug}`} key={category?.slug}>
-                <div className="flex flex-col justify-center items-center mx-2 mb-8 md:max-w-[320px] md:min-w-[320px] hover:bg-hover-blue">
+                <div className="flex flex-col justify-center items-center mx-2 mb-8 md:max-w-[320px] md:min-w-[320px] hover: transition-colors duration-300 hover:bg-hover-blue">
                   <Image
                     src={
                       category?.frontmatter.eyeCatchName

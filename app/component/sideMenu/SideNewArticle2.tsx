@@ -33,7 +33,7 @@ const SideNewArticle2 = async () => {
               }
               key={article.slug}
             >
-              <div className="pt-4 md:pt-0 border-r border-l border-gray-500 hover:bg-hover-blue">
+              <div className="pt-4 md:pt-0 border-r border-l transition-colors duration-300 border-gray-500 hover:bg-hover-blue">
                 <Image
                   src={
                     article.frontmatter.eyeCatchName

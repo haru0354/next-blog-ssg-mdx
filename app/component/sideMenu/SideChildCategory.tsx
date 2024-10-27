@@ -29,7 +29,7 @@ const SideChildCategory: React.FC<SideChildCategoryProps> = async ({
               key={category?.slug}
             >
               <li
-                className="p-4 border-b border-gray-500 hover:bg-hover-blue"
+                className="p-4 border-b border-gray-500 hover: transition-colors duration-300 hover:bg-hover-blue"
                 key={category?.frontmatter.categoryName}
               >
                 {category?.frontmatter.categoryName}

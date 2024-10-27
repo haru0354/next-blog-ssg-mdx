@@ -56,7 +56,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ allArticles }) => {
               }
               key={article.slug}
             >
-              <div className="flex flex-wrap justify-center md:flex-nowrap w-full my-2 py-4 md:p-0 hover:bg-hover-blue">
+              <div className="flex flex-wrap justify-center md:flex-nowrap w-full my-2 py-4 md:p-0 hover: transition-colors duration-300 hover:bg-hover-blue">
                 <div className="min-w-[342px] mb-2 md:mb-0">
                   <Image
                     src={
