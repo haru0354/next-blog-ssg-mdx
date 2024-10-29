@@ -1,4 +1,4 @@
-import { getAllArticles } from "@/app/component/lib/AllArticleService";
+import { getAllArticles } from "@/app/lib/allArticleService";
 import { Metadata } from "next";
 import LeftColumn from "@/app/component/layouts/LeftColumn";
 import Breadcrumbs from "@/app/component/contentArea/Breadcrumbs";
@@ -21,7 +21,7 @@ const page = async () => {
     <>
       <LeftColumn>
         <div className="p-4">
-          <Breadcrumbs isNotParentCategoryPage={false} addItem="検索結果"/>
+          <Breadcrumbs isNotParentCategoryPage={false} addItem="検索結果" />
           <SearchBar contentsPage={true} />
           <h1 className="text-2xl font-semibold mx-2 my-4">検索結果</h1>
           <SearchResult allArticles={allArticles} />
