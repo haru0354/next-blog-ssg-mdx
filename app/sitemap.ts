@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { getFixedPages } from "./component/lib/FixedPageService";
 import { getAllArticles } from "./component/lib/AQllArticleService";
-import { getAllCategories } from "./component/lib/CategoryService";
+import { getAllCategories } from "./lib/categoryService";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseURL = process.env.WEBSITE_TITLE;

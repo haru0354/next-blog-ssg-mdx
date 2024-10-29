@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getChildCategories } from "../lib/CategoryService";
+import { getChildCategories } from "@/app/lib/categoryService";
 
 type SideChildCategoryProps = {
   firstLevelArticle_slug: string;
