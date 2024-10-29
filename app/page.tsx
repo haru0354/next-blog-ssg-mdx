@@ -3,7 +3,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypeSlug from "rehype-slug";
 import remarkToc from "remark-toc";
 import { useMDXComponents } from "@/mdx-components";
-import { getTopPageArticle } from "./component/lib/TopPageService";
+import { getTopPageArticle } from "./lib/topPageService";
 import Header from "./component/Header";
 import GlobalMenu from "./component/GlobalMenu";
 import Footer from "./component/Footer";
