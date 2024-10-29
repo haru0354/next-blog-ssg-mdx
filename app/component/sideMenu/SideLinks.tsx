@@ -1,4 +1,4 @@
-import { getLinks } from "../lib/MenuService";
+import { getLinks } from "@/app/lib/menuService";
 
 type Item = {
   name: string;

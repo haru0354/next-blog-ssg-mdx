@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getParentCategories } from "@/app/lib/categoryService";
-import { getSideCategoriesMenu } from "../lib/MenuService";
+import { getSideCategoriesMenu } from "@/app/lib/menuService";
 
 type Category = {
   slug: string;

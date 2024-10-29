@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getSideImage } from "../lib/MenuService";
+import { getSideImage } from "@/app/lib/menuService";
 
 const SideImage = async () => {
   const sideImage = await getSideImage();
