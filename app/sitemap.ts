@@ -1,5 +1,5 @@
 import { MetadataRoute } from "next";
-import { getFixedPages } from "./component/lib/FixedPageService";
+import { getFixedPages } from "./lib/fixedPageService";
 import { getAllArticles } from "./component/lib/AQllArticleService";
 import { getAllCategories } from "./lib/categoryService";
 

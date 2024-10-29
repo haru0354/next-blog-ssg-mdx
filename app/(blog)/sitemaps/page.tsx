@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { getAllArticles } from "@/app/lib/allArticleService";
-import { getFixedPages } from "@/app/component/lib/FixedPageService";
+import { getFixedPages } from "@/app/lib/fixedPageService";
 import { Metadata } from "next";
 import LeftColumn from "@/app/component/layouts/LeftColumn";
 import SideMenu from "@/app/component/SideMenu";
