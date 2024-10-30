@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { notoSansJp } from "./component/util/Font";
+import { notoSansJp } from "./util/font";
 
 const websiteTitle = process.env.WEBSITE_TITLE || "サイトタイトル";
 const websiteDescription = process.env.WEBSITE_DESCRIPTION || "サイト説明文";

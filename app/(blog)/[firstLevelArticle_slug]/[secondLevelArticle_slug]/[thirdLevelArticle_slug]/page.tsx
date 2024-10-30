@@ -7,13 +7,13 @@ import { useMDXComponents } from "@/mdx-components";
 import {
   getThirdLevelArticle,
   getThirdLevelArticles,
-} from "@/app/component/lib/ThirdLevelArticleService";
-import LeftColumn from "@/app/component/layouts/LeftColumn";
-import Breadcrumbs from "@/app/component/contentArea/Breadcrumbs";
-import ArticleInArticleList from "@/app/component/contentArea/ArticleInArticleList";
-import CategoryInArticlesList2Images from "@/app/component/contentArea/CategoryInArticlesList2Images";
+} from "@/app/lib/thirdLevelArticleService";
+import LeftColumn from "@/app/components/layouts/LeftColumn";
+import Breadcrumbs from "@/app/components/content-area/Breadcrumbs";
+import ArticleInArticleList from "@/app/components/content-area/ArticleInArticleList";
+import CategoryInArticlesList2Images from "@/app/components/content-area/CategoryInArticlesList2Images";
 import NotFound from "@/app/not-found";
-import SideMenu from "@/app/component/SideMenu";
+import SideMenu from "@/app/components/SideMenu";
 
 export const generateMetadata = async ({
   params,

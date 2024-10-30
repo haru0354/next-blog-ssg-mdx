@@ -7,12 +7,12 @@ import { useMDXComponents } from "@/mdx-components";
 import {
   getFirstLevelArticle,
   getFirstLevelArticles,
-} from "@/app/component/lib/FirstLevelArticleService";
-import LeftColumn from "@/app/component/layouts/LeftColumn";
-import Breadcrumbs from "@/app/component/contentArea/Breadcrumbs";
-import CategoryInArticlesList2Images from "@/app/component/contentArea/CategoryInArticlesList2Images";
+} from "@/app/lib/firstLevelArticleService";
+import LeftColumn from "@/app/components/layouts/LeftColumn";
+import Breadcrumbs from "@/app/components/content-area/Breadcrumbs";
+import CategoryInArticlesList2Images from "@/app/components/content-area/CategoryInArticlesList2Images";
 import NotFound from "@/app/not-found";
-import SideMenu from "@/app/component/SideMenu";
+import SideMenu from "@/app/components/SideMenu";
 
 export const generateMetadata = async ({
   params,

@@ -1,0 +1,325 @@
+---
+title: "デザインのサンプル"
+date: "2024-08-01"
+description: "ブログアプリを装飾する為の、「デザインのサンプル」を記載しています。また、どう記述することで、デザインが適用されるかについての記載も行っています。このブログアプリはMDXの形式で作成されており、「MD」形式での装飾の仕方の他に、デザインが適用されたコンポーネントが作成されており、簡単に記事の装飾が行えるようになっています。「コピー / 貼り付け」を利用することで、だれでも簡単に装飾された記事を作成が可能です。"
+eyeCatchName: "blog-design"
+eyeCatchAlt: "ブログ記事装飾サンプル"
+---
+
+このファイルはブログの装飾に関するコードの記述をしています。
+
+ブログ作成中にデザインを変更する時の確認・コピー貼り付けに利用できるよう用意しています。
+
+ブログ構築中に削除する下記ファイルのコードのみを記述しています。
+
+article > blog-guide > blog-design.mdx
+（上記ファイルのコードのみ記述しています。）
+
+
+## 目次
+
+## 見出しデザイン h2
+
+```
+## h2
+<h3>H2</h3>
+```
+
+### h3
+
+```
+### h3
+<h3>h3</h3>
+```
+
+#### h4
+
+```
+#### h4
+<h4>h4</h4>
+```
+
+## テキストのデザイン
+
+### テキストを太く（CustomText）
+
+```
+<CustomText font="semibold">少し太く</CustomText>
+<CustomText font="bold">太く</CustomText>
+```
+
+### テキストサイズ（CustomText）
+
+```
+<CustomText size="sm">少し小さく</CustomText>
+<CustomText size="lg">少し大きく</CustomText>
+<CustomText size="xl">大きく</CustomText>
+```
+
+### テキストの色（CustomText）
+
+```
+<CustomText color="red">赤文字</CustomText>
+<CustomText color="green">緑文字</CustomText>
+<CustomText color="orange">緑文字</CustomText>
+<CustomText color="yellow">緑文字</CustomText>
+```
+
+### マーカー（CustomText）
+
+```
+// マーカー（CustomText）
+
+<CustomText marker="red">赤マーカー</CustomText>
+<CustomText marker="green">緑マーカー</CustomText>
+<CustomText marker="orange">オレンジマーカー</CustomText>
+<CustomText marker="yellow">黄色マーカー</CustomText>
+```
+
+### アンダーマーカー（CustomText）
+
+```
+<CustomText underMarker="red">赤アンダーマーカー</CustomText>
+<CustomText underMarker="green">緑アンダーマーカー</CustomText>
+<CustomText underMarker="orange">オレンジアンダーマーカー</CustomText>
+<CustomText underMarker="yellow">黄色アンダーマーカー</CustomText>
+```
+
+## デザインコンポーネント
+
+### ボタンコンポーネント（Button）
+
+```
+<Button>ボタン</Button>
+<Button color="green">ボタン</Button>
+<Button color="red">ボタン</Button>
+<Button color="gray">ボタン</Button>
+```
+
+#### ボタンコンポーネント(Button サイズ)
+
+```
+<Button size="small">ボタン</Button>
+<Button size="normal">ボタン</Button>
+<Button size="big">ボタン</Button>
+```
+
+### Box（Box）
+
+```
+<Box>box</Box>
+<Box className="rounded">roundedBox</Box>
+<Box className="border-dashed">border-dashedBox</Box>
+```
+
+#### Box（Box タイトル付き）
+
+```
+<Box title="タイトル付きBox">テスト</Box>
+```
+
+### FlexBox（FlexBox）
+
+```
+<FlexBox
+  contents={[
+    {
+      topText: "TEST",
+      content: `
+        TEST
+
+        TEST
+      `,
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+    },
+    {
+      topText: "TEST2",
+      content: `
+        TEST2
+
+        TEST2
+      `,
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+    },
+  ]}
+/>
+```
+
+#### ボタンリンク付き FlexBox（FlexBox）
+
+```
+// ボタンリンク付きFlexBox（FlexBox）
+
+<FlexBox
+  contents={[
+    {
+      topText: "TEST",
+      content: `
+        TEST
+
+        TEST
+      `,
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+      buttonText: "TOP PAGE",
+      link: "/",
+    },
+    {
+      topText: "TEST2",
+      content: `
+        TEST2
+
+        TEST2
+      `,
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+      buttonText: "TOP PAGE2",
+      link: "/",
+    },
+  ]}
+/>
+```
+
+### 最初の 1 つ目のみデザインの違う（ThreeFlexBox）
+
+```
+<ThreeFlexBox
+  contents={[
+    {
+      topText: "TEST",
+      content: `
+        TEST
+
+        TEST
+      `,
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+    },
+    {
+      topText: "TEST2",
+      content: `
+        TEST2
+
+        TEST2
+      `,
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+    },
+    {
+      topText: "TEST3",
+      content: `
+        TEST3
+
+        TEST3
+      `,
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+    },
+  ]}
+/>
+```
+
+#### ボタンリンク付き（ThreeFlexBox）
+
+```
+// ボタンリンク付き（ThreeFlexBox）
+
+<ThreeFlexBox
+  contents={[
+    {
+      topText: "TEST",
+      content: `
+        TEST
+
+        TEST
+      `,
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+      buttonText: "TOP PAGE",
+      link: "/",
+    },
+    {
+      topText: "TEST2",
+      content: `
+        TEST2
+
+        TEST2
+      `,
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+      buttonText: "TOP PAGE",
+      link: "/",
+    },
+    {
+      topText: "TEST3",
+      content: `
+        TEST3
+
+        TEST3
+      `,
+      width: 240,
+      height: 140,
+      src: "/logo.png",
+      alt: "a",
+      buttonText: "TOP PAGE2",
+      link: "/",
+    },
+  ]}
+/>
+```
+
+### CustomLink（CustomLink）
+
+```
+<CustomLink href="/">TOP PAGE</CustomLink>
+```
+
+### 引用（BlockquoteInBox）
+
+```
+<BlockquoteInBox
+  contents={`
+    TEST
+
+    TEST
+  `}
+  url="/"
+  linkText="aaa"
+/>
+```
+
+### 引用（BlockquoteInBox Title あり）
+
+```
+// 引用（BlockquoteInBox Titleあり）
+
+<BlockquoteInBox 
+  title="test" 
+  contents={`
+    TEST
+
+    TEST
+  `} 
+  url="/" 
+  linkText="aaa"  />
+```

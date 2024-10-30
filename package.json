@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node scripts/ConvertToWebp.js && next dev",
-    "build": "node scripts/ConvertToWebp.js && next build",
+    "dev": "node scripts/convertToWebp.mjs && next dev",
+    "build": "node scripts/convertToWebp.mjs && next build",
     "start": "npx serve@latest out",
-    "image": "node scripts/ConvertToWebp.js",
+    "image": "node scripts/convertToWebp.mjs",
     "lint": "next lint"
   },
   "dependencies": {

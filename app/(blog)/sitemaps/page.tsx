@@ -1,11 +1,11 @@
 import Link from "next/link";
 import React from "react";
-import { getAllArticles } from "@/app/component/lib/AllArticleService";
-import { getFixedPages } from "@/app/component/lib/FixedPageService";
+import { getAllArticles } from "@/app/lib/allArticleService";
+import { getFixedPages } from "@/app/lib/fixedPageService";
 import { Metadata } from "next";
-import LeftColumn from "@/app/component/layouts/LeftColumn";
-import SideMenu from "@/app/component/SideMenu";
-import Breadcrumbs from "@/app/component/contentArea/Breadcrumbs";
+import LeftColumn from "@/app/components/layouts/LeftColumn";
+import SideMenu from "@/app/components/SideMenu";
+import Breadcrumbs from "@/app/components/content-area/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "サイトマップ",
@@ -19,7 +19,7 @@ const page = async () => {
     <>
       <LeftColumn>
         <div className="content-style p-4">
-          <Breadcrumbs isNotParentCategoryPage={false} addItem="サイトマップ"/>
+          <Breadcrumbs isNotParentCategoryPage={false} addItem="サイトマップ" />
           <h1 className="text-2xl font-semibold mx-2 my-4">サイトマップ</h1>
           <ul>
             {allArticles?.map((allArticle, index) => {

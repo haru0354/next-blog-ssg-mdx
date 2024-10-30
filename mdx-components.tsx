@@ -1,11 +1,11 @@
 import type { MDXComponents } from "mdx/types";
-import Button from "./app/component/ui/Button";
-import CustomLink from "./app/component/designComponents/CustomLink";
-import FlexBox from "./app/component/designComponents/FlexBox";
-import ThreeFlexBox from "./app/component/designComponents/ThreeFlexBox";
-import BlockquoteInBox from "./app/component/designComponents/BlockquoteInBox";
-import Box from "./app/component/designComponents/Box";
-import CustomText from "./app/component/designComponents/CustomText";
+import Button from "./app/components/ui/Button";
+import CustomLink from "./app/components/design-components/CustomLink";
+import FlexBox from "./app/components/design-components/FlexBox";
+import ThreeFlexBox from "./app/components/design-components/ThreeFlexBox";
+import BlockquoteInBox from "./app/components/design-components/BlockquoteInBox";
+import Box from "./app/components/design-components/Box";
+import CustomText from "./app/components/design-components/CustomText";
 
 export function useMDXComponents(components?: MDXComponents): MDXComponents {
   return {
