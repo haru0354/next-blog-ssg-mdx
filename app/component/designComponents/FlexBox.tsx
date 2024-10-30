@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import Button from "../ui/Button";
 import Link from "next/link";
-import SplitAndNewLines from "../contentArea/SplitAndNewLines";
+import SplitAndNewLines from "../content-area/SplitAndNewLines";
 
 type FlexBoxProps = {
   contents: Contents[];
@@ -40,9 +40,7 @@ const FlexBox: React.FC<FlexBoxProps> = ({ contents }) => {
               alt={content.alt}
               className="mx-auto"
             />
-            {content.content && (
-                <SplitAndNewLines text={content.content} />
-            )}
+            {content.content && <SplitAndNewLines text={content.content} />}
             {content.buttonText && content.link && (
               <Link href={content.link}>
                 <Button color="gray" className="block mx-auto">

@@ -1,4 +1,4 @@
-import SplitAndNewLines from "../contentArea/SplitAndNewLines";
+import SplitAndNewLines from "../content-area/SplitAndNewLines";
 
 type BlockquoteInBoxProps = {
   title?: string;
@@ -18,7 +18,10 @@ const BlockquoteInBox: React.FC<BlockquoteInBoxProps> = ({
       {title && <p className="text-center font-semibold mb-4">「{title}」</p>}
       <SplitAndNewLines text={contents} />
       <p className="mt-4 text-right">
-        引用元：<a href={url} className="text-sky-600">{linkText}</a>
+        引用元：
+        <a href={url} className="text-sky-600">
+          {linkText}
+        </a>
       </p>
     </blockquote>
   );

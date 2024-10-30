@@ -1,9 +1,9 @@
 import { getAllArticles } from "@/app/lib/allArticleService";
 import { Metadata } from "next";
 import LeftColumn from "@/app/component/layouts/LeftColumn";
-import Breadcrumbs from "@/app/component/contentArea/Breadcrumbs";
+import Breadcrumbs from "@/app/component/content-area/Breadcrumbs";
 import SearchBar from "@/app/component/ui/SearchBar";
-import SearchResult from "@/app/component/contentArea/SearchResult";
+import SearchResult from "@/app/component/content-area/SearchResult";
 import SideMenu from "@/app/component/SideMenu";
 
 export const metadata: Metadata = {

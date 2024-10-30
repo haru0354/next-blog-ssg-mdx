@@ -5,7 +5,7 @@ import { getFixedPages } from "@/app/lib/fixedPageService";
 import { Metadata } from "next";
 import LeftColumn from "@/app/component/layouts/LeftColumn";
 import SideMenu from "@/app/component/SideMenu";
-import Breadcrumbs from "@/app/component/contentArea/Breadcrumbs";
+import Breadcrumbs from "@/app/component/content-area/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "サイトマップ",

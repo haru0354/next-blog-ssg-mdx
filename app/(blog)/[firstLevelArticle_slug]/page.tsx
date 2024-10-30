@@ -9,8 +9,8 @@ import {
   getFirstLevelArticles,
 } from "@/app/lib/firstLevelArticleService";
 import LeftColumn from "@/app/component/layouts/LeftColumn";
-import Breadcrumbs from "@/app/component/contentArea/Breadcrumbs";
-import CategoryInArticlesList2Images from "@/app/component/contentArea/CategoryInArticlesList2Images";
+import Breadcrumbs from "@/app/component/content-area/Breadcrumbs";
+import CategoryInArticlesList2Images from "@/app/component/content-area/CategoryInArticlesList2Images";
 import NotFound from "@/app/not-found";
 import SideMenu from "@/app/component/SideMenu";
 

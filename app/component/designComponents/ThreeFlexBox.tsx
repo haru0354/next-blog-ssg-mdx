@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import Button from "../ui/Button";
 import Link from "next/link";
-import SplitAndNewLines from "../contentArea/SplitAndNewLines";
+import SplitAndNewLines from "../content-area/SplitAndNewLines";
 
 type ThreeFlexBoxProps = {
   contents: Contents[];
