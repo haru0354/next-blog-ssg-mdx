@@ -2,12 +2,16 @@ import sharp from "sharp";
 import fs from "fs";
 import path from "path";
 
+
+
+
 const convertToWebp = async () => {
-  const inputDirectory = path.join(__dirname, "..", "public");
-  const outputDirectory = path.join(__dirname, "..", "public", "image_webp");
+
+
+  const inputDirectory = path.join(process.cwd(), "public");  
+  const outputDirectory = path.join(process.cwd(), "public", "image_webp");
   const outputThumbnailDirectory = path.join(
-    __dirname,
-    "..",
+    process.cwd(),
     "public",
     "thumbnail_webp"
   );
@@ -22,10 +26,9 @@ const convertToWebp = async () => {
 
   // 変換済みのファイル名のリストを読み込み
   const convertedFilePath = path.join(
-    __dirname,
-    "..",
+    process.cwd(),
     "scripts",
-    "ConvertedFileNameList.json"
+    "convertedFileNameList.json"
   );
   let convertedFileNames = [];
   if (fs.existsSync(convertedFilePath)) {
@@ -65,7 +68,7 @@ const convertToWebp = async () => {
     console.log("画像の変換に失敗しました", error);
   }
 
-  // 変換したファイル名を「ConvertedFileNameList.json」に書き込む
+  // 変換したファイル名を「convertedFileNameList.json」に書き込む
   fs.writeFileSync(
     convertedFilePath,
     JSON.stringify(convertedFileNames, null, 2)
