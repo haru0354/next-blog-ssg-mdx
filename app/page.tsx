@@ -8,11 +8,11 @@ import Header from "./component/Header";
 import GlobalMenu from "./component/GlobalMenu";
 import Footer from "./component/Footer";
 import SideMenu from "./component/SideMenu";
-import TopNewArticle from "./component/topPage/TopNewArticle";
-import TopCategory from "./component/topPage/TopCategory";
+import TopNewArticle from "./component/top-page/TopNewArticle";
+import TopCategory from "./component/top-page/TopCategory";
 import BackToTopButton from "./component/ui/BackToTopButton ";
-import TopRecommendArticles from "./component/topPage/TopRecommendArticles";
-import TwoColumnRecommendArticles from "./component/topPage/TwoColumnRecommendArticles";
+import TopRecommendArticles from "./component/top-page/TopRecommendArticles";
+import TwoColumnRecommendArticles from "./component/top-page/TwoColumnRecommendArticles";
 
 export default async function Home() {
   const topPageArticle = await getTopPageArticle();
