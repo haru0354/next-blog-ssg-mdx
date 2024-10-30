@@ -1,7 +1,7 @@
-import Header from "@/app/component/Header";
-import GlobalMenu from "../component/GlobalMenu";
-import Footer from "@/app/component/Footer";
-import BackToTopButton from "../component/ui/BackToTopButton ";
+import Header from "@/app/components/Header";
+import GlobalMenu from "../components/GlobalMenu";
+import Footer from "@/app/components/Footer";
+import BackToTopButton from "../components/ui/BackToTopButton ";
 
 export default function RootLayout({
   children,

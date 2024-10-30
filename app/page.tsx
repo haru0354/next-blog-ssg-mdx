@@ -4,15 +4,15 @@ import rehypeSlug from "rehype-slug";
 import remarkToc from "remark-toc";
 import { useMDXComponents } from "@/mdx-components";
 import { getTopPageArticle } from "./lib/topPageService";
-import Header from "./component/Header";
-import GlobalMenu from "./component/GlobalMenu";
-import Footer from "./component/Footer";
-import SideMenu from "./component/SideMenu";
-import TopNewArticle from "./component/top-page/TopNewArticle";
-import TopCategory from "./component/top-page/TopCategory";
-import BackToTopButton from "./component/ui/BackToTopButton ";
-import TopRecommendArticles from "./component/top-page/TopRecommendArticles";
-import TwoColumnRecommendArticles from "./component/top-page/TwoColumnRecommendArticles";
+import Header from "./components/Header";
+import GlobalMenu from "./components/GlobalMenu";
+import Footer from "./components/Footer";
+import SideMenu from "./components/SideMenu";
+import TopNewArticle from "./components/top-page/TopNewArticle";
+import TopCategory from "./components/top-page/TopCategory";
+import BackToTopButton from "./components/ui/BackToTopButton ";
+import TopRecommendArticles from "./components/top-page/TopRecommendArticles";
+import TwoColumnRecommendArticles from "./components/top-page/TwoColumnRecommendArticles";
 
 export default async function Home() {
   const topPageArticle = await getTopPageArticle();
