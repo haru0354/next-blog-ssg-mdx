@@ -1,13 +1,8 @@
-import sharp from "sharp";
 import fs from "fs";
 import path from "path";
-
-
-
+import sharp from "sharp";
 
 const convertToWebp = async () => {
-
-
   const inputDirectory = path.join(process.cwd(), "public");  
   const outputDirectory = path.join(process.cwd(), "public", "image_webp");
   const outputThumbnailDirectory = path.join(
