@@ -4,7 +4,7 @@ import matter from "gray-matter";
 
 export async function getTopPageArticle() {
   try {
-    const topPageFileDirectory = path.join(process.cwd(), "mdFile", "topPage");
+    const topPageFileDirectory = path.join(process.cwd(), "mdx-files", "top-page");
     const topPageFile = path.join(topPageFileDirectory, "topPageArticle.mdx");
 
     let topPageContents: string;
@@ -55,7 +55,7 @@ export async function getTopPageRecommendArticles() {
 
 export async function getTopPageArticles(fileName: string) {
   try {
-    const topPageFileDirectory = path.join(process.cwd(), "mdFile", "topPage");
+    const topPageFileDirectory = path.join(process.cwd(), "mdx-files", "top-page");
     const topPagesFile = path.join(
       topPageFileDirectory,
       `${fileName}.mdx`
@@ -79,7 +79,7 @@ export async function getTopPageArticles(fileName: string) {
     const slugs: string[] = data.slug;
     const display: boolean = data.display;
 
-    const articlesDirectory = path.join(process.cwd(), "mdFile", "article");
+    const articlesDirectory = path.join(process.cwd(), "mdx-files", "article");
 
     const articles = slugs
       .map((slug) => {

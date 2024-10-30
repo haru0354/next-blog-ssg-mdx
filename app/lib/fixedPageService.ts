@@ -3,7 +3,7 @@ import fs from "fs";
 import matter from "gray-matter";
 
 export async function getFixedPages() {
-  const fixedPageDirectory = path.join(process.cwd(), "mdFile", "article");
+  const fixedPageDirectory = path.join(process.cwd(), "mdx-files", "article");
 
   let fixedPageNames: string[] = [];
   try {

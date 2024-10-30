@@ -21,7 +21,7 @@ export async function getAllCategories() {
   try {
     const parentCategories = await getParentCategories();
 
-    const categoryDirectory = path.join(process.cwd(), "mdFile", "category");
+    const categoryDirectory = path.join(process.cwd(), "mdx-files", "category");
 
     let parentCategoryFolders: string[] = [];
     try {
@@ -44,7 +44,7 @@ export async function getAllCategories() {
       parentCategoryFolders.map(async (parentCategoryFolder) => {
         const childCategoryDirectory = path.join(
           process.cwd(),
-          "mdFile",
+          "mdx-files",
           "category",
           parentCategoryFolder
         );
@@ -107,7 +107,7 @@ export async function getAllCategories() {
 }
 
 export async function getParentCategories() {
-  const categoriesDirectory = path.join(process.cwd(), "mdFile", "category");
+  const categoriesDirectory = path.join(process.cwd(), "mdx-files", "category");
 
   let fileNamesInCategoryDirectory: string[] = [];
   try {
@@ -162,7 +162,7 @@ export async function getChildCategories(firstLevelArticle_slug: string) {
   try {
     const childCategoriesDirectory = path.join(
       process.cwd(),
-      "mdFile",
+      "mdx-files",
       "category",
       firstLevelArticle_slug
     );

@@ -4,71 +4,70 @@ import matter from "gray-matter";
 
 export async function getGlobalMenu() {
   try {
-  const globalMenuDirectory = path.join(process.cwd(), "mdFile", "menu");
-  const globalMenuFilePath = path.join(globalMenuDirectory, "globalMenu.mdx");
+    const globalMenuDirectory = path.join(process.cwd(), "mdx-files", "menu");
+    const globalMenuFilePath = path.join(globalMenuDirectory, "globalMenu.mdx");
 
-  let globalMenuFileContents: string;
-  try {
-    globalMenuFileContents = await fs.promises.readFile(
-      globalMenuFilePath,
-      "utf8"
-    );
+    let globalMenuFileContents: string;
+    try {
+      globalMenuFileContents = await fs.promises.readFile(
+        globalMenuFilePath,
+        "utf8"
+      );
+    } catch (err) {
+      console.error(
+        `親カテゴリファイル「${globalMenuFilePath}」の読み込みに失敗しました:`,
+        err
+      );
+      return;
+    }
+
+    const { data } = matter(globalMenuFileContents);
+
+    return {
+      frontmatter: data,
+    };
   } catch (err) {
-    console.error(
-      `親カテゴリファイル「${globalMenuFilePath}」の読み込みに失敗しました:`,
-      err
-    );
+    console.error("グローバルメニューデータの取得に失敗しました", err);
     return;
   }
-
-  const { data } = matter(globalMenuFileContents);
-
-  return {
-    frontmatter: data,
-  };
-  
-} catch (err) {
-  console.error("グローバルメニューデータの取得に失敗しました", err);
-  return;
-}
 }
 
 export async function getRecommendArticles() {
   try {
-  const globalMenuDirectory = path.join(process.cwd(), "mdFile", "menu");
-  const recommendArticleFilePath = path.join(
-    globalMenuDirectory,
-    "recommendArticle.mdx"
-  );
+    const globalMenuDirectory = path.join(process.cwd(), "mdx-files", "menu");
+    const recommendArticleFilePath = path.join(
+      globalMenuDirectory,
+      "recommendArticle.mdx"
+    );
 
-  let recommendArticleFileContents: string;
-  try {
-    recommendArticleFileContents = await fs.promises.readFile(
-      recommendArticleFilePath,
-      "utf8"
-    );
+    let recommendArticleFileContents: string;
+    try {
+      recommendArticleFileContents = await fs.promises.readFile(
+        recommendArticleFilePath,
+        "utf8"
+      );
+    } catch (err) {
+      console.error(
+        `親カテゴリファイル「${recommendArticleFilePath}」の読み込みに失敗しました:`,
+        err
+      );
+      return;
+    }
+
+    const { data } = matter(recommendArticleFileContents);
+
+    return {
+      frontmatter: data,
+    };
   } catch (err) {
-    console.error(
-      `親カテゴリファイル「${recommendArticleFilePath}」の読み込みに失敗しました:`,
-      err
-    );
+    console.error("サイドバーのおすすめ記事データの取得に失敗しました", err);
     return;
   }
-
-  const { data } = matter(recommendArticleFileContents);
-
-  return {
-    frontmatter: data,
-  };
-} catch (err) {
-  console.error("サイドバーのおすすめ記事データの取得に失敗しました", err);
-  return;
-}
 }
 
 export async function getLinks() {
   try {
-    const globalMenuDirectory = path.join(process.cwd(), "mdFile", "menu");
+    const globalMenuDirectory = path.join(process.cwd(), "mdx-files", "menu");
 
     const linkFilePath = path.join(globalMenuDirectory, "link.mdx");
 
@@ -97,7 +96,7 @@ export async function getLinks() {
 
 export async function getSideImage() {
   try {
-    const globalMenuDirectory = path.join(process.cwd(), "mdFile", "menu");
+    const globalMenuDirectory = path.join(process.cwd(), "mdx-files", "menu");
     const sideImageFilePath = path.join(globalMenuDirectory, "sideImage.mdx");
 
     let sideImageFileContents: string;
@@ -127,7 +126,7 @@ export async function getSideImage() {
 
 export async function getSideImageBottom() {
   try {
-    const globalMenuDirectory = path.join(process.cwd(), "mdFile", "menu");
+    const globalMenuDirectory = path.join(process.cwd(), "mdx-files", "menu");
     const sideImageFilePath = path.join(
       globalMenuDirectory,
       "sideImageBottom.mdx"
@@ -162,7 +161,7 @@ export async function getSideCategoriesMenu() {
   try {
     const sideCategoriesFilePath = path.join(
       process.cwd(),
-      "mdFile",
+      "mdx-files",
       "menu",
       "sideCategoriesMenu.mdx"
     );
@@ -192,6 +191,3 @@ export async function getSideCategoriesMenu() {
     return;
   }
 }
-
-
-

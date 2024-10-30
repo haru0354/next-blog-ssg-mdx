@@ -22,14 +22,14 @@ export async function getFirstLevelArticle(firstLevelArticle_slug: string) {
   try {
     const articleFilePath = path.join(
       process.cwd(),
-      "mdFile",
+      "mdx-files",
       "article",
       `${firstLevelArticle_slug}.mdx`
     );
 
     const categoryFilePath = path.join(
       process.cwd(),
-      "mdFile",
+      "mdx-files",
       "category",
       `${firstLevelArticle_slug}.mdx`
     );

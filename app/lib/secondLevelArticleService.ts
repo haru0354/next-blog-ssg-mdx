@@ -25,7 +25,7 @@ type Frontmatter = {
 
 export async function getSecondLevelArticles() {
   try {
-    const articlesDirectory = path.join(process.cwd(), "mdFile", "article");
+    const articlesDirectory = path.join(process.cwd(), "mdx-files", "article");
 
     let categoryFoldersInArticles: string[] = [];
     try {
@@ -68,7 +68,7 @@ export async function getSecondLevelArticles() {
 
         const categoryFile = path.join(
           process.cwd(),
-          "mdFile",
+          "mdx-files",
           "category",
           `${categoryFoldersInArticle}.mdx`
         );
@@ -126,7 +126,11 @@ export async function getSecondLevelArticles() {
       })
     );
 
-    const categoriesDirectory = path.join(process.cwd(), "mdFile", "category");
+    const categoriesDirectory = path.join(
+      process.cwd(),
+      "mdx-files",
+      "category"
+    );
 
     let categoryFolders: string[] = [];
     try {
@@ -220,7 +224,7 @@ export async function getSecondLevelArticle(
   try {
     const articleFilePath = path.join(
       process.cwd(),
-      "mdFile",
+      "mdx-files",
       "article",
       firstLevelArticle_slug,
       `${secondLevelArticle_slug}.mdx`
@@ -228,14 +232,14 @@ export async function getSecondLevelArticle(
 
     const parentCategoryFilePath = path.join(
       process.cwd(),
-      "mdFile",
+      "mdx-files",
       "category",
       `${firstLevelArticle_slug}.mdx`
     );
 
     const childCategoryFilePath = path.join(
       process.cwd(),
-      "mdFile",
+      "mdx-files",
       "category",
       firstLevelArticle_slug,
       `${secondLevelArticle_slug}.mdx`

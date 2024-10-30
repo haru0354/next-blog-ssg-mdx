@@ -21,7 +21,7 @@ type Frontmatter = {
 
 export async function getThirdLevelArticles() {
   try {
-    const articlesDirectory = path.join(process.cwd(), "mdFile", "article");
+    const articlesDirectory = path.join(process.cwd(), "mdx-files", "article");
 
     let parentCategoryFolders: string[] = [];
     try {
@@ -44,7 +44,7 @@ export async function getThirdLevelArticles() {
       parentCategoryFolders.map(async (parentCategoryFolder) => {
         const parentCategoryDirectory = path.join(
           process.cwd(),
-          "mdFile",
+          "mdx-files",
           "article",
           parentCategoryFolder
         );
@@ -92,14 +92,14 @@ export async function getThirdLevelArticles() {
 
             const parentCategoryFile = path.join(
               process.cwd(),
-              "mdFile",
+              "mdx-files",
               "category",
               `${parentCategoryFolder}.mdx`
             );
 
             const childCategoryFile = path.join(
               process.cwd(),
-              "mdFile",
+              "mdx-files",
               "category",
               parentCategoryFolder,
               `${childCategoryFolder}.mdx`
@@ -108,7 +108,7 @@ export async function getThirdLevelArticles() {
             await Promise.all(
               mdxFileNames.map(async (mdxFileName) => {
                 const articleFilePath = path.join(
-                  "mdFile",
+                  "mdx-files",
                   "article",
                   parentCategoryFolder,
                   childCategoryFolder,
@@ -203,7 +203,7 @@ export async function getThirdLevelArticle(
   try {
     const articleFilePath = path.join(
       process.cwd(),
-      "mdFile",
+      "mdx-files",
       "article",
       firstLevelArticle_slug,
       secondLevelArticle_slug,
@@ -225,7 +225,7 @@ export async function getThirdLevelArticle(
 
     const parentCategoryPath = path.join(
       process.cwd(),
-      "mdFile",
+      "mdx-files",
       "category",
       `${firstLevelArticle_slug}.mdx`
     );
@@ -248,7 +248,7 @@ export async function getThirdLevelArticle(
 
     const childCategoryPath = path.join(
       process.cwd(),
-      "mdFile",
+      "mdx-files",
       "category",
       firstLevelArticle_slug,
       `${secondLevelArticle_slug}.mdx`

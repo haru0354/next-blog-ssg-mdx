@@ -21,7 +21,7 @@ type Frontmatter = {
 
 export async function getAllArticles() {
   try {
-    const articlesDirectory = path.join(process.cwd(), "mdFile", "article");
+    const articlesDirectory = path.join(process.cwd(), "mdx-files", "article");
 
     let categoryFoldersInArticle: string[] = [];
     try {
@@ -65,7 +65,7 @@ export async function getAllArticles() {
 
         const parentCategoryFilePath = path.join(
           process.cwd(),
-          "mdFile",
+          "mdx-files",
           "category",
           `${categoryFolderInArticle}.mdx`
         );
@@ -169,7 +169,7 @@ export async function getAllArticles() {
 
               const childCategoryFilePath = path.join(
                 process.cwd(),
-                "mdFile",
+                "mdx-files",
                 "category",
                 categoryFolderInArticle,
                 `${parentCategoryFolderInArticle}.mdx`
