@@ -15,11 +15,6 @@ body {
   color: rgb(31 41 55));
 }
 
-.content-style a {
-  color: #0ea5e9;
-  text-decoration: none;
-}
-
 @layer utilities {
   .bg-red-underMarker {
     background: linear-gradient(transparent 60%, rgb(254 202 202) 60%);
