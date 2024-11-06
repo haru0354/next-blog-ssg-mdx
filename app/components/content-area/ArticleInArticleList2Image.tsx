@@ -8,12 +8,30 @@ type ArticleInArticleListProps = {
   articleSlug: string;
 };
 
+type Article = {
+  slug: string;
+  parentCategoryName: string;
+  parentCategorySlug: string;
+  childCategorySlug?: string;
+  frontmatter: {
+    title: string;
+    date: string;
+    description: string;
+    eyeCatchName?: string;
+    eyeCatchAlt?: string;
+  };
+};
+
 const ArticleInArticleList: React.FC<ArticleInArticleListProps> = async ({
   parentCategorySlug,
   childCategorySlug,
   articleSlug,
 }) => {
   const allArticles = await getAllArticles();
+
+  if (!allArticles) {
+    return null;
+  }
 
   const filteredAllArticles = allArticles?.filter((allArticle) =>
     childCategorySlug
@@ -23,9 +41,23 @@ const ArticleInArticleList: React.FC<ArticleInArticleListProps> = async ({
         articleSlug !== allArticle.slug
   );
 
-  const latestArticles = filteredAllArticles?.slice(0, 4);
+  const shuffleArray = (array: Article[]) => {
+    const shuffledArray = array.slice();
 
-  if (!latestArticles || latestArticles.length === 0) {
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledArray[i], shuffledArray[j]] = [
+        shuffledArray[j],
+        shuffledArray[i],
+      ];
+    }
+
+    return shuffledArray;
+  };
+
+  const shuffledArticles = shuffleArray(filteredAllArticles ?? [])?.slice(0, 4);
+
+  if (!shuffledArticles || shuffledArticles.length === 0) {
     return null;
   }
 
@@ -35,7 +67,7 @@ const ArticleInArticleList: React.FC<ArticleInArticleListProps> = async ({
         関連記事
       </h2>
       <div className="w-full flex flex-wrap justify-center">
-        {latestArticles.map((article) => (
+        {shuffledArticles.map((article) => (
           <Link
             href={
               article.childCategorySlug
