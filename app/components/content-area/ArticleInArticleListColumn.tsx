@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { getAllArticles } from "@/app/lib/allArticleService";
+import { shuffleArray } from "@/app/util/shuffleArray";
 
 type ArticleInArticleListColumnProps = {
   parentCategorySlug: string;
@@ -8,25 +9,9 @@ type ArticleInArticleListColumnProps = {
   articleSlug: string;
 };
 
-type Article = {
-  slug: string;
-  parentCategoryName: string;
-  parentCategorySlug: string;
-  childCategorySlug?: string;
-  frontmatter: {
-    title: string;
-    date: string;
-    description: string;
-    eyeCatchName?: string;
-    eyeCatchAlt?: string;
-  };
-};
-
-const ArticleInArticleListColumn: React.FC<ArticleInArticleListColumnProps> = async ({
-  parentCategorySlug,
-  childCategorySlug,
-  articleSlug,
-}) => {
+const ArticleInArticleListColumn: React.FC<
+  ArticleInArticleListColumnProps
+> = async ({ parentCategorySlug, childCategorySlug, articleSlug }) => {
   const allArticles = await getAllArticles();
 
   if (!allArticles) {
@@ -40,20 +25,6 @@ const ArticleInArticleListColumn: React.FC<ArticleInArticleListColumnProps> = as
       : parentCategorySlug === allArticle.parentCategorySlug &&
         articleSlug !== allArticle.slug
   );
-
-  const shuffleArray = (array: Article[]) => {
-    const shuffledArray = array.slice();
-
-    for (let i = shuffledArray.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffledArray[i], shuffledArray[j]] = [
-        shuffledArray[j],
-        shuffledArray[i],
-      ];
-    }
-
-    return shuffledArray;
-  };
 
   const shuffledArticles = shuffleArray(filteredAllArticles ?? [])?.slice(0, 4);
 
