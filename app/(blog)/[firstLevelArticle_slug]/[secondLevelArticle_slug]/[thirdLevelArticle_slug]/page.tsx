@@ -10,10 +10,10 @@ import {
 } from "@/app/lib/thirdLevelArticleService";
 import LeftColumn from "@/app/components/layouts/LeftColumn";
 import Breadcrumbs from "@/app/components/content-area/Breadcrumbs";
-import ArticleInArticleList from "@/app/components/content-area/ArticleInArticleList";
 import NotFound from "@/app/not-found";
 import SideMenu from "@/app/components/SideMenu";
 import CategoryInArticlesList from "@/app/components/content-area/CategoryInArticlesList";
+import ArticleInArticleListColumn from "@/app/components/content-area/ArticleInArticleListColumn";
 
 export const generateMetadata = async ({
   params,
@@ -124,7 +124,7 @@ const Page = async ({
             categoryName={article.frontmatter.categoryName}
           />
         ) : (
-          <ArticleInArticleList
+          <ArticleInArticleListColumn
             parentCategorySlug={params.firstLevelArticle_slug}
             childCategorySlug={params.secondLevelArticle_slug}
             articleSlug={params.thirdLevelArticle_slug}
