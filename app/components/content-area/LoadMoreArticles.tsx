@@ -38,7 +38,7 @@ const LoadMoreArticles: React.FC<LoadMoreArticlesProps> = ({ articles }) => {
   };
 
   return (
-    <div>
+    <>
       <div className="w-full flex flex-wrap justify-center md:justify-start items-start">
         {displayedArticles?.map((article) => (
           <Link
@@ -83,7 +83,7 @@ const LoadMoreArticles: React.FC<LoadMoreArticlesProps> = ({ articles }) => {
           </button>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
