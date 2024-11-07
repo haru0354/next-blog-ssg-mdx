@@ -1,31 +1,46 @@
-import Link from "next/link";
-import Image from "next/image";
-import { getAllArticles } from "@/app/lib/allArticleService";
+"use client";
 
-type CategoryInArticlesList2ImagesProps = {
-  parentCategorySlug: string;
-  childCategorySlug?: string;
-  categoryName: string;
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+
+type LoadMoreArticlesProps = {
+  articles: Article[];
 };
 
-const CategoryInArticlesList2Images: React.FC<
-  CategoryInArticlesList2ImagesProps
-> = async ({ parentCategorySlug, childCategorySlug, categoryName }) => {
-  const allArticles = await getAllArticles();
+type Article = {
+  slug: string;
+  parentCategoryName: string;
+  parentCategorySlug: string;
+  childCategorySlug?: string;
+  frontmatter: {
+    title: string;
+    date: string;
+    description: string;
+    eyeCatchName?: string;
+    eyeCatchAlt?: string;
+  };
+};
 
-  const filteredArticles = allArticles?.filter((allArticle) =>
-    childCategorySlug
-      ? childCategorySlug === allArticle.childCategorySlug
-      : parentCategorySlug === allArticle.parentCategorySlug
+const LoadMoreArticles: React.FC<LoadMoreArticlesProps> = ({ articles }) => {
+  const [displayedArticles, setDisplayedArticles] = useState<Article[]>(
+    articles.slice(0, 4)
   );
 
+  const handleLoadMoreArticles = () => {
+    setDisplayedArticles((prevArticles) => {
+      const nextArticles = articles.slice(
+        prevArticles.length,
+        prevArticles.length + 4
+      );
+      return [...prevArticles, ...nextArticles];
+    });
+  };
+
   return (
-    <div className="p-4 rounded bg-white">
-      <h2 className="w-full my-4 py-4 px-2 bg-layout-mainColor text-white text-xl font-semibold rounded">
-        「{categoryName}」の記事一覧
-      </h2>
+    <>
       <div className="w-full flex flex-wrap justify-center md:justify-start items-start">
-        {filteredArticles?.map((article) => (
+        {displayedArticles?.map((article) => (
           <Link
             href={
               article.childCategorySlug
@@ -58,8 +73,18 @@ const CategoryInArticlesList2Images: React.FC<
           </Link>
         ))}
       </div>
-    </div>
+      {displayedArticles.length < articles.length && (
+        <div className="flex justify-center mt-4">
+          <button
+            onClick={handleLoadMoreArticles}
+            className="px-4 py-2 bg-blue-500 text-white rounded-lg"
+          >
+            更に記事を読み込む
+          </button>
+        </div>
+      )}
+    </>
   );
 };
 
-export default CategoryInArticlesList2Images;
+export default LoadMoreArticles;

@@ -21,38 +21,38 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   isNotParentCategoryPage = true,
 }) => {
   return (
-    <div className="text-sm">
-      <Image
-        src="/image_webp/home.webp"
-        alt="home"
-        width={25}
-        height={25}
-        className="inline mb-[2px] mr-2"
-      />
-      <Link href="/" className="text-sky-600">
-        ホーム
-      </Link>
-      　＞　
-      {categorySlug && categoryName ? (
-        <Link href={`/${categorySlug}`} className="text-sky-600">
-          {categoryName}
-        </Link>
-      ) : (
-        categoryName
-      )}
-      {childCategorySlug && childCategoryName && (
-        <>
-          　＞　
-          <Link
-            href={`/${categorySlug}/${childCategorySlug}`}
-            className="text-sky-600"
-          >
-            {childCategoryName}
-          </Link>
-        </>
-      )}
-      {isNotParentCategoryPage && <>　＞　 {pageTitle} </>}
-      {addItem && addItem}
+    <div className="text-sm mx-2 text-gray-500">
+      <nav>
+        <Image
+          src="/image_webp/home.webp"
+          alt="home"
+          width={20}
+          height={20}
+          className="inline mb-[2px] mr-2"
+        />
+        <Link href="/">ホーム</Link>
+        <span className="mx-2"> &gt; </span>
+        {categorySlug && categoryName ? (
+          <Link href={`/${categorySlug}`}>{categoryName}</Link>
+        ) : (
+          categoryName
+        )}
+        {childCategorySlug && childCategoryName && (
+          <>
+            <span className="mx-2"> &gt; </span>
+            <Link href={`/${categorySlug}/${childCategorySlug}`}>
+              {childCategoryName}
+            </Link>
+          </>
+        )}
+        {isNotParentCategoryPage && (
+          <>
+            <span className="mx-2"> &gt; </span>
+            {pageTitle}
+          </>
+        )}
+        {addItem && addItem}
+      </nav>
     </div>
   );
 };
