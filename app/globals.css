@@ -15,6 +15,23 @@ body {
   color: rgb(31 41 55));
 }
 
+/* table関係のタグが「mdx-components.tsx」で反映されないのでこちらで記載 */
+
+table {
+  border: 1px solid #374151;
+  width: 100%;
+  text-align: left;
+}
+
+th, td {
+  border: 1px solid #374151;
+  padding: 8px;
+}
+
+th {
+  background-color: #e8e9ea;
+}
+
 @layer utilities {
   .bg-red-underMarker {
     background: linear-gradient(transparent 60%, rgb(254 202 202) 60%);
