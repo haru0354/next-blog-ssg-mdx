@@ -31,11 +31,13 @@ const SearchResult: React.FC<SearchResultProps> = ({ allArticles }) => {
 
   useEffect(() => {
     if (query) {
-      const lowerCaseQuery = query.toLowerCase();
-      const filteredArticles = allArticles.filter(
-        (article) =>
-          article.frontmatter.title.toLowerCase().includes(lowerCaseQuery) ||
-          article.frontmatter.description.toLowerCase().includes(lowerCaseQuery)
+      const searchQueries = query.toLowerCase().split(/\s+/);
+      const filteredArticles = allArticles.filter((article) =>
+        searchQueries.every(
+          (queries) =>
+            article.frontmatter.title.toLowerCase().includes(queries) ||
+            article.frontmatter.description.toLowerCase().includes(queries)
+        )
       );
       setFilteredArticles(filteredArticles);
     }
