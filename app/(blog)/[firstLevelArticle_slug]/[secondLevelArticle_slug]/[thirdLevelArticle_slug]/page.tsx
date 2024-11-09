@@ -12,8 +12,8 @@ import LeftColumn from "@/app/components/layouts/LeftColumn";
 import Breadcrumbs from "@/app/components/content-area/Breadcrumbs";
 import NotFound from "@/app/not-found";
 import SideMenu from "@/app/components/SideMenu";
-import CategoryInArticlesList from "@/app/components/content-area/CategoryInArticlesList";
-import ArticleInArticleListColumn from "@/app/components/content-area/ArticleInArticleListColumn";
+import CategoryInArticlesList from "@/app/components/content-area/related-articles/CategoryInArticlesList";
+import ArticleInArticleListColumn from "@/app/components/content-area/related-articles/ArticleInArticleListColumn";
 
 export const generateMetadata = async ({
   params,

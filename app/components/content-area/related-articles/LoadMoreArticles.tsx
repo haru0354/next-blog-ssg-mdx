@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Button from "../../ui/Button";
 
 type LoadMoreArticlesProps = {
   articles: Article[];
@@ -74,14 +75,9 @@ const LoadMoreArticles: React.FC<LoadMoreArticlesProps> = ({ articles }) => {
         ))}
       </div>
       {displayedArticles.length < articles.length && (
-        <div className="flex justify-center mt-4">
-          <button
-            onClick={handleLoadMoreArticles}
-            className="px-4 py-2 bg-blue-500 text-white rounded-lg"
-          >
-            更に記事を読み込む
-          </button>
-        </div>
+        <Button onClick={handleLoadMoreArticles} className="block mx-auto" color="gray">
+          更に記事を読み込む
+        </Button>
       )}
     </>
   );
