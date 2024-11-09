@@ -12,7 +12,7 @@ import LeftColumn from "@/app/components/layouts/LeftColumn";
 import Breadcrumbs from "@/app/components/content-area/Breadcrumbs";
 import NotFound from "@/app/not-found";
 import SideMenu from "@/app/components/SideMenu";
-import CategoryInArticlesList from "@/app/components/content-area/CategoryInArticlesList";
+import CategoryInArticlesList from "@/app/components/content-area/related-articles/CategoryInArticlesList";
 
 export const generateMetadata = async ({
   params,
