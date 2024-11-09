@@ -8,6 +8,7 @@ import Box from "./app/components/design-components/Box";
 import CustomText from "./app/components/design-components/CustomText";
 import CustomImage from "./app/components/design-components/CustomImage";
 import Speech from "./app/components/design-components/Speech";
+import Ranking from "./app/components/design-components/Ranking";
 
 export function useMDXComponents(components?: MDXComponents): MDXComponents {
   return {
@@ -58,6 +59,7 @@ export function useMDXComponents(components?: MDXComponents): MDXComponents {
     ThreeFlexBox: ThreeFlexBox,
     BlockquoteInBox: BlockquoteInBox,
     Speech: Speech,
+    Ranking: Ranking,
     ...components,
   };
 }
