@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Button from "../ui/Button";
+import Button from "../../ui/Button";
 
 type LoadMoreArticlesColumnProps = {
   articles: Article[];
