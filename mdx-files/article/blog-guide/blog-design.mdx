@@ -683,3 +683,58 @@ props に「title」を追加
 「detailUrl」「reviewUrl」は記載をしなければボタンが表示されなくなります。
 
 ```
+
+### ランキング（デザインパターン2）
+
+<RankingWithTable
+    name="name"
+    width="240"
+    height="160"
+    alt="NO IMAGE"
+    src="/image_webp/no_image.webp"
+    contents={[
+    "ランキングの名称ですが、あえて順位などはありません。",
+    "商品の詳細としての利用であったり、見出しに順位記載など、複数の用途で使えるようにしています。",
+    "画像は右側配置に変更をすることも可能です。",
+    "配置する項目が多い為、必要なpropsも少し多くなっています。",
+    ]}
+  detailUrl="https://example.com/detail"
+  reviewUrl="https://example.com/review"
+  tableData={[
+    { title: "価格", item: "●●円" },
+    { title: "サンプル1", item: "データ1" },
+    { title: "サンプル2", item: "データ2" },
+  ]}
+/>
+
+
+
+```
+// ランキング
+
+<RankingWithTable
+    name="name"
+    width="240"
+    height="160"
+    alt="NO IMAGE"
+    src="/image_webp/no_image.webp"
+    contents={[
+    "ランキングの名称ですが、あえて順位などはありません。",
+    "商品の詳細としての利用であったり、見出しに順位記載など、複数の用途で使えるようにしています。",
+    "画像は右側配置に変更をすることも可能です。",
+    "配置する項目が多い為、必要なpropsも少し多くなっています。",
+    ]}
+  detailUrl="https://example.com/detail"
+  reviewUrl="https://example.com/review"
+  tableData={[
+    { title: "価格", item: "●●円" },
+    { title: "サンプル1", item: "データ1" },
+    { title: "サンプル2", item: "データ2" },
+  ]}
+/>
+
+「imgPosition="right"」を追加すると画像が右側に配置されます。
+「detailUrl」「reviewUrl」は記載をしなければボタンが表示されなくなります。
+「tableData」の数は増減することで表の行を変更することができます。
+
+```
