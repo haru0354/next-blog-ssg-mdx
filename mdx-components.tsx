@@ -9,6 +9,7 @@ import CustomText from "./app/components/design-components/CustomText";
 import CustomImage from "./app/components/design-components/CustomImage";
 import Speech from "./app/components/design-components/Speech";
 import Ranking from "./app/components/design-components/Ranking";
+import RankingLayoutB from "./app/components/design-components/RankingLayoutB";
 
 export function useMDXComponents(components?: MDXComponents): MDXComponents {
   return {
@@ -60,6 +61,7 @@ export function useMDXComponents(components?: MDXComponents): MDXComponents {
     BlockquoteInBox: BlockquoteInBox,
     Speech: Speech,
     Ranking: Ranking,
+    RankingLayoutB: RankingLayoutB,
     ...components,
   };
 }
