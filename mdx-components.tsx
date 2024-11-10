@@ -10,7 +10,7 @@ import CustomImage from "./app/components/design-components/CustomImage";
 import Speech from "./app/components/design-components/Speech";
 import RankingWithList from "./app/components/design-components/RankingWithList";
 import RankingWithTable from "./app/components/design-components/RankingWithTable";
-import DualHeaderTable from "./app/components/design-components/DualHeaderTable";
+import DualHeaderTable from "./app/components/design-components/table/DualHeaderTable";
 
 export function useMDXComponents(components?: MDXComponents): MDXComponents {
   return {
