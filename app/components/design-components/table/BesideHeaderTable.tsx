@@ -4,8 +4,8 @@ type BesideHeaderTableProps = {
 };
 
 const BesideHeaderTable: React.FC<BesideHeaderTableProps> = ({
-  titles,
-  contents,
+  titles = [],
+  contents = [],
 }) => {
   return (
     <table>
