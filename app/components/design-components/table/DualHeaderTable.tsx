@@ -9,8 +9,8 @@ type VerticalItems = {
 };
 
 const DualHeaderTable: React.FC<DualHeaderTableProps> = ({
-    besideTitles = [], // デフォルト値として空配列を設定
-    verticalItems = [], // デフォルト値として空配列を設定
+    besideTitles = [],
+    verticalItems = [],
 }) => {
   return (
     <table>
