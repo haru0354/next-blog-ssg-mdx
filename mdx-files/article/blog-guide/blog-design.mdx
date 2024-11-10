@@ -632,51 +632,52 @@ props に「title」を追加
 
 ### ランキング
 
-
-
-<Ranking
-    name="name"
-    width="240"
-    height="160"
-    alt="NO IMAGE"
-    src="/image_webp/no_image.webp"
-    contents={[
+<RankingWithList
+  name="name"
+  width="240"
+  height="156"
+  alt="NO IMAGE"
+  src="/image_webp/no_image.webp"
+  contents={[
     "ランキングの名称ですが、あえて順位などはありません。",
     "商品の詳細としての利用であったり、見出しに順位記載など、複数の用途で使えるようにしています。",
     "画像は右側配置に変更をすることも可能です。",
     "配置する項目が多い為、必要なpropsも少し多くなっています。",
-    ]}
-    titles={["サンプル", "サンプル2", "サンプル3"]}
-    firstList={["項目", "項目2", "項目3"]}
-    secondList={["項目4", "項目5"]}
-    thirdList={["項目6", "項目7", "項目8"]}
-    detailUrl="/"
-    reviewUrl="/"
+  ]}
+  titles={["サンプル1", "サンプル2", "サンプル3"]}
+  lists={[
+    ["データ1", "データ2", "データ3"],
+    ["データ4", "データ5", "データ6"],
+    ["データ7", "データ8", "データ9"],
+  ]}
+  detailUrl="/"
+  reviewUrl="/"
 />
-
 
 ```
 // ランキング
 
-<Ranking
-    name="name"
-    width="240"
-    height="160"
-    alt="NO IMAGE"
-    src="/image_webp/no_image.webp"
-    contents={[
+<RankingWithList
+  name="name"
+  width="240"
+  height="156"
+  alt="NO IMAGE"
+  src="/image_webp/no_image.webp"
+  contents={[
     "ランキングの名称ですが、あえて順位などはありません。",
     "商品の詳細としての利用であったり、見出しに順位記載など、複数の用途で使えるようにしています。",
     "画像は右側配置に変更をすることも可能です。",
     "配置する項目が多い為、必要なpropsも少し多くなっています。",
-    ]}
-    titles={["サンプル", "サンプル2", "サンプル3"]}
-    firstList={["項目", "項目2", "項目3"]}
-    secondList={["項目4", "項目5"]}
-    thirdList={["項目6", "項目7", "項目8"]}
-    detailUrl="/"
-    reviewUrl="/"
-/>
+  ]}
+  titles={["サンプル1", "サンプル2", "サンプル3"]}
+  lists={[
+    ["データ1", "データ2", "データ3"],
+    ["データ4", "データ5", "データ6"],
+    ["データ7", "データ8", "データ9"],
+  ]}
+  detailUrl="/"
+  reviewUrl="/"
+/>;
 
 「imgPosition="right"」を追加すると画像が右側に配置されます。
 「detailUrl」「reviewUrl」は記載をしなければボタンが表示されなくなります。

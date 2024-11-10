@@ -2,24 +2,22 @@ import Image from "next/image";
 import Button from "../ui/Button";
 import Link from "next/link";
 
-type RankingProps = {
-  width: number;
-  height: number;
+type RankingWithListProps = {
+  width?: number;
+  height?: number;
   src: string;
   alt: string;
   imgPosition: "left" | "right";
   className?: string;
   contents: string[];
   titles: string[];
-  firstList: string[];
-  secondList: string[];
-  thirdList?: string[];
+  lists: string[][];
   name?: string;
   detailUrl?: string;
   reviewUrl?: string;
 };
 
-const Ranking: React.FC<RankingProps> = ({
+const RankingWithList: React.FC<RankingWithListProps> = ({
   width = 240,
   height = 240,
   src,
@@ -27,20 +25,15 @@ const Ranking: React.FC<RankingProps> = ({
   imgPosition = "left",
   contents,
   titles,
-  firstList,
-  secondList,
-  thirdList,
+  lists,
   name,
   detailUrl,
   reviewUrl,
 }) => {
-  const imageClass =
-    imgPosition === "right" ? "float-right ml-8" : "float-left mr-8";
-
-  const lists = [firstList, secondList, thirdList].filter(Boolean);
+  const imageClass = imgPosition === "right" ? "float-right ml-8" : "float-left mr-8";
 
   return (
-    <div>
+    <>
       <Image
         width={width}
         height={height}
@@ -65,11 +58,9 @@ const Ranking: React.FC<RankingProps> = ({
           <tr>
             {lists.map((list, index) => (
               <td key={index}>
-                <ul>
-                  {list?.map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
+                {list.map((item, index) => (
+                  <li key={index}> {item}</li>
+                ))}
               </td>
             ))}
           </tr>
@@ -89,8 +80,8 @@ const Ranking: React.FC<RankingProps> = ({
           </Button>
         </Link>
       )}
-    </div>
+    </>
   );
 };
 
-export default Ranking;
+export default RankingWithList;
