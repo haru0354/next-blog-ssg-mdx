@@ -180,6 +180,94 @@ size に props で「small」「normal」「big」で指定することで変更
 <Button size="big">ボタン</Button>
 ```
 
+### Next.jsのLinkコンポーネントの使用（CustomLink）
+
+mdx 内に設置する「Link」を next.js の「Link コンポーネント」にすることができます。
+
+「children」で「CustomLink」タグを、Next.js の「Link」タグや html の「a」タグの代わりに使用してください。
+
+<CustomLink href="/">TOP PAGE</CustomLink>
+
+```
+// CustomLink
+
+<CustomLink href="/">TOP PAGE</CustomLink>
+```
+
+### Next.jsの画像コンポーネントの使用（CustomImage）
+
+mdx 内に設置する「画像」を next.js の「Image コンポーネント」にすることができます。
+
+「CustomImage」タグを、「img」タグの代わりに使用してください。
+
+<CustomImage width={350} height={228} src="/image_webp/no_image.webp" alt="aa"  />
+
+```
+// CustomImage
+
+<CustomImage width={240} height={240} src="/image_webp/no_image.webp" alt="aa"  />
+
+tailwindの記述で「className」propsにスタイルを追加することも可能です。
+```
+
+### 引用（BlockquoteInBox）
+
+props で「contents」「url」「linkText」を設定する。
+
+<BlockquoteInBox
+  contents={`
+  TEST
+
+  TEST
+  `}
+  url="/"
+  linkText="aaa"
+/>
+
+```
+// 引用（BlockquoteInBox）
+
+<BlockquoteInBox
+  contents={`
+    TEST
+
+    TEST
+  `}
+  url="/"
+  linkText="aaa"
+/>
+```
+
+### 引用（BlockquoteInBox Title あり）
+
+props で「contents」「url」「linkText」を設定する。
+props に「title」を追加
+
+<BlockquoteInBox 
+  title="test" 
+  contents={`
+    TEST
+
+    TEST
+  `} 
+  url="/" 
+  linkText="aaa"  />
+
+```
+// 引用（BlockquoteInBox Titleあり）
+
+<BlockquoteInBox 
+  title="test" 
+  contents={`
+    TEST
+
+    TEST
+  `} 
+  url="/" 
+  linkText="aaa"  />
+```
+
+
 ### Box（Box）
 
 children を使用することで利用が可能。
@@ -557,77 +645,6 @@ props で「buttonText」「link」の 2 つを追加すると、ボタンリン
     },
   ]}
 />
-```
-
-### CustomLink（CustomLink）
-
-mdx 内に設置する「Link」を next.js の「Link コンポーネント」にすることができます。
-
-「children」で「CustomLink」タグを、Next.js の「Link」タグや html の「a」タグの代わりに使用してください。
-
-<CustomLink href="/">TOP PAGE</CustomLink>
-
-```
-// CustomLink
-
-<CustomLink href="/">TOP PAGE</CustomLink>
-```
-
-### 引用（BlockquoteInBox）
-
-props で「contents」「url」「linkText」を設定する。
-
-<BlockquoteInBox
-  contents={`
-  TEST
-
-  TEST
-  `}
-  url="/"
-  linkText="aaa"
-/>
-
-```
-// 引用（BlockquoteInBox）
-
-<BlockquoteInBox
-  contents={`
-    TEST
-
-    TEST
-  `}
-  url="/"
-  linkText="aaa"
-/>
-```
-
-### 引用（BlockquoteInBox Title あり）
-
-props で「contents」「url」「linkText」を設定する。
-props に「title」を追加
-
-<BlockquoteInBox 
-  title="test" 
-  contents={`
-    TEST
-
-    TEST
-  `} 
-  url="/" 
-  linkText="aaa"  />
-
-```
-// 引用（BlockquoteInBox Titleあり）
-
-<BlockquoteInBox 
-  title="test" 
-  contents={`
-    TEST
-
-    TEST
-  `} 
-  url="/" 
-  linkText="aaa"  />
 ```
 
 ### ランキング
