@@ -1,11 +1,11 @@
-import SideCategory2 from "./side-menu/SideCategory2";
 import SideLinks from "./side-menu/SideLinks";
-import SideNewArticle2 from "./side-menu/SideNewArticle2";
 import SideRecommendArticles from "./side-menu/SideRecommendArticles";
 import SideImage from "./side-menu/SideImage";
 import SideImageBottom from "./side-menu/SideImageBottom";
 import SideChildCategory from "./side-menu/SideChildCategory";
 import SideSearchBar from "./side-menu/SideSearchBar";
+import SideCategory from "./side-menu/SideCategory";
+import SideNewArticle from "./side-menu/SideNewArticle";
 
 type SideMenuProps = {
   firstLevelArticle_slug?: string;
@@ -17,21 +17,32 @@ const SideMenu: React.FC<SideMenuProps> = ({
   categoryName,
 }) => {
   return (
-    <div className="w-full rounded flex flex-col md:w-[300px] pt-8 md:pt-4">
-      <SideImage />
-      <SideRecommendArticles />
-      {firstLevelArticle_slug && (
-        <SideChildCategory
-          firstLevelArticle_slug={firstLevelArticle_slug}
-          categoryName={categoryName}
-        />
-      )}
-      <SideCategory2 />
-      <SideNewArticle2 />
-      <SideLinks />
-      <SideImageBottom />
-      <SideSearchBar />
-    </div>
+    <>
+      <div className="w-full rounded flex flex-col md:w-[300px] p-2 md:pt-4 bg-white">
+        <SideImage />
+        <SideRecommendArticles />
+        <SideCategory />
+        <SideNewArticle />
+        <SideLinks />
+        <SideImageBottom />
+        <SideSearchBar />
+      </div>
+      <div className="w-full rounded flex flex-col md:w-[300px] pt-8 md:pt-4">
+        <SideImage />
+        <SideRecommendArticles />
+        {firstLevelArticle_slug && (
+          <SideChildCategory
+            firstLevelArticle_slug={firstLevelArticle_slug}
+            categoryName={categoryName}
+          />
+        )}
+        <SideCategory />
+        <SideNewArticle />
+        <SideLinks border={true} />
+        <SideImageBottom />
+        <SideSearchBar />
+      </div>
+    </>
   );
 };
 
