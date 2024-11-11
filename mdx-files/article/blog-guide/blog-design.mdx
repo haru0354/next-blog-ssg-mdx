@@ -6,11 +6,6 @@ eyeCatchName: "blog-design"
 eyeCatchAlt: "ブログ記事装飾サンプル"
 ---
 
-<VerticalHeaderTable verticalItems={[
-  {title: "bb",items: ["aa", "bb"]},
-  {title: "cc",items: ["aafg", "bagb"]},
-]}/>
-
 この記事ではブログアプリを装飾する為の、「デザインのサンプル」を記載しています。
 
 また、どう記述することで、デザインが適用されるかについての記載も行っています。
@@ -813,7 +808,6 @@ props で「buttonText」「link」の 2 つを追加すると、ボタンリン
 
 ```
 
-
 ### 横タイトルの表
 
 <BesideHeaderTable
@@ -838,6 +832,27 @@ props で「buttonText」「link」の 2 つを追加すると、ボタンリン
 行や列は数を増やすことが「titles」や「contents」の数を増やすことで増減できます。
 
 ```
+
+### 縦タイトルの表
+
+<VerticalHeaderTable verticalItems={[
+  {title: "サンプル",items: ["データ", "データ2"]},
+  {title: "サンプル2",items: ["データ3", "データ4"]},
+]}/>
+
+```
+// 縦タイトルの表
+
+<VerticalHeaderTable verticalItems={[
+  {title: "サンプル",items: ["データ", "データ2"]},
+  {title: "サンプル2",items: ["データ3", "データ4"]},
+]}/>
+
+行や列は数を増やすことで増減できます。
+
+```
+
+
 
 
 
