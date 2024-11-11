@@ -37,7 +37,7 @@ const SideMenu: React.FC<SideMenuProps> = ({
           />
         )}
         <SideCategory />
-        <SideNewArticle />
+        <SideNewArticle border={true} />
         <SideLinks border={true} />
         <SideImageBottom />
         <SideSearchBar />
