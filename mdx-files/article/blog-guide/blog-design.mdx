@@ -180,6 +180,110 @@ size に props で「small」「normal」「big」で指定することで変更
 <Button size="big">ボタン</Button>
 ```
 
+### Next.jsのLinkコンポーネントの使用（CustomLink）
+
+mdx 内に設置する「Link」を next.js の「Link コンポーネント」にすることができます。
+
+「children」で「CustomLink」タグを、Next.js の「Link」タグや html の「a」タグの代わりに使用してください。
+
+<CustomLink href="/">TOP PAGE</CustomLink>
+
+```
+// CustomLink
+
+<CustomLink href="/">TOP PAGE</CustomLink>
+```
+
+### Next.jsの画像コンポーネントの使用（CustomImage）
+
+mdx 内に設置する「画像」を next.js の「Image コンポーネント」にすることができます。
+
+「CustomImage」タグを、「img」タグの代わりに使用してください。
+
+<CustomImage width={350} height={228} src="/image_webp/no_image.webp" alt="aa"  />
+
+```
+// CustomImage
+
+<CustomImage width={240} height={240} src="/image_webp/no_image.webp" alt="aa"  />
+
+tailwindの記述で「className」propsにスタイルを追加することも可能です。
+```
+
+### 引用（BlockquoteInBox）
+
+props で「contents」「url」「linkText」を設定する。
+
+<BlockquoteInBox
+  contents={`
+  TEST
+
+  TEST
+  `}
+  url="/"
+  linkText="aaa"
+/>
+
+```
+// 引用（BlockquoteInBox）
+
+<BlockquoteInBox
+  contents={`
+    TEST
+
+    TEST
+  `}
+  url="/"
+  linkText="aaa"
+/>
+```
+
+### 引用（BlockquoteInBox Title あり）
+
+props で「contents」「url」「linkText」を設定する。
+props に「title」を追加
+
+<BlockquoteInBox 
+  title="test" 
+  contents={`
+    TEST
+
+    TEST
+  `} 
+  url="/" 
+  linkText="aaa"  />
+
+```
+// 引用（BlockquoteInBox Titleあり）
+
+<BlockquoteInBox 
+  title="test" 
+  contents={`
+    TEST
+
+    TEST
+  `} 
+  url="/" 
+  linkText="aaa"  />
+```
+
+### キャラクターの会話形式（Speech）
+
+キャラクターの会話形式でのデザインです。
+
+<Speech src="/image_webp/character_sample.webp" contents={["サンプルです。", "これはサンプルです。"]} />
+<Speech src="/image_webp/character_sample.webp" contents={["サンプルです。", "これはサンプルです。"]} position="right" />
+
+```
+// キャラクターの会話形式（Speech）
+
+<Speech src="/image_webp/character_sample.webp" contents={["サンプルです。", "これはサンプルです。"]} />
+
+<Speech src="/image_webp/character_sample.webp" contents={["サンプルです。", "これはサンプルです。"]} position="right" />
+
+「position="right"」を追加することによって画像が右側に寄ります。
+```
+
 ### Box（Box）
 
 children を使用することで利用が可能。
@@ -559,73 +663,199 @@ props で「buttonText」「link」の 2 つを追加すると、ボタンリン
 />
 ```
 
-### CustomLink（CustomLink）
+### ランキング
 
-mdx 内に設置する「Link」を next.js の「Link コンポーネント」にすることができます。
-
-「children」で「CustomLink」タグを、Next.js の「Link」タグや html の「a」タグの代わりに使用してください。
-
-<CustomLink href="/">TOP PAGE</CustomLink>
-
-```
-// CustomLink
-
-<CustomLink href="/">TOP PAGE</CustomLink>
-```
-
-### 引用（BlockquoteInBox）
-
-props で「contents」「url」「linkText」を設定する。
-
-<BlockquoteInBox
-  contents={`
-  TEST
-
-  TEST
-  `}
-  url="/"
-  linkText="aaa"
+<RankingWithList
+  name="name"
+  width="240"
+  height="156"
+  alt="NO IMAGE"
+  src="/image_webp/no_image.webp"
+  contents={[
+    "ランキングの名称ですが、あえて順位などはありません。",
+    "商品の詳細としての利用であったり、見出しに順位記載など、複数の用途で使えるようにしています。",
+    "画像は右側配置に変更をすることも可能です。",
+    "配置する項目が多い為、必要なpropsも少し多くなっています。",
+  ]}
+  titles={["サンプル1", "サンプル2", "サンプル3"]}
+  lists={[
+    ["データ1", "データ2", "データ3"],
+    ["データ4", "データ5", "データ6"],
+    ["データ7", "データ8", "データ9"],
+  ]}
+  detailUrl="/"
+  reviewUrl="/"
 />
 
 ```
-// 引用（BlockquoteInBox）
+// ランキング
 
-<BlockquoteInBox
-  contents={`
-    TEST
+<RankingWithList
+  name="name"
+  width="240"
+  height="156"
+  alt="NO IMAGE"
+  src="/image_webp/no_image.webp"
+  contents={[
+    "ランキングの名称ですが、あえて順位などはありません。",
+    "商品の詳細としての利用であったり、見出しに順位記載など、複数の用途で使えるようにしています。",
+    "画像は右側配置に変更をすることも可能です。",
+    "配置する項目が多い為、必要なpropsも少し多くなっています。",
+  ]}
+  titles={["サンプル1", "サンプル2", "サンプル3"]}
+  lists={[
+    ["データ1", "データ2", "データ3"],
+    ["データ4", "データ5", "データ6"],
+    ["データ7", "データ8", "データ9"],
+  ]}
+  detailUrl="/"
+  reviewUrl="/"
+/>;
 
-    TEST
-  `}
-  url="/"
-  linkText="aaa"
+「imgPosition="right"」を追加すると画像が右側に配置されます。
+「detailUrl」「reviewUrl」は記載をしなければボタンが表示されなくなります。
+
+```
+
+### ランキング（デザインパターン2）
+
+<RankingWithTable
+    name="name"
+    width="240"
+    height="160"
+    alt="NO IMAGE"
+    src="/image_webp/no_image.webp"
+    contents={[
+    "ランキングの名称ですが、あえて順位などはありません。",
+    "商品の詳細としての利用であったり、見出しに順位記載など、複数の用途で使えるようにしています。",
+    "画像は右側配置に変更をすることも可能です。",
+    "配置する項目が多い為、必要なpropsも少し多くなっています。",
+    ]}
+  detailUrl="https://example.com/detail"
+  reviewUrl="https://example.com/review"
+  tableData={[
+    { title: "価格", item: "●●円" },
+    { title: "サンプル1", item: "データ1" },
+    { title: "サンプル2", item: "データ2" },
+  ]}
 />
-```
 
-### 引用（BlockquoteInBox Title あり）
 
-props で「contents」「url」「linkText」を設定する。
-props に「title」を追加
-
-<BlockquoteInBox 
-  title="test" 
-  contents={`
-    TEST
-
-    TEST
-  `} 
-  url="/" 
-  linkText="aaa"  />
 
 ```
-// 引用（BlockquoteInBox Titleあり）
+// ランキング
 
-<BlockquoteInBox 
-  title="test" 
-  contents={`
-    TEST
+<RankingWithTable
+    name="name"
+    width="240"
+    height="160"
+    alt="NO IMAGE"
+    src="/image_webp/no_image.webp"
+    contents={[
+    "ランキングの名称ですが、あえて順位などはありません。",
+    "商品の詳細としての利用であったり、見出しに順位記載など、複数の用途で使えるようにしています。",
+    "画像は右側配置に変更をすることも可能です。",
+    "配置する項目が多い為、必要なpropsも少し多くなっています。",
+    ]}
+  detailUrl="https://example.com/detail"
+  reviewUrl="https://example.com/review"
+  tableData={[
+    { title: "価格", item: "●●円" },
+    { title: "サンプル1", item: "データ1" },
+    { title: "サンプル2", item: "データ2" },
+  ]}
+/>
 
-    TEST
-  `} 
-  url="/" 
-  linkText="aaa"  />
+「imgPosition="right"」を追加すると画像が右側に配置されます。
+「detailUrl」「reviewUrl」は記載をしなければボタンが表示されなくなります。
+「tableData」の数は増減することで表の行を変更することができます。
+
 ```
+
+## 表（簡単作成）
+
+表はテーブルタグを入れたり、th、やtdと記載する項目も多いです。
+
+しかし、ブログを制作すると頻繁に使用をしたりすることもあります。
+
+そのため、手間なくテーブルを作成できるように、コンポーネントにしています。
+
+### 縦横タイトルの表
+
+<DualHeaderTable
+  besideTitles={[ "", "サンプル" , "サンプル2" ]}
+  verticalItems={[
+    {title: "項目", items: ["データ", "データ2"]},
+    {title: "項目2", items: ["データ3", "データ4"]},
+  ]}
+/>
+
+
+```
+// 縦横タイトルの表
+
+<DualHeaderTable
+  besideTitles={[ "", "サンプル" , "サンプル2" ]}
+  verticalItems={[
+    {title: "項目", items: ["データ", "データ2"]},
+    {title: "項目2", items: ["データ3", "データ4"]},
+  ]}
+/>
+
+表の一番左上はタイトルを入れても入れなくても良いようにしています。
+左上を空白にするなら「besideTitlesの1つ目の配列は""で空白にしてください」
+タイトルを入れるなら「besideTitlesの1つ目の配列はタイトルを入れてください」
+
+```
+
+### 横タイトルの表
+
+<BesideHeaderTable
+  titles={[ "サンプル", "サンプル2" , "サンプル3" ]}
+  contents={[
+    ["データ", "データ2", "データ3"],
+    ["データ4", "データ5", "データ6"],
+  ]}
+/>
+
+```
+// 横タイトルの表
+
+<BesideHeaderTable
+  titles={[ "サンプル", "サンプル2" , "サンプル3" ]}
+  contents={[
+    ["データ", "データ2", "データ3"],
+    ["データ4", "データ5", "データ6"],
+  ]}
+/>
+
+行や列は数を増やすことが「titles」や「contents」の数を増やすことで増減できます。
+
+```
+
+### 縦タイトルの表
+
+<VerticalHeaderTable verticalItems={[
+  {title: "サンプル",items: ["データ", "データ2"]},
+  {title: "サンプル2",items: ["データ3", "データ4"]},
+]}/>
+
+```
+// 縦タイトルの表
+
+<VerticalHeaderTable verticalItems={[
+  {title: "サンプル",items: ["データ", "データ2"]},
+  {title: "サンプル2",items: ["データ3", "データ4"]},
+]}/>
+
+行や列は数を増やすことで増減できます。
+
+```
+
+
+
+
+
+
+
+

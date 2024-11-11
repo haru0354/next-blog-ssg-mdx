@@ -6,6 +6,13 @@ import ThreeFlexBox from "./app/components/design-components/ThreeFlexBox";
 import BlockquoteInBox from "./app/components/design-components/BlockquoteInBox";
 import Box from "./app/components/design-components/Box";
 import CustomText from "./app/components/design-components/CustomText";
+import CustomImage from "./app/components/design-components/CustomImage";
+import Speech from "./app/components/design-components/Speech";
+import RankingWithList from "./app/components/design-components/RankingWithList";
+import RankingWithTable from "./app/components/design-components/RankingWithTable";
+import DualHeaderTable from "./app/components/design-components/table/DualHeaderTable";
+import BesideHeaderTable from "./app/components/design-components/table/BesideHeaderTable";
+import VerticalHeaderTable from "./app/components/design-components/table/VerticalHeaderTable copy";
 
 export function useMDXComponents(components?: MDXComponents): MDXComponents {
   return {
@@ -47,13 +54,20 @@ export function useMDXComponents(components?: MDXComponents): MDXComponents {
       </ul>
     ),
     li: ({ children }) => <li className="my-4">{children}</li>,
+    CustomImage: CustomImage,
+    CustomLink: CustomLink,
     CustomText: CustomText,
     Button: Button,
-    CustomLink: CustomLink,
     Box: Box,
     FlexBox: FlexBox,
     ThreeFlexBox: ThreeFlexBox,
     BlockquoteInBox: BlockquoteInBox,
+    Speech: Speech,
+    RankingWithList: RankingWithList,
+    RankingWithTable: RankingWithTable,
+    DualHeaderTable: DualHeaderTable,
+    BesideHeaderTable: BesideHeaderTable,
+    VerticalHeaderTable: VerticalHeaderTable,
     ...components,
   };
 }
