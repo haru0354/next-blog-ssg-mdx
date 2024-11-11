@@ -12,6 +12,7 @@ import RankingWithList from "./app/components/design-components/RankingWithList"
 import RankingWithTable from "./app/components/design-components/RankingWithTable";
 import DualHeaderTable from "./app/components/design-components/table/DualHeaderTable";
 import BesideHeaderTable from "./app/components/design-components/table/BesideHeaderTable";
+import VerticalHeaderTable from "./app/components/design-components/table/VerticalHeaderTable copy";
 
 export function useMDXComponents(components?: MDXComponents): MDXComponents {
   return {
@@ -66,6 +67,7 @@ export function useMDXComponents(components?: MDXComponents): MDXComponents {
     RankingWithTable: RankingWithTable,
     DualHeaderTable: DualHeaderTable,
     BesideHeaderTable: BesideHeaderTable,
+    VerticalHeaderTable: VerticalHeaderTable,
     ...components,
   };
 }
