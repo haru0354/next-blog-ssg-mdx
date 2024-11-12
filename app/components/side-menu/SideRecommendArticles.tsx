@@ -26,8 +26,10 @@ const SideRecommendArticles: React.FC<SideRecommendArticlesProps> = async ({
   const h3BorderDesign = border ? "w-[300px]" : "rounded mb-4";
 
   return (
-    <div className="w-full mb-8 border-r border-l border-gray-200 ">
-      <h3 className={`p-4 font-bold text-white bg-layout-mainColor  ${h3BorderDesign}`}>
+    <div className="w-full mb-8">
+      <h3
+        className={`p-4 font-bold text-white bg-layout-mainColor  ${h3BorderDesign}`}
+      >
         おすすめの記事
       </h3>
       <Link href={`/${recommendArticles.frontmatter.slug}`}>

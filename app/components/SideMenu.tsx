@@ -1,11 +1,11 @@
 import SideLinks from "./side-menu/SideLinks";
 import SideRecommendArticles from "./side-menu/SideRecommendArticles";
-import SideImage from "./side-menu/SideImage";
 import SideImageBottom from "./side-menu/SideImageBottom";
 import SideChildCategory from "./side-menu/SideChildCategory";
 import SideSearchBar from "./side-menu/SideSearchBar";
 import SideCategory from "./side-menu/SideCategory";
 import SideNewArticle from "./side-menu/SideNewArticle";
+import SideImageTop from "./side-menu/SideImageTop";
 
 type SideMenuProps = {
   firstLevelArticle_slug?: string;
@@ -19,7 +19,7 @@ const SideMenu: React.FC<SideMenuProps> = ({
   return (
     <>
       <div className="w-full rounded flex flex-col md:w-[300px] p-2 md:pt-4 bg-white">
-        <SideImage />
+        <SideImageTop />
         <SideRecommendArticles />
         {firstLevelArticle_slug && (
           <SideChildCategory
@@ -34,7 +34,7 @@ const SideMenu: React.FC<SideMenuProps> = ({
         <SideSearchBar />
       </div>
       <div className="w-full rounded flex flex-col md:w-[300px] pt-8 md:pt-4">
-        <SideImage />
+        <SideImageTop />
         <SideRecommendArticles border={true} />
         {firstLevelArticle_slug && (
           <SideChildCategory
