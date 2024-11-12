@@ -6,6 +6,12 @@ type SideRecommendArticlesProps = {
   border?: boolean;
 };
 
+type Image = {
+  eyeCatchName: string;
+  eyeCatchAlt: string;
+  url: string;
+};
+
 const SideRecommendArticles: React.FC<SideRecommendArticlesProps> = async ({
   border = false,
 }) => {
@@ -15,33 +21,31 @@ const SideRecommendArticles: React.FC<SideRecommendArticlesProps> = async ({
     return null;
   }
 
-  const allFieldsEmpty = Object.values(recommendArticles.frontmatter).every(
-    (value) => value === ""
-  );
-
-  if (allFieldsEmpty) {
-    return null;
-  }
-
-  const h3BorderDesign = border ? "w-[300px]" : "rounded mb-4";
+  const h3BorderDesign = border ? "w-[300px]" : "mb-4 rounded";
 
   return (
-    <div className="w-full mb-8">
-      <h3
-        className={`p-4 font-bold text-white bg-layout-mainColor  ${h3BorderDesign}`}
-      >
-        おすすめの記事
-      </h3>
-      <Link href={`/${recommendArticles.frontmatter.slug}`}>
-        <Image
-          src={`/thumbnail_webp/${recommendArticles.frontmatter.eyeCatchName}.webp`}
-          alt={recommendArticles.frontmatter.eyeCatchAlt}
-          width={300}
-          height={196}
-          className="mx-auto md:mt-0 mt-8"
-        />
-      </Link>
-    </div>
+    <>
+      {recommendArticles.frontmatter.display && (
+        <div className="w-full">
+          <h3
+            className={`p-4 font-bold text-white bg-layout-mainColor  ${h3BorderDesign}`}
+          >
+            おすすめの記事
+          </h3>
+          {recommendArticles.frontmatter.images.map((image: Image) => (
+            <Link href={`/${image.url}`}>
+              <Image
+                src={`/thumbnail_webp/${image.eyeCatchName}.webp`}
+                alt={image.eyeCatchAlt}
+                width={300}
+                height={196}
+                className="mx-auto md:mt-0 my-8"
+              />
+            </Link>
+          ))}
+        </div>
+      )}
+    </>
   );
 };
 
