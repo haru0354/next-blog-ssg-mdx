@@ -35,7 +35,7 @@ const SideMenu: React.FC<SideMenuProps> = ({
       </div>
       <div className="w-full rounded flex flex-col md:w-[300px] pt-8 md:pt-4">
         <SideImage />
-        <SideRecommendArticles />
+        <SideRecommendArticles border={true} />
         {firstLevelArticle_slug && (
           <SideChildCategory
             firstLevelArticle_slug={firstLevelArticle_slug}
