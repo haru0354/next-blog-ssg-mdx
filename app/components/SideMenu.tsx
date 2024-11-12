@@ -21,6 +21,12 @@ const SideMenu: React.FC<SideMenuProps> = ({
       <div className="w-full rounded flex flex-col md:w-[300px] p-2 md:pt-4 bg-white">
         <SideImage />
         <SideRecommendArticles />
+        {firstLevelArticle_slug && (
+          <SideChildCategory
+            firstLevelArticle_slug={firstLevelArticle_slug}
+            categoryName={categoryName}
+          />
+        )}
         <SideCategory />
         <SideNewArticle />
         <SideLinks />
@@ -34,6 +40,7 @@ const SideMenu: React.FC<SideMenuProps> = ({
           <SideChildCategory
             firstLevelArticle_slug={firstLevelArticle_slug}
             categoryName={categoryName}
+            border={true}
           />
         )}
         <SideCategory border={true} />
