@@ -7,7 +7,13 @@ type Category = {
   categoryName: string;
 };
 
-const SideCategory = async () => {
+type SideCategoryProps = {
+  border?: boolean;
+};
+
+const SideCategory: React.FC<SideCategoryProps> = async ({
+  border = false,
+}) => {
   const sideCategoriesMenu = await getSideCategoriesMenu();
 
   if (!sideCategoriesMenu || !sideCategoriesMenu.items) {
@@ -32,9 +38,16 @@ const SideCategory = async () => {
     return null;
   }
 
+  const h3BorderDesign = border ? "" : "rounded";
+  const liBorderDesign = border
+    ? "border-r border-b border-l border-gray-500"
+    : "";
+
   return (
-    <nav>
-      <h3 className="w-full mb-8 py-4 px-2 bg-layout-mainColor text-white font-bold rounded">
+    <nav className="mb-8 bg-white">
+      <h3
+        className={`w-full p-4 border font-bold text-white bg-layout-mainColor border-layout-mainColor ${h3BorderDesign}`}
+      >
         カテゴリ
       </h3>
       <ul>
@@ -42,7 +55,7 @@ const SideCategory = async () => {
           return (
             <Link href={`/${category?.slug}`} key={category?.slug}>
               <li
-                className="p-3 hover: transition-colors duration-300 hover:bg-hover-blue"
+                className={`p-4 hover: transition-colors duration-300 hover:bg-hover-blue ${liBorderDesign}`}
                 key={category?.categoryName}
               >
                 {category?.categoryName}
