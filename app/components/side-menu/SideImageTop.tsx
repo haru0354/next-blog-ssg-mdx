@@ -17,7 +17,7 @@ const SideImageTop = async () => {
 
   return (
     <>
-      {sideImages && sideImages.frontmatter.display && (
+      {sideImages.frontmatter.display && (
         <div>
           {sideImages.frontmatter.images.map((image: Image) => (
             <Link href={`${image.url}`}>

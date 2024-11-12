@@ -1,20 +1,38 @@
 ---
-eyeCatchName: ""
-eyeCatchAlt: ""
-url: ""
-eyeCatchName2: ""
-eyeCatchAlt2: ""
-url2: ""
-eyeCatchName3: ""
-eyeCatchAlt3: ""
-url3: ""
+display: true
+images:
+ - eyeCatchName: "00"
+   eyeCatchAlt: "00"
+   url: "/"
+ - eyeCatchName: "00"
+   eyeCatchAlt: "00"
+   url: "/"
 ---
+
 
 {/* サイドメニュー下部の画像リンク */}
 
-画像は最大3枚まで表示をすることができます。
+サイドメニューの最下部に表示される画像リンクを表示させるファイルです。
 
-2枚目を追加する:「eyeCatchName2」「eyeCatchAlt2」「url2」これら3つを記載する。
-3枚目を追加する:「eyeCatchName3」「eyeCatchAlt3」「url3」これら3つを記載する。
+displayを「true」「false」の書き換えによって、サイドメニューの表示が変わります。
+true: 表示
+false: 非表示
 
-なお、記載をしていない場合は全て表示はされないようになっています。
+記載する内容は下記をご覧ください。
+
+eyeCatchName: 表示する画像ファイル名を拡張子を除いて入力
+eyeCatchAlt: 画像のALT
+slug: リンク先のURL
+
+記載をしていても「display」が「false」なら表示されないので、メモとして残すこともできます。
+
+{/* 表示する画像を増やす */}
+
+入力する項目をコピー貼り付けで増やして記載してください。
+
+- eyeCatchName: "00"
+  eyeCatchAlt: "00"
+  url: "/"
+- eyeCatchName: "000"
+  eyeCatchAlt: "000"
+  url: "/"
