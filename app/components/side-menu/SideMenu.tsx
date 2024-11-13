@@ -1,11 +1,11 @@
-import SideLinks from "./side-menu/SideLinks";
-import SideRecommendArticles from "./side-menu/SideRecommendArticles";
-import SideImageBottom from "./side-menu/SideImageBottom";
-import SideChildCategory from "./side-menu/SideChildCategory";
-import SideSearchBar from "./side-menu/SideSearchBar";
-import SideCategory from "./side-menu/SideCategory";
-import SideNewArticle from "./side-menu/SideNewArticle";
-import SideImageTop from "./side-menu/SideImageTop";
+import SideLinks from "./parts/SideLinks";
+import SideRecommendArticles from "./parts/SideRecommendArticles";
+import SideImageBottom from "./parts/SideImageBottom";
+import SideChildCategory from "./parts/SideChildCategory";
+import SideSearchBar from "./parts/SideSearchBar";
+import SideCategory from "./parts/SideCategory";
+import SideNewArticle from "./parts/SideNewArticle";
+import SideImageTop from "./parts/SideImageTop";
 
 type SideMenuProps = {
   firstLevelArticle_slug?: string;

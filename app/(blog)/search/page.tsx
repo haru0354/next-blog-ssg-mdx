@@ -4,7 +4,7 @@ import LeftColumn from "@/app/components/layouts/LeftColumn";
 import Breadcrumbs from "@/app/components/content-area/Breadcrumbs";
 import SearchBar from "@/app/components/ui/SearchBar";
 import SearchResult from "@/app/components/content-area/SearchResult";
-import SideMenu from "@/app/components/SideMenu";
+import SideMenu from "@/app/components/side-menu/SideMenu";
 
 export const metadata: Metadata = {
   title: "サイト内検索結果",
