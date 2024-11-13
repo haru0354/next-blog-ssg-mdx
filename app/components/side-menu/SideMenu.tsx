@@ -18,37 +18,40 @@ const SideMenu: React.FC<SideMenuProps> = ({
 }) => {
   return (
     <>
-      <div className="w-full rounded flex flex-col md:w-[300px] p-2 md:pt-4 bg-white">
-        <SideImageTop />
-        <SideRecommendArticles />
-        {firstLevelArticle_slug && (
-          <SideChildCategory
-            firstLevelArticle_slug={firstLevelArticle_slug}
-            categoryName={categoryName}
-          />
-        )}
-        <SideCategory />
-        <SideNewArticle />
-        <SideLinks />
-        <SideImageBottom />
-        <SideSearchBar />
-      </div>
-      <div className="w-full rounded flex flex-col md:w-[300px] pt-8 md:pt-4">
-        <SideImageTop />
-        <SideRecommendArticles border={true} />
-        {firstLevelArticle_slug && (
-          <SideChildCategory
-            firstLevelArticle_slug={firstLevelArticle_slug}
-            categoryName={categoryName}
-            border={true}
-          />
-        )}
-        <SideCategory border={true} />
-        <SideNewArticle border={true} />
-        <SideLinks border={true} />
-        <SideImageBottom/>
-        <SideSearchBar border={true}/>
-      </div>
+      {process.env.SIDE_MENU_BORDER === "true" ? (
+        <div className="w-full rounded flex flex-col md:w-[300px] pt-8 md:pt-4">
+          <SideImageTop />
+          <SideRecommendArticles border={true} />
+          {firstLevelArticle_slug && (
+            <SideChildCategory
+              firstLevelArticle_slug={firstLevelArticle_slug}
+              categoryName={categoryName}
+              border={true}
+            />
+          )}
+          <SideCategory border={true} />
+          <SideNewArticle border={true} />
+          <SideLinks border={true} />
+          <SideImageBottom />
+          <SideSearchBar border={true} />
+        </div>
+      ) : (
+        <div className="w-full rounded flex flex-col md:w-[300px] p-2 md:pt-4 bg-white">
+          <SideImageTop />
+          <SideRecommendArticles />
+          {firstLevelArticle_slug && (
+            <SideChildCategory
+              firstLevelArticle_slug={firstLevelArticle_slug}
+              categoryName={categoryName}
+            />
+          )}
+          <SideCategory />
+          <SideNewArticle />
+          <SideLinks />
+          <SideImageBottom />
+          <SideSearchBar />
+        </div>
+      )}
     </>
   );
 };
