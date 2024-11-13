@@ -16,8 +16,8 @@ const config: Config = {
       },
       colors: {
         layout: {
-          bgColor: "#43a86f",
-          mainColor: "rgb(31 41 55)",
+          bgColor: process.env.BACKGROUND_COLOR ? process.env.BACKGROUND_COLOR : "white",
+          mainColor: process.env.MAIN_COLOR ? process.env.MAIN_COLOR : "rgb(31 41 55)",
         },
         main: {
           gray: "rgb(31 41 55)",
