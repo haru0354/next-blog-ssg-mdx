@@ -46,8 +46,8 @@ const SideMenu: React.FC<SideMenuProps> = ({
         <SideCategory border={true} />
         <SideNewArticle border={true} />
         <SideLinks border={true} />
-        <SideImageBottom />
-        <SideSearchBar />
+        <SideImageBottom/>
+        <SideSearchBar border={true}/>
       </div>
     </>
   );
