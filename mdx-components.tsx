@@ -9,7 +9,7 @@ import CustomText from "./app/components/design-components/CustomText";
 import CustomImage from "./app/components/design-components/CustomImage";
 import Speech from "./app/components/design-components/Speech";
 import RankingWithList from "./app/components/design-components/ranking/RankingWithList";
-import RankingWithTable from "./app/components/design-components/RankingWithTable";
+import RankingWithTable from "./app/components/design-components/ranking/RankingWithTable";
 import DualHeaderTable from "./app/components/design-components/table/DualHeaderTable";
 import BesideHeaderTable from "./app/components/design-components/table/BesideHeaderTable";
 import VerticalHeaderTable from "./app/components/design-components/table/VerticalHeaderTable copy";
