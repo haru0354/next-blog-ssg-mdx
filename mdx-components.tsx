@@ -6,7 +6,7 @@ import ThreeFlexBox from "./app/components/design-components/ThreeFlexBox";
 import BlockquoteInBox from "./app/components/design-components/BlockquoteInBox";
 import Box from "./app/components/design-components/Box";
 import CustomText from "./app/components/design-components/CustomText";
-import CustomImage from "./app/components/design-components/CustomImage";
+import CustomImage from "./app/components/design-components/nextjs-components/CustomImage";
 import Speech from "./app/components/design-components/Speech";
 import RankingWithList from "./app/components/design-components/ranking/RankingWithList";
 import RankingWithTable from "./app/components/design-components/ranking/RankingWithTable";
