@@ -4,7 +4,7 @@ import CustomLink from "./app/components/design-components/nextjs-components/Cus
 import FlexBox from "./app/components/design-components/FlexBox";
 import ThreeFlexBox from "./app/components/design-components/ThreeFlexBox";
 import BlockquoteInBox from "./app/components/design-components/BlockquoteInBox";
-import Box from "./app/components/design-components/Box";
+import Box from "./app/components/design-components/box/Box";
 import CustomText from "./app/components/design-components/CustomText";
 import CustomImage from "./app/components/design-components/nextjs-components/CustomImage";
 import Speech from "./app/components/design-components/Speech";
