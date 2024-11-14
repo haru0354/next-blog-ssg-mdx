@@ -2,7 +2,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { getAllArticles } from "@/app/lib/allArticleService";
 
-const SideNewArticle = async () => {
+type SideNewArticleProps = {
+  border?: boolean;
+};
+
+const SideNewArticle: React.FC<SideNewArticleProps> = async ({
+  border = false,
+}) => {
   const allArticles = await getAllArticles();
 
   if (!allArticles) {
@@ -17,9 +23,16 @@ const SideNewArticle = async () => {
 
   const filteredArticles = sortedArticles.slice(0, 5);
 
+  const h3BorderDesign = border ? "" : "rounded";
+  const divBorderDesign = border
+    ? "md:pt-0 border-r border-l border-gray-500"
+    : "";
+
   return (
-    <nav>
-      <h3 className="w-full mb-8 py-4 px-2 bg-layout-mainColor text-white font-bold rounded">
+    <nav className="mb-8">
+      <h3
+        className={`w-full p-4 bg-layout-mainColor text-white font-bold ${h3BorderDesign}`}
+      >
         新着記事
       </h3>
       <ul>
@@ -33,7 +46,9 @@ const SideNewArticle = async () => {
               }
               key={article.slug}
             >
-              <div className="hover:transition-colors duration-300 bg-hover-blue">
+              <div
+                className={`pt-4 bg-white hover:transition-colors duration-300 hover:bg-hover-blue ${divBorderDesign}`}
+              >
                 <Image
                   src={
                     article.frontmatter.eyeCatchName
@@ -49,7 +64,7 @@ const SideNewArticle = async () => {
                   height={196}
                   className="mx-auto"
                 />
-                <p className="my-4">{article.frontmatter.title}</p>
+                <p className="p-4">{article.frontmatter.title}</p>
               </div>
             </Link>
           );

@@ -4,11 +4,13 @@ import { getChildCategories } from "@/app/lib/categoryService";
 type SideChildCategoryProps = {
   firstLevelArticle_slug: string;
   categoryName: string | undefined;
+  border?: boolean;
 };
 
 const SideChildCategory: React.FC<SideChildCategoryProps> = async ({
   firstLevelArticle_slug,
   categoryName,
+  border,
 }) => {
   const categories = await getChildCategories(firstLevelArticle_slug);
 
@@ -16,9 +18,16 @@ const SideChildCategory: React.FC<SideChildCategoryProps> = async ({
     return null;
   }
 
+  const h3BorderDesign = border ? "" : "rounded";
+  const liBorderDesign = border
+    ? "border-r border-b border-l border-gray-500"
+    : "";
+
   return (
-    <nav className="bg-white border-r border-l mb-8 border-gray-500">
-      <h3 className="w-full p-4 bg-layout-mainColor text-white font-bold">
+    <nav className="mb-8 bg-white">
+      <h3
+        className={`w-full p-4 bg-layout-mainColor text-white font-bold ${h3BorderDesign}`}
+      >
         {categoryName}
       </h3>
       <ul>
@@ -29,7 +38,7 @@ const SideChildCategory: React.FC<SideChildCategoryProps> = async ({
               key={category?.slug}
             >
               <li
-                className="p-4 border-b border-gray-500 hover: transition-colors duration-300 hover:bg-hover-blue"
+                className={`p-4 hover:transition-colors hover:bg-hover-blue duration-300 ${liBorderDesign}`}
                 key={category?.frontmatter.categoryName}
               >
                 {category?.frontmatter.categoryName}

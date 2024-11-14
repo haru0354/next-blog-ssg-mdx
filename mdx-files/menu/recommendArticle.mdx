@@ -1,11 +1,34 @@
 ---
-slug: ""
-eyeCatchName: "00"
-eyeCatchAlt: "00"
+display: true
+images:
+ - eyeCatchName: "00"
+   eyeCatchAlt: "00"
+   url: "/"
 ---
 
-{/* サイドメニューのおすすめ記事*/}
+{/* サイドメニューおすすめ記事* */}
 
-slug: おすすめの記事のリンクのURL
-eyeCatchName: 画像ファイルを拡張子を除いた名前で入力
+サイドメニューの最上部に表示されるおすすめ記事を表示させるファイルです。
+
+displayを「true」「false」の書き換えによって、表示が変わります。
+true: 表示
+false: 非表示
+
+記載する内容は下記をご覧ください。
+
+eyeCatchName: 表示する画像ファイル名を拡張子を除いて入力
 eyeCatchAlt: 画像のALT
+slug: リンク先のURL
+
+記載をしていても「display」が「false」なら表示されないので、メモとして残すこともできます。
+
+{/* 表示する画像を増やす */}
+
+入力する項目をコピー貼り付けで増やして記載してください。
+
+- eyeCatchName: "00"
+  eyeCatchAlt: "00"
+  url: "/"
+- eyeCatchName: "000"
+  eyeCatchAlt: "000"
+  url: "/"
