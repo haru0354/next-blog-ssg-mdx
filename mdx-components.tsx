@@ -28,12 +28,12 @@ export function useMDXComponents(components?: MDXComponents): MDXComponents {
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className="my-6 p-3 text-lg font-semibold border-b-2 border-layout-mainColor">
+      <h3 className="my-6 p-3 text-lg font-semibold border-b-2 text-layout-mainColor border-layout-mainColor">
         {children}
       </h3>
     ),
     h4: ({ children }) => (
-      <h4 className="my-6 p-2 text-center text-lg font-semibold border-b-2 border-dashed border-layout-mainColor">
+      <h4 className="my-6 p-2 text-center text-lg font-semibold border-b-2 border-dashed text-layout-mainColor border-layout-mainColor">
         {children}
       </h4>
     ),
