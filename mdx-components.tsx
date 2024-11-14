@@ -2,7 +2,7 @@ import type { MDXComponents } from "mdx/types";
 import Button from "./app/components/ui/Button";
 import CustomLink from "./app/components/design-components/nextjs-components/CustomLink";
 import FlexBox from "./app/components/design-components/box/FlexBox";
-import ThreeFlexBox from "./app/components/design-components/ThreeFlexBox";
+import ThreeFlexBox from "./app/components/design-components/box/ThreeFlexBox";
 import BlockquoteInBox from "./app/components/design-components/BlockquoteInBox";
 import Box from "./app/components/design-components/box/Box";
 import CustomText from "./app/components/design-components/CustomText";
