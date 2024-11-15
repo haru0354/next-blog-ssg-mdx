@@ -28,7 +28,7 @@ const TopRecommendArticles = async () => {
             {topRecommendArticles.articles.map((article) => {
               return (
                 <Link href={`/${article?.slug}`} key={article?.slug}>
-                  <div className="flex flex-col justify-center items-center mx-2 mb-8 md:max-w-[320px] md:min-w-[320px] hover: transition-colors duration-300 hover:bg-hover-blue">
+                  <div className="flex flex-col justify-center items-center mx-2 mb-8 md:max-w-[320px] md:min-w-[320px] hover: transition-colors duration-300 hover:bg-layout-hoverColor">
                     <Image
                       src={
                         article?.frontmatter.eyeCatchName

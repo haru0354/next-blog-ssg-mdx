@@ -50,7 +50,7 @@ const LoadMoreArticles: React.FC<LoadMoreArticlesProps> = ({ articles }) => {
             }
             key={article.slug}
           >
-            <div className="flex flex-col max-w-[367px] md:min-h-[330px] mx-2 my-2 hover: transition-colors duration-300 hover:bg-hover-blue">
+            <div className="flex flex-col max-w-[367px] md:min-h-[330px] mx-2 my-2 hover: transition-colors duration-300 hover:bg-layout-hoverColor">
               <Image
                 src={
                   article.frontmatter.eyeCatchName
@@ -75,7 +75,11 @@ const LoadMoreArticles: React.FC<LoadMoreArticlesProps> = ({ articles }) => {
         ))}
       </div>
       {displayedArticles.length < articles.length && (
-        <Button onClick={handleLoadMoreArticles} className="block mx-auto" color="gray">
+        <Button
+          onClick={handleLoadMoreArticles}
+          className="block mx-auto"
+          color="gray"
+        >
           更に記事を読み込む
         </Button>
       )}

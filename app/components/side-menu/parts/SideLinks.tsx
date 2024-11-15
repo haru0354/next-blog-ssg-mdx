@@ -36,7 +36,7 @@ const SideLinks: React.FC<SideLinksProps> = async ({ border = false }) => {
         {links.items.map((item: Item) => (
           <a href={item.slug} target="blank" key={item.name}>
             <li
-              className={`p-4 hover: transition-colors duration-300 hover:bg-hover-blue ${
+              className={`p-4 hover: transition-colors duration-300 hover:bg-layout-hoverColor ${
                 border && liBorderDesign
               }`}
             >

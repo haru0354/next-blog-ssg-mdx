@@ -47,7 +47,7 @@ const SideNewArticle: React.FC<SideNewArticleProps> = async ({
               key={article.slug}
             >
               <div
-                className={`pt-4 bg-white hover:transition-colors duration-300 hover:bg-hover-blue ${divBorderDesign}`}
+                className={`pt-4 bg-white hover:transition-colors duration-300 hover:bg-layout-hoverColor ${divBorderDesign}`}
               >
                 <Image
                   src={
