@@ -17,14 +17,14 @@ const DualHeaderTable: React.FC<DualHeaderTableProps> = ({
       <thead>
         <tr>
           {besideTitles.map((besideTitle, index) => (
-            <th key={index}>{besideTitle}</th>
+            <th key={index} className="text-white font-semibold bg-layout-mainColor opacity-70">{besideTitle}</th>
           ))}
         </tr>
       </thead>
       <tbody>
         {verticalItems.map((verticalItem, index) => (
           <tr key={index}>
-            <th>{verticalItem.title}</th>
+            <th className="text-white font-semibold bg-layout-mainColor opacity-70">{verticalItem.title}</th>
             {verticalItem.items.map((item, index) => (
               <td key={index}>{item}</td>
             ))}
