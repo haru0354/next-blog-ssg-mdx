@@ -23,9 +23,9 @@ const Speech: React.FC<SpeechProps> = ({
         height={80}
         src={src}
         alt="character"
-        className={`border-2 border-gray-300 rounded-full ${imagePosition}`}
+        className={`border-2 border-opacity-40 border-layout-mainColor rounded-full ${imagePosition}`}
       />
-      <div className="relative max-w-full p-4 bg-gray-50 border rounded-lg border-gray-300 shadow-lg">
+      <div className="relative max-w-full p-4  border rounded-lg border-opacity-40 border-layout-mainColor  shadow-lg bg-opacity-10 bg-layout-mainColor">
         {contents.map((content) => (
           <p>{content}</p>
         ))}

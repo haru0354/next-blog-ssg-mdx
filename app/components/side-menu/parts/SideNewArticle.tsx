@@ -25,7 +25,7 @@ const SideNewArticle: React.FC<SideNewArticleProps> = async ({
 
   const h3BorderDesign = border ? "" : "rounded";
   const divBorderDesign = border
-    ? "md:pt-0 border-r border-l border-gray-500"
+    ? "md:pt-0 border-r border-b border-l border-gray-500"
     : "";
 
   return (

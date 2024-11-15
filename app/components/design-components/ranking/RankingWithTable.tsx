@@ -1,8 +1,8 @@
 import Image from "next/image";
-import Button from "../ui/Button";
 import Link from "next/link";
+import Button from "../../ui/Button";
 
-type RankingLayoutBProps = {
+type RankingWithTableProps = {
   width: number;
   height: number;
   src: string;
@@ -20,7 +20,7 @@ type TableData = {
   item: string;
 };
 
-const RankingLayoutB: React.FC<RankingLayoutBProps> = ({
+const RankingWithTable: React.FC<RankingWithTableProps> = ({
   width = 240,
   height = 240,
   src,
@@ -77,4 +77,4 @@ const RankingLayoutB: React.FC<RankingLayoutBProps> = ({
   );
 };
 
-export default RankingLayoutB;
+export default RankingWithTable;

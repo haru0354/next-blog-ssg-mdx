@@ -1,15 +1,15 @@
 import type { MDXComponents } from "mdx/types";
 import Button from "./app/components/ui/Button";
-import CustomLink from "./app/components/design-components/CustomLink";
-import FlexBox from "./app/components/design-components/FlexBox";
-import ThreeFlexBox from "./app/components/design-components/ThreeFlexBox";
+import CustomLink from "./app/components/design-components/nextjs-components/CustomLink";
+import FlexBox from "./app/components/design-components/box/FlexBox";
+import ThreeFlexBox from "./app/components/design-components/box/ThreeFlexBox";
 import BlockquoteInBox from "./app/components/design-components/BlockquoteInBox";
-import Box from "./app/components/design-components/Box";
+import Box from "./app/components/design-components/box/Box";
 import CustomText from "./app/components/design-components/CustomText";
-import CustomImage from "./app/components/design-components/CustomImage";
+import CustomImage from "./app/components/design-components/nextjs-components/CustomImage";
 import Speech from "./app/components/design-components/Speech";
-import RankingWithList from "./app/components/design-components/RankingWithList";
-import RankingWithTable from "./app/components/design-components/RankingWithTable";
+import RankingWithList from "./app/components/design-components/ranking/RankingWithList";
+import RankingWithTable from "./app/components/design-components/ranking/RankingWithTable";
 import DualHeaderTable from "./app/components/design-components/table/DualHeaderTable";
 import BesideHeaderTable from "./app/components/design-components/table/BesideHeaderTable";
 import VerticalHeaderTable from "./app/components/design-components/table/VerticalHeaderTable copy";
@@ -28,12 +28,12 @@ export function useMDXComponents(components?: MDXComponents): MDXComponents {
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className="my-6 p-3 text-lg font-semibold border-b-2 border-layout-mainColor">
+      <h3 className="my-6 p-3 text-lg font-semibold border-b-2 text-layout-mainColor border-layout-mainColor">
         {children}
       </h3>
     ),
     h4: ({ children }) => (
-      <h4 className="my-6 p-2 text-center text-lg font-semibold border-b-2 border-dashed border-layout-mainColor">
+      <h4 className="my-6 p-2 text-center text-lg font-semibold border-b-2 border-dashed text-layout-mainColor border-layout-mainColor">
         {children}
       </h4>
     ),
