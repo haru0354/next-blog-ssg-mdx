@@ -1,7 +1,6 @@
 import { getAllArticles } from "@/app/lib/allArticleService";
 import { shuffleArray } from "@/app/util/shuffleArray";
 import LoadMoreArticles from "./LoadMoreArticles";
-import LoadMoreArticlesColumn from "./LoadMoreArticlesColumn";
 
 type CategoryInArticlesListProps = {
   parentCategorySlug: string;
