@@ -76,40 +76,47 @@ const Page = async ({
             categoryName={article.categoryName}
             pageTitle={article.frontmatter.title}
           />
-          <h1 className="text-2xl font-semibold mx-2 my-4">
-            {article.frontmatter.title}
-          </h1>
-          {article.frontmatter.eyeCatchAlt &&
-            article.frontmatter.eyeCatchName && (
-              <Image
-                src={`/image_webp/${article.frontmatter.eyeCatchName}.webp`}
-                alt={`${article.frontmatter.eyeCatchAlt}`}
-                width={750}
-                height={493}
-                className="mx-auto mb-6"
+          {article.content && (
+            <>
+              <h1 className="text-2xl font-semibold mx-2 my-4">
+                {article.frontmatter.title}
+              </h1>
+              {article.frontmatter.eyeCatchAlt &&
+                article.frontmatter.eyeCatchName && (
+                  <Image
+                    src={`/image_webp/${article.frontmatter.eyeCatchName}.webp`}
+                    alt={`${article.frontmatter.eyeCatchAlt}`}
+                    width={750}
+                    height={493}
+                    className="mx-auto mb-6"
+                  />
+                )}
+              {article.frontmatter.date && (
+                <p className="mx-2 mb-6 text-gray-600 font-sm">
+                  投稿日：{article.frontmatter.date}
+                </p>
+              )}
+              <MDXRemote
+                source={article.content}
+                components={components}
+                options={{
+                  mdxOptions: {
+                    remarkPlugins: [
+                      [remarkToc, { maxDepth: 3, heading: "目次" }],
+                    ],
+                    rehypePlugins: [rehypeSlug],
+                  },
+                }}
               />
-            )}
-          {article.frontmatter.date && (
-            <p className="mx-2 mb-6 text-gray-600 font-sm">
-              投稿日：{article.frontmatter.date}
-            </p>
+            </>
           )}
-          <MDXRemote
-            source={article.content}
-            components={components}
-            options={{
-              mdxOptions: {
-                remarkPlugins: [[remarkToc, { maxDepth: 3, heading: "目次" }]],
-                rehypePlugins: [rehypeSlug],
-              },
-            }}
-          />
         </div>
         {article.frontmatter.categoryName ? (
           <CategoryInArticlesList
             parentCategorySlug={params.firstLevelArticle_slug}
             childCategorySlug={params.secondLevelArticle_slug}
             categoryName={article.frontmatter.categoryName}
+            categoryContents={!!article.content}
           />
         ) : (
           <ArticleInArticleList

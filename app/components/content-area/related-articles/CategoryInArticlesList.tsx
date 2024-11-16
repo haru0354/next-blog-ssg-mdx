@@ -6,12 +6,14 @@ type CategoryInArticlesListProps = {
   parentCategorySlug: string;
   childCategorySlug?: string;
   categoryName: string;
+  categoryContents: boolean;
 };
 
 const CategoryInArticlesList: React.FC<CategoryInArticlesListProps> = async ({
   parentCategorySlug,
   childCategorySlug,
   categoryName,
+  categoryContents = false,
 }) => {
   const allArticles = await getAllArticles();
 
@@ -29,9 +31,15 @@ const CategoryInArticlesList: React.FC<CategoryInArticlesListProps> = async ({
 
   return (
     <div className="p-4 rounded bg-white">
-      <h2 className="w-full my-4 py-4 px-2 bg-layout-mainColor text-white text-xl font-semibold rounded">
-        「{categoryName}」の記事一覧
-      </h2>
+      {categoryContents ? (
+        <h2 className="w-full my-4 py-4 px-2 bg-layout-mainColor text-white text-xl font-semibold rounded">
+          「{categoryName}」の記事一覧
+        </h2>
+      ) : (
+        <h1 className="text-2xl font-semibold mx-2 mb-8">
+          「{categoryName}」の記事一覧
+        </h1>
+      )}
       {process.env.RELATED_ARTICLES_IN_CATEGORY_COLUMN === "true" ? (
         <LoadMoreArticles articles={shuffledArticles} column={true} />
       ) : (
