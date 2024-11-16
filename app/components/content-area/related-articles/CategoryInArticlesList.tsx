@@ -1,6 +1,7 @@
 import { getAllArticles } from "@/app/lib/allArticleService";
 import { shuffleArray } from "@/app/util/shuffleArray";
 import LoadMoreArticles from "./LoadMoreArticles";
+import LoadMoreArticlesColumn from "./LoadMoreArticlesColumn";
 
 type CategoryInArticlesListProps = {
   parentCategorySlug: string;
@@ -8,9 +9,11 @@ type CategoryInArticlesListProps = {
   categoryName: string;
 };
 
-const CategoryInArticlesList: React.FC<
-  CategoryInArticlesListProps
-> = async ({ parentCategorySlug, childCategorySlug, categoryName }) => {
+const CategoryInArticlesList: React.FC<CategoryInArticlesListProps> = async ({
+  parentCategorySlug,
+  childCategorySlug,
+  categoryName,
+}) => {
   const allArticles = await getAllArticles();
 
   if (!allArticles) {
@@ -30,7 +33,11 @@ const CategoryInArticlesList: React.FC<
       <h2 className="w-full my-4 py-4 px-2 bg-layout-mainColor text-white text-xl font-semibold rounded">
         「{categoryName}」の記事一覧
       </h2>
-      <LoadMoreArticles articles={shuffledArticles} />
+      {process.env.RELATED_ARTICLES_IN_CATEGORY_COLUMN === "true" ? (
+        <LoadMoreArticlesColumn articles={shuffledArticles} />
+      ) : (
+        <LoadMoreArticles articles={shuffledArticles} />
+      )}
     </div>
   );
 };

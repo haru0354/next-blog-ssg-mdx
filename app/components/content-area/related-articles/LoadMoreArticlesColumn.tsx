@@ -52,7 +52,7 @@ const LoadMoreArticlesColumn: React.FC<LoadMoreArticlesColumnProps> = ({
             }
             key={article.slug}
           >
-            <div className="flex flex-wrap justify-center md:flex-nowrap w-full my-2">
+            <div className="flex flex-wrap justify-center md:flex-nowrap w-full my-2 hover:transition-colors duration-300 hover:bg-layout-hoverColor">
               <div className="min-w-[342px] mb-2 md:mb-0">
                 <Image
                   src={
