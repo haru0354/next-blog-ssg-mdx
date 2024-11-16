@@ -34,9 +34,9 @@ const CategoryInArticlesList: React.FC<CategoryInArticlesListProps> = async ({
         「{categoryName}」の記事一覧
       </h2>
       {process.env.RELATED_ARTICLES_IN_CATEGORY_COLUMN === "true" ? (
-        <LoadMoreArticlesColumn articles={shuffledArticles} />
+        <LoadMoreArticles articles={shuffledArticles} column={true} />
       ) : (
-        <LoadMoreArticles articles={shuffledArticles} />
+        <LoadMoreArticles articles={shuffledArticles} column={false} />
       )}
     </div>
   );
