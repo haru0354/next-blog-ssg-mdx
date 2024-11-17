@@ -12,7 +12,7 @@ const BesideHeaderTable: React.FC<BesideHeaderTableProps> = ({
       <thead>
         <tr>
           {titles.map((title, index) => (
-            <th key={index}>{title}</th>
+            <th key={index} className="text-white font-semibold bg-layout-mainColor opacity-70">{title}</th>
           ))}
         </tr>
       </thead>

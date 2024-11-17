@@ -21,7 +21,9 @@ const SideNewArticle: React.FC<SideNewArticleProps> = async ({
     return dateB.getTime() - dateA.getTime();
   });
 
-  const filteredArticles = sortedArticles.slice(0, 5);
+  const articleNumber = process.env.SIDE_NEW_ARTICLE_NUMBER;
+  const articleLimit = articleNumber ? parseInt(articleNumber, 10) : 5;
+  const filteredArticles = sortedArticles.slice(0, articleLimit);
 
   const h3BorderDesign = border ? "" : "rounded";
   const divBorderDesign = border
@@ -47,7 +49,7 @@ const SideNewArticle: React.FC<SideNewArticleProps> = async ({
               key={article.slug}
             >
               <div
-                className={`pt-4 bg-white hover:transition-colors duration-300 hover:bg-hover-blue ${divBorderDesign}`}
+                className={`pt-4 bg-white hover:transition-colors duration-300 hover:bg-layout-hoverColor ${divBorderDesign}`}
               >
                 <Image
                   src={

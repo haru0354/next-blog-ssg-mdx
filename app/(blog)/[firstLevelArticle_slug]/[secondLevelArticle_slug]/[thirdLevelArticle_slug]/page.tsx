@@ -13,7 +13,7 @@ import Breadcrumbs from "@/app/components/content-area/Breadcrumbs";
 import NotFound from "@/app/not-found";
 import SideMenu from "@/app/components/side-menu/SideMenu";
 import CategoryInArticlesList from "@/app/components/content-area/related-articles/CategoryInArticlesList";
-import ArticleInArticleListColumn from "@/app/components/content-area/related-articles/ArticleInArticleListColumn";
+import ArticleInArticleList from "@/app/components/content-area/related-articles/ArticleInArticleList";
 
 export const generateMetadata = async ({
   params,
@@ -118,18 +118,11 @@ const Page = async ({
             }}
           />
         </div>
-        {article.frontmatter.categoryName ? (
-          <CategoryInArticlesList
-            parentCategorySlug={params.firstLevelArticle_slug}
-            categoryName={article.frontmatter.categoryName}
-          />
-        ) : (
-          <ArticleInArticleListColumn
-            parentCategorySlug={params.firstLevelArticle_slug}
-            childCategorySlug={params.secondLevelArticle_slug}
-            articleSlug={params.thirdLevelArticle_slug}
-          />
-        )}
+        <ArticleInArticleList
+          parentCategorySlug={params.firstLevelArticle_slug}
+          childCategorySlug={params.secondLevelArticle_slug}
+          articleSlug={params.thirdLevelArticle_slug}
+        />
       </LeftColumn>
       <SideMenu
         firstLevelArticle_slug={params.firstLevelArticle_slug}

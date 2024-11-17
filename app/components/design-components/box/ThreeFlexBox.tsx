@@ -34,7 +34,7 @@ const ThreeFlexBox: React.FC<ThreeFlexBoxProps> = ({ contents }) => {
         }
         return (
           <div key={index} className={`p-2 border-gray-400  ${itemClass}`}>
-            <p className="text-center my-2 font-semibold ">{content.topText}</p>
+            <p className="text-center my-2 font-semibold">{content.topText}</p>
             <Image
               width={content.width}
               height={content.height}

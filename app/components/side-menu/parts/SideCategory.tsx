@@ -55,7 +55,7 @@ const SideCategory: React.FC<SideCategoryProps> = async ({
           return (
             <Link href={`/${category?.slug}`} key={category?.slug}>
               <li
-                className={`p-4 hover: transition-colors duration-300 hover:bg-hover-blue ${liBorderDesign}`}
+                className={`p-4 hover: transition-colors duration-300 hover:bg-layout-hoverColor ${liBorderDesign}`}
                 key={category?.categoryName}
               >
                 {category?.categoryName}
