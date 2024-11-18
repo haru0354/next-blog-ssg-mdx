@@ -32,8 +32,8 @@ const SideMenu: React.FC<SideMenuProps> = ({
           <SideCategory border={true} />
           <SideNewArticle border={true} />
           <SideLinks border={true} />
-          <SideImageBottom />
           <SideSearchBar border={true} />
+          <SideImageBottom />
         </div>
       ) : (
         <div className="w-full rounded flex flex-col md:w-[300px] p-2 md:pt-4 bg-white">
@@ -48,8 +48,8 @@ const SideMenu: React.FC<SideMenuProps> = ({
           <SideCategory />
           <SideNewArticle />
           <SideLinks />
-          <SideImageBottom />
           <SideSearchBar />
+          <SideImageBottom />
         </div>
       )}
     </>

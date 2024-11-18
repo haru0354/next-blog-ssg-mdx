@@ -8,6 +8,7 @@ import Button from "../../ui/Button";
 type LoadMoreArticlesProps = {
   articles: Article[];
   column: boolean;
+  articleLimit: number;
 };
 
 type Article = {
@@ -27,16 +28,17 @@ type Article = {
 const LoadMoreArticles: React.FC<LoadMoreArticlesProps> = ({
   articles,
   column,
+  articleLimit,
 }) => {
   const [displayedArticles, setDisplayedArticles] = useState<Article[]>(
-    articles.slice(0, 4)
+    articles.slice(0, articleLimit)
   );
-
+  
   const handleLoadMoreArticles = () => {
     setDisplayedArticles((prevArticles) => {
       const nextArticles = articles.slice(
         prevArticles.length,
-        prevArticles.length + 4
+        prevArticles.length + articleLimit
       );
       return [...prevArticles, ...nextArticles];
     });

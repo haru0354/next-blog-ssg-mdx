@@ -15,7 +15,9 @@ const TopNewArticle = async () => {
     return dateB.getTime() - dateA.getTime();
   });
 
-  const filteredArticles = sortedArticles.slice(0, 6);
+  const articleNumber = process.env.TOP_NEW_ARTICLE_NUMBER;
+  const articleLimit = articleNumber ? parseInt(articleNumber, 10) : 6;
+  const filteredArticles = sortedArticles.slice(0, articleLimit);
 
   return (
     <section className="bg-white w-full md:py-8 py-2">

@@ -29,6 +29,9 @@ const CategoryInArticlesList: React.FC<CategoryInArticlesListProps> = async ({
 
   const shuffledArticles = shuffleArray(filteredArticles);
 
+  const articleNumber = process.env.RELATED_ARTICLES_IN_CATEGORY_NUMBER;
+  const articleLimit = articleNumber ? parseInt(articleNumber, 10) : 4;
+
   return (
     <div className="p-4 rounded bg-white">
       {categoryContents ? (
@@ -41,9 +44,9 @@ const CategoryInArticlesList: React.FC<CategoryInArticlesListProps> = async ({
         </h1>
       )}
       {process.env.RELATED_ARTICLES_IN_CATEGORY_COLUMN === "true" ? (
-        <LoadMoreArticles articles={shuffledArticles} column={true} />
+        <LoadMoreArticles articles={shuffledArticles} column={true} articleLimit={articleLimit}/>
       ) : (
-        <LoadMoreArticles articles={shuffledArticles} column={false} />
+        <LoadMoreArticles articles={shuffledArticles} column={false} articleLimit={articleLimit}/>
       )}
     </div>
   );

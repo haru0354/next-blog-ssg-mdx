@@ -28,14 +28,14 @@ const ArticleInArticleList: React.FC<ArticleInArticleListProps> = async ({
         articleSlug !== allArticle.slug
   );
 
-  const shuffledArticles = shuffleArray(filteredAllArticles ?? [])?.slice(0, 4);
+  const articleNumber = process.env.RELATED_ARTICLES_IN_ARTICLE_NUMBER;
+  const articleLimit = articleNumber ? parseInt(articleNumber, 10) : 4;
+  const shuffledArticles = shuffleArray(filteredAllArticles ?? [])?.slice(0, articleLimit);
 
   if (!shuffledArticles || shuffledArticles.length === 0) {
     return null;
   }
 
-  console.log(process.env.RELATED_ARTICLES_IN_ARTICLE_COLUMN);
-  
   return (
     <>
       {process.env.RELATED_ARTICLES_IN_ARTICLE_COLUMN === "true" ? (
