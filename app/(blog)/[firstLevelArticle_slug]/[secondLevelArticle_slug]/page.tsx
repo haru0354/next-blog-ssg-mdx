@@ -33,7 +33,7 @@ export const generateMetadata = async ({
   }
 
   return {
-    title: article.frontmatter.title,
+    title: article.frontmatter.title ? article.frontmatter.title : article.frontmatter.categoryName ,
     description: article.frontmatter.description,
     openGraph: {
       title: article.frontmatter.title,
