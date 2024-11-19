@@ -16,7 +16,7 @@ const config: Config = {
       },
       colors: {
         layout: {
-          bgColor: process.env.BACKGROUND_COLOR ? process.env.BACKGROUND_COLOR : "white",
+          bgColor: process.env.BACKGROUND_COLOR ? process.env.BACKGROUND_COLOR : "rgb(255 255 255)",
           mainColor: process.env.MAIN_COLOR ? process.env.MAIN_COLOR : "rgb(31 41 55)",
           hoverColor: process.env.HOVER_COLOR ? process.env.HOVER_COLOR : "rgb(208 236 255)",
         },
