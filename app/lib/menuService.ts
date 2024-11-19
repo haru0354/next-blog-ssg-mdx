@@ -38,31 +38,8 @@ export async function getGlobalMenu() {
 
 export async function getRecommendArticles() {
   try {
-    const globalMenuDirectory = path.join(process.cwd(), "mdx-files", "menu");
-    const recommendArticleFilePath = path.join(
-      globalMenuDirectory,
-      "recommendArticle.mdx"
-    );
-
-    let recommendArticleFileContents: string;
-    try {
-      recommendArticleFileContents = await fs.promises.readFile(
-        recommendArticleFilePath,
-        "utf8"
-      );
-    } catch (err) {
-      console.error(
-        `親カテゴリファイル「${recommendArticleFilePath}」の読み込みに失敗しました:`,
-        err
-      );
-      return;
-    }
-
-    const { data } = matter(recommendArticleFileContents);
-
-    return {
-      frontmatter: data,
-    };
+    const globalMenuDirectory = getMenuFileContents("recommendArticle");
+    return globalMenuDirectory;
   } catch (err) {
     console.error("サイドバーのおすすめ記事データの取得に失敗しました", err);
     return;
