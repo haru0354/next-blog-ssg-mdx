@@ -28,28 +28,8 @@ export async function getMenuFileContents(fileName: string) {
 
 export async function getGlobalMenu() {
   try {
-    const globalMenuDirectory = path.join(process.cwd(), "mdx-files", "menu");
-    const globalMenuFilePath = path.join(globalMenuDirectory, "globalMenu.mdx");
-
-    let globalMenuFileContents: string;
-    try {
-      globalMenuFileContents = await fs.promises.readFile(
-        globalMenuFilePath,
-        "utf8"
-      );
-    } catch (err) {
-      console.error(
-        `親カテゴリファイル「${globalMenuFilePath}」の読み込みに失敗しました:`,
-        err
-      );
-      return;
-    }
-
-    const { data } = matter(globalMenuFileContents);
-
-    return {
-      frontmatter: data,
-    };
+    const globalMenuDirectory = getMenuFileContents("globalMenu");
+    return globalMenuDirectory;
   } catch (err) {
     console.error("グローバルメニューデータの取得に失敗しました", err);
     return;
