@@ -48,27 +48,14 @@ export async function getRecommendArticles() {
 
 export async function getLinks() {
   try {
-    const globalMenuDirectory = path.join(process.cwd(), "mdx-files", "menu");
+    const linkData = await getMenuFileContents("link");
 
-    const linkFilePath = path.join(globalMenuDirectory, "link.mdx");
-
-    let linkFileContents: string;
-    try {
-      linkFileContents = await fs.promises.readFile(linkFilePath, "utf8");
-    } catch (err) {
-      console.error(
-        `ファイル「${linkFilePath}」の読み込みに失敗しました:`,
-        err
-      );
+    if (!linkData) {
+      console.error("サイドバーのリンクデータが取得できませんでした");
       return;
     }
-
-    const { data } = matter(linkFileContents);
-
-    return {
-      display: data.display,
-      items: data.items,
-    };
+    
+    return linkData
   } catch (err) {
     console.error("サイドバーのリンクデータの取得に失敗しました", err);
     return;
