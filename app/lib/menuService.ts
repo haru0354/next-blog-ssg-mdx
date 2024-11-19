@@ -2,6 +2,30 @@ import path from "path";
 import fs from "fs";
 import matter from "gray-matter";
 
+export async function getMenuFileContents(fileName: string) {
+  try {
+    const menuFileDirectory = path.join(process.cwd(), "mdx-files", "menu");
+    const menuFile = path.join(menuFileDirectory, `${fileName}.mdx`);
+
+    let menuFileContents: string;
+    try {
+      menuFileContents = await fs.promises.readFile(menuFile, "utf8");
+    } catch (err) {
+      console.error(`${menuFile}の読み込みに失敗しました:`, err);
+      return;
+    }
+
+    const { data } = matter(menuFileContents);
+
+    return {
+      frontmatter: data,
+    };
+  } catch (err) {
+    console.error("メニューファイルのデータの取得に失敗しました", err);
+    return;
+  }
+}
+
 export async function getGlobalMenu() {
   try {
     const globalMenuDirectory = path.join(process.cwd(), "mdx-files", "menu");
