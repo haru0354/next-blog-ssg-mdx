@@ -28,8 +28,14 @@ export async function getMenuFileContents(fileName: string) {
 
 export async function getGlobalMenu() {
   try {
-    const globalMenuDirectory = getMenuFileContents("globalMenu");
-    return globalMenuDirectory;
+    const globalMenuData = await getMenuFileContents("globalMenu");
+
+    if (!globalMenuData) {
+      console.error("サイドバーのおすすめ記事が取得できませんでした");
+      return;
+    }
+
+    return globalMenuData;
   } catch (err) {
     console.error("グローバルメニューデータの取得に失敗しました", err);
     return;
@@ -38,8 +44,14 @@ export async function getGlobalMenu() {
 
 export async function getRecommendArticles() {
   try {
-    const globalMenuDirectory = getMenuFileContents("recommendArticle");
-    return globalMenuDirectory;
+    const recommendArticleData = await getMenuFileContents("recommendArticle");
+
+    if (!recommendArticleData) {
+      console.error("サイドバーのおすすめ記事が取得できませんでした");
+      return;
+    }
+
+    return recommendArticleData;
   } catch (err) {
     console.error("サイドバーのおすすめ記事データの取得に失敗しました", err);
     return;
