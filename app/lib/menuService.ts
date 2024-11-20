@@ -108,35 +108,16 @@ export async function getSideImageBottom() {
 
 export async function getSideCategoriesMenu() {
   try {
-    const sideCategoriesFilePath = path.join(
-      process.cwd(),
-      "mdx-files",
-      "menu",
-      "sideCategoriesMenu.mdx"
-    );
+    const sideCategoriesData = await getMenuFileContents("sideCategories");
 
-    let sideCategoryFileContents: string;
-    try {
-      sideCategoryFileContents = await fs.promises.readFile(
-        sideCategoriesFilePath,
-        "utf8"
-      );
-    } catch (err) {
-      console.error(
-        `カテゴリファイル「${sideCategoriesFilePath}」の読み込みに失敗しました:`,
-        err
-      );
+    if (!sideCategoriesData) {
+      console.error("サイドバーの書き換えるカテゴリデータが取得できませんでした");
       return;
     }
 
-    const { data } = matter(sideCategoryFileContents);
-
-    return {
-      display: data.display,
-      items: data.items,
-    };
+    return sideCategoriesData;
   } catch (err) {
-    console.error("子カテゴリ一覧の取得に失敗しました", err);
+    console.error("サイドバーの書き換えるカテゴリデータの取得に失敗しました", err);
     return;
   }
 }
