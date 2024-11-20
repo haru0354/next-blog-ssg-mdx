@@ -26,6 +26,68 @@ export async function getMenuFileContents(fileName: string) {
   }
 }
 
+export async function getArticlesFromSlugsInMenu(fileName: string) {
+  try {
+    const menuFileContents  = await getMenuFileContents(fileName);
+
+    if (!menuFileContents ) {
+      console.error("ファイルデータが取得できませんでした");
+      return;
+    }
+
+    const { frontmatter } = menuFileContents;
+
+    const slugs: string[] = frontmatter.slug;
+    const display: boolean = frontmatter.display;
+
+    const articlesDirectory = path.join(process.cwd(), "mdx-files", "article");
+
+    const articles = slugs
+      .map((slug) => {
+        try {
+          let deleteSlashSlug = slug.startsWith("/") ? slug.slice(1) : slug;
+          deleteSlashSlug = deleteSlashSlug.endsWith("/")
+            ? deleteSlashSlug.slice(0, -1)
+            : deleteSlashSlug;
+
+          const slugParts = deleteSlashSlug.split("/");
+
+          const articleFileName = slugParts.pop() + ".mdx";
+          const articleFileDirectory = path.join(
+            articlesDirectory,
+            ...slugParts
+          );
+
+          const filePath = path.join(articleFileDirectory, articleFileName);
+
+          if (fs.existsSync(filePath)) {
+            const fileContents = fs.readFileSync(filePath, "utf8");
+            const { data } = matter(fileContents);
+            return {
+              frontmatter: data,
+              slug: deleteSlashSlug,
+            };
+          } else {
+            console.error(`ファイルの読み込みに失敗しました: ${slug}`);
+            return null;
+          }
+        } catch (err) {
+          console.error("各slugに対応する記事を読み込めませんでした", err);
+          return null;
+        }
+      })
+      .filter((article) => article !== null); 
+
+    return {
+      display,
+      articles,
+    };
+  } catch (err) {
+    console.error("slugから記事の取得に失敗しました", err);
+    return;
+  }
+}
+
 export async function getGlobalMenu() {
   try {
     const globalMenuData = await getMenuFileContents("globalMenu");
