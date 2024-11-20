@@ -106,8 +106,8 @@ export async function getGlobalMenu() {
 
 export async function getRecommendArticles() {
   try {
-    const recommendArticleData = await getMenuFileContents("recommendArticle");
-
+    const recommendArticleData = await getArticlesFromSlugsInMenu("recommendArticle");
+    
     if (!recommendArticleData) {
       console.error("サイドバーのおすすめ記事が取得できませんでした");
       return;
