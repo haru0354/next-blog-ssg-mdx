@@ -1,8 +1,9 @@
 ---
 display: true
+internalLink: false
 images:
  - eyeCatchName: "no_image"
-   eyeCatchAlt: "00"
+   eyeCatchAlt: "専用画像が用意されてません"
    url: "/"
 ---
 
@@ -13,6 +14,10 @@ images:
 displayを「true」「false」の書き換えによって、サイドメニューの表示が変わります。
 true: 表示
 false: 非表示
+
+internalLinkを「true」「false」の書き換えによって、内部リンクか外部リンクか指定してください。
+true: 内部リンク（next.jsのリンクコンポーネントを仕様）
+false: 外部リンク（htmlのaタグを使用 / 新しいタブで開かれる）
 
 記載する内容は下記をご覧ください。
 
@@ -26,9 +31,9 @@ slug: リンク先のURL
 
 入力する項目をコピー貼り付けで増やして記載してください。
 
-- eyeCatchName: "00"
-  eyeCatchAlt: "00"
-  url: "/"
-- eyeCatchName: "000"
-  eyeCatchAlt: "000"
-  url: "/"
+- eyeCatchName: "test1"
+  eyeCatchAlt: "test1"
+  url: "/test1"
+- eyeCatchName: "test2"
+  eyeCatchAlt: "test2"
+  url: "/test2"

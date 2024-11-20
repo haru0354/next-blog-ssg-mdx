@@ -19,17 +19,35 @@ const SideImageTop = async () => {
     <>
       {sideImages.frontmatter.display && (
         <div>
-          {sideImages.frontmatter.images.map((image: Image) => (
-            <Link href={`${image.url}`}>
-              <Image
-                src={`/thumbnail_webp/${image.eyeCatchName}.webp`}
-                alt={`${image.eyeCatchAlt}`}
-                width={298}
-                height={196}
-                className="mx-auto md:mt-0 mt-8 mb-8 hover:-translate-y-2 translate transition duration-300"
-              />
-            </Link>
-          ))}
+          {sideImages.frontmatter.internalLink ? (
+            <>
+              {sideImages.frontmatter.images.map((image: Image) => (
+                <Link href={`${image.url}`}>
+                  <Image
+                    src={`/thumbnail_webp/${image.eyeCatchName}.webp`}
+                    alt={`${image.eyeCatchAlt}`}
+                    width={298}
+                    height={196}
+                    className="mx-auto md:mt-0 mt-8 mb-8 hover:-translate-y-2 translate transition duration-300"
+                  />
+                </Link>
+              ))}
+            </>
+          ) : (
+            <>
+              {sideImages.frontmatter.images.map((image: Image) => (
+                <a href={`${image.url}`} target="blank">
+                  <Image
+                    src={`/thumbnail_webp/${image.eyeCatchName}.webp`}
+                    alt={`${image.eyeCatchAlt}`}
+                    width={298}
+                    height={196}
+                    className="mx-auto md:mt-0 mt-8 mb-8 hover:-translate-y-2 translate transition duration-300"
+                  />
+                </a>
+              ))}
+            </>
+          )}
         </div>
       )}
     </>
