@@ -2,56 +2,6 @@ import path from "path";
 import fs from "fs";
 import matter from "gray-matter";
 
-export async function getTopPageArticle() {
-  try {
-    const topPageFileDirectory = path.join(process.cwd(), "mdx-files", "top-page");
-    const topPageFile = path.join(topPageFileDirectory, "topPageArticle.mdx");
-
-    let topPageContents: string;
-    try {
-      topPageContents = await fs.promises.readFile(topPageFile, "utf8");
-    } catch (err) {
-      console.error(`${topPageFile}の読み込みに失敗しました:`, err);
-      return;
-    }
-
-    const { data, content } = matter(topPageContents);
-
-    return {
-      content: content,
-      frontmatter: data,
-    };
-  } catch (err) {
-    console.error("TOPページのコンテンツファイルの取得に失敗しました", err);
-    return;
-  }
-}
-
-export async function getTwoColumnRecommendArticles() {
-  try {
-    const TopPageRecommendArticles = getTopPageArticles(
-      "twoColumnRecommendArticles"
-    );
-    return TopPageRecommendArticles;
-  } catch (err) {
-    console.error("TOPページの2カラムのおすすめ記事データの取得に失敗しました", err);
-    return;
-  }
-}
-
-export async function getTopPageRecommendArticles() {
-  try {
-    const TopPageRecommendArticles = getTopPageArticles(
-      "topPageRecommendArticles"
-    );
-    return TopPageRecommendArticles;
-  } catch (err) {
-    console.error("TOPページのおすすめ記事データの取得に失敗しました", err);
-    return;
-  }
-}
-
-
 
 export async function getTopPageArticles(fileName: string) {
   try {
@@ -126,4 +76,66 @@ export async function getTopPageArticles(fileName: string) {
     return;
   }
 }
+
+export async function getTopPageArticle() {
+  try {
+    const topPageFileDirectory = path.join(process.cwd(), "mdx-files", "top-page");
+    const topPageFile = path.join(topPageFileDirectory, "topPageArticle.mdx");
+
+    let topPageContents: string;
+    try {
+      topPageContents = await fs.promises.readFile(topPageFile, "utf8");
+    } catch (err) {
+      console.error(`${topPageFile}の読み込みに失敗しました:`, err);
+      return;
+    }
+
+    const { data, content } = matter(topPageContents);
+
+    return {
+      content: content,
+      frontmatter: data,
+    };
+  } catch (err) {
+    console.error("TOPページのコンテンツファイルの取得に失敗しました", err);
+    return;
+  }
+}
+
+export async function getTwoColumnRecommendArticles() {
+  try {
+    const TopPageRecommendArticles = await getTopPageArticles(
+      "twoColumnRecommendArticles"
+    );
+
+    if (!TopPageRecommendArticles) {
+      console.error("TOPページの2カラムのおすすめ記事データが取得できませんでした");
+      return;
+    }
+
+    return TopPageRecommendArticles;
+  } catch (err) {
+    console.error("TOPページの2カラムのおすすめ記事データの取得に失敗しました", err);
+    return;
+  }
+}
+
+export async function getTopPageRecommendArticles() {
+  try {
+    const TopPageRecommendArticles = await getTopPageArticles(
+      "topPageRecommendArticles"
+    );
+
+    if (!TopPageRecommendArticles) {
+      console.error("TOPページのおすすめ記事データが取得できませんでした");
+      return;
+    }
+
+    return TopPageRecommendArticles;
+  } catch (err) {
+    console.error("TOPページのおすすめ記事データの取得に失敗しました", err);
+    return;
+  }
+}
+
 
