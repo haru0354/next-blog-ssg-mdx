@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getSideImage } from "@/app/lib/menuService";
+import { getSideImageTop } from "@/app/lib/menuService";
 
 type Image = {
   eyeCatchName: string;
@@ -9,7 +9,7 @@ type Image = {
 };
 
 const SideImageTop = async () => {
-  const sideImages = await getSideImage();
+  const sideImages = await getSideImageTop();
 
   if (!sideImages) {
     return null;

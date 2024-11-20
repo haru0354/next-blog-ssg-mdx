@@ -66,40 +66,26 @@ export async function getLinks() {
       console.error("サイドバーのリンクデータが取得できませんでした");
       return;
     }
-    
-    return linkData
+
+    return linkData;
   } catch (err) {
     console.error("サイドバーのリンクデータの取得に失敗しました", err);
     return;
   }
 }
 
-export async function getSideImage() {
+export async function getSideImageTop() {
   try {
-    const globalMenuDirectory = path.join(process.cwd(), "mdx-files", "menu");
-    const sideImageFilePath = path.join(globalMenuDirectory, "sideImage.mdx");
+    const sideImageTopData = await getMenuFileContents("sideImageTop");
 
-    let sideImageFileContents: string;
-    try {
-      sideImageFileContents = await fs.promises.readFile(
-        sideImageFilePath,
-        "utf8"
-      );
-    } catch (err) {
-      console.error(
-        `親カテゴリファイル「${sideImageFilePath}」の読み込みに失敗しました:`,
-        err
-      );
+    if (!sideImageTopData) {
+      console.error("サイドバーの上部画像データが取得できませんでした");
       return;
     }
 
-    const { data } = matter(sideImageFileContents);
-
-    return {
-      frontmatter: data,
-    };
+    return sideImageTopData;
   } catch (err) {
-    console.error("サイドバーの画像データの取得に失敗しました", err);
+    console.error("サイドバーの上部画像データの取得に失敗しました", err);
     return;
   }
 }
