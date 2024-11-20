@@ -92,31 +92,14 @@ export async function getSideImageTop() {
 
 export async function getSideImageBottom() {
   try {
-    const globalMenuDirectory = path.join(process.cwd(), "mdx-files", "menu");
-    const sideImageFilePath = path.join(
-      globalMenuDirectory,
-      "sideImageBottom.mdx"
-    );
+    const sideImageBottomData = await getMenuFileContents("sideImageBottom");
 
-    let sideImageFileContents: string;
-    try {
-      sideImageFileContents = await fs.promises.readFile(
-        sideImageFilePath,
-        "utf8"
-      );
-    } catch (err) {
-      console.error(
-        `親カテゴリファイル「${sideImageFilePath}」の読み込みに失敗しました:`,
-        err
-      );
+    if (!sideImageBottomData) {
+      console.error("サイドバー下記の画像データが取得できませんでした");
       return;
     }
 
-    const { data } = matter(sideImageFileContents);
-
-    return {
-      frontmatter: data,
-    };
+    return sideImageBottomData;
   } catch (err) {
     console.error("サイドバー下記の画像データの取得に失敗しました", err);
     return;
