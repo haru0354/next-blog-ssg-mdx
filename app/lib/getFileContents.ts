@@ -8,29 +8,29 @@ export async function getFileContents(
   isContent: boolean = false
 ) {
   try {
-    const menuFileDirectory = path.join(
+    const fileDirectory = path.join(
       process.cwd(),
       "mdx-files",
       directoryName
     );
-    const menuFile = path.join(menuFileDirectory, `${fileName}.mdx`);
+    const filePath = path.join(fileDirectory, `${fileName}.mdx`);
 
-    let menuFileContents: string;
+    let fileContents: string;
     try {
-      menuFileContents = await fs.promises.readFile(menuFile, "utf8");
+      fileContents = await fs.promises.readFile(filePath, "utf8");
     } catch (err) {
-      console.error(`${menuFile}の読み込みに失敗しました:`, err);
+      console.error(`${filePath}の読み込みに失敗しました:`, err);
       return;
     }
 
-    const { data, content } = matter(menuFileContents);
+    const { data, content } = matter(fileContents);
 
     return {
       frontmatter: data,
       ...(isContent && { content }),
     };
   } catch (err) {
-    console.error("メニューファイルのデータの取得に失敗しました", err);
+    console.error("ファイルのデータの取得に失敗しました", err);
     return;
   }
 }
