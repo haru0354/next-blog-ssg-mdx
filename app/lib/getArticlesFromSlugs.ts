@@ -8,7 +8,7 @@ export async function getArticlesFromSlugs(
   directoryName: string
 ) {
   try {
-    const fileContents = await getFileContents(directoryName, fileName);
+    const fileContents = await getFileContents(fileName, directoryName);
 
     if (!fileContents) {
       console.error("ファイルデータが取得できませんでした");
