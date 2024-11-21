@@ -1,9 +1,10 @@
 ---
 display: true
-images:
- - eyeCatchName: "00"
-   eyeCatchAlt: "00"
-   url: "/"
+slug:
+  [
+    "/blog-guide/blog-design",
+
+  ]
 ---
 
 {/* サイドメニューおすすめ記事* */}
@@ -14,21 +15,11 @@ displayを「true」「false」の書き換えによって、表示が変わり�
 true: 表示
 false: 非表示
 
-記載する内容は下記をご覧ください。
+表示させるおすすめの記事はホスト部分（ドメイン）を除いた記述をslugにしてください。
+slug:
+  [
+    "/blog-guide/blog-design",
+    "/sample-category/sample3/",
+  ]
 
-eyeCatchName: 表示する画像ファイル名を拡張子を除いて入力
-eyeCatchAlt: 画像のALT
-slug: リンク先のURL
 
-記載をしていても「display」が「false」なら表示されないので、メモとして残すこともできます。
-
-{/* 表示する画像を増やす */}
-
-入力する項目をコピー貼り付けで増やして記載してください。
-
-- eyeCatchName: "00"
-  eyeCatchAlt: "00"
-  url: "/"
-- eyeCatchName: "000"
-  eyeCatchAlt: "000"
-  url: "/"

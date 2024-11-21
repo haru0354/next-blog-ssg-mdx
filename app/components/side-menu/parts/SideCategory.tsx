@@ -14,15 +14,15 @@ type SideCategoryProps = {
 const SideCategory: React.FC<SideCategoryProps> = async ({
   border = false,
 }) => {
-  const sideCategoriesMenu = await getSideCategoriesMenu();
+  const sideCategories = await getSideCategoriesMenu();
 
-  if (!sideCategoriesMenu || !sideCategoriesMenu.items) {
+  if (!sideCategories || !sideCategories.frontmatter.items) {
     return null;
   }
 
   let categories;
 
-  if (sideCategoriesMenu.display === false) {
+  if (sideCategories.frontmatter.display === false) {
     const parentCategories = await getParentCategories();
     categories = parentCategories.map((category) => {
       return {
@@ -31,7 +31,7 @@ const SideCategory: React.FC<SideCategoryProps> = async ({
       };
     });
   } else {
-    categories = sideCategoriesMenu?.items;
+    categories = sideCategories?.frontmatter.items;
   }
 
   if (!categories) {

@@ -21,31 +21,51 @@ const SideRecommendArticles: React.FC<SideRecommendArticlesProps> = async ({
     return null;
   }
 
-  const h3BorderDesign = border ? "w-[300px]" : "mb-4 rounded";
+  if (recommendArticles.display === false) {
+    return null;
+  }
+
+  const h3BorderDesign = border ? "" : "rounded";
+  const divBorderDesign = border
+    ? "md:pt-0 border-r border-b border-l border-gray-500"
+    : "";
 
   return (
-    <>
-      {recommendArticles.frontmatter.display && (
-        <div className="w-full">
-          <h3
-            className={`p-4 font-bold text-white bg-layout-mainColor  ${h3BorderDesign}`}
-          >
-            おすすめの記事
-          </h3>
-          {recommendArticles.frontmatter.images.map((image: Image) => (
-            <Link href={`/${image.url}`}>
-              <Image
-                src={`/thumbnail_webp/${image.eyeCatchName}.webp`}
-                alt={image.eyeCatchAlt}
-                width={300}
-                height={196}
-                className="mx-auto md:mt-0 my-8"
-              />
+    <div className="w-full mb-8">
+      <h3
+        className={`p-4 font-bold text-white bg-layout-mainColor  ${h3BorderDesign}`}
+      >
+        おすすめの記事
+      </h3>
+      {recommendArticles.articles.map((article) => {
+        return (
+          <>
+            <Link href={`/${article?.slug}`} key={article?.slug}>
+              <div
+                className={`pt-4 bg-white ${divBorderDesign}`}
+              >
+                <Image
+                  src={
+                    article?.frontmatter.eyeCatchName
+                      ? `/thumbnail_webp/${article.frontmatter.eyeCatchName}.webp`
+                      : "/thumbnail_webp/no_image.webp"
+                  }
+                  alt={
+                    article?.frontmatter.eyeCatchAlt
+                      ? `${article.frontmatter.eyeCatchAlt}`
+                      : "アイチャッチ画像"
+                  }
+                  width={300}
+                  height={196}
+                  className="mx-auto hover:-translate-y-2 translate transition duration-300"
+                />
+
+              </div>
             </Link>
-          ))}
-        </div>
-      )}
-    </>
+          </>
+        );
+      })}
+    </div>
   );
 };
 

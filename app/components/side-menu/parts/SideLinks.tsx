@@ -16,7 +16,7 @@ const SideLinks: React.FC<SideLinksProps> = async ({ border = false }) => {
     return null;
   }
 
-  if (links.display === false) {
+  if (links.frontmatter.display === false) {
     return null;
   }
 
@@ -33,7 +33,7 @@ const SideLinks: React.FC<SideLinksProps> = async ({ border = false }) => {
         参考文献・参考サイト
       </h3>
       <ul>
-        {links.items.map((item: Item) => (
+        {links.frontmatter.items.map((item: Item) => (
           <a href={item.slug} target="blank" key={item.name}>
             <li
               className={`p-4 hover: transition-colors duration-300 hover:bg-layout-hoverColor ${

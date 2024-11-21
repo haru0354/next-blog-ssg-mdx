@@ -1,156 +1,67 @@
-import path from "path";
-import fs from "fs";
-import matter from "gray-matter";
+import { getArticlesFromSlugs } from "./getArticlesFromSlugs";
+import { getFileContents } from "./getFileContents";
 
 export async function getGlobalMenu() {
   try {
-    const globalMenuDirectory = path.join(process.cwd(), "mdx-files", "menu");
-    const globalMenuFilePath = path.join(globalMenuDirectory, "globalMenu.mdx");
+    const globalMenuData = await getFileContents("menu", "globalMenu");
 
-    let globalMenuFileContents: string;
-    try {
-      globalMenuFileContents = await fs.promises.readFile(
-        globalMenuFilePath,
-        "utf8"
-      );
-    } catch (err) {
-      console.error(
-        `親カテゴリファイル「${globalMenuFilePath}」の読み込みに失敗しました:`,
-        err
-      );
+    if (!globalMenuData) {
+      console.error("サイドバーのおすすめ記事が取得できませんでした");
       return;
     }
 
-    const { data } = matter(globalMenuFileContents);
-
-    return {
-      frontmatter: data,
-    };
+    return globalMenuData;
   } catch (err) {
     console.error("グローバルメニューデータの取得に失敗しました", err);
     return;
   }
 }
 
-export async function getRecommendArticles() {
-  try {
-    const globalMenuDirectory = path.join(process.cwd(), "mdx-files", "menu");
-    const recommendArticleFilePath = path.join(
-      globalMenuDirectory,
-      "recommendArticle.mdx"
-    );
-
-    let recommendArticleFileContents: string;
-    try {
-      recommendArticleFileContents = await fs.promises.readFile(
-        recommendArticleFilePath,
-        "utf8"
-      );
-    } catch (err) {
-      console.error(
-        `親カテゴリファイル「${recommendArticleFilePath}」の読み込みに失敗しました:`,
-        err
-      );
-      return;
-    }
-
-    const { data } = matter(recommendArticleFileContents);
-
-    return {
-      frontmatter: data,
-    };
-  } catch (err) {
-    console.error("サイドバーのおすすめ記事データの取得に失敗しました", err);
-    return;
-  }
-}
-
 export async function getLinks() {
   try {
-    const globalMenuDirectory = path.join(process.cwd(), "mdx-files", "menu");
+    const linkData = await getFileContents("menu", "link");
 
-    const linkFilePath = path.join(globalMenuDirectory, "link.mdx");
-
-    let linkFileContents: string;
-    try {
-      linkFileContents = await fs.promises.readFile(linkFilePath, "utf8");
-    } catch (err) {
-      console.error(
-        `ファイル「${linkFilePath}」の読み込みに失敗しました:`,
-        err
-      );
+    if (!linkData) {
+      console.error("サイドバーのリンクデータが取得できませんでした");
       return;
     }
 
-    const { data } = matter(linkFileContents);
-
-    return {
-      display: data.display,
-      items: data.items,
-    };
+    return linkData;
   } catch (err) {
     console.error("サイドバーのリンクデータの取得に失敗しました", err);
     return;
   }
 }
 
-export async function getSideImage() {
+export async function getSideImageTop() {
   try {
-    const globalMenuDirectory = path.join(process.cwd(), "mdx-files", "menu");
-    const sideImageFilePath = path.join(globalMenuDirectory, "sideImage.mdx");
+    const sideImageTopData = await getFileContents("menu", "sideImageTop");
 
-    let sideImageFileContents: string;
-    try {
-      sideImageFileContents = await fs.promises.readFile(
-        sideImageFilePath,
-        "utf8"
-      );
-    } catch (err) {
-      console.error(
-        `親カテゴリファイル「${sideImageFilePath}」の読み込みに失敗しました:`,
-        err
-      );
+    if (!sideImageTopData) {
+      console.error("サイドバーの上部画像データが取得できませんでした");
       return;
     }
 
-    const { data } = matter(sideImageFileContents);
-
-    return {
-      frontmatter: data,
-    };
+    return sideImageTopData;
   } catch (err) {
-    console.error("サイドバーの画像データの取得に失敗しました", err);
+    console.error("サイドバーの上部画像データの取得に失敗しました", err);
     return;
   }
 }
 
 export async function getSideImageBottom() {
   try {
-    const globalMenuDirectory = path.join(process.cwd(), "mdx-files", "menu");
-    const sideImageFilePath = path.join(
-      globalMenuDirectory,
-      "sideImageBottom.mdx"
+    const sideImageBottomData = await getFileContents(
+      "menu",
+      "sideImageBottom"
     );
 
-    let sideImageFileContents: string;
-    try {
-      sideImageFileContents = await fs.promises.readFile(
-        sideImageFilePath,
-        "utf8"
-      );
-    } catch (err) {
-      console.error(
-        `親カテゴリファイル「${sideImageFilePath}」の読み込みに失敗しました:`,
-        err
-      );
+    if (!sideImageBottomData) {
+      console.error("サイドバー下記の画像データが取得できませんでした");
       return;
     }
 
-    const { data } = matter(sideImageFileContents);
-
-    return {
-      frontmatter: data,
-    };
+    return sideImageBottomData;
   } catch (err) {
     console.error("サイドバー下記の画像データの取得に失敗しました", err);
     return;
@@ -159,35 +70,40 @@ export async function getSideImageBottom() {
 
 export async function getSideCategoriesMenu() {
   try {
-    const sideCategoriesFilePath = path.join(
-      process.cwd(),
-      "mdx-files",
-      "menu",
-      "sideCategoriesMenu.mdx"
-    );
+    const sideCategoriesData = await getFileContents("menu", "sideCategories");
 
-    let sideCategoryFileContents: string;
-    try {
-      sideCategoryFileContents = await fs.promises.readFile(
-        sideCategoriesFilePath,
-        "utf8"
-      );
-    } catch (err) {
+    if (!sideCategoriesData) {
       console.error(
-        `カテゴリファイル「${sideCategoriesFilePath}」の読み込みに失敗しました:`,
-        err
+        "サイドバーの書き換えるカテゴリデータが取得できませんでした"
       );
       return;
     }
 
-    const { data } = matter(sideCategoryFileContents);
-
-    return {
-      display: data.display,
-      items: data.items,
-    };
+    return sideCategoriesData;
   } catch (err) {
-    console.error("子カテゴリ一覧の取得に失敗しました", err);
+    console.error(
+      "サイドバーの書き換えるカテゴリデータの取得に失敗しました",
+      err
+    );
+    return;
+  }
+}
+
+export async function getRecommendArticles() {
+  try {
+    const recommendArticleData = await getArticlesFromSlugs(
+      "menu",
+      "recommendArticle"
+    );
+
+    if (!recommendArticleData) {
+      console.error("サイドバーのおすすめ記事が取得できませんでした");
+      return;
+    }
+
+    return recommendArticleData;
+  } catch (err) {
+    console.error("サイドバーのおすすめ記事データの取得に失敗しました", err);
     return;
   }
 }
