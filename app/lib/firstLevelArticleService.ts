@@ -2,7 +2,7 @@ import path from "path";
 import fs from "fs";
 import matter from "gray-matter";
 import { getFixedPages } from "./fixedPageService";
-import { getParentCategories } from "./categoryService";
+import { getParentCategories } from "./service/categoryService";
 
 export async function getFirstLevelArticles() {
   try {

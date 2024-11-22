@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { getFixedPages } from "./lib/fixedPageService";
 import { getAllArticles } from "./lib/service/allArticleService";
-import { getAllCategories } from "./lib/categoryService";
+import { getAllCategories } from "./lib/service/categoryService";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseURL = process.env.WEBSITE_TITLE;

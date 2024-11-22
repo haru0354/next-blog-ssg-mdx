@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getParentCategories } from "@/app/lib/categoryService";
+import { getParentCategories } from "@/app/lib/service/categoryService";
 import { getSideCategoriesMenu } from "@/app/lib/menuService";
 
 type Category = {
