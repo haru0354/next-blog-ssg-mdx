@@ -7,7 +7,7 @@ import { useMDXComponents } from "@/mdx-components";
 import {
   getFirstLevelArticle,
   getFirstLevelArticles,
-} from "@/app/lib/firstLevelArticleService";
+} from "@/app/lib/service/firstLevelArticleService";
 import LeftColumn from "@/app/components/layouts/LeftColumn";
 import Breadcrumbs from "@/app/components/content-area/Breadcrumbs";
 import NotFound from "@/app/not-found";

@@ -1,8 +1,8 @@
 import path from "path";
 import fs from "fs";
 import matter from "gray-matter";
-import { getFixedPages } from "./fixedPageService";
-import { getParentCategories } from "./service/categoryService";
+import { getFixedPages } from "../fixedPageService";
+import { getParentCategories } from "./categoryService";
 
 export async function getFirstLevelArticles() {
   try {
