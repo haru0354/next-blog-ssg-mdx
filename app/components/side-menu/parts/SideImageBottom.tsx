@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getSideImageBottom } from "@/app/lib/menuService";
+import { getSideImageBottom } from "@/app/lib/service/menuService";
 
 type Image = {
   eyeCatchName: string;

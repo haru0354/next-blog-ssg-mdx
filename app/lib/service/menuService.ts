@@ -1,5 +1,5 @@
-import { getArticlesFromSlugs } from "./getArticlesFromSlugs";
-import { getFileContents } from "./getFileContents";
+import { getArticlesFromSlugs } from "../getArticlesFromSlugs";
+import { getFileContents } from "../getFileContents";
 
 export async function getGlobalMenu() {
   try {
