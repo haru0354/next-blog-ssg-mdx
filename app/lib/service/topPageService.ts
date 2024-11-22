@@ -1,5 +1,5 @@
-import { getFileContents } from "./getFileContents";
-import { getArticlesFromSlugs } from "./getArticlesFromSlugs";
+import { getFileContents } from "../getFileContents";
+import { getArticlesFromSlugs } from "../getArticlesFromSlugs";
 
 export async function getTopPageArticle() {
   try {

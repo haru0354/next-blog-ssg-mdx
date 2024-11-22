@@ -7,12 +7,11 @@ import { useMDXComponents } from "@/mdx-components";
 import {
   getThirdLevelArticle,
   getThirdLevelArticles,
-} from "@/app/lib/thirdLevelArticleService";
+} from "@/app/lib/service/thirdLevelArticleService";
 import LeftColumn from "@/app/components/layouts/LeftColumn";
 import Breadcrumbs from "@/app/components/content-area/Breadcrumbs";
 import NotFound from "@/app/not-found";
 import SideMenu from "@/app/components/side-menu/SideMenu";
-import CategoryInArticlesList from "@/app/components/content-area/related-articles/CategoryInArticlesList";
 import ArticleInArticleList from "@/app/components/content-area/related-articles/ArticleInArticleList";
 
 export const generateMetadata = async ({

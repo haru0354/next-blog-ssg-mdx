@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getTwoColumnRecommendArticles } from "@/app/lib/topPageService";
+import { getTwoColumnRecommendArticles } from "@/app/lib/service/topPageService";
 import Button from "../ui/Button";
 
 const TwoColumnRecommendArticles = async () => {

@@ -1,4 +1,4 @@
-import { getLinks } from "@/app/lib/menuService";
+import { getLinks } from "@/app/lib/service/menuService";
 
 type SideLinksProps = {
   border?: boolean;
