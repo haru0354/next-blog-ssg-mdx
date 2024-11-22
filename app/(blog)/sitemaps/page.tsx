@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { getAllArticles } from "@/app/lib/allArticleService";
+import { getAllArticles } from "@/app/lib/service/allArticleService";
 import { getFixedPages } from "@/app/lib/fixedPageService";
 import { Metadata } from "next";
 import LeftColumn from "@/app/components/layouts/LeftColumn";

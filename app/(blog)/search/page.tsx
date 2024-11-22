@@ -1,5 +1,5 @@
-import { getAllArticles } from "@/app/lib/allArticleService";
 import { Metadata } from "next";
+import { getAllArticles } from "@/app/lib/service/allArticleService";
 import LeftColumn from "@/app/components/layouts/LeftColumn";
 import Breadcrumbs from "@/app/components/content-area/Breadcrumbs";
 import SearchBar from "@/app/components/ui/SearchBar";

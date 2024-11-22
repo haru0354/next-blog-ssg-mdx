@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 import { getFixedPages } from "./lib/fixedPageService";
-import { getAllArticles } from "./lib/allArticleService";
+import { getAllArticles } from "./lib/service/allArticleService";
 import { getAllCategories } from "./lib/categoryService";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

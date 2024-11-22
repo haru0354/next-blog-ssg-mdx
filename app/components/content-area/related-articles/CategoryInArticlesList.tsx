@@ -1,4 +1,4 @@
-import { getAllArticles } from "@/app/lib/allArticleService";
+import { getAllArticles } from "@/app/lib/service/allArticleService";
 import { shuffleArray } from "@/app/util/shuffleArray";
 import LoadMoreArticles from "./LoadMoreArticles";
 

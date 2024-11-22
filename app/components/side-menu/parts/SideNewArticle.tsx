@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getAllArticles } from "@/app/lib/allArticleService";
+import { getAllArticles } from "@/app/lib/service/allArticleService";
 
 type SideNewArticleProps = {
   border?: boolean;
