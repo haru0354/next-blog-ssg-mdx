@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getTopPageRecommendArticles } from "@/app/lib/topPageService";
+import { getTopPageRecommendArticles } from "@/app/lib/service/topPageService";
 import Image from "next/image";
 
 const TopRecommendArticles = async () => {
