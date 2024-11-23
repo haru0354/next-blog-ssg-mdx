@@ -1,6 +1,7 @@
 import path from "path";
 import fs from "fs";
 import matter from "gray-matter";
+import { getMdxFileNamesInDirectory } from "../getMdxFileNamesInDirectory";
 
 type Article = {
   slug: string;
@@ -47,21 +48,12 @@ export async function getAllArticles() {
           categoryFolderInArticle
         );
 
-        let fileNamesInParentCategory: string[] = [];
-        try {
-          fileNamesInParentCategory = fs.readdirSync(parentCategoryPath);
-        } catch (err) {
-          console.error(
-            `親カテゴリディレクトリ「${parentCategoryPath}」の読み込みに失敗しました:`,
-            err
-          );
-          return [];
-        }
+        const mdxFileNamesInParentCategory =
+          getMdxFileNamesInDirectory(parentCategoryPath);
 
-        const mdxFileNamesInParentCategory = fileNamesInParentCategory.filter(
-          (fileNameInParentCategory) =>
-            fileNameInParentCategory.endsWith(".mdx")
-        );
+        if (mdxFileNamesInParentCategory === null) {
+          return null;
+        }
 
         const parentCategoryFilePath = path.join(
           process.cwd(),
@@ -151,21 +143,12 @@ export async function getAllArticles() {
                 parentCategoryFolderInArticle
               );
 
-              let fileNamesInChildCategory: string[] = [];
-              try {
-                fileNamesInChildCategory = fs.readdirSync(childCategoryPath);
-              } catch (err) {
-                console.error(
-                  `子カテゴリディレクトリ「${childCategoryPath}」の読み込みに失敗しました:`,
-                  err
-                );
-                return [];
-              }
-
               const mdxFileNamesInChildCategory =
-                fileNamesInChildCategory.filter((fileNameInChildCategory) =>
-                  fileNameInChildCategory.endsWith(".mdx")
-                );
+                getMdxFileNamesInDirectory(childCategoryPath);
+
+              if (mdxFileNamesInChildCategory === null) {
+                return null;
+              }
 
               const childCategoryFilePath = path.join(
                 process.cwd(),

@@ -1,9 +1,6 @@
 import fs from "fs";
-import path from "path";
 
-export function getMdxFileNamesInDirectory(directoryName: string) {
-  const directoryPath = path.join(process.cwd(), "mdx-files", directoryName);
-
+export function getMdxFileNamesInDirectory(directoryPath: string) {
   let fileNames: string[] = [];
   try {
     fileNames = fs.readdirSync(directoryPath);
@@ -12,7 +9,7 @@ export function getMdxFileNamesInDirectory(directoryName: string) {
       `ディレクトリ「${directoryPath}」の読み込みに失敗しました:`,
       err
     );
-    return [];
+    return null;
   }
 
   return fileNames.filter((fileName) => fileName.endsWith(".mdx"));
