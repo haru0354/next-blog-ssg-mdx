@@ -69,7 +69,7 @@ const page = async () => {
           <h3 className="my-8 p-2 text-lg font-semibold border-b border-main-gray border-dashed">
             その他のページ
           </h3>
-          {fixedPages.map((fixedPage, index) => {
+          {fixedPages?.map((fixedPage, index) => {
             return (
               <ul key={index}>
                 <li className="list-disc list-inside my-4 mx-8 text-sky-600">
