@@ -1,6 +1,7 @@
 import path from "path";
 import fs from "fs";
 import matter from "gray-matter";
+import { getMdxFileNamesInDirectory } from "../getMdxFileNamesInDirectory";
 
 type Article = {
   slug: string;
@@ -74,21 +75,11 @@ export async function getThirdLevelArticles() {
               childCategoryFolder
             );
 
-            let thirdLevelArticleFileNames: string[] = [];
-            try {
-              thirdLevelArticleFileNames = fs.readdirSync(childCategoryPath);
-            } catch (err) {
-              console.error(
-                `子カテゴリディレクトリ「${childCategoryPath}」の読み込みに失敗しました:`,
-                err
-              );
-              return [];
-            }
+            const mdxFileNames = getMdxFileNamesInDirectory(childCategoryPath);
 
-            const mdxFileNames = thirdLevelArticleFileNames.filter(
-              (thirdLevelArticleFileName) =>
-                thirdLevelArticleFileName.endsWith(".mdx")
-            );
+            if (mdxFileNames === null) {
+              return null;
+            }
 
             const parentCategoryFile = path.join(
               process.cwd(),
