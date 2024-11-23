@@ -4,11 +4,11 @@ import matter from "gray-matter";
 import { getFileContents } from "./getFileContents";
 
 export async function getArticlesFromSlugs(
+  directoryPath: string,
   fileName: string,
-  directoryName: string
 ) {
   try {
-    const fileContents = await getFileContents(fileName, directoryName);
+    const fileContents = await getFileContents(directoryPath, fileName);
 
     if (!fileContents) {
       console.error("ファイルデータが取得できませんでした");
