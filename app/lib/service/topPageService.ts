@@ -1,9 +1,12 @@
+import path from "path";
 import { getFileContents } from "../getFileContents";
 import { getArticlesFromSlugs } from "../getArticlesFromSlugs";
 
 export async function getTopPageArticle() {
   try {
-    const topPageFileData = await getFileContents("top-page", "topPageArticle", true);
+    const directoryPath = path.join(process.cwd(), "mdx-files", "top-page");
+
+    const topPageFileData = await getFileContents(directoryPath, "topPageArticle", true);
 
     if (!topPageFileData) {
       console.error("トップページの記事が取得できませんでした");
@@ -19,8 +22,10 @@ export async function getTopPageArticle() {
 
 export async function getTwoColumnRecommendArticles() {
   try {
+    const directoryPath = path.join(process.cwd(), "mdx-files", "top-page");
+
     const TopPageRecommendArticles = await getArticlesFromSlugs(
-      "top-page",
+      directoryPath,
       "twoColumnRecommendArticles"
     );
 

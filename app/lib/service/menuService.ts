@@ -1,9 +1,12 @@
+import path from "path";
 import { getArticlesFromSlugs } from "../getArticlesFromSlugs";
 import { getFileContents } from "../getFileContents";
 
 export async function getGlobalMenu() {
   try {
-    const globalMenuData = await getFileContents("menu", "globalMenu");
+    const directoryPath = path.join(process.cwd(), "mdx-files", "menu");
+
+    const globalMenuData = await getFileContents(directoryPath, "globalMenu");
 
     if (!globalMenuData) {
       console.error("サイドバーのおすすめ記事が取得できませんでした");
@@ -19,7 +22,9 @@ export async function getGlobalMenu() {
 
 export async function getLinks() {
   try {
-    const linkData = await getFileContents("menu", "link");
+    const directoryPath = path.join(process.cwd(), "mdx-files", "menu");
+
+    const linkData = await getFileContents(directoryPath, "link");
 
     if (!linkData) {
       console.error("サイドバーのリンクデータが取得できませんでした");
@@ -35,7 +40,12 @@ export async function getLinks() {
 
 export async function getSideImageTop() {
   try {
-    const sideImageTopData = await getFileContents("menu", "sideImageTop");
+    const directoryPath = path.join(process.cwd(), "mdx-files", "menu");
+
+    const sideImageTopData = await getFileContents(
+      directoryPath,
+      "sideImageTop"
+    );
 
     if (!sideImageTopData) {
       console.error("サイドバーの上部画像データが取得できませんでした");
@@ -51,8 +61,10 @@ export async function getSideImageTop() {
 
 export async function getSideImageBottom() {
   try {
+    const directoryPath = path.join(process.cwd(), "mdx-files", "menu");
+
     const sideImageBottomData = await getFileContents(
-      "menu",
+      directoryPath,
       "sideImageBottom"
     );
 
@@ -70,7 +82,12 @@ export async function getSideImageBottom() {
 
 export async function getSideCategoriesMenu() {
   try {
-    const sideCategoriesData = await getFileContents("menu", "sideCategories");
+    const directoryPath = path.join(process.cwd(), "mdx-files", "menu");
+
+    const sideCategoriesData = await getFileContents(
+      directoryPath,
+      "sideCategories"
+    );
 
     if (!sideCategoriesData) {
       console.error(
@@ -91,8 +108,10 @@ export async function getSideCategoriesMenu() {
 
 export async function getRecommendArticles() {
   try {
+    const directoryPath = path.join(process.cwd(), "mdx-files", "menu");
+
     const recommendArticleData = await getArticlesFromSlugs(
-      "menu",
+      directoryPath,
       "recommendArticle"
     );
 

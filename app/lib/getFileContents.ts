@@ -3,17 +3,12 @@ import fs from "fs";
 import matter from "gray-matter";
 
 export async function getFileContents(
-  directoryName: string,
+  directoryPath: string,
   fileName: string,
   isContent: boolean = false
 ) {
   try {
-    const fileDirectory = path.join(
-      process.cwd(),
-      "mdx-files",
-      directoryName
-    );
-    const filePath = path.join(fileDirectory, `${fileName}.mdx`);
+    const filePath = path.join(directoryPath, `${fileName}.mdx`);
 
     let fileContents: string;
     try {
