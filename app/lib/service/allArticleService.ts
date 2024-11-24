@@ -2,6 +2,7 @@ import path from "path";
 import fs from "fs";
 import { getMdxFileNamesInDirectory } from "../getMdxFileNamesInDirectory";
 import { getFileContents } from "../getFileContents";
+import { getSubdirectories } from "../getSubdirectories";
 
 type Article = {
   slug: string;
@@ -23,29 +24,19 @@ type Frontmatter = {
 export async function getAllArticles() {
   try {
     const articlesDirectory = path.join(process.cwd(), "mdx-files", "article");
+    const parentCategoryDirectories = getSubdirectories(articlesDirectory);
 
-    let categoryFoldersInArticle: string[] = [];
-    try {
-      categoryFoldersInArticle = fs
-        .readdirSync(articlesDirectory)
-        .filter((name) => {
-          return fs.statSync(path.join(articlesDirectory, name)).isDirectory();
-        });
-    } catch (err) {
-      console.error(
-        `${articlesDirectory}のディレクトリの読み込みに失敗しました:`,
-        err
-      );
-      return [];
+    if (parentCategoryDirectories.length === 0) {
+      return null;
     }
 
     const articles: Article[] = [];
 
     await Promise.all(
-      categoryFoldersInArticle.map(async (categoryFolderInArticle) => {
+      parentCategoryDirectories.map(async (parentCategoryDirectory) => {
         const parentCategoryPath = path.join(
           articlesDirectory,
-          categoryFolderInArticle
+          parentCategoryDirectory
         );
 
         const mdxFileNamesInParentCategory =
@@ -63,7 +54,7 @@ export async function getAllArticles() {
 
         const parentCategoryContents = await getFileContents(
           categoriesDirectory,
-          categoryFolderInArticle
+          parentCategoryDirectory
         );
 
         if (parentCategoryContents === null) {
@@ -90,7 +81,7 @@ export async function getAllArticles() {
                 slug: mdxFileNameInParentCategory.replace(".mdx", ""),
                 parentCategoryName:
                   parentCategoryContents?.frontmatter.categoryName,
-                parentCategorySlug: categoryFolderInArticle,
+                parentCategorySlug: parentCategoryDirectory,
                 frontmatter: {
                   title: secondLevelArticlesFiles.frontmatter.title,
                   date: secondLevelArticlesFiles.frontmatter.date,
@@ -104,95 +95,81 @@ export async function getAllArticles() {
           )
         );
 
-        //下記で第3階層の各記事をarticlesに含める
-        let parentCategoryFoldersInArticle: string[] = [];
-        try {
-          parentCategoryFoldersInArticle = fs
-            .readdirSync(parentCategoryPath)
-            .filter((name) => {
-              return fs
-                .statSync(path.join(parentCategoryPath, name))
-                .isDirectory();
-            });
-        } catch (err) {
-          console.error(
-            `子カテゴリディレクトリ「${parentCategoryPath}」の読み込みに失敗しました:`,
-            err
-          );
-          return [];
+        const childCategoryDirectories = getSubdirectories(parentCategoryPath);
+
+        if (childCategoryDirectories.length === 0) {
+          return null;
         }
 
         await Promise.all(
-          parentCategoryFoldersInArticle.map(
-            async (parentCategoryFolderInArticle) => {
-              const childCategoryPath = path.join(
-                articlesDirectory,
-                categoryFolderInArticle,
-                parentCategoryFolderInArticle
-              );
+          childCategoryDirectories.map(async (childCategoryDirectory) => {
+            const childCategoryPath = path.join(
+              articlesDirectory,
+              parentCategoryDirectory,
+              childCategoryDirectory
+            );
 
-              const mdxFileNamesInChildCategory =
-                getMdxFileNamesInDirectory(childCategoryPath);
+            const mdxFileNamesInChildCategory =
+              getMdxFileNamesInDirectory(childCategoryPath);
 
-              if (mdxFileNamesInChildCategory === null) {
-                return null;
-              }
-
-              const childCategoryFilePath = path.join(
-                process.cwd(),
-                "mdx-files",
-                "category",
-                categoryFolderInArticle
-              );
-
-              const childCategoryContents = await getFileContents(
-                childCategoryFilePath,
-                parentCategoryFolderInArticle
-              );
-
-              if (childCategoryContents === null) {
-                return null;
-              }
-
-              await Promise.all(
-                mdxFileNamesInChildCategory.map(
-                  async (mdxFileNameInChildCategory) => {
-                    const thirdLevelArticlesFileNames =
-                      mdxFileNameInChildCategory.replace(/\.mdx$/, "");
-
-                    const thirdLevelArticlesContents = await getFileContents(
-                      childCategoryPath,
-                      thirdLevelArticlesFileNames
-                    );
-
-                    if (thirdLevelArticlesContents === null) {
-                      return null;
-                    }
-
-                    articles.push({
-                      slug: thirdLevelArticlesFileNames,
-                      parentCategoryName:
-                        parentCategoryContents?.frontmatter.categoryName,
-                      parentCategorySlug: categoryFolderInArticle,
-                      childCategoryName:
-                        childCategoryContents?.frontmatter.categoryName,
-                      childCategorySlug: parentCategoryFolderInArticle,
-                      frontmatter: {
-                        title: thirdLevelArticlesContents.frontmatter.title,
-                        date: thirdLevelArticlesContents.frontmatter.date,
-                        description:
-                          thirdLevelArticlesContents.frontmatter.description,
-                        eyeCatchName:
-                          thirdLevelArticlesContents.frontmatter.eyeCatchName,
-                        eyeCatchAlt:
-                          thirdLevelArticlesContents.frontmatter.eyeCatchAlt,
-                      },
-                    });
-                  }
-                )
-              );
+            if (mdxFileNamesInChildCategory === null) {
+              return null;
             }
-          )
+
+            const childCategoryFilePath = path.join(
+              process.cwd(),
+              "mdx-files",
+              "category",
+              parentCategoryDirectory
+            );
+
+            const childCategoryContents = await getFileContents(
+              childCategoryFilePath,
+              childCategoryDirectory
+            );
+
+            if (childCategoryContents === null) {
+              return null;
+            }
+
+            await Promise.all(
+              mdxFileNamesInChildCategory.map(
+                async (mdxFileNameInChildCategory) => {
+                  const thirdLevelArticlesFileNames =
+                    mdxFileNameInChildCategory.replace(/\.mdx$/, "");
+
+                  const thirdLevelArticlesContents = await getFileContents(
+                    childCategoryPath,
+                    thirdLevelArticlesFileNames
+                  );
+
+                  if (thirdLevelArticlesContents === null) {
+                    return null;
+                  }
+
+                  articles.push({
+                    slug: thirdLevelArticlesFileNames,
+                    parentCategoryName:
+                      parentCategoryContents?.frontmatter.categoryName,
+                    parentCategorySlug: parentCategoryDirectory,
+                    childCategoryName:
+                      childCategoryContents?.frontmatter.categoryName,
+                    childCategorySlug: childCategoryDirectory,
+                    frontmatter: {
+                      title: thirdLevelArticlesContents.frontmatter.title,
+                      date: thirdLevelArticlesContents.frontmatter.date,
+                      description:
+                        thirdLevelArticlesContents.frontmatter.description,
+                      eyeCatchName:
+                        thirdLevelArticlesContents.frontmatter.eyeCatchName,
+                      eyeCatchAlt:
+                        thirdLevelArticlesContents.frontmatter.eyeCatchAlt,
+                    },
+                  });
+                }
+              )
+            );
+          })
         );
       })
     );
