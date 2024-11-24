@@ -1,48 +1,32 @@
 import path from "path";
-import fs from "fs";
-import matter from "gray-matter";
+import { getMdxFileNamesInDirectory } from "../getMdxFileNamesInDirectory";
+import { getFileContents } from "../getFileContents";
 
 export async function getFixedPages() {
   const fixedPageDirectory = path.join(process.cwd(), "mdx-files", "article");
 
-  let fixedPageNames: string[] = [];
-  try {
-    fixedPageNames = fs.readdirSync(fixedPageDirectory);
-  } catch (err) {
-    console.error(
-      `固定ページディレクトリ「${fixedPageDirectory}」の読み込みに失敗しました:`,
-      err
-    );
-    return [];
-  }
+  const mdxFixedPageNames = getMdxFileNamesInDirectory(fixedPageDirectory);
 
-  const mdxFixedPageNames = fixedPageNames.filter((fixedPageName) =>
-    fixedPageName.endsWith(".mdx")
-  );
+  if (mdxFixedPageNames === null) {
+    return null;
+  }
 
   const fixedPages = await Promise.all(
     mdxFixedPageNames.map(async (mdxFixedPageName) => {
-      const fixedFilePath = path.join(
+      const fixedPageName = mdxFixedPageName.replace(/\.mdx$/, "");
+
+      const fixedContents = await getFileContents(
         fixedPageDirectory,
-        `${mdxFixedPageName}`
+        fixedPageName
       );
 
-      let fixedFileContents: string;
-      try {
-        fixedFileContents = await fs.promises.readFile(fixedFilePath, "utf8");
-      } catch (err) {
-        console.error(
-          `固定ページ「${fixedFilePath}」の読み込みに失敗しました:`,
-          err
-        );
-        return;
+      if (fixedContents === null) {
+        return null;
       }
 
-      const { data } = matter(fixedFileContents);
-
       return {
-        slug: mdxFixedPageName.replace(".mdx", ""),
-        frontmatter: data,
+        slug: fixedPageName,
+        frontmatter: fixedContents.frontmatter,
       };
     })
   );

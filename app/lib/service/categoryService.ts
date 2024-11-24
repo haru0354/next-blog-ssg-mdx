@@ -1,6 +1,7 @@
 import path from "path";
 import fs from "fs";
-import matter from "gray-matter";
+import { getMdxFileNamesInDirectory } from "../getMdxFileNamesInDirectory";
+import { getFileContents } from "../getFileContents";
 
 type ChildCategories = {
   slug: string;
@@ -49,55 +50,44 @@ export async function getAllCategories() {
           parentCategoryFolder
         );
 
-        let FileNamesInChildCategory: string[] = [];
-        try {
-          FileNamesInChildCategory = fs.readdirSync(childCategoryDirectory);
-        } catch (err) {
-          console.error(
-            `子カテゴリディレクトリ「${childCategoryDirectory}」の読み込みに失敗しました:`,
-            err
-          );
-          return [];
-        }
-
-        const childCategoryMdxFileNames = FileNamesInChildCategory.filter(
-          (FileNameInChildCategory) => FileNameInChildCategory.endsWith(".mdx")
+        const childCategoryMdxFileNames = getMdxFileNamesInDirectory(
+          childCategoryDirectory
         );
+
+        if (childCategoryMdxFileNames === null) {
+          return null;
+        }
 
         await Promise.all(
           childCategoryMdxFileNames.map(async (childCategoryMdxFileName) => {
-            const filePath = path.join(
-              childCategoryDirectory,
-              `${childCategoryMdxFileName}`
+            const childCategoryFileNames = childCategoryMdxFileName.replace(
+              /\.mdx$/,
+              ""
             );
 
-            let childCategoryFileContents: string;
-            try {
-              childCategoryFileContents = await fs.promises.readFile(
-                filePath,
-                "utf8"
-              );
-            } catch (err) {
-              console.error(
-                `子カテゴリファイル「${filePath}」の読み込みに失敗しました:`,
-                err
-              );
-              return;
-            }
+            const childCategoryContents = await getFileContents(
+              childCategoryDirectory,
+              childCategoryFileNames
+            );
 
-            const { data } = matter(childCategoryFileContents);
+            if (childCategoryContents === null) {
+              return null;
+            }
 
             childCategories.push({
               slug: childCategoryMdxFileName.replace(".mdx", ""),
               parentCategorySlug: parentCategoryFolder,
-              frontmatter: data as Frontmatter,
+              frontmatter: childCategoryContents.frontmatter as Frontmatter,
             });
           })
         );
       })
     );
 
-    const allCategories = [...parentCategories, ...childCategories];
+    const allCategories = [
+      ...(parentCategories || []),
+      ...(childCategories || []),
+    ];
 
     return allCategories;
   } catch (err) {
@@ -109,48 +99,28 @@ export async function getAllCategories() {
 export async function getParentCategories() {
   const categoriesDirectory = path.join(process.cwd(), "mdx-files", "category");
 
-  let fileNamesInCategoryDirectory: string[] = [];
-  try {
-    fileNamesInCategoryDirectory = fs.readdirSync(categoriesDirectory);
-  } catch (err) {
-    console.error(
-      `カテゴリディレクトリ「${categoriesDirectory}」の読み込みに失敗しました:`,
-      err
-    );
-    return [];
-  }
+  const mdxFileNames = getMdxFileNamesInDirectory(categoriesDirectory);
 
-  const mdxFileNames = fileNamesInCategoryDirectory.filter(
-    (fileNameInCategoryDirectory) =>
-      fileNameInCategoryDirectory.endsWith(".mdx")
-  );
+  if (mdxFileNames === null) {
+    return null;
+  }
 
   const parentCategories = await Promise.all(
     mdxFileNames.map(async (mdxFileName) => {
-      const parentCategoryFilePath = path.join(
+      const fileName = mdxFileName.replace(/\.mdx$/, "");
+
+      const parentCategoryContents = await getFileContents(
         categoriesDirectory,
-        `${mdxFileName}`
+        fileName
       );
 
-      let parentCategoryFileContents: string;
-      try {
-        parentCategoryFileContents = await fs.promises.readFile(
-          parentCategoryFilePath,
-          "utf8"
-        );
-      } catch (err) {
-        console.error(
-          `親カテゴリファイル「${parentCategoryFilePath}」の読み込みに失敗しました:`,
-          err
-        );
-        return;
+      if (parentCategoryContents === null) {
+        return null;
       }
-
-      const { data } = matter(parentCategoryFileContents);
 
       return {
         slug: mdxFileName.replace(".mdx", ""),
-        frontmatter: data,
+        frontmatter: parentCategoryContents.frontmatter,
       };
     })
   );
@@ -171,47 +141,28 @@ export async function getChildCategories(firstLevelArticle_slug: string) {
       return null;
     }
 
-    let fileNamesInChildCategory: string[] = [];
-    try {
-      fileNamesInChildCategory = fs.readdirSync(childCategoriesDirectory);
-    } catch (err) {
-      console.error(
-        `子カテゴリディレクトリ「${childCategoriesDirectory}」の読み込みに失敗しました:`,
-        err
-      );
-      return [];
-    }
+    const mdxFileNames = getMdxFileNamesInDirectory(childCategoriesDirectory);
 
-    const mdxFileNames = fileNamesInChildCategory.filter(
-      (fileNameInChildCategory) => fileNameInChildCategory.endsWith(".mdx")
-    );
+    if (mdxFileNames === null) {
+      return null;
+    }
 
     const childCategories = await Promise.all(
       mdxFileNames.map(async (mdxFileName) => {
-        const childCategoryFilePath = path.join(
+        const fileNames = mdxFileName.replace(/\.mdx$/, "");
+
+        const childCategoryContents = await getFileContents(
           childCategoriesDirectory,
-          `${mdxFileName}`
+          fileNames
         );
 
-        let childCategoryFileContents: string;
-        try {
-          childCategoryFileContents = await fs.promises.readFile(
-            childCategoryFilePath,
-            "utf8"
-          );
-        } catch (err) {
-          console.error(
-            `子カテゴリファイル「${childCategoryFilePath}」の読み込みに失敗しました:`,
-            err
-          );
-          return;
+        if (childCategoryContents === null) {
+          return null;
         }
-
-        const { data } = matter(childCategoryFileContents);
 
         return {
           slug: mdxFileName.replace(".mdx", ""),
-          frontmatter: data,
+          frontmatter: childCategoryContents.frontmatter,
         };
       })
     );

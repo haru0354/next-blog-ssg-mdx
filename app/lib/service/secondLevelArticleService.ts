@@ -1,6 +1,8 @@
 import path from "path";
 import fs from "fs";
 import matter from "gray-matter";
+import { getMdxFileNamesInDirectory } from "../getMdxFileNamesInDirectory";
+import { getFileContents } from "../getFileContents";
 
 type Article = {
   slug: string;
@@ -51,74 +53,51 @@ export async function getSecondLevelArticles() {
           categoryFoldersInArticle
         );
 
-        let fileNames: string[] = [];
-        try {
-          fileNames = fs.readdirSync(categoryPath);
-        } catch (err) {
-          console.error(
-            `ディレクトリ「${categoryPath}」の読み込みに失敗しました:`,
-            err
-          );
-          return [];
+        const mdxFileNames = getMdxFileNamesInDirectory(categoryPath);
+
+        if (mdxFileNames === null) {
+          return null;
         }
-
-        const mdxFileNames = fileNames.filter((fileName) =>
-          fileName.endsWith(".mdx")
-        );
-
-        const categoryFile = path.join(
-          process.cwd(),
-          "mdx-files",
-          "category",
-          `${categoryFoldersInArticle}.mdx`
-        );
 
         await Promise.all(
           mdxFileNames.map(async (mdxFileName) => {
-            const articleFilePath = path.join(categoryPath, mdxFileName);
+            const fileName = mdxFileName.replace(/\.mdx$/, "");
 
-            let articleContents: string;
-            try {
-              articleContents = await fs.promises.readFile(
-                articleFilePath,
-                "utf8"
-              );
-            } catch (err) {
-              console.error(
-                `記事ファイル${articleFilePath}の読み込みに失敗しました:`,
-                err
-              );
-              return;
+            const secondLevelArticleContents = await getFileContents(
+              categoryPath,
+              fileName
+            );
+
+            if (secondLevelArticleContents === null) {
+              return null;
             }
 
-            const { data } = matter(articleContents);
+            const categoriesFilesDirectory = path.join(
+              process.cwd(),
+              "mdx-files",
+              "category"
+            );
 
-            let categoryContents: string;
-            try {
-              categoryContents = await fs.promises.readFile(
-                categoryFile,
-                "utf8"
-              );
-            } catch (err) {
-              console.error(
-                `カテゴリファイル「${categoryFile}」の読み込みに失敗しました:`,
-                err
-              );
-              return;
+            const categoryContents = await getFileContents(
+              categoriesFilesDirectory,
+              categoryFoldersInArticle
+            );
+
+            if (categoryContents === null) {
+              return null;
             }
-
-            const { data: categoryData } = matter(categoryContents);
 
             articles.push({
               slug: mdxFileName.replace(".mdx", ""),
               categorySlug: categoryFoldersInArticle,
-              categoryName: categoryData.categoryName,
+              categoryName: categoryContents.frontmatter.categoryName,
               frontmatter: {
-                title: data.title,
-                date: data.date,
-                description: data.description,
-                eyeCatchName: data.eyeCatchName,
-                eyeCatchAlt: data.eyeCatchAlt,
+                title: secondLevelArticleContents.frontmatter.title,
+                date: secondLevelArticleContents.frontmatter.date,
+                description: secondLevelArticleContents.frontmatter.description,
+                eyeCatchName:
+                  secondLevelArticleContents.frontmatter.eyeCatchName,
+                eyeCatchAlt: secondLevelArticleContents.frontmatter.eyeCatchAlt,
               },
             });
           })
@@ -154,53 +133,34 @@ export async function getSecondLevelArticles() {
           categoryFolder
         );
 
-        let parentCategoryFileNames: string[] = [];
-        try {
-          parentCategoryFileNames = fs.readdirSync(parentCategoryPath);
-        } catch (err) {
-          console.error(
-            `親カテゴリディレクトリ「${parentCategoryPath}」の読み込みに失敗しました:`,
-            err
-          );
-          return [];
-        }
+        const mdxFileNames = getMdxFileNamesInDirectory(parentCategoryPath);
 
-        const mdxFileNames = parentCategoryFileNames.filter(
-          (parentCategoryFileName) => parentCategoryFileName.endsWith(".mdx")
-        );
+        if (mdxFileNames === null) {
+          return null;
+        }
 
         await Promise.all(
           mdxFileNames.map(async (mdxFileName) => {
-            const childCategoryFilePath = path.join(
+            const fileName = mdxFileName.replace(/\.mdx$/, "")
+
+            const childCategoryContents = await getFileContents(
               parentCategoryPath,
-              mdxFileName
+              fileName
             );
-
-            let childCategoryFileContents: string;
-            try {
-              childCategoryFileContents = await fs.promises.readFile(
-                childCategoryFilePath,
-                "utf8"
-              );
-            } catch (err) {
-              console.error(
-                `子カテゴリファイル「${childCategoryFilePath}」の読み込みに失敗しました:`,
-                err
-              );
-              return;
+    
+            if (childCategoryContents === null) {
+              return null;
             }
-
-            const { data } = matter(childCategoryFileContents);
 
             categories.push({
               slug: mdxFileName.replace(".mdx", ""),
               categorySlug: categoryFolder,
               frontmatter: {
-                title: data.title,
-                date: data.date,
-                description: data.description,
-                eyeCatchName: data.eyeCatchName,
-                eyeCatchAlt: data.eyeCatchAlt,
+                title: childCategoryContents.frontmatter.title,
+                date: childCategoryContents.frontmatter.date,
+                description: childCategoryContents.frontmatter.description,
+                eyeCatchName: childCategoryContents.frontmatter.eyeCatchName,
+                eyeCatchAlt: childCategoryContents.frontmatter.eyeCatchAlt,
               },
             });
           })
@@ -230,11 +190,10 @@ export async function getSecondLevelArticle(
       `${secondLevelArticle_slug}.mdx`
     );
 
-    const parentCategoryFilePath = path.join(
+    const parentCategoryPath = path.join(
       process.cwd(),
       "mdx-files",
       "category",
-      `${firstLevelArticle_slug}.mdx`
     );
 
     const childCategoryFilePath = path.join(
@@ -245,21 +204,14 @@ export async function getSecondLevelArticle(
       `${secondLevelArticle_slug}.mdx`
     );
 
-    let parentCategoryContents: string;
-    try {
-      parentCategoryContents = await fs.promises.readFile(
-        parentCategoryFilePath,
-        "utf8"
-      );
-    } catch (err) {
-      console.error(
-        `親カテゴリファイル「${parentCategoryFilePath}」の読み込みに失敗しました:`,
-        err
-      );
-      return;
-    }
+    const parentCategoryContents = await getFileContents(
+      parentCategoryPath,
+      firstLevelArticle_slug
+    );
 
-    const { data: parentCategoryData } = matter(parentCategoryContents);
+    if (parentCategoryContents === null) {
+      return null;
+    }
 
     let fileContents = null;
 
@@ -279,7 +231,7 @@ export async function getSecondLevelArticle(
       return {
         frontmatter: data,
         content,
-        categoryName: parentCategoryData.categoryName,
+        categoryName: parentCategoryContents.frontmatter.categoryName,
       };
     } else if (fs.existsSync(childCategoryFilePath)) {
       try {
@@ -297,7 +249,7 @@ export async function getSecondLevelArticle(
       return {
         frontmatter: data,
         content,
-        categoryName: parentCategoryData.categoryName,
+        categoryName: parentCategoryContents.frontmatter.categoryName,
       };
     } else {
       console.log("記事もカテゴリも見つかりませんでした。");

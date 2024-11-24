@@ -3,24 +3,19 @@ import fs from "fs";
 import matter from "gray-matter";
 
 export async function getFileContents(
-  directoryName: string,
+  directoryPath: string,
   fileName: string,
   isContent: boolean = false
 ) {
   try {
-    const fileDirectory = path.join(
-      process.cwd(),
-      "mdx-files",
-      directoryName
-    );
-    const filePath = path.join(fileDirectory, `${fileName}.mdx`);
+    const filePath = path.join(directoryPath, `${fileName}.mdx`);
 
     let fileContents: string;
     try {
       fileContents = await fs.promises.readFile(filePath, "utf8");
     } catch (err) {
       console.error(`${filePath}の読み込みに失敗しました:`, err);
-      return;
+      return null;
     }
 
     const { data, content } = matter(fileContents);
@@ -31,6 +26,6 @@ export async function getFileContents(
     };
   } catch (err) {
     console.error("ファイルのデータの取得に失敗しました", err);
-    return;
+    return null;
   }
 }
