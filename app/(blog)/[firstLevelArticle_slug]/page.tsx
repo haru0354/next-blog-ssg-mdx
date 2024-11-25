@@ -62,7 +62,7 @@ const Page = async ({
 }) => {
   const article = await getFirstLevelArticle(params.firstLevelArticle_slug);
 
-  if (!article || article === null) {
+  if (!article) {
     return <NotFound />;
   }
 
