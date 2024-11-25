@@ -1,5 +1,4 @@
 import path from "path";
-import fs from "fs";
 import { getMdxFileNamesInDirectory } from "../getMdxFileNamesInDirectory";
 import { getFileContents } from "../getFileContents";
 import { getSubdirectories } from "../getSubdirectories";

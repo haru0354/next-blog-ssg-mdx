@@ -9,7 +9,7 @@ export async function getFirstLevelArticles() {
     const fixedPages = await getFixedPages();
     const categories = await getParentCategories();
 
-    const FirstLevelArticles = [...fixedPages, ...categories];
+    const FirstLevelArticles = [...(fixedPages || []), ...(categories || [])];
 
     return FirstLevelArticles;
   } catch (err) {
