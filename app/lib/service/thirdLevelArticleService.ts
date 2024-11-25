@@ -1,7 +1,7 @@
 import path from "path";
-import fs from "fs";
 import { getMdxFileNamesInDirectory } from "../getMdxFileNamesInDirectory";
 import { getFileContents } from "../getFileContents";
+import { getSubdirectories } from "../getSubdirectories";
 
 type Article = {
   slug: string;
@@ -29,53 +29,35 @@ export async function getThirdLevelArticles() {
       "category"
     );
 
-    let parentCategoryFolders: string[] = [];
-    try {
-      parentCategoryFolders = fs
-        .readdirSync(articlesDirectory)
-        .filter((name) => {
-          return fs.statSync(path.join(articlesDirectory, name)).isDirectory();
-        });
-    } catch (err) {
-      console.error(
-        `カテゴリディレクトリ「${articlesDirectory}」の読み込みに失敗しました:`,
-        err
-      );
-      return [];
+    const parentCategoryDirectories = getSubdirectories(articlesDirectory);
+
+    if (parentCategoryDirectories.length === 0) {
+      return null;
     }
 
     const articles: Article[] = [];
 
     await Promise.all(
-      parentCategoryFolders.map(async (parentCategoryFolder) => {
-        const parentCategoryDirectory = path.join(
+      parentCategoryDirectories.map(async (parentCategoryDirectory) => {
+        const parentCategoryDirectoryPath = path.join(
           articlesDirectory,
-          parentCategoryFolder
+          parentCategoryDirectory
         );
 
-        let childCategoryFolders: string[] = [];
-        try {
-          childCategoryFolders = fs
-            .readdirSync(parentCategoryDirectory)
-            .filter((name) => {
-              return fs
-                .statSync(path.join(parentCategoryDirectory, name))
-                .isDirectory();
-            });
-        } catch (err) {
-          console.error(
-            `親カテゴリディレクトリ「${parentCategoryDirectory}」の読み込みに失敗しました:`,
-            err
-          );
-          return [];
+        const childCategoryDirectories = getSubdirectories(
+          parentCategoryDirectoryPath
+        );
+
+        if (childCategoryDirectories.length === 0) {
+          return null;
         }
 
         await Promise.all(
-          childCategoryFolders.map(async (childCategoryFolder) => {
+          childCategoryDirectories.map(async (childCategoryDirectory) => {
             const childCategoryPath = path.join(
               articlesDirectory,
-              parentCategoryFolder,
-              childCategoryFolder
+              parentCategoryDirectory,
+              childCategoryDirectory
             );
 
             const mdxFileNames = getMdxFileNamesInDirectory(childCategoryPath);
@@ -86,7 +68,7 @@ export async function getThirdLevelArticles() {
 
             const childCategoryFileDirectory = path.join(
               categoriesDirectory,
-              parentCategoryFolder
+              parentCategoryDirectory
             );
 
             await Promise.all(
@@ -104,7 +86,7 @@ export async function getThirdLevelArticles() {
 
                 const parentCategoryContents = await getFileContents(
                   categoriesDirectory,
-                  parentCategoryFolder
+                  parentCategoryDirectory
                 );
 
                 if (parentCategoryContents === null) {
@@ -113,7 +95,7 @@ export async function getThirdLevelArticles() {
 
                 const childCategoryContents = await getFileContents(
                   childCategoryFileDirectory,
-                  childCategoryFolder
+                  childCategoryDirectory
                 );
 
                 if (childCategoryContents === null) {
@@ -122,8 +104,8 @@ export async function getThirdLevelArticles() {
 
                 articles.push({
                   slug: mdxFileName.replace(".mdx", ""),
-                  parentCategorySlug: parentCategoryFolder,
-                  childCategorySlug: childCategoryFolder,
+                  parentCategorySlug: parentCategoryDirectory,
+                  childCategorySlug: childCategoryDirectory,
                   parentCategoryName:
                     parentCategoryContents.frontmatter.categoryName,
                   childCategoryName:
