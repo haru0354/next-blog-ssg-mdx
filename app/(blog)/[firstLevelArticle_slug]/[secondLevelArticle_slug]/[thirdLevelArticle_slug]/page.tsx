@@ -71,7 +71,7 @@ const Page = async ({
     params.thirdLevelArticle_slug
   );
 
-  if (!article) {
+  if (!article || !article.content) {
     return <NotFound />;
   }
 
