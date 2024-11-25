@@ -3,6 +3,7 @@ import fs from "fs";
 import matter from "gray-matter";
 import { getMdxFileNamesInDirectory } from "../getMdxFileNamesInDirectory";
 import { getFileContents } from "../getFileContents";
+import { getSubdirectories } from "../getSubdirectories";
 
 type Article = {
   slug: string;
@@ -28,29 +29,19 @@ type Frontmatter = {
 export async function getSecondLevelArticles() {
   try {
     const articlesDirectory = path.join(process.cwd(), "mdx-files", "article");
+    const parentCategoryDirectories = getSubdirectories(articlesDirectory);
 
-    let categoryFoldersInArticles: string[] = [];
-    try {
-      categoryFoldersInArticles = fs
-        .readdirSync(articlesDirectory)
-        .filter((name) => {
-          return fs.statSync(path.join(articlesDirectory, name)).isDirectory();
-        });
-    } catch (err) {
-      console.error(
-        `カテゴリディレクトリ「${articlesDirectory}」の読み込みに失敗しました:`,
-        err
-      );
-      return [];
+    if (parentCategoryDirectories.length === 0) {
+      return null;
     }
 
     const articles: Article[] = [];
 
     await Promise.all(
-      categoryFoldersInArticles.map(async (categoryFoldersInArticle) => {
+      parentCategoryDirectories.map(async (parentCategoryDirectory) => {
         const categoryPath = path.join(
           articlesDirectory,
-          categoryFoldersInArticle
+          parentCategoryDirectory
         );
 
         const mdxFileNames = getMdxFileNamesInDirectory(categoryPath);
@@ -80,7 +71,7 @@ export async function getSecondLevelArticles() {
 
             const categoryContents = await getFileContents(
               categoriesFilesDirectory,
-              categoryFoldersInArticle
+              parentCategoryDirectory
             );
 
             if (categoryContents === null) {
@@ -89,7 +80,7 @@ export async function getSecondLevelArticles() {
 
             articles.push({
               slug: mdxFileName.replace(".mdx", ""),
-              categorySlug: categoryFoldersInArticle,
+              categorySlug: parentCategoryDirectory,
               categoryName: categoryContents.frontmatter.categoryName,
               frontmatter: {
                 title: secondLevelArticleContents.frontmatter.title,
@@ -111,26 +102,20 @@ export async function getSecondLevelArticles() {
       "category"
     );
 
-    let categoryFolders: string[] = [];
-    try {
-      categoryFolders = fs.readdirSync(categoriesDirectory).filter((name) => {
-        return fs.statSync(path.join(categoriesDirectory, name)).isDirectory();
-      });
-    } catch (err) {
-      console.error(
-        `カテゴリディレクトリ「${categoriesDirectory}」の読み込みに失敗しました:`,
-        err
-      );
-      return [];
+    const childCategoryDirectories = getSubdirectories(categoriesDirectory);
+
+    if (childCategoryDirectories.length === 0) {
+      return null;
     }
+
 
     const categories: Category[] = [];
 
     await Promise.all(
-      categoryFolders.map(async (categoryFolder) => {
+      childCategoryDirectories.map(async (childCategoryDirectory) => {
         const parentCategoryPath = path.join(
           categoriesDirectory,
-          categoryFolder
+          childCategoryDirectory
         );
 
         const mdxFileNames = getMdxFileNamesInDirectory(parentCategoryPath);
@@ -154,7 +139,7 @@ export async function getSecondLevelArticles() {
 
             categories.push({
               slug: mdxFileName.replace(".mdx", ""),
-              categorySlug: categoryFolder,
+              categorySlug: childCategoryDirectory,
               frontmatter: {
                 title: childCategoryContents.frontmatter.title,
                 date: childCategoryContents.frontmatter.date,
