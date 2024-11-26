@@ -116,7 +116,6 @@ export async function getRecommendArticles() {
     );
 
     if (!recommendArticleData) {
-      console.error("サイドバーのおすすめ記事が取得できませんでした");
       return;
     }
 

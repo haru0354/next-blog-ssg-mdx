@@ -5,7 +5,7 @@ import { getFileContents } from "./getFileContents";
 
 export async function getArticlesFromSlugs(
   directoryPath: string,
-  fileName: string,
+  fileName: string
 ) {
   try {
     const fileContents = await getFileContents(directoryPath, fileName);
@@ -17,8 +17,17 @@ export async function getArticlesFromSlugs(
 
     const { frontmatter } = fileContents;
 
-    const slugs: string[] = frontmatter.slug;
     const display: boolean = frontmatter.display;
+
+    if (!display) {
+      return;
+    }
+
+    const slugs: string[] = frontmatter.slug;
+
+    if (!slugs) {
+      return;
+    }
 
     const articlesDirectory = path.join(process.cwd(), "mdx-files", "article");
 
