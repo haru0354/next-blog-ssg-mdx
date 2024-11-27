@@ -17,11 +17,7 @@ const SideRecommendArticles: React.FC<SideRecommendArticlesProps> = async ({
 }) => {
   const recommendArticles = await getRecommendArticles();
 
-  if (!recommendArticles) {
-    return null;
-  }
-
-  if (recommendArticles.display === false) {
+  if (!recommendArticles || recommendArticles.display !== true) {
     return null;
   }
 
@@ -37,32 +33,27 @@ const SideRecommendArticles: React.FC<SideRecommendArticlesProps> = async ({
       >
         おすすめの記事
       </h3>
-      {recommendArticles.articles.map((article) => {
+      {recommendArticles?.articles.map((article) => {
         return (
-          <>
-            <Link href={`/${article?.slug}`} key={article?.slug}>
-              <div
-                className={`pt-4 bg-white ${divBorderDesign}`}
-              >
-                <Image
-                  src={
-                    article?.frontmatter.eyeCatchName
-                      ? `/thumbnail_webp/${article.frontmatter.eyeCatchName}.webp`
-                      : "/thumbnail_webp/no_image.webp"
-                  }
-                  alt={
-                    article?.frontmatter.eyeCatchAlt
-                      ? `${article.frontmatter.eyeCatchAlt}`
-                      : "アイチャッチ画像"
-                  }
-                  width={300}
-                  height={196}
-                  className="mx-auto hover:-translate-y-2 translate transition duration-300"
-                />
-
-              </div>
-            </Link>
-          </>
+          <Link href={`/${article?.slug}`} key={article?.slug}>
+            <div className={`pt-4 bg-white ${divBorderDesign}`}>
+              <Image
+                src={
+                  article?.frontmatter.eyeCatchName
+                    ? `/thumbnail_webp/${article.frontmatter.eyeCatchName}.webp`
+                    : "/thumbnail_webp/no_image.webp"
+                }
+                alt={
+                  article?.frontmatter.eyeCatchAlt
+                    ? `${article.frontmatter.eyeCatchAlt}`
+                    : "アイチャッチ画像"
+                }
+                width={300}
+                height={196}
+                className="mx-auto hover:-translate-y-2 translate transition duration-300"
+              />
+            </div>
+          </Link>
         );
       })}
     </div>
