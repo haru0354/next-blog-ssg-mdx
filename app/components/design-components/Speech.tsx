@@ -27,7 +27,7 @@ const Speech: React.FC<SpeechProps> = ({
       />
       <div className="relative max-w-full p-4  border rounded-lg border-opacity-40 border-layout-mainColor  shadow-lg bg-opacity-10 bg-layout-mainColor">
         {contents.map((content) => (
-          <p>{content}</p>
+          <p key={content}>{content}</p>
         ))}
       </div>
     </div>
