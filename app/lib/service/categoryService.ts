@@ -26,10 +26,6 @@ export async function getAllCategories() {
     const categoryDirectory = path.join(process.cwd(), "mdx-files", "category");
     const parentCategoryDirectories = getSubdirectories(categoryDirectory);
 
-    if (parentCategoryDirectories.length === 0) {
-      return null;
-    }
-
     let childCategories: ChildCategories[] = [];
 
     await Promise.all(

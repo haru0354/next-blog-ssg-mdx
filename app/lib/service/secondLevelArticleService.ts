@@ -31,10 +31,6 @@ export async function getSecondLevelArticles() {
     const articlesDirectory = path.join(process.cwd(), "mdx-files", "article");
     const parentCategoryDirectories = getSubdirectories(articlesDirectory);
 
-    if (parentCategoryDirectories.length === 0) {
-      return null;
-    }
-
     const articles: Article[] = [];
 
     await Promise.all(
@@ -103,11 +99,6 @@ export async function getSecondLevelArticles() {
     );
 
     const childCategoryDirectories = getSubdirectories(categoriesDirectory);
-
-    if (childCategoryDirectories.length === 0) {
-      return null;
-    }
-
 
     const categories: Category[] = [];
 

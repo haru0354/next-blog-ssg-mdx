@@ -34,9 +34,6 @@ export async function getTwoColumnRecommendArticles() {
     );
 
     if (!TopPageRecommendArticles) {
-      console.error(
-        "TOPページの2カラムのおすすめ記事データが取得できませんでした"
-      );
       return;
     }
 
@@ -60,7 +57,6 @@ export async function getTopPageRecommendArticles() {
     );
 
     if (!TopPageRecommendArticles) {
-      console.error("TOPページのおすすめ記事データが取得できませんでした");
       return;
     }
 

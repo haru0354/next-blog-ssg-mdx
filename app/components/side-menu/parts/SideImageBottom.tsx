@@ -20,7 +20,7 @@ const SideImageBottom = async () => {
       {sideImageBottom.frontmatter.display && (
         <div>
           {sideImageBottom.frontmatter.images.map((image: Image) => (
-            <Link href={`${image.url}`}>
+            <Link href={`${image.url}`} key={image.url}>
               <Image
                 src={`/thumbnail_webp/${image.eyeCatchName}.webp`}
                 alt={`${image.eyeCatchAlt}`}

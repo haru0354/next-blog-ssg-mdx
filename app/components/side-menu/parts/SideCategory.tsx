@@ -24,7 +24,7 @@ const SideCategory: React.FC<SideCategoryProps> = async ({
 
   if (sideCategories.frontmatter.display === false) {
     const parentCategories = await getParentCategories();
-    categories = parentCategories.map((category) => {
+    categories = parentCategories?.map((category) => {
       return {
         slug: category?.slug,
         categoryName: category?.frontmatter.categoryName,
@@ -53,7 +53,7 @@ const SideCategory: React.FC<SideCategoryProps> = async ({
       <ul>
         {categories.map((category: Category) => {
           return (
-            <Link href={`/${category?.slug}`} key={category?.slug}>
+            <Link href={`/${category.slug}`} key={category.slug}>
               <li
                 className={`p-4 hover: transition-colors duration-300 hover:bg-layout-hoverColor ${liBorderDesign}`}
                 key={category?.categoryName}

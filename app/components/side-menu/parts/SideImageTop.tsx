@@ -22,7 +22,7 @@ const SideImageTop = async () => {
           {sideImages.frontmatter.internalLink ? (
             <>
               {sideImages.frontmatter.images.map((image: Image) => (
-                <Link href={`${image.url}`}>
+                <Link href={`${image.url}`} key={image.url}>
                   <Image
                     src={`/thumbnail_webp/${image.eyeCatchName}.webp`}
                     alt={`${image.eyeCatchAlt}`}
@@ -36,7 +36,7 @@ const SideImageTop = async () => {
           ) : (
             <>
               {sideImages.frontmatter.images.map((image: Image) => (
-                <a href={`${image.url}`} target="blank">
+                <a href={`${image.url}`} key={image.url} target="blank">
                   <Image
                     src={`/thumbnail_webp/${image.eyeCatchName}.webp`}
                     alt={`${image.eyeCatchAlt}`}
