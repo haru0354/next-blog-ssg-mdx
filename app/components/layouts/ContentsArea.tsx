@@ -41,21 +41,41 @@ const ContentsArea: React.FC<ContentsAreaProps> = async ({
       />
       {article.content && (
         <>
-          <h1 className="text-2xl font-semibold mx-2 my-4">
-            {article.frontmatter.title}
-          </h1>
-          {article.frontmatter.eyeCatchAlt &&
-            article.frontmatter.eyeCatchName && (
-              <Image
-                src={`/image_webp/${article.frontmatter.eyeCatchName}.webp`}
-                alt={`${article.frontmatter.eyeCatchAlt}`}
-                width={750}
-                height={493}
-                className="mx-auto mb-6"
-              />
-            )}
+          {process.env.IMAGE_TOP === "true" ? (
+            <>
+              {article.frontmatter.eyeCatchAlt &&
+                article.frontmatter.eyeCatchName && (
+                  <Image
+                    src={`/image_webp/${article.frontmatter.eyeCatchName}.webp`}
+                    alt={`${article.frontmatter.eyeCatchAlt}`}
+                    width={750}
+                    height={493}
+                    className="mx-auto my-6"
+                  />
+                )}
+              <h1 className="text-2xl font-semibold my-2">
+                {article.frontmatter.title}
+              </h1>
+            </>
+          ) : (
+            <>
+              <h1 className="text-2xl font-semibold mx-2 my-4">
+                {article.frontmatter.title}
+              </h1>
+              {article.frontmatter.eyeCatchAlt &&
+                article.frontmatter.eyeCatchName && (
+                  <Image
+                    src={`/image_webp/${article.frontmatter.eyeCatchName}.webp`}
+                    alt={`${article.frontmatter.eyeCatchAlt}`}
+                    width={750}
+                    height={493}
+                    className="mx-auto my-6"
+                  />
+                )}
+            </>
+          )}
           {article.frontmatter.date && (
-            <p className="mx-2 mb-6 text-gray-600 font-sm">
+            <p className="mx-2 mb-2 text-right font-sm text-gray-600">
               投稿日：{article.frontmatter.date}
             </p>
           )}
