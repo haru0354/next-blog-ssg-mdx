@@ -7,7 +7,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseURL = process.env.WEBSITE_TITLE;
   const _lastModified = new Date();
 
-  const fixedPages = await getFixedPages();
+  const fixedPages = (await getFixedPages()) ?? [];
   const allArticles = (await getAllArticles()) ?? [];
   const allCategories = (await getAllCategories()) ?? [];
 
