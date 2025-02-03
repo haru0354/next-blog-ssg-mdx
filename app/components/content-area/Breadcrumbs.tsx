@@ -35,18 +35,18 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
         <Link href="/">ホーム</Link>
         <span className="mx-2"> &gt; </span>
         {isFirstLevelPage ? (
-          categoryName
+          <span className="text-gray-900">{categoryName}</span>
         ) : (
           <Link href={`/${categorySlug}`}>{categoryName}</Link>
         )}
         {isSecondLevelPage ? (
           <>
             <span className="mx-2"> &gt; </span>
-            {childCategoryName}
+            <span className="text-gray-900">{childCategoryName}</span>
           </>
         ) : (
           <>
-            <span className="mx-2"> &gt; </span>
+            {isFirstLevelPage || <span className="mx-2"> &gt; </span>}
             <Link href={`/${categorySlug}/${childCategorySlug}`}>
               {childCategoryName}
             </Link>
