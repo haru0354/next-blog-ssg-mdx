@@ -2,23 +2,21 @@ import Image from "next/image";
 import Link from "next/link";
 
 type BreadcrumbsProps = {
-  pageTitle?: string;
   addItem?: string;
   categoryName?: string;
   categorySlug?: string;
   childCategorySlug?: string;
   childCategoryName?: string;
-  isNotParentCategoryPage?: boolean;
+  isFirstLevelPage: boolean;
 };
 
 const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
-  pageTitle,
   addItem,
   categorySlug,
   categoryName,
   childCategorySlug,
   childCategoryName,
-  isNotParentCategoryPage = true,
+  isFirstLevelPage,
 }) => {
   return (
     <div className="text-sm mx-2 text-gray-500">
@@ -32,10 +30,10 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
         />
         <Link href="/">ホーム</Link>
         <span className="mx-2"> &gt; </span>
-        {categorySlug && categoryName ? (
-          <Link href={`/${categorySlug}`}>{categoryName}</Link>
-        ) : (
+        {isFirstLevelPage ? (
           categoryName
+        ) : (
+          <Link href={`/${categorySlug}`}>{categoryName}</Link>
         )}
         {childCategorySlug && childCategoryName && (
           <>
@@ -43,12 +41,6 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
             <Link href={`/${categorySlug}/${childCategorySlug}`}>
               {childCategoryName}
             </Link>
-          </>
-        )}
-        {isNotParentCategoryPage && (
-          <>
-            <span className="mx-2"> &gt; </span>
-            {pageTitle}
           </>
         )}
         {addItem && addItem}
