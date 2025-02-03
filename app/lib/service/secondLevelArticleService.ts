@@ -207,7 +207,7 @@ export async function getSecondLevelArticle(
       return {
         frontmatter: data,
         content,
-        categoryName: parentCategoryContents.frontmatter.categoryName,
+        parentCategoryName: parentCategoryContents.frontmatter.categoryName,
       };
     } else if (fs.existsSync(childCategoryFilePath)) {
       try {
@@ -225,7 +225,8 @@ export async function getSecondLevelArticle(
       return {
         frontmatter: data,
         content,
-        categoryName: parentCategoryContents.frontmatter.categoryName,
+        parentCategoryName: parentCategoryContents.frontmatter.categoryName,
+        childCategoryName: data.categoryName,
       };
     } else {
       console.log("記事もカテゴリも見つかりませんでした。");

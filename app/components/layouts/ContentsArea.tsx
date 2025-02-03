@@ -4,6 +4,8 @@ import Breadcrumbs from "../content-area/Breadcrumbs";
 type ContentsAreaProps = {
   article: Article;
   params: Params;
+  isFirstLevelPage?: boolean;
+  isSecondLevelPage?: boolean;
 };
 
 type Article = {
@@ -29,6 +31,8 @@ type Params = {
 const ContentsArea: React.FC<ContentsAreaProps> = async ({
   article,
   params,
+  isFirstLevelPage = false,
+  isSecondLevelPage = false,
 }) => {
   return (
     <div className="content-style p-4">
@@ -37,7 +41,8 @@ const ContentsArea: React.FC<ContentsAreaProps> = async ({
         categoryName={article.parentCategoryName}
         childCategorySlug={params.secondLevelArticle_slug}
         childCategoryName={article.childCategoryName}
-        pageTitle={article.frontmatter.title}
+        isFirstLevelPage={isFirstLevelPage}
+        isSecondLevelPage={isSecondLevelPage}
       />
       {article.content && (
         <>

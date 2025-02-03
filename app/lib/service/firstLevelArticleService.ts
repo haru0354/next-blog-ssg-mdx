@@ -67,6 +67,7 @@ export async function getFirstLevelArticle(firstLevelArticle_slug: string) {
       return {
         frontmatter: data,
         content,
+        parentCategoryName: data.categoryName,
       };
     } else {
       console.error("ファイルが読み取れませんでした。");
