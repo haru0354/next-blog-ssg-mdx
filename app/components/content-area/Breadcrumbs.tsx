@@ -46,6 +46,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
           </>
         ) : (
           <>
+            <span className="mx-2"> &gt; </span>
             <Link href={`/${categorySlug}/${childCategorySlug}`}>
               {childCategoryName}
             </Link>

@@ -34,8 +34,6 @@ const ContentsArea: React.FC<ContentsAreaProps> = async ({
   isFirstLevelPage = false,
   isSecondLevelPage = false,
 }) => {
-  console.log(article);
-
   return (
     <div className="content-style p-4">
       <Breadcrumbs
