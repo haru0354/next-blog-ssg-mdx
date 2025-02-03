@@ -5,6 +5,7 @@ type ContentsAreaProps = {
   article: Article;
   params: Params;
   isFirstLevelPage?: boolean;
+  isSecondLevelPage?: boolean;
 };
 
 type Article = {
@@ -31,7 +32,10 @@ const ContentsArea: React.FC<ContentsAreaProps> = async ({
   article,
   params,
   isFirstLevelPage = false,
+  isSecondLevelPage = false,
 }) => {
+  console.log(article);
+
   return (
     <div className="content-style p-4">
       <Breadcrumbs
@@ -40,6 +44,7 @@ const ContentsArea: React.FC<ContentsAreaProps> = async ({
         childCategorySlug={params.secondLevelArticle_slug}
         childCategoryName={article.childCategoryName}
         isFirstLevelPage={isFirstLevelPage}
+        isSecondLevelPage={isSecondLevelPage}
       />
       {article.content && (
         <>

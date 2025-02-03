@@ -8,6 +8,7 @@ type BreadcrumbsProps = {
   childCategorySlug?: string;
   childCategoryName?: string;
   isFirstLevelPage: boolean;
+  isSecondLevelPage: boolean;
 };
 
 const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
@@ -17,7 +18,10 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   childCategorySlug,
   childCategoryName,
   isFirstLevelPage,
+  isSecondLevelPage,
 }) => {
+  console.log(childCategoryName);
+
   return (
     <div className="text-sm mx-2 text-gray-500">
       <nav>
@@ -35,9 +39,13 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
         ) : (
           <Link href={`/${categorySlug}`}>{categoryName}</Link>
         )}
-        {childCategorySlug && childCategoryName && (
+        {isSecondLevelPage ? (
           <>
             <span className="mx-2"> &gt; </span>
+            {childCategoryName}
+          </>
+        ) : (
+          <>
             <Link href={`/${categorySlug}/${childCategorySlug}`}>
               {childCategoryName}
             </Link>

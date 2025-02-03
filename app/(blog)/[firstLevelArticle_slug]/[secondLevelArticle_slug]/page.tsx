@@ -71,7 +71,11 @@ const Page = async ({
   return (
     <>
       <LeftColumn>
-        <ContentsArea article={article} params={params} />
+        <ContentsArea
+          article={article}
+          params={params}
+          isSecondLevelPage={true}
+        />
         {article.content && (
           <MDXRemote
             source={article.content}
