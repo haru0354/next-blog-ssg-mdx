@@ -10,7 +10,7 @@ const TwoColumnRecommendArticles = async () => {
     return null;
   }
 
-  if (twoColumnRecommendArticles.display === false) {
+  if (twoColumnRecommendArticles.display !== true) {
     return null;
   }
 

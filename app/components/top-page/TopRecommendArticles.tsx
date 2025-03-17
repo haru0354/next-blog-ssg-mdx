@@ -9,7 +9,7 @@ const TopRecommendArticles = async () => {
     return null;
   }
 
-  if (topRecommendArticles.display === false) {
+  if (topRecommendArticles.display !== true) {
     return null;
   }
 

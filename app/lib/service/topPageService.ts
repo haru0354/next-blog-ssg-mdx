@@ -28,16 +28,16 @@ export async function getTwoColumnRecommendArticles() {
   try {
     const directoryPath = path.join(process.cwd(), "mdx-files", "top-page");
 
-    const TopPageRecommendArticles = await getArticlesFromSlugs(
+    const topPageRecommendArticles = await getArticlesFromSlugs(
       directoryPath,
       "twoColumnRecommendArticles"
     );
 
-    if (!TopPageRecommendArticles) {
-      return;
+    if (!topPageRecommendArticles) {
+      return null;
     }
 
-    return TopPageRecommendArticles;
+    return topPageRecommendArticles;
   } catch (err) {
     console.error(
       "TOPページの2カラムのおすすめ記事データの取得に失敗しました",
@@ -51,16 +51,16 @@ export async function getTopPageRecommendArticles() {
   try {
     const directoryPath = path.join(process.cwd(), "mdx-files", "top-page");
 
-    const TopPageRecommendArticles = await getArticlesFromSlugs(
+    const topPageRecommendArticles = await getArticlesFromSlugs(
       directoryPath,
       "topPageRecommendArticles"
     );
 
-    if (!TopPageRecommendArticles) {
-      return;
+    if (!topPageRecommendArticles) {
+      return null;
     }
 
-    return TopPageRecommendArticles;
+    return topPageRecommendArticles;
   } catch (err) {
     console.error("TOPページのおすすめ記事データの取得に失敗しました", err);
     return;
