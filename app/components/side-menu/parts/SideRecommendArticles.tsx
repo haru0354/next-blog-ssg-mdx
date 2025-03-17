@@ -50,7 +50,7 @@ const SideRecommendArticles: React.FC<SideRecommendArticlesProps> = async ({
                 }
                 width={300}
                 height={196}
-                className="mx-auto hover:-translate-y-2 translate transition duration-300"
+                className="mx-auto transition-transform duration-300 hover:scale-105 hover:shadow-lg"
               />
             </div>
           </Link>
