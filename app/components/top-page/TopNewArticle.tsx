@@ -29,7 +29,7 @@ const TopNewArticle = async () => {
           </h2>
           <span className="flex-grow h-1 w-5 md:w-0 ml-2 md:mr-4 bg-gradient-to-r from-gray-600 to-transparent"></span>
         </div>
-        <div className="flex flex-wrap w-full justify-center">
+        <div className="flex flex-wrap justify-center w-full">
           {filteredArticles.map((article) => {
             return (
               <Link
