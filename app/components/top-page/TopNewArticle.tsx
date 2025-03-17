@@ -40,7 +40,7 @@ const TopNewArticle = async () => {
                 }
                 key={article.slug}
               >
-                <div className="flex flex-col justify-center items-center mx-2 mb-8 md:max-w-[320px] md:min-w-[320px] hover: transition-colors duration-300 hover:bg-layout-hoverColor">
+                <div className="flex flex-col justify-start min-h-[300px] md:max-w-[320px] items-center mx-2 mb-8 shadow-lg rounded border border-gray-300 bg-white transition-all duration-300 hover:scale-105 hover:bg-layout-hoverColor">
                   <Image
                     src={
                       article.frontmatter.eyeCatchName
@@ -54,6 +54,7 @@ const TopNewArticle = async () => {
                     }
                     width={320}
                     height={230}
+                    className="rounded-t"
                   />
                   <h3 className="w-full text-center p-4">
                     {article.frontmatter.title.length > 34
