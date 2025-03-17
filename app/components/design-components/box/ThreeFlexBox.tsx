@@ -49,7 +49,7 @@ const ThreeFlexBox: React.FC<ThreeFlexBoxProps> = ({ contents }) => {
                 href={content.link}
                 color="gray"
                 size="small"
-                className="block mx-auto max-w-[180px]"
+                className="block mx-auto"
               >
                 {content.buttonText}
               </NextLinkButton>

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Button from "../../ui/Button";
 import Link from "next/link";
+import NextLinkButton from "../../ui/NextLinkButton";
 
 type RankingWithListProps = {
   width?: number;
@@ -30,10 +31,11 @@ const RankingWithList: React.FC<RankingWithListProps> = ({
   detailUrl,
   reviewUrl,
 }) => {
-  const imageClass = imgPosition === "right" ? "float-right ml-8" : "float-left mr-8";
+  const imageClass =
+    imgPosition === "right" ? "float-right ml-8" : "float-left mr-8";
 
   return (
-    <>
+    <div>
       <Image
         width={width}
         height={height}
@@ -67,20 +69,26 @@ const RankingWithList: React.FC<RankingWithListProps> = ({
         </tbody>
       </table>
       {detailUrl && (
-        <a href={detailUrl} target="blank">
-          <Button color="red" className="block mx-auto">
-            {name}の詳細
-          </Button>
-        </a>
+        <NextLinkButton
+          href={detailUrl}
+          color="red"
+          size="normal"
+          className="block mx-auto"
+        >
+          {name}の詳細
+        </NextLinkButton>
       )}
       {reviewUrl && (
-        <Link href={reviewUrl}>
-          <Button color="blue" className="block mx-auto">
-            {name}の口コミ
-          </Button>
-        </Link>
+        <NextLinkButton
+          href={reviewUrl}
+          color="blue"
+          size="normal"
+          className="block mx-auto"
+        >
+          {name}の口コミ
+        </NextLinkButton>
       )}
-    </>
+    </div>
   );
 };
 

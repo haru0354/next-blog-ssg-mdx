@@ -46,7 +46,7 @@ const FlexBox: React.FC<FlexBoxProps> = ({ contents }) => {
                 href={content.link}
                 color="gray"
                 size="small"
-                className="block mx-auto max-w-[180px]"
+                className="block mx-auto"
               >
                 {content.buttonText}
               </NextLinkButton>
