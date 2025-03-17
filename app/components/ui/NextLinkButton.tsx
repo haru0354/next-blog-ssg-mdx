@@ -24,9 +24,9 @@ const NextLinkButton: React.FC<NextLinkButtonProps> = ({
 
   const sizes = {
     search: "min-w-[60px] my-0 border-l-0",
-    small: "min-w-[120px] max-w-[120px] my-6 px-2 rounded",
-    normal: "min-w-[180px] max-w-[180px] my-6 px-4 rounded",
-    big: "min-w-[240px] my-6 px-6 rounded",
+    small: "w-[120px] my-6 px-2 rounded",
+    normal: "w-[180px] my-6 px-4 rounded",
+    big: "w-[240px] my-6 px-6 rounded",
   };
 
   return (
