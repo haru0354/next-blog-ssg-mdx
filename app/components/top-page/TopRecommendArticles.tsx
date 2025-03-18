@@ -9,7 +9,7 @@ const TopRecommendArticles = async () => {
     return null;
   }
 
-  if (topRecommendArticles.display === false) {
+  if (topRecommendArticles.display !== true) {
     return null;
   }
 
@@ -24,11 +24,11 @@ const TopRecommendArticles = async () => {
             </h2>
             <span className="flex-grow h-1 w-5 md:w-0 ml-2 md:mr-4 bg-gradient-to-r from-gray-600 to-transparent"></span>
           </div>
-          <div className="flex flex-wrap w-full justify-center">
+          <div className="flex flex-wrap justify-center w-full">
             {topRecommendArticles.articles.map((article) => {
               return (
                 <Link href={`/${article?.slug}`} key={article?.slug}>
-                  <div className="flex flex-col justify-center items-center mx-2 mb-8 md:max-w-[320px] md:min-w-[320px] hover: transition-colors duration-300 hover:bg-layout-hoverColor">
+                  <div className="flex flex-col justify-start min-h-[300px] md:max-w-[320px] items-center mx-2 mb-8 shadow-lg rounded border border-gray-300 bg-white transition-all duration-300 hover:scale-105 hover:bg-layout-hoverColor">
                     <Image
                       src={
                         article?.frontmatter.eyeCatchName
@@ -43,7 +43,7 @@ const TopRecommendArticles = async () => {
                       width={320}
                       height={230}
                     />
-                    <h3 className="p-4">
+                    <h3 className="w-full text-center p-4">
                       {article?.frontmatter.title.length > 34
                         ? `${article?.frontmatter.title.slice(0, 34)}...`
                         : article?.frontmatter.title}

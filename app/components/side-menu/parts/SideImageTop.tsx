@@ -28,7 +28,7 @@ const SideImageTop = async () => {
                     alt={`${image.eyeCatchAlt}`}
                     width={298}
                     height={196}
-                    className="mx-auto md:mt-0 mt-8 mb-8 hover:-translate-y-2 translate transition duration-300"
+                    className="mx-auto md:mt-0 mt-8 mb-8 transition-transform duration-300 hover:scale-105 hover:shadow-lg"
                   />
                 </Link>
               ))}
@@ -42,7 +42,7 @@ const SideImageTop = async () => {
                     alt={`${image.eyeCatchAlt}`}
                     width={298}
                     height={196}
-                    className="mx-auto md:mt-0 mt-8 mb-8 hover:-translate-y-2 translate transition duration-300"
+                    className="mx-auto md:mt-0 mt-8 mb-8 transition-transform duration-300 hover:scale-105 hover:shadow-lg"
                   />
                 </a>
               ))}

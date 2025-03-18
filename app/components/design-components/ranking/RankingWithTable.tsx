@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Button from "../../ui/Button";
+import NextLinkButton from "../../ui/NextLinkButton";
 
 type RankingWithTableProps = {
   width: number;
@@ -60,18 +61,24 @@ const RankingWithTable: React.FC<RankingWithTableProps> = ({
         </tbody>
       </table>
       {detailUrl && (
-        <a href={detailUrl} target="blank">
-          <Button color="red" className="block mx-auto">
-            {name}の詳細
-          </Button>
-        </a>
+        <NextLinkButton
+          href={detailUrl}
+          color="red"
+          size="normal"
+          className="block mx-auto"
+        >
+          {name}の詳細
+        </NextLinkButton>
       )}
       {reviewUrl && (
-        <Link href={reviewUrl}>
-          <Button color="blue" className="block mx-auto">
-            {name}の口コミ
-          </Button>
-        </Link>
+        <NextLinkButton
+          href={reviewUrl}
+          color="blue"
+          size="normal"
+          className="block mx-auto"
+        >
+          {name}の口コミ
+        </NextLinkButton>
       )}
     </div>
   );

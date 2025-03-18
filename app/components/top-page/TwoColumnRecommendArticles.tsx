@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
+
 import { getTwoColumnRecommendArticles } from "@/app/lib/service/topPageService";
-import Button from "../ui/Button";
+import NextLinkButton from "../ui/NextLinkButton";
 
 const TwoColumnRecommendArticles = async () => {
   const twoColumnRecommendArticles = await getTwoColumnRecommendArticles();
@@ -10,7 +10,7 @@ const TwoColumnRecommendArticles = async () => {
     return null;
   }
 
-  if (twoColumnRecommendArticles.display === false) {
+  if (twoColumnRecommendArticles.display !== true) {
     return null;
   }
 
@@ -53,9 +53,15 @@ const TwoColumnRecommendArticles = async () => {
                             )}...`
                           : article?.frontmatter.description}
                       </p>
-                      <Link href={`/${article?.slug}`} key={article?.slug}>
-                        <Button className="mx-auto block">記事ページへ</Button>
-                      </Link>
+                      <NextLinkButton
+                        className="mx-auto block"
+                        size="normal"
+                        color="gray"
+                        href={`/${article?.slug}`}
+                        key={article?.slug}
+                      >
+                        記事ページへ
+                      </NextLinkButton>
                     </div>
                   </div>
                 </div>

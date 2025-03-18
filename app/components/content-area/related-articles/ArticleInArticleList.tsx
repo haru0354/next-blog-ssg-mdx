@@ -30,7 +30,10 @@ const ArticleInArticleList: React.FC<ArticleInArticleListProps> = async ({
 
   const articleNumber = process.env.RELATED_ARTICLES_IN_ARTICLE_NUMBER;
   const articleLimit = articleNumber ? parseInt(articleNumber, 10) : 4;
-  const shuffledArticles = shuffleArray(filteredAllArticles ?? [])?.slice(0, articleLimit);
+  const shuffledArticles = shuffleArray(filteredAllArticles ?? [])?.slice(
+    0,
+    articleLimit
+  );
 
   if (!shuffledArticles || shuffledArticles.length === 0) {
     return null;
@@ -92,7 +95,7 @@ const ArticleInArticleList: React.FC<ArticleInArticleListProps> = async ({
           <h2 className="w-full my-4 py-4 px-2 bg-layout-mainColor text-white text-xl font-semibold rounded">
             関連記事
           </h2>
-          <div className="w-full flex flex-wrap justify-center">
+          <div className="w-full flex flex-wrap justify-center md:justify-start items-start">
             {shuffledArticles.map((article) => (
               <Link
                 href={

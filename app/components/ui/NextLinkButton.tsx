@@ -1,17 +1,19 @@
-type ButtonProps = {
+import Link from "next/link";
+
+type NextLinkButtonProps = {
   children: React.ReactNode;
+  href: string;
   color?: "blue" | "green" | "red" | "gray";
   size?: "search" | "small" | "normal" | "big";
   className?: string;
-  onClick?: () => void;
 };
 
-const Button: React.FC<ButtonProps> = ({
+const NextLinkButton: React.FC<NextLinkButtonProps> = ({
   children,
+  href,
   color = "blue",
   size = "normal",
-  className,
-  onClick,
+  className = "",
 }) => {
   const colors = {
     blue: "bg-sky-600 hover:bg-sky-200",
@@ -28,16 +30,16 @@ const Button: React.FC<ButtonProps> = ({
   };
 
   return (
-    <button
-      className={`py-2 transition-colors duration-300 text-white hover:text-gray-700 border border-gray-400  
-        ${colors[color]} 
-        ${sizes[size]} 
-        ${className}`}
-      onClick={onClick}
+    <Link
+      className={`py-2 text-center transition-colors duration-300 text-white hover:text-gray-700 border border-gray-400  
+          ${colors[color]} 
+          ${sizes[size]} 
+          ${className}`}
+      href={href}
     >
       {children}
-    </button>
+    </Link>
   );
 };
 
-export default Button;
+export default NextLinkButton;

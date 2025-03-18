@@ -20,8 +20,6 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   isFirstLevelPage,
   isSecondLevelPage,
 }) => {
-  console.log(childCategoryName);
-
   return (
     <div className="text-sm mx-2 text-gray-500">
       <nav>
