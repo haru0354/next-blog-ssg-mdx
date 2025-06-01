@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
+import { Metadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import rehypeSlug from "rehype-slug";
-import remarkToc from "remark-toc";
 import { useMDXComponents } from "@/mdx-components";
+import remarkToc from "remark-toc";
+import rehypeSlug from "rehype-slug";
+
 import {
   getFirstLevelArticle,
   getFirstLevelArticles,

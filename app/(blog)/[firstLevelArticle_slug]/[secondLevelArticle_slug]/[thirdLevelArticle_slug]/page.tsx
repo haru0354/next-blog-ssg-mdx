@@ -1,17 +1,18 @@
 import { Metadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import { useMDXComponents } from "@/mdx-components";
 import rehypeSlug from "rehype-slug";
 import remarkToc from "remark-toc";
-import { useMDXComponents } from "@/mdx-components";
+
 import {
   getThirdLevelArticle,
   getThirdLevelArticles,
 } from "@/app/lib/service/thirdLevelArticleService";
+import NotFound from "@/app/not-found";
 import LeftColumn from "@/app/components/layouts/LeftColumn";
 import ContentsArea from "@/app/components/layouts/ContentsArea";
 import SideMenu from "@/app/components/side-menu/SideMenu";
 import ArticleInArticleList from "@/app/components/content-area/related-articles/ArticleInArticleList";
-import NotFound from "@/app/not-found";
 
 export const generateMetadata = async ({
   params,

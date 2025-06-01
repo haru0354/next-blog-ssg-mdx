@@ -1,8 +1,9 @@
 import Image from "next/image";
-import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypeSlug from "rehype-slug";
 import remarkToc from "remark-toc";
+import { MDXRemote } from "next-mdx-remote/rsc";
 import { useMDXComponents } from "@/mdx-components";
+
 import { getTopPageArticle } from "./lib/service/topPageService";
 import Header from "./components/Header";
 import GlobalMenu from "./components/GlobalMenu";
