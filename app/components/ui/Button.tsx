@@ -2,6 +2,7 @@ type ButtonProps = {
   children: React.ReactNode;
   color?: "blue" | "green" | "red" | "gray";
   size?: "search" | "small" | "normal" | "big";
+  type?: "submit" | "button";
   className?: string;
   onClick?: () => void;
 };
@@ -10,6 +11,7 @@ const Button: React.FC<ButtonProps> = ({
   children,
   color = "blue",
   size = "normal",
+  type = "submit",
   className,
   onClick,
 }) => {
@@ -33,6 +35,7 @@ const Button: React.FC<ButtonProps> = ({
         ${colors[color]} 
         ${sizes[size]} 
         ${className}`}
+      type={type}
       onClick={onClick}
     >
       {children}

@@ -37,7 +37,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ contentsPage = false }) => {
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />
-      <Button size="search" color="gray">
+      <Button type="submit" size="search" color="gray">
         検索
       </Button>
     </form>
