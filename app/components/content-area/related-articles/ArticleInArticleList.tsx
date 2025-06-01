@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+
 import { getAllArticles } from "@/app/lib/service/allArticleService";
 import { shuffleArray } from "@/app/util/shuffleArray";
 

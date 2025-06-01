@@ -1,6 +1,7 @@
 import path from "path";
 import fs from "fs";
 import matter from "gray-matter";
+
 import { getMdxFileNamesInDirectory } from "../getMdxFileNamesInDirectory";
 import { getFileContents } from "../getFileContents";
 import { getSubdirectories } from "../getSubdirectories";

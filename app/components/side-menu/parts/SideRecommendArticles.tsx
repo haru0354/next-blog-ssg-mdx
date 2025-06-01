@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+
 import { getRecommendArticles } from "@/app/lib/service/menuService";
 
 type SideRecommendArticlesProps = {

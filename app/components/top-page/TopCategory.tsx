@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+
 import { getParentCategories } from "@/app/lib/service/categoryService";
 
 const TopCategory = async () => {

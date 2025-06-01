@@ -1,4 +1,5 @@
 import type { MDXComponents } from "mdx/types";
+
 import Button from "./app/components/ui/Button";
 import CustomLink from "./app/components/design-components/nextjs-components/CustomLink";
 import FlexBox from "./app/components/design-components/box/FlexBox";
