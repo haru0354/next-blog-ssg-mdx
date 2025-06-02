@@ -106,7 +106,7 @@ const Page = async ({
       {article.frontmatter.categoryName ? (
         <SideMenu
           firstLevelArticle_slug={params.firstLevelArticle_slug}
-          categoryName={article.frontmatter.categoryName}
+          categoryName={article.parentCategoryName}
         />
       ) : (
         <SideMenu />
