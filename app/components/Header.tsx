@@ -5,7 +5,7 @@ type HeaderProps = {
   isTopPage?: boolean;
 };
 
-const Header: React.FC<HeaderProps> = ({ isTopPage }) => {
+const Header: React.FC<HeaderProps> = ({ isTopPage = false }) => {
   return (
     <header className="w-full bg-layout-bgColor">
       <div className="w-[350px] mx-auto pb-2 md:py-4">
