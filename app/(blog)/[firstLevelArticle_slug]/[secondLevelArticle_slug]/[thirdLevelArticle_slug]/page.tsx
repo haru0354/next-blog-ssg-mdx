@@ -99,10 +99,7 @@ const Page = async ({
           articleSlug={params.thirdLevelArticle_slug}
         />
       </LeftColumn>
-      <SideMenu
-        firstLevelArticle_slug={params.firstLevelArticle_slug}
-        categoryName={article.parentCategoryName}
-      />
+      <SideMenu firstLevelArticle_slug={params.firstLevelArticle_slug} />
     </>
   );
 };
