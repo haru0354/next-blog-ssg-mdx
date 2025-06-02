@@ -25,7 +25,6 @@ const SideMenu: React.FC<SideMenuProps> = ({
           {firstLevelArticle_slug && (
             <SideChildCategory
               firstLevelArticle_slug={firstLevelArticle_slug}
-              categoryName={categoryName}
               border={true}
             />
           )}
@@ -42,7 +41,6 @@ const SideMenu: React.FC<SideMenuProps> = ({
           {firstLevelArticle_slug && (
             <SideChildCategory
               firstLevelArticle_slug={firstLevelArticle_slug}
-              categoryName={categoryName}
             />
           )}
           <SideCategory />
