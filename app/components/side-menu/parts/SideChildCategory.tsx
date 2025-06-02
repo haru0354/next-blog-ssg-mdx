@@ -29,10 +29,10 @@ const SideChildCategory: React.FC<SideChildCategoryProps> = async ({
       <h3
         className={`w-full p-4 bg-layout-mainColor text-white font-bold ${h3BorderDesign}`}
       >
-        {categoryName}
+        {categories.parentCategoryName}
       </h3>
       <ul>
-        {categories?.map((category) => {
+        {categories?.childCategories.map((category) => {
           return (
             <Link
               href={`/${firstLevelArticle_slug}/${category?.slug}`}

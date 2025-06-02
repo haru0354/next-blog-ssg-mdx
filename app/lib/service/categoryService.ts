@@ -118,10 +118,23 @@ export async function getParentCategories() {
 
 export async function getChildCategories(firstLevelArticle_slug: string) {
   try {
+    // 親カテゴリの.mdxファイルを読み込み、親カテゴリ名の取得
+    const categoryDirectory = path.join(process.cwd(), "mdx-files", "category");
+
+    const parentCategoryContents = await getFileContents(
+      categoryDirectory,
+      firstLevelArticle_slug
+    );
+
+    if (parentCategoryContents === null) {
+      return null;
+    }
+
+    const parentCategoryName = parentCategoryContents.frontmatter.categoryName;
+
+    // 子カテゴリのディレクトリの各mdxファイルから、データを配列で取得
     const childCategoriesDirectory = path.join(
-      process.cwd(),
-      "mdx-files",
-      "category",
+      categoryDirectory,
       firstLevelArticle_slug
     );
 
@@ -155,7 +168,10 @@ export async function getChildCategories(firstLevelArticle_slug: string) {
       })
     );
 
-    return childCategories;
+    return {
+      parentCategoryName,
+      childCategories,
+    };
   } catch (err) {
     console.error("子カテゴリ一覧の取得に失敗しました", err);
     return;
