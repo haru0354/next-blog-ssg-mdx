@@ -8,9 +8,7 @@ import {
   getFirstLevelArticle,
   getFirstLevelArticles,
 } from "@/app/lib/service/firstLevelArticleService";
-import LeftColumn from "@/app/components/layouts/LeftColumn";
 import ContentsArea from "@/app/components/layouts/ContentsArea";
-import SideMenu from "@/app/components/side-menu/SideMenu";
 import CategoryInArticlesList from "@/app/components/content-area/related-articles/CategoryInArticlesList";
 import NotFound from "@/app/not-found";
 
@@ -72,33 +70,26 @@ const Page = async ({
 
   return (
     <>
-      <LeftColumn>
-        <ContentsArea
-          article={article}
-          params={params}
-          isFirstLevelPage={true}
+      <ContentsArea article={article} params={params} isFirstLevelPage={true} />
+      {article.content && (
+        <MDXRemote
+          source={article.content}
+          components={components}
+          options={{
+            mdxOptions: {
+              remarkPlugins: [[remarkToc, { maxDepth: 3, heading: "目次" }]],
+              rehypePlugins: [rehypeSlug],
+            },
+          }}
         />
-        {article.content && (
-          <MDXRemote
-            source={article.content}
-            components={components}
-            options={{
-              mdxOptions: {
-                remarkPlugins: [[remarkToc, { maxDepth: 3, heading: "目次" }]],
-                rehypePlugins: [rehypeSlug],
-              },
-            }}
-          />
-        )}
-        {article.frontmatter.categoryName && (
-          <CategoryInArticlesList
-            parentCategorySlug={params.firstLevelArticle_slug}
-            categoryName={article.frontmatter.categoryName}
-            categoryContents={!!article.content}
-          />
-        )}
-      </LeftColumn>
-      <SideMenu firstLevelArticle_slug={params.firstLevelArticle_slug} />
+      )}
+      {article.frontmatter.categoryName && (
+        <CategoryInArticlesList
+          parentCategorySlug={params.firstLevelArticle_slug}
+          categoryName={article.frontmatter.categoryName}
+          categoryContents={!!article.content}
+        />
+      )}
     </>
   );
 };

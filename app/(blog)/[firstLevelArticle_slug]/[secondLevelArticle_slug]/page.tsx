@@ -8,9 +8,7 @@ import {
   getSecondLevelArticle,
   getSecondLevelArticles,
 } from "@/app/lib/service/secondLevelArticleService";
-import LeftColumn from "@/app/components/layouts/LeftColumn";
 import ContentsArea from "@/app/components/layouts/ContentsArea";
-import SideMenu from "@/app/components/side-menu/SideMenu";
 import CategoryInArticlesList from "@/app/components/content-area/related-articles/CategoryInArticlesList";
 import ArticleInArticleList from "@/app/components/content-area/related-articles/ArticleInArticleList";
 import NotFound from "@/app/not-found";
@@ -71,39 +69,36 @@ const Page = async ({
 
   return (
     <>
-      <LeftColumn>
-        <ContentsArea
-          article={article}
-          params={params}
-          isSecondLevelPage={true}
+      <ContentsArea
+        article={article}
+        params={params}
+        isSecondLevelPage={true}
+      />
+      {article.content && (
+        <MDXRemote
+          source={article.content}
+          components={components}
+          options={{
+            mdxOptions: {
+              remarkPlugins: [[remarkToc, { maxDepth: 3, heading: "目次" }]],
+              rehypePlugins: [rehypeSlug],
+            },
+          }}
         />
-        {article.content && (
-          <MDXRemote
-            source={article.content}
-            components={components}
-            options={{
-              mdxOptions: {
-                remarkPlugins: [[remarkToc, { maxDepth: 3, heading: "目次" }]],
-                rehypePlugins: [rehypeSlug],
-              },
-            }}
-          />
-        )}
-        {article.frontmatter.categoryName ? (
-          <CategoryInArticlesList
-            parentCategorySlug={params.firstLevelArticle_slug}
-            childCategorySlug={params.secondLevelArticle_slug}
-            categoryName={article.frontmatter.categoryName}
-            categoryContents={!!article.content}
-          />
-        ) : (
-          <ArticleInArticleList
-            parentCategorySlug={params.firstLevelArticle_slug}
-            articleSlug={params.secondLevelArticle_slug}
-          />
-        )}
-      </LeftColumn>
-      <SideMenu firstLevelArticle_slug={params.firstLevelArticle_slug} />
+      )}
+      {article.frontmatter.categoryName ? (
+        <CategoryInArticlesList
+          parentCategorySlug={params.firstLevelArticle_slug}
+          childCategorySlug={params.secondLevelArticle_slug}
+          categoryName={article.frontmatter.categoryName}
+          categoryContents={!!article.content}
+        />
+      ) : (
+        <ArticleInArticleList
+          parentCategorySlug={params.firstLevelArticle_slug}
+          articleSlug={params.secondLevelArticle_slug}
+        />
+      )}
     </>
   );
 };

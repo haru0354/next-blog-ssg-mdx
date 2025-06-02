@@ -9,9 +9,7 @@ import {
   getThirdLevelArticles,
 } from "@/app/lib/service/thirdLevelArticleService";
 import NotFound from "@/app/not-found";
-import LeftColumn from "@/app/components/layouts/LeftColumn";
 import ContentsArea from "@/app/components/layouts/ContentsArea";
-import SideMenu from "@/app/components/side-menu/SideMenu";
 import ArticleInArticleList from "@/app/components/content-area/related-articles/ArticleInArticleList";
 
 export const generateMetadata = async ({
@@ -79,27 +77,24 @@ const Page = async ({
 
   return (
     <>
-      <LeftColumn>
-        <ContentsArea article={article} params={params} />
-        {article.content && (
-          <MDXRemote
-            source={article.content}
-            components={components}
-            options={{
-              mdxOptions: {
-                remarkPlugins: [[remarkToc, { maxDepth: 3, heading: "目次" }]],
-                rehypePlugins: [rehypeSlug],
-              },
-            }}
-          />
-        )}
-        <ArticleInArticleList
-          parentCategorySlug={params.firstLevelArticle_slug}
-          childCategorySlug={params.secondLevelArticle_slug}
-          articleSlug={params.thirdLevelArticle_slug}
+      <ContentsArea article={article} params={params} />
+      {article.content && (
+        <MDXRemote
+          source={article.content}
+          components={components}
+          options={{
+            mdxOptions: {
+              remarkPlugins: [[remarkToc, { maxDepth: 3, heading: "目次" }]],
+              rehypePlugins: [rehypeSlug],
+            },
+          }}
         />
-      </LeftColumn>
-      <SideMenu firstLevelArticle_slug={params.firstLevelArticle_slug} />
+      )}
+      <ArticleInArticleList
+        parentCategorySlug={params.firstLevelArticle_slug}
+        childCategorySlug={params.secondLevelArticle_slug}
+        articleSlug={params.thirdLevelArticle_slug}
+      />
     </>
   );
 };
