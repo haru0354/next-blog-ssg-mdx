@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import Breadcrumbs from "../content-area/Breadcrumbs";
 
 type ContentsAreaProps = {

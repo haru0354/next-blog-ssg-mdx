@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+
 import InputText from "../ui/InputText";
 import Button from "../ui/Button";
 
@@ -36,7 +37,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ contentsPage = false }) => {
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />
-      <Button size="search" color="gray">
+      <Button type="submit" size="search" color="gray">
         検索
       </Button>
     </form>

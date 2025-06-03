@@ -1,6 +1,7 @@
 import path from "path";
 import fs from "fs";
 import matter from "gray-matter";
+
 import { getFileContents } from "./getFileContents";
 
 export async function getArticlesFromSlugs(

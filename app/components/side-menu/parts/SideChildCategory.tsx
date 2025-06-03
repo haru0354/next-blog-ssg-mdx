@@ -1,15 +1,14 @@
 import Link from "next/link";
+
 import { getChildCategories } from "@/app/lib/service/categoryService";
 
 type SideChildCategoryProps = {
   firstLevelArticle_slug: string;
-  categoryName: string | undefined;
   border?: boolean;
 };
 
 const SideChildCategory: React.FC<SideChildCategoryProps> = async ({
   firstLevelArticle_slug,
-  categoryName,
   border,
 }) => {
   const categories = await getChildCategories(firstLevelArticle_slug);
@@ -28,20 +27,20 @@ const SideChildCategory: React.FC<SideChildCategoryProps> = async ({
       <h3
         className={`w-full p-4 bg-layout-mainColor text-white font-bold ${h3BorderDesign}`}
       >
-        {categoryName}
+        {categories.parentCategoryName}
       </h3>
       <ul>
-        {categories?.map((category) => {
+        {categories?.childCategories.map((childCategory) => {
           return (
             <Link
-              href={`/${firstLevelArticle_slug}/${category?.slug}`}
-              key={category?.slug}
+              href={`/${firstLevelArticle_slug}/${childCategory?.slug}`}
+              key={childCategory?.slug}
             >
               <li
                 className={`p-4 hover:transition-colors hover:bg-layout-hoverColor duration-300 ${liBorderDesign}`}
-                key={category?.frontmatter.categoryName}
+                key={childCategory?.frontmatter.categoryName}
               >
-                {category?.frontmatter.categoryName}
+                {childCategory?.frontmatter.categoryName}
               </li>
             </Link>
           );

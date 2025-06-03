@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import { getGlobalMenu } from "../lib/service/menuService";
 
 const GlobalMenu = async () => {

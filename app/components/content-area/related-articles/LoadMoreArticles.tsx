@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+
 import Button from "../../ui/Button";
 
 type LoadMoreArticlesProps = {
@@ -33,7 +34,7 @@ const LoadMoreArticles: React.FC<LoadMoreArticlesProps> = ({
   const [displayedArticles, setDisplayedArticles] = useState<Article[]>(
     articles.slice(0, articleLimit)
   );
-  
+
   const handleLoadMoreArticles = () => {
     setDisplayedArticles((prevArticles) => {
       const nextArticles = articles.slice(
@@ -94,6 +95,7 @@ const LoadMoreArticles: React.FC<LoadMoreArticlesProps> = ({
               onClick={handleLoadMoreArticles}
               className="block mx-auto"
               color="gray"
+              type="button"
             >
               更に記事を読み込む
             </Button>
@@ -140,6 +142,7 @@ const LoadMoreArticles: React.FC<LoadMoreArticlesProps> = ({
               onClick={handleLoadMoreArticles}
               className="block mx-auto"
               color="gray"
+              type="button"
             >
               更に記事を読み込む
             </Button>

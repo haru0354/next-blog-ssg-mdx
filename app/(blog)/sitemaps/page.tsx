@@ -1,8 +1,9 @@
 import Link from "next/link";
 import React from "react";
+import { Metadata } from "next";
+
 import { getAllArticles } from "@/app/lib/service/allArticleService";
 import { getFixedPages } from "@/app/lib/service/fixedPageService";
-import { Metadata } from "next";
 import LeftColumn from "@/app/components/layouts/LeftColumn";
 import SideMenu from "@/app/components/side-menu/SideMenu";
 import Breadcrumbs from "@/app/components/content-area/Breadcrumbs";
@@ -19,7 +20,7 @@ const page = async () => {
     <>
       <LeftColumn>
         <div className="content-style p-4">
-          <Breadcrumbs isNotParentCategoryPage={false} addItem="サイトマップ" />
+          <Breadcrumbs isFirstLevelPage={true} isSecondLevelPage={false} addItem="サイトマップ" />
           <h1 className="text-2xl font-semibold mx-2 my-4">サイトマップ</h1>
           <ul>
             {allArticles?.map((allArticle, index) => {

@@ -1,6 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
-import Button from "../../ui/Button";
+
 import SplitAndNewLines from "../../content-area/SplitAndNewLines";
 import NextLinkButton from "../../ui/NextLinkButton";
 

@@ -1,6 +1,5 @@
 import Image from "next/image";
-import Button from "../../ui/Button";
-import Link from "next/link";
+
 import NextLinkButton from "../../ui/NextLinkButton";
 
 type RankingWithListProps = {

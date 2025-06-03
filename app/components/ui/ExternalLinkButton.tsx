@@ -1,19 +1,17 @@
-type ButtonProps = {
+type ExternalLinkButtonProps = {
   children: React.ReactNode;
+  href: string;
   color?: "blue" | "green" | "red" | "gray";
   size?: "search" | "small" | "normal" | "big";
-  type?: "submit" | "button";
   className?: string;
-  onClick?: () => void;
 };
 
-const Button: React.FC<ButtonProps> = ({
+const ExternalLinkButton: React.FC<ExternalLinkButtonProps> = ({
   children,
+  href,
   color = "blue",
   size = "normal",
-  type = "submit",
-  className,
-  onClick,
+  className = "",
 }) => {
   const colors = {
     blue: "bg-sky-600 hover:bg-sky-200",
@@ -30,17 +28,18 @@ const Button: React.FC<ButtonProps> = ({
   };
 
   return (
-    <button
-      className={`py-2 transition-colors duration-300 text-white hover:text-gray-700 border border-gray-400  
-        ${colors[color]} 
-        ${sizes[size]} 
-        ${className}`}
-      type={type}
-      onClick={onClick}
+    <a
+      className={`py-2 text-center transition-colors duration-300 text-white hover:text-gray-700 border border-gray-400  
+          ${colors[color]} 
+          ${sizes[size]} 
+          ${className}`}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
     >
       {children}
-    </button>
+    </a>
   );
 };
 
-export default Button;
+export default ExternalLinkButton;

@@ -1,6 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
-import Button from "../../ui/Button";
+
 import NextLinkButton from "../../ui/NextLinkButton";
 
 type RankingWithTableProps = {

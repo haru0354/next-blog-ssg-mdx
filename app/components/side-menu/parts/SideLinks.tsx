@@ -34,7 +34,12 @@ const SideLinks: React.FC<SideLinksProps> = async ({ border = false }) => {
       </h3>
       <ul>
         {links.frontmatter.items.map((item: Item) => (
-          <a href={item.slug} target="blank" key={item.name}>
+          <a
+            key={item.name}
+            href={item.slug}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <li
               className={`p-4 hover: transition-colors duration-300 hover:bg-layout-hoverColor ${
                 border && liBorderDesign

@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
-import "./globals.css";
 import { notoSansJp } from "./util/font";
+import "./globals.css";
+
+import HeaderWrapper from "./components/layouts/HeaderWrapper ";
+import GlobalMenu from "./components/GlobalMenu";
+import Footer from "./components/Footer";
 
 const websiteTitle = process.env.WEBSITE_TITLE || "サイトタイトル";
 const websiteDescription = process.env.WEBSITE_DESCRIPTION || "サイト説明文";
@@ -27,7 +31,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={notoSansJp.className}>{children}</body>
+      <body className={notoSansJp.className}>
+        <HeaderWrapper />
+        <GlobalMenu />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

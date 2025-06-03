@@ -1,4 +1,5 @@
 import path from "path";
+
 import { getFileContents } from "../getFileContents";
 import { getArticlesFromSlugs } from "../getArticlesFromSlugs";
 

@@ -9,50 +9,31 @@ import SideImageTop from "./parts/SideImageTop";
 
 type SideMenuProps = {
   firstLevelArticle_slug?: string;
-  categoryName?: string;
 };
 
-const SideMenu: React.FC<SideMenuProps> = ({
-  firstLevelArticle_slug,
-  categoryName,
-}) => {
+const SideMenu: React.FC<SideMenuProps> = ({ firstLevelArticle_slug }) => {
+  const hasBorder = process.env.SIDE_MENU_BORDER === "true";
+
   return (
-    <>
-      {process.env.SIDE_MENU_BORDER === "true" ? (
-        <div className="w-full rounded flex flex-col md:w-[300px] pt-8 md:pt-4">
-          <SideImageTop />
-          <SideRecommendArticles border={true} />
-          {firstLevelArticle_slug && (
-            <SideChildCategory
-              firstLevelArticle_slug={firstLevelArticle_slug}
-              categoryName={categoryName}
-              border={true}
-            />
-          )}
-          <SideCategory border={true} />
-          <SideNewArticle border={true} />
-          <SideLinks border={true} />
-          <SideSearchBar border={true} />
-          <SideImageBottom />
-        </div>
-      ) : (
-        <div className="w-full rounded flex flex-col md:w-[300px] p-2 md:pt-4 bg-white">
-          <SideImageTop />
-          <SideRecommendArticles />
-          {firstLevelArticle_slug && (
-            <SideChildCategory
-              firstLevelArticle_slug={firstLevelArticle_slug}
-              categoryName={categoryName}
-            />
-          )}
-          <SideCategory />
-          <SideNewArticle />
-          <SideLinks />
-          <SideSearchBar />
-          <SideImageBottom />
-        </div>
+    <div
+      className={`w-full rounded flex flex-col md:w-[300px] ${
+        hasBorder ? "pt-8 md:pt-4" : "p-2 md:pt-4 bg-white"
+      }`}
+    >
+      <SideImageTop />
+      <SideRecommendArticles border={hasBorder} />
+      {firstLevelArticle_slug && (
+        <SideChildCategory
+          firstLevelArticle_slug={firstLevelArticle_slug}
+          border={true}
+        />
       )}
-    </>
+      <SideCategory border={hasBorder} />
+      <SideNewArticle border={hasBorder} />
+      <SideLinks border={hasBorder} />
+      <SideSearchBar border={hasBorder} />
+      <SideImageBottom />
+    </div>
   );
 };
 
